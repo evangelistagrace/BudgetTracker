@@ -1,0 +1,34 @@
+{
+  "name": "budgettracker",
+  "version": "1.0.0",
+  "description": "Budget and expense tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evangelistagrace/BudgetTracker.git"
+  },
+  "author": "Evangelista Grace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evangelistagrace/BudgetTracker/issues"
+  },
+  "homepage": "https://github.com/evangelistagrace/BudgetTracker#readme",
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-wrapper": "^1.0.0",
+    "jshint": "^2.10.2"
+  }
+}
