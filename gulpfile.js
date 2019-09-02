@@ -3,8 +3,12 @@
 var gulp = require('gulp');
    
 var sass = require("gulp-sass");
-   
-//compile 
-gulp.task('message', async function() {
-    console.log("Hello");
+
+
+gulp.task('sass', async function() {
+    return gulp.src('src/scss/style.scss')
+    .pipe(sass()) // Using gulp-sass
+    .pipe(gulp.dest('src/css/style.css'))
   });
+
+  
