@@ -17,20 +17,20 @@
 
 <body>
     
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar sticky">
 
         <a class="navbar-brand" href="#">BudgetTracker</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <li class="nav-link">Sign Up</li>
+                <li class="nav-link"><a href="/">Sign Up</a></li>
             </li>
             <li class="nav-item">
-                <li class="nav-link">Sign In</li>
+                <li class="nav-link"><a href="/">Sign In</a></li>
             </li>
         </ul>
     </nav>
     <div class="header">
-    
+
     </div>
 
 <div style="height:1000px;background-color:red;font-size:36px">

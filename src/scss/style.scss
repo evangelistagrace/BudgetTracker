@@ -1,14 +1,58 @@
+// variables
+// colors
+$mediumAquamarine: #5cdb95;
+$seaFoamGreen: #b9e3c6;
+$independence: #444b6e;
+$lightCarminePink: #ef6f6c;
+$babyPowder: #fcfcfc;
+
+
 html, body{
     height: 100%;
+    position: relative;
 }
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.navbar{
+    overflow: hidden;
+    a{
+        color: $independence;
+    }
+}
+
+a.navbar-brand{
+    color: $mediumAquamarine;
+    font-weight: 800;
+}
+
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $babyPowder;
+    z-index: 9999;    
+}
 .navbar-nav{
     display: flex;
     flex-direction: row;
-
+    font-family: 'Varela Round', sans-serif;
+    
     .nav-item{
         margin: 10px;
     }
+}
+.navbar-brand{
+    font-family: 'Varela Round', sans-serif;
+
 }
 .header {
     background-image: url("../../assets/abstract-bg2.png");
@@ -21,5 +65,4 @@ html, body{
     position: relative;
     opacity: .9;
     box-shadow: 0 0 400px rgba(102, 102, 102, 0.568) inset;
-    
   }

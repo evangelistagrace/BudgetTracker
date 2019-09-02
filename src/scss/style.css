@@ -1,5 +1,38 @@
 html, body {
   height: 100%;
+  position: relative;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.navbar {
+  overflow: hidden;
+}
+
+.navbar a {
+  color: #444b6e;
+}
+
+a.navbar-brand {
+  color: #5cdb95;
+  font-weight: 800;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fcfcfc;
+  z-index: 9999;
 }
 
 .navbar-nav {
@@ -10,10 +43,15 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .navbar-nav .nav-item {
   margin: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Varela Round', sans-serif;
 }
 
 .header {
