@@ -1,4 +1,6 @@
-
+html, body{
+    height: 100%;
+}
 
 .navbar-nav{
     display: flex;
@@ -8,3 +10,16 @@
         margin: 10px;
     }
 }
+.header {
+    background-image: url("../../assets/abstract-bg2.png");
+    min-height: 500px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+    opacity: .9;
+    box-shadow: 0 0 400px rgba(102, 102, 102, 0.568) inset;
+    
+  }
