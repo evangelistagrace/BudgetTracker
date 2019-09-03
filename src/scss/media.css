@@ -23,9 +23,9 @@ html, body {
 .navbar li a:link {
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.15em;
   display: inline-block;
-  padding: 15px 10px;
+  padding: 15px 20px;
   position: relative;
 }
 
@@ -92,10 +92,6 @@ a.navbar-brand {
   font-family: 'Varela Round', sans-serif;
 }
 
-.navbar-brand img {
-  width: 200px;
-}
-
 .header {
   background-image: url("../../assets/abstract.png");
   min-height: 500px;
@@ -147,10 +143,9 @@ a.navbar-brand {
 }
 
 .header .left span:nth-child(4) {
-  font-size: 30px;
+  font-size: 35px;
   padding: 20px;
-  width: 170%;
-  font-family: 'Varela Round', sans-serif;
+  width: 160%;
 }
 
 .header .center {
@@ -206,4 +201,21 @@ a.navbar-brand {
   -webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
           box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
-/*# sourceMappingURL=style.css.map */
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+/*# sourceMappingURL=media.css.map */

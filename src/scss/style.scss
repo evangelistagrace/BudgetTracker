@@ -2,14 +2,17 @@
 // colors
 $mediumAquamarine: #5cdb95;
 $seaFoamGreen: #b9e3c6;
-$independence: #444b6e;
+$independence: #545d86;
 $lightCarminePink: #ef6f6c;
 $babyPowder: #fcfcfc;
+$white: #ffffff;
 
 
 html, body{
     height: 100%;
     position: relative;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
 }
 
 *{
@@ -18,29 +21,68 @@ html, body{
     padding: 0;
 }
 
-a:link{
-    text-decoration: none;
-}
 
 .navbar{
     overflow: hidden;
-    a{
-        color: $independence;
-    }
-}
-
-a.navbar-brand{
-    color: $mediumAquamarine;
-    font-weight: 800;
-}
-
-.sticky{
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: $babyPowder;
-    z-index: 9999;    
+    z-index: 9999;  
+
+    li{
+        a:link{
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.10em;
+            display: inline-block;
+            padding: 15px 10px;
+            position: relative;
+        }
+        
+        a:after {    
+            background: none repeat scroll 0 0 transparent;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            background: #fff;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+        }
+        
+        a:hover:after { 
+            width: 100%; 
+            left: 0; 
+        }
+    }
+    
 }
+
+a.navbar-brand{
+    color: $white;
+    font-weight: 800;
+}
+
+
+.transparent{
+    background-color: transparent;
+    transition: background-color .2s linear;
+    a{
+        color: $white
+    }
+}
+
+.colored{
+    background-color: $babyPowder;
+    transition: background-color .2s linear;
+    a{
+        color: $mediumAquamarine;
+    }
+}
+  
+
 .navbar-nav{
     display: flex;
     flex-direction: row;
@@ -53,16 +95,95 @@ a.navbar-brand{
 .navbar-brand{
     font-family: 'Varela Round', sans-serif;
 
+    img{
+        width: 200px;
+    }
+
 }
 .header {
-    background-image: url("../../assets/abstract-bg2.png");
+    background-image: url("../../assets/abstract.png");
     min-height: 500px; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    position: relative;
-    opacity: .9;
-    box-shadow: 0 0 400px rgba(102, 102, 102, 0.568) inset;
+    display: flex;
+    flex-direction: row;
+    opacity: .8;
+    
+
+    .left{
+        width: 20vw;
+        // border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        margin-top: 3%;
+        margin-left: 10%;
+        color: white;
+
+        span{
+            // margin: auto;
+            
+            font-family: 'Oleo Script', cursive;
+            font-size: 60px;
+            // border: 1px solid black;
+        }
+
+        span:nth-child(2){
+            text-align: center;
+        }
+
+        span:nth-child(3){
+            text-align: right;
+        }
+
+        span:nth-child(4){
+            font-size: 30px;
+            padding: 20px;
+            width: 170%;
+            font-family: 'Varela Round', sans-serif;
+        }
+    }
+    
+    .center{
+        width: 40%;
+        // border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: flex-end;
+        margin-top: 10%;
+        color: white;
+        flex-wrap: wrap;
+
+        .btn{
+            margin-bottom: 30px;
+            width: 60%;
+            border-radius: 20px;
+            background: #5cdb95; /* Old browsers */
+            background: -moz-linear-gradient(left,  #5cdb95 0%, #207cca 100%, #b9e3c6 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 ); /* IE6-9 */
+            ;
+            padding: 15px;
+            border: 4px solid white;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+
+            &:hover{
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
+                background: #207cca; /* Old browsers */
+                background: -moz-linear-gradient(left,  #207cca 0%, #5cdb95 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  #207cca 0%,#5cdb95 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  #207cca 0%,#5cdb95 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 ); /* IE6-9 */
+                box-shadow: 2px 3px 3px rgba(0,0,0,.3);
+            }
+        }
+    }
+    
   }
