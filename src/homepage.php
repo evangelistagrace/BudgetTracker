@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BudgetTracker</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito|Varela+Round&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap" rel="stylesheet"> 
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="scss/style.css">
-</head>
+<?php include 'head.php';?>
 
 <body>
     
@@ -43,7 +29,7 @@
      </div>
 
     </div>
-<div style="height:1000px;background-color:red;font-size:36px">
+<div style="height:1000px;background-color:white;font-size:16px">
 Scroll Up and Down this page to see the parallax scrolling effect.
 This div is just here to enable scrolling.
 Tip: Try to remove the background-attachment property to remove the scrolling effect.

@@ -3,6 +3,7 @@ html, body {
   position: relative;
   font-family: 'Varela Round', sans-serif;
   font-size: 16px;
+  background: #fcfcfc;
 }
 
 * {
@@ -205,5 +206,69 @@ a.navbar-brand {
   /* IE6-9 */
   -webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
           box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Login */
+body {
+  width: 100%;
+}
+
+.bg-container {
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+
+.half-background {
+  background-image: url("../../assets/abstract-sm.png");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  width: 100%;
+  height: 100%;
+}
+
+.form-container {
+  background: #ffffff;
+  min-width: 40vw;
+  min-height: 65vh;
+  padding: 20px;
+  z-index: 9999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.logo {
+  width: 20%;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.logo img {
+  width: 100%;
+}
+
+.logo .desc {
+  text-align: center;
+  color: #ffffff;
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=style.css.map */

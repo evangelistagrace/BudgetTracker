@@ -1,5 +1,7 @@
 // variables
 // colors
+
+//pallete#1
 $mediumAquamarine: #5cdb95;
 $seaFoamGreen: #b9e3c6;
 $independence: #545d86;
@@ -8,11 +10,20 @@ $babyPowder: #fcfcfc;
 $white: #ffffff;
 
 
+//pallete#2
+$aero: #86c0e6;
+$mediumPurple: #9b85e6;
+$ceil: #91a0e6;
+$middleBlue: #7cdde6;
+$grannySmithApple: #ade497;
+
+
 html, body{
     height: 100%;
     position: relative;
     font-family: 'Varela Round', sans-serif;
     font-size: 16px;
+    background: $babyPowder;
 }
 
 *{
@@ -187,3 +198,60 @@ a.navbar-brand{
     }
     
   }
+
+
+  /* Login */
+
+  body{
+    width: 100%;
+}
+.bg-container{
+    width: 100%;
+    height: 50%;
+    // z-index: -1; 
+    position: relative;
+}
+.half-background{
+    background-image: url('../../assets/abstract-sm.png');
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    width: 100%;
+    height: 100%;
+}
+
+.form-container{
+    background: $white;
+    min-width: 40vw;
+    min-height: 65vh;
+    padding: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+   
+} 
+.logo{
+    width: 20%;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    img{
+        width: 100%;
+    }
+    .desc{
+        text-align: center;
+        color: $white;
+        font-size: 17px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}

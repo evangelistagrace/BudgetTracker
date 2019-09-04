@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login page</title>
-</head>
+<?php include 'head.php'?>
+
 <body>
-    <h1>Login</h1>
+    <div class="bg-container"><div class="half-background"></div>
+    </div>
+    <div class="logo"><img src="../assets/bt-logo-white.png" alt=""><div class="desc">Login</div></div>
+    <div class="form-container">
+        
+    </div>
+
+
 </body>
 </html>

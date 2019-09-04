@@ -23,9 +23,9 @@ html, body {
 .navbar li a:link {
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.10em;
   display: inline-block;
-  padding: 15px 20px;
+  padding: 15px 10px;
   position: relative;
 }
 
@@ -92,6 +92,10 @@ a.navbar-brand {
   font-family: 'Varela Round', sans-serif;
 }
 
+.navbar-brand img {
+  width: 200px;
+}
+
 .header {
   background-image: url("../../assets/abstract.png");
   min-height: 500px;
@@ -143,9 +147,10 @@ a.navbar-brand {
 }
 
 .header .left span:nth-child(4) {
-  font-size: 35px;
+  font-size: 30px;
   padding: 20px;
-  width: 160%;
+  width: 170%;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .header .center {
