@@ -17,6 +17,29 @@ $ceil: #91a0e6;
 $middleBlue: #7cdde6;
 $grannySmithApple: #ade497;
 
+//mixins
+@mixin gradientBtn{
+    background: #5cdb95; /* Old browsers */
+    background: -moz-linear-gradient(left,  #5cdb95 0%, #207cca 100%, #b9e3c6 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 ); /* IE6-9 */
+    ;
+    border: 4px solid white;
+    transition: border .2s linear;
+}
+
+@mixin gradientBtnReverse{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
+    background: #207cca; /* Old browsers */
+    background: -moz-linear-gradient(left,  #207cca 0%, #5cdb95 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #207cca 0%,#5cdb95 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #207cca 0%,#5cdb95 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 ); /* IE6-9 */
+    border: 4px solid #91a1e685;
+    transition: border .2s linear;
+
+}
 
 html, body{
     height: 100%;
@@ -174,25 +197,13 @@ a.navbar-brand{
             margin-bottom: 30px;
             width: 60%;
             border-radius: 20px;
-            background: #5cdb95; /* Old browsers */
-            background: -moz-linear-gradient(left,  #5cdb95 0%, #207cca 100%, #b9e3c6 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(left,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to right,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 ); /* IE6-9 */
-            ;
+           @include gradientBtn();
             padding: 15px;
-            border: 4px solid white;
             font-size: 1.2rem;
             letter-spacing: 1px;
 
             &:hover{
-                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
-                background: #207cca; /* Old browsers */
-                background: -moz-linear-gradient(left,  #207cca 0%, #5cdb95 100%); /* FF3.6-15 */
-                background: -webkit-linear-gradient(left,  #207cca 0%,#5cdb95 100%); /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to right,  #207cca 0%,#5cdb95 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 ); /* IE6-9 */
-                box-shadow: 2px 3px 3px rgba(0,0,0,.3);
+                @include gradientBtnReverse();
             }
         }
     }
@@ -207,8 +218,7 @@ a.navbar-brand{
 }
 .bg-container{
     width: 100%;
-    height: 50%;
-    // z-index: -1; 
+    height: 50%; 
     position: relative;
 }
 .half-background{
@@ -219,23 +229,6 @@ a.navbar-brand{
     height: 100%;
 }
 
-.form-container{
-    background: $white;
-    min-width: 40vw;
-    min-height: 65vh;
-    padding: 20px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
-    position: absolute;
-    top: 180px;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-   
-} 
 .logo{
     width: 20%;
     position: absolute;
@@ -255,3 +248,50 @@ a.navbar-brand{
         text-transform: uppercase;
     }
 }
+
+.form-container{
+    background: $white;
+    min-width: 40vw;
+    min-height: 65vh;
+    padding: 10px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    form{
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        color: #808080;
+
+        button{
+            display: block;
+            width: 70%;
+            border-radius: 50px;
+            justify-self: center;
+            font-size: 1.2em;
+            @include gradientBtn();
+
+            &:hover{
+                @include gradientBtnReverse();
+            }
+        }
+
+        .form-group{
+            input::placeholder{
+                color: #ccc;
+            }
+        }
+    }
+   
+} 

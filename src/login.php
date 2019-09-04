@@ -13,7 +13,7 @@
     <div class="form-container">
     <form>
   <div class="form-group">
-    <label for="usernameLogin">Email address</label>
+    <label for="usernameLogin">Username</label>
     <input type="text" class="form-control" id="usernameLogin" name="usernameLogin" placeholder="Enter username">
   </div>
   <div class="form-group">

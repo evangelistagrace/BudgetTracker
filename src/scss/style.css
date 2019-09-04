@@ -187,8 +187,10 @@ a.navbar-brand {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 );
   /* IE6-9 */
-  padding: 15px;
   border: 4px solid white;
+  -webkit-transition: border .2s linear;
+  transition: border .2s linear;
+  padding: 15px;
   font-size: 1.2rem;
   letter-spacing: 1px;
 }
@@ -204,8 +206,9 @@ a.navbar-brand {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 );
   /* IE6-9 */
-  -webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+  border: 4px solid #91a1e685;
+  -webkit-transition: border .2s linear;
+  transition: border .2s linear;
 }
 
 /* Login */
@@ -227,30 +230,6 @@ body {
   height: 100%;
 }
 
-.form-container {
-  background: #ffffff;
-  min-width: 40vw;
-  min-height: 65vh;
-  padding: 20px;
-  z-index: 9999;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  position: absolute;
-  top: 180px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-}
-
 .logo {
   width: 20%;
   position: absolute;
@@ -270,5 +249,99 @@ body {
   font-size: 17px;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.form-container {
+  background: #ffffff;
+  min-width: 40vw;
+  min-height: 65vh;
+  padding: 10px;
+  z-index: 9999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.form-container form {
+  margin-top: 40px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #808080;
+}
+
+.form-container form button {
+  display: block;
+  width: 70%;
+  border-radius: 50px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 1.2em;
+  background: #5cdb95;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#5cdb95), color-stop(100%, #207cca), to(#b9e3c6));
+  background: linear-gradient(to right, #5cdb95 0%, #207cca 100%, #b9e3c6 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 );
+  /* IE6-9 */
+  border: 4px solid white;
+  -webkit-transition: border .2s linear;
+  transition: border .2s linear;
+}
+
+.form-container form button:hover {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
+  background: #207cca;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#207cca), to(#5cdb95));
+  background: linear-gradient(to right, #207cca 0%, #5cdb95 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 );
+  /* IE6-9 */
+  border: 4px solid #91a1e685;
+  -webkit-transition: border .2s linear;
+  transition: border .2s linear;
+}
+
+.form-container form .form-group input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.form-container form .form-group input:-ms-input-placeholder {
+  color: #ccc;
+}
+
+.form-container form .form-group input::-ms-input-placeholder {
+  color: #ccc;
+}
+
+.form-container form .form-group input::placeholder {
+  color: #ccc;
 }
 /*# sourceMappingURL=style.css.map */
