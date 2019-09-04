@@ -14,17 +14,18 @@
     <form>
   <div class="form-group">
     <label for="usernameLogin">Username</label>
-    <input type="text" class="form-control" id="usernameLogin" name="usernameLogin" placeholder="Enter username">
+    <input type="text" class="form-control" id="usernameLogin" name="usernameLogin" placeholder="Enter your username">
   </div>
   <div class="form-group">
     <label for="passwordLogin">Password</label>
-    <input type="password" class="form-control" id="passwordLogin" name="passwordLogin" placeholder="Password">
+    <input type="password" class="form-control" id="passwordLogin" name="passwordLogin" placeholder="Enter you password">
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="rememberUser" name="rememberUser">
     <label class="form-check-label" for="rememberUser">Remember Me</label>
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
+  <small>Don't have an account? <a href="../src/register.php">Sign up</a></small>
 </form>
     </div>
 

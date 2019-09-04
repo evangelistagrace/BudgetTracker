@@ -1,0 +1,41 @@
+// variables
+// colors
+
+//pallete#1
+$mediumAquamarine: #5cdb95;
+$seaFoamGreen: #b9e3c6;
+$independence: #545d86;
+$lightCarminePink: #ef6f6c;
+$babyPowder: #fcfcfc;
+$white: #ffffff;
+
+
+//pallete#2
+$aero: #86c0e6;
+$mediumPurple: #9b85e6;
+$ceil: #91a0e6;
+$middleBlue: #7cdde6;
+$grannySmithApple: #ade497;
+
+//mixins
+@mixin gradientBtn{
+    background: #5cdb95; /* Old browsers */
+    background: -moz-linear-gradient(left,  #5cdb95 0%, #207cca 100%, #b9e3c6 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #5cdb95 0%,#207cca 100%,#b9e3c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5cdb95', endColorstr='#b9e3c6',GradientType=1 ); /* IE6-9 */
+    ;
+    border: 4px solid white;
+    transition: border .2s linear;
+}
+
+@mixin gradientBtnReverse{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
+    background: #207cca; /* Old browsers */
+    background: -moz-linear-gradient(left,  #207cca 0%, #5cdb95 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #207cca 0%,#5cdb95 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #207cca 0%,#5cdb95 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207cca', endColorstr='#5cdb95',GradientType=1 ); /* IE6-9 */
+    border: 4px solid #91a1e685;
+    transition: border .2s linear;
+}
