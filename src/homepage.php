@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php include 'head.php';?>
-
+<title>BudgetTracker</title>
 <body>
     
     <nav class="navbar transparent">
