@@ -16,8 +16,9 @@ $(function () {
 
 
 function toggleSidebar() {
-    console.log("hello");
+    // $(".sidebar").css("width", "5%");
 
-    var sidebar = $(".sidebar");
-    $(sidebar).css("width", "5%");
+    $(".sidebar").toggleClass('collapsed');
+
+    // $("#menuItem1").html('<i class="fas fa-air-freshener"></i>');
 }

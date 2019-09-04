@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
+<!--Font Awesome-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <title>Dashboard - BudgetTracker</title>
 
 <style>
@@ -35,6 +37,16 @@
                         <div class="desc">@chevvycherokee</div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <ul class="menu">
+                        <li class="menu-item" id="menuItem1"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem2"><a href="#">Link 2</a></li>
+                        <li class="menu-item" id="menuItem3"><a href="#">Link 3</a></li>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

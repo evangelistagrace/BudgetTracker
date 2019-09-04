@@ -56,20 +56,52 @@ body .container .row .col.sidebar .row {
   width: 100%;
 }
 
+body .container .row .col.sidebar .row .menu {
+  margin-top: 20px;
+}
+
+body .container .row .col.sidebar .row .menu li {
+  padding: 0 0 5px 10px;
+}
+
+body .container .row .col.sidebar .row .menu li#menuItem1 a:after {
+  content: 'Link 1';
+}
+
+body .container .row .col.sidebar .row .profile {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+body .container .row .col.sidebar .row .profile img {
+  width: 90px;
+  border-radius: 50px;
+}
+
 body .container .row .col.sidebar .left {
   text-align: right;
   font-size: 1.5em;
   cursor: pointer;
 }
 
-body .container .row .profile {
-  width: 100%;
-  text-align: center;
+body .container .row .col.sidebar.collapsed {
+  width: 5%;
 }
 
-body .container .row .profile img {
-  width: 90px;
-  border-radius: 50px;
+body .container .row .col.sidebar.collapsed .row .profile {
+  display: none;
+}
+
+body .container .row .col.sidebar.collapsed .row .menu li#menuItem1 a:after {
+  font-family: 'FontAwesome';
+  content: '\f062';
+}
+
+body .container .row .col.sidebar.collapsed .left {
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 .navbar {

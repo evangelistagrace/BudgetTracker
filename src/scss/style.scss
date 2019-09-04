@@ -36,6 +36,29 @@ body{
                     display: flex;
                     flex-direction: row;
                     width:100%;
+
+                    .menu{
+                        margin-top: 20px;
+                        li{
+                            padding: 0 0 5px 10px;
+                            
+                        }
+                        li#menuItem1{
+                            a:after{
+                                content: 'Link 1';
+                            }
+                        }
+                    }
+
+                    .profile{
+                        width: 100%;
+                        text-align: center;
+                        display: block;
+                        img{
+                            width:90px;
+                            border-radius: 50px;
+                        }
+                    }
                     
                 }
                 .left{
@@ -45,18 +68,36 @@ body{
                 }
             }
 
-            .profile{
-                width: 100%;
-                text-align: center;
-                img{
-                    width:90px;
-                    border-radius: 50px;
+            .col.sidebar.collapsed{
+                width: 5%;
+
+                .row{
+                   
+                    .profile{
+                        display: none;
+                    }
+
+                    .menu{
+                        li#menuItem1{
+                            a:after{
+                                font-family: 'FontAwesome';
+                                content: '\f062';
+                            }
+                        }
+                    }
+                    
+                }
+                .left{
+                    text-align: center;
+                    font-size: 1.5em;
+                    cursor: pointer;
                 }
             }
+
+            
         }
     }
 }
-
 
 
 .navbar{
