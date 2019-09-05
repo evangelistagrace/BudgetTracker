@@ -2,7 +2,7 @@
 <html lang="en">
 <?php include 'head.php'?>
 <!--Font Awesome-->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="../fontawesome/css/all.css">
 <title>Dashboard - BudgetTracker</title>
 
 <style>
@@ -41,8 +41,13 @@
                 <div class="row">
                     <ul class="menu">
                         <li class="menu-item" id="menuItem1"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem2"><a href="#">Link 2</a></li>
-                        <li class="menu-item" id="menuItem3"><a href="#">Link 3</a></li>
+                        <li class="menu-item" id="menuItem2"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem3"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem4"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem5"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem6"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem7"><a href="#"></a></li>
+
 
                     </div>
                 </div>

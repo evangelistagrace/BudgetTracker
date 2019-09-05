@@ -1,12 +1,17 @@
 @import 'variables';
-*{
+@import '../../fontawesome/scss/fontawesome.scss';
+@import "../../fontawesome/scss/solid.scss";
+@import "../../fontawesome/scss/brands.scss";
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-html, body{
+html,
+body {
     width: 100%;
     height: 100%;
     position: relative;
@@ -14,102 +19,282 @@ html, body{
     font-size: 16px;
     background: $babyPowder;
 }
-body{
+
+body {
+
     /* dashboard */
-    .container{
+    .container {
         display: block;
         width: 100%;
-        margin-top: 45.2px;
-        .row{
-            display: block;
-            width:100%;
+        padding-top: 45.2px;
 
-            .col.sidebar{
-                width: 20%;
-                height: 100vh;
+        .row {
+            display: block;
+            width: 100%;
+
+            .col.sidebar {
+                width: 17%;
+                height: calc(100vh - 45.2px);
                 background: $seaFoamGreen;
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
 
-                .row{
+                .row {
                     display: flex;
                     flex-direction: row;
-                    width:100%;
+                    width: 100%;
 
-                    .menu{
-                        margin-top: 20px;
-                        li{
-                            padding: 0 0 5px 10px;
-                            
+                    .menu {
+                        @extend %fa-icon;
+                        @extend .fas;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        margin-top: 40px;
+
+                        li {
+                            padding: 0 0 20px 15px;
+
+                            a {
+                                text-decoration: none;
+                                color: $mediumPurple;
+                                &:before {
+                                    font-family: 'Font Awesome\ 5 Free';
+                                    font-size: 1.3em;
+                                    margin-right: 5px;
+                                }
+                                &:after {
+                                    font-family: 'Varela Round', sans-serif;
+                                    font-size: 1.2em;
+                                }
+
+                                
+                            }
+
                         }
-                        li#menuItem1{
-                            a:after{
-                                content: 'Link 1';
+                        //Link - dashboard
+                        li#menuItem1 {
+                            a:before {
+                                content: fa-content($fa-var-home);
+                            }
+
+                            a:after {
+                                content: 'Dashboard';
+                            }
+                        }
+
+                        //Link - budget
+                        li#menuItem2 {
+                            a:before {
+                                content: fa-content($fa-var-chart-pie);
+                            }
+
+                            a:after {
+                                content: 'Budgets';
+                            }
+                        }
+
+                        //Link - expenses
+                        li#menuItem3 {
+                            a:before {
+                                content: fa-content($fa-var-wallet);
+                            }
+
+                            a:after {
+                                content: 'Expenses';
+                            }
+                        }
+
+                        //Link - reminders
+                        li#menuItem4 {
+                            a:before {
+                                content: fa-content($fa-var-bell);
+                            }
+
+                            a:after {
+                                content: 'Reminders';
+                            }
+                        }
+
+                        //Link - groups
+                        li#menuItem5 {
+                            a:before {
+                                content: fa-content($fa-var-user-friends);
+                            }
+
+                            a:after {
+                                content: 'Groups';
+                            }
+                        }
+
+                        //Link - view report
+                        li#menuItem6 {
+                            a:before {
+                                content: fa-content($fa-var-chart-line);
+                            }
+
+                            a:after {
+                                content: 'Report';
+                            }
+                        }
+
+                        //Link - settings
+                        li#menuItem7 {
+                            a:before {
+                                content: fa-content($fa-var-cog);
+                            }
+
+                            a:after {
+                                content: 'Settings';
                             }
                         }
                     }
 
-                    .profile{
+                    .profile {
                         width: 100%;
                         text-align: center;
                         display: block;
-                        img{
-                            width:90px;
+
+                        img {
+                            width: 90px;
                             border-radius: 50px;
                         }
                     }
-                    
+
                 }
-                .left{
+
+                .left {
                     text-align: right;
                     font-size: 1.5em;
                     cursor: pointer;
                 }
             }
 
-            .col.sidebar.collapsed{
+            //sidebar collapsed
+            .col.sidebar.collapsed {
                 width: 5%;
+                .row {
 
-                .row{
-                   
-                    .profile{
+                    .profile {
                         display: none;
                     }
 
-                    .menu{
-                        li#menuItem1{
-                            a:after{
-                                font-family: 'FontAwesome';
-                                content: '\f062';
+                    .menu {
+                        margin-top: 60px;
+                        li {
+                            padding: 0 0 40px 15px;
+
+                            a {
+                                &:before {
+                                    font-size: 1.5em;
+                                }
+                            }
+                        }
+                        //Link - dashboard
+                        li#menuItem1 {
+                            a:before {
+                                content: fa-content($fa-var-home);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - budget
+                        li#menuItem2 {
+                            a:before {
+                                content: fa-content($fa-var-chart-pie);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - expenses
+                        li#menuItem3 {
+                            a:before {
+                                content: fa-content($fa-var-wallet);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - reminders
+                        li#menuItem4 {
+                            a:before {
+                                content: fa-content($fa-var-bell);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - groups
+                        li#menuItem5 {
+                            a:before {
+                                content: fa-content($fa-var-user-friends);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - view report
+                        li#menuItem6 {
+                            a:before {
+                                content: fa-content($fa-var-chart-line);
+                            }
+
+                            a:after {
+                                content: '';
+                            }
+                        }
+
+                        //Link - settings
+                        li#menuItem7 {
+                            a:before {
+                                content: fa-content($fa-var-cog);
+                            }
+
+                            a:after {
+                                content: '';
                             }
                         }
                     }
-                    
+
                 }
-                .left{
+
+                .left {
                     text-align: center;
                     font-size: 1.5em;
                     cursor: pointer;
                 }
             }
 
-            
+
         }
     }
 }
 
 
-.navbar{
+.navbar {
     overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9999;  
+    z-index: 9999;
     font-family: 'Varela Round', sans-serif;
 
-    li{
-        a{
+    li {
+        a {
             text-transform: uppercase;
             text-decoration: none;
             letter-spacing: 0.10em;
@@ -117,7 +302,7 @@ body{
             padding: 5px 10px;
             position: relative;
 
-            &:after{
+            &:after {
                 background: none repeat scroll 0 0 transparent;
                 bottom: 0;
                 content: "";
@@ -130,74 +315,78 @@ body{
                 width: 0;
             }
 
-            &:hover{
-                &:after{
-                    width: 100%; 
-                    left: 0; 
+            &:hover {
+                &:after {
+                    width: 100%;
+                    left: 0;
                 }
             }
         }
 
-        a.navbar-brand{
+        a.navbar-brand {
             color: $white;
             font-weight: 800;
         }
     }
 
-    .navbar-nav{
+    .navbar-nav {
         display: flex;
         flex-direction: row;
 
-        .nav-item{
+        .nav-item {
             margin: 10px;
         }
     }
-    .navbar-brand{
-        img{
+
+    .navbar-brand {
+        img {
             width: 200px;
 
         }
     }
-    
+
 }
 
-.navbar.small{
+.navbar.small {
     background-color: $ceil;
     padding: 0 10px;
-    
-    .navbar-brand{
-        img{
+
+    .navbar-brand {
+        img {
             width: 150px;
         }
     }
-    a{
+
+    a {
         color: $white;
 
-        &:after{
+        &:after {
             background: none;
         }
     }
 }
 
-.navbar.transparent{
+.navbar.transparent {
     background-color: transparent;
     transition: background-color .2s linear;
-    a{
+
+    a {
         color: $white
     }
 }
 
-.navbar.colored{
+.navbar.colored {
     background-color: $babyPowder;
     transition: background-color .2s linear;
-    a{
+
+    a {
         color: $mediumAquamarine;
     }
 }
 
 .header {
     background-image: url("../../assets/abstract.png");
-    min-height: 500px; 
+    min-height: 500px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -206,9 +395,9 @@ body{
     display: flex;
     flex-direction: row;
     opacity: .8;
-    
 
-    .left{
+
+    .left {
         width: 20vw;
         display: flex;
         flex-direction: column;
@@ -218,28 +407,28 @@ body{
         margin-left: 10%;
         color: white;
 
-        span{
+        span {
             font-family: 'Oleo Script', cursive;
             font-size: 60px;
         }
 
-        span:nth-child(2){
+        span:nth-child(2) {
             text-align: center;
         }
 
-        span:nth-child(3){
+        span:nth-child(3) {
             text-align: right;
         }
 
-        span:nth-child(4){
+        span:nth-child(4) {
             font-size: 30px;
             padding: 20px;
             width: 170%;
             font-family: 'Varela Round', sans-serif;
         }
     }
-    
-    .center{
+
+    .center {
         width: 40%;
         display: flex;
         flex-direction: column;
@@ -249,16 +438,16 @@ body{
         color: white;
         flex-wrap: wrap;
 
-        .btn{
+        .btn {
             margin-bottom: 30px;
             width: 60%;
             border-radius: 20px;
-           @include gradientBtn();
+            @include gradientBtn();
             padding: 15px;
             font-size: 1.2rem;
             letter-spacing: 1px;
 
-            &:hover{
+            &:hover {
                 @include gradientBtnReverse();
             }
         }
@@ -267,12 +456,13 @@ body{
 
 /* Login */
 
-.bg-container{
+.bg-container {
     width: 100%;
-    height: 50%; 
+    height: 50%;
     position: relative;
 }
-.half-background{
+
+.half-background {
     background-image: url('../../assets/abstract-sm.png');
     background-repeat: no-repeat;
     background-size: 100vw;
@@ -280,7 +470,7 @@ body{
     height: 100%;
 }
 
-.logo{
+.logo {
     width: 20%;
     position: absolute;
     top: 100px;
@@ -288,10 +478,11 @@ body{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
 
-    img{
+    img {
         width: 100%;
     }
-    .desc{
+
+    .desc {
         text-align: center;
         color: $white;
         font-size: 17px;
@@ -300,7 +491,7 @@ body{
     }
 }
 
-.form-container{
+.form-container {
     background: $white;
     min-width: 40vw;
     min-height: 65vh;
@@ -317,7 +508,7 @@ body{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
 
-    form{
+    form {
         margin-top: 10px;
         width: 100%;
         display: flex;
@@ -326,7 +517,7 @@ body{
         flex-wrap: wrap;
         color: #808080;
 
-        button{
+        button {
             display: block;
             width: 70%;
             border-radius: 50px;
@@ -334,24 +525,24 @@ body{
             font-size: 1.2em;
             @include gradientBtn();
 
-            &:hover{
+            &:hover {
                 @include gradientBtnReverse();
             }
         }
 
-        .form-group{
-            input::placeholder{
+        .form-group {
+            input::placeholder {
                 color: #ccc;
             }
         }
 
-        small{
+        small {
             margin-top: 5px;
             text-align: center;
         }
     }
 
-    
 
-   
-} 
+
+
+}
