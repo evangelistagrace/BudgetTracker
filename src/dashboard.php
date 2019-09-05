@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             <div class="col sidebar">
-                <div class="left"><a onclick="toggleSidebar()"><i class="fas fa-times"></i></a></div>
+                <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
                 <div class="row">
                     <div class="profile"><img src="../assets/profile.jpg" alt="">
                         <div class="desc">@chevvycherokee</div>
@@ -40,13 +40,13 @@
 
                 <div class="row">
                     <ul class="menu">
-                        <li class="menu-item" id="menuItem1"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem2"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem3"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem4"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem5"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem6"><a href="#"></a></li>
-                        <li class="menu-item" id="menuItem7"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem1"><a href="#" title="dashboard"></a></li>
+                        <li class="menu-item" id="menuItem2" ><a href="#" title="budgets"></a></li>
+                        <li class="menu-item" id="menuItem3" title="expenses"><a href="#"></a></li>
+                        <li class="menu-item" id="menuItem4"><a href="#" title="reminders"></a></li>
+                        <li class="menu-item" id="menuItem5"><a href="#" title="groups"></a></li>
+                        <li class="menu-item" id="menuItem6"><a href="#" title="report"></a></li>
+                        <li class="menu-item" id="menuItem7"><a href="#" title="settings"></a></li>
 
 
                     </div>
