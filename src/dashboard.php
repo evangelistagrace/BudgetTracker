@@ -26,7 +26,7 @@
     </nav>
 
 
-    <div class="container-fluid my-container">
+    <div class="container-fluid my-container offset-container">
 
         <!-- MAIN CONTENT    -->
         <div class="row">

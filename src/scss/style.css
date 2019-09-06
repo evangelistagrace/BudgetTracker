@@ -4,7 +4,7 @@
  */
 .fa,
 .fas,
-body .container .row .col.sidebar .row .menu,
+.my-container .row .col-2-sidebar.sidebar .menu,
 .far,
 .fal,
 .fad,
@@ -18,7 +18,7 @@ body .container .row .col.sidebar .row .menu,
   line-height: 1;
 }
 
-body .container .row .col.sidebar .row .menu {
+.my-container .row .col-2-sidebar.sidebar .menu {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -121,7 +121,7 @@ body .container .row .col.sidebar .row .menu {
 
 .fa.fa-pull-left,
 .fas.fa-pull-left,
-body .container .row .col.sidebar .row .fa-pull-left.menu,
+.my-container .row .col-2-sidebar.sidebar .fa-pull-left.menu,
 .far.fa-pull-left,
 .fal.fa-pull-left,
 .fab.fa-pull-left {
@@ -130,7 +130,7 @@ body .container .row .col.sidebar .row .fa-pull-left.menu,
 
 .fa.fa-pull-right,
 .fas.fa-pull-right,
-body .container .row .col.sidebar .row .fa-pull-right.menu,
+.my-container .row .col-2-sidebar.sidebar .fa-pull-right.menu,
 .far.fa-pull-right,
 .fal.fa-pull-right,
 .fab.fa-pull-right {
@@ -5821,7 +5821,7 @@ readers do not read off random characters that represent icons */
 
 .fa,
 .fas,
-body .container .row .col.sidebar .row .menu {
+.my-container .row .col-2-sidebar.sidebar .menu {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
@@ -5849,271 +5849,6 @@ body .container .row .col.sidebar .row .menu {
   margin: 0;
   padding: 0;
   position: relative;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  font-family: 'Varela Round', sans-serif;
-  font-size: 16px;
-  background: #fcfcfc;
-}
-
-body {
-  /* dashboard */
-}
-
-body .container {
-  display: block;
-  width: 100%;
-  padding-top: 45.2px;
-}
-
-body .container .row {
-  display: block;
-  width: 100%;
-}
-
-body .container .row .col.sidebar {
-  width: 17%;
-  height: calc(100vh - 45.2px);
-  background: #b9e3c6;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  position: relative;
-}
-
-body .container .row .col.sidebar .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  width: 100%;
-}
-
-body .container .row .col.sidebar .row .menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 40px;
-  padding: 0;
-}
-
-body .container .row .col.sidebar .row .menu li {
-  padding: 0 0 25px 15px;
-  text-align: left;
-  list-style: none;
-  margin-left: -15px;
-}
-
-body .container .row .col.sidebar .row .menu li a {
-  text-decoration: none;
-  color: #8c77d1;
-}
-
-body .container .row .col.sidebar .row .menu li a:hover {
-  color: #7160a8;
-}
-
-body .container .row .col.sidebar .row .menu li a:before {
-  font-family: 'Font Awesome\ 5 Free';
-  font-size: 1.3em;
-  margin-right: 5px;
-}
-
-body .container .row .col.sidebar .row .menu li a:after {
-  font-family: 'Varela Round', sans-serif;
-  font-size: 1.2em;
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem1 a:before {
-  content: "\f015";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem1 a:after {
-  content: 'Dashboard';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem2 a:before {
-  content: "\f200";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem2 a:after {
-  content: 'Budgets';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem3 a:before {
-  content: "\f555";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem3 a:after {
-  content: 'Expenses';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem4 a:before {
-  content: "\f0f3";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem4 a:after {
-  content: 'Reminders';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem5 a:before {
-  content: "\f500";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem5 a:after {
-  content: 'Groups';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem6 a:before {
-  content: "\f201";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem6 a:after {
-  content: 'Report';
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem7 a:before {
-  content: "\f013";
-}
-
-body .container .row .col.sidebar .row .menu li#menuItem7 a:after {
-  content: 'Settings';
-}
-
-body .container .row .col.sidebar .row .profile {
-  width: 100%;
-  text-align: center;
-  display: block;
-}
-
-body .container .row .col.sidebar .row .profile img {
-  width: 90px;
-  border-radius: 50px;
-}
-
-body .container .row .col.sidebar .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-body .container .row .col.sidebar .close a.toggleBtn:after {
-  font-family: 'Font Awesome\ 5 Free';
-  content: "\f00d";
-}
-
-body .container .row .col.sidebar.collapsed {
-  width: 5%;
-}
-
-body .container .row .col.sidebar.collapsed .row .profile {
-  display: none;
-}
-
-body .container .row .col.sidebar.collapsed .row .menu {
-  margin-top: 60px;
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li {
-  padding: 0 0 40px 15px;
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li a:before {
-  font-size: 1.5em;
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem1 a:before {
-  content: "\f015";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem1 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem2 a:before {
-  content: "\f200";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem2 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem3 a:before {
-  content: "\f555";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem3 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem4 a:before {
-  content: "\f0f3";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem4 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem5 a:before {
-  content: "\f500";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem5 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem6 a:before {
-  content: "\f201";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem6 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem7 a:before {
-  content: "\f013";
-}
-
-body .container .row .col.sidebar.collapsed .row .menu li#menuItem7 a:after {
-  content: '';
-}
-
-body .container .row .col.sidebar.collapsed .close {
-  top: 30px;
-}
-
-body .container .row .col.sidebar.collapsed .close a.toggleBtn:after {
-  content: "\f0c9";
 }
 
 .navbar {
@@ -6215,7 +5950,6 @@ body .container .row .col.sidebar.collapsed .close a.toggleBtn:after {
 
 .header {
   background-image: url("../../assets/abstract.png");
-  min-height: 500px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -6325,21 +6059,6 @@ body .container .row .col.sidebar.collapsed .close a.toggleBtn:after {
   border: 4px solid #91a1e685;
   -webkit-transition: border .2s linear;
   transition: border .2s linear;
-}
-
-/* Login */
-.bg-container {
-  width: 100%;
-  height: 50%;
-  position: relative;
-}
-
-.half-background {
-  background-image: url("../../assets/abstract-sm.png");
-  background-repeat: no-repeat;
-  background-size: 100vw;
-  width: 100%;
-  height: 100%;
 }
 
 .logo {
@@ -6463,5 +6182,266 @@ body .container .row .col.sidebar.collapsed .close a.toggleBtn:after {
 .form-container form small {
   margin-top: 5px;
   text-align: center;
+}
+
+.my-container.offset-container {
+  margin-top: 45.2px;
+}
+
+.my-container {
+  height: 100vh;
+}
+
+.my-container .row .col-2-sidebar.sidebar {
+  width: 12%;
+  height: calc(100vh - 45.2px);
+  padding: 0 10px;
+  background: #b9e3c6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  position: relative;
+}
+
+.my-container .row .col-2-sidebar.sidebar .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.my-container .row .col-2-sidebar.sidebar .close a.toggleBtn:after {
+  font-family: 'Font Awesome\ 5 Free';
+  content: "\f00d";
+}
+
+.my-container .row .col-2-sidebar.sidebar .profile {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.my-container .row .col-2-sidebar.sidebar .profile img {
+  width: 90px;
+  border-radius: 50px;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 40px;
+  padding: 0;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li {
+  padding: 0 0 25px 15px;
+  text-align: left;
+  list-style: none;
+  margin-left: -15px;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li a {
+  text-decoration: none;
+  color: #8c77d1;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li a:hover {
+  color: #7160a8;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li a:before {
+  font-family: 'Font Awesome\ 5 Free';
+  font-size: 1.3em;
+  margin-right: 5px;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li a:after {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem1 a:before {
+  content: "\f015";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem1 a:after {
+  content: 'Dashboard';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem2 a:before {
+  content: "\f200";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem2 a:after {
+  content: 'Budgets';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem3 a:before {
+  content: "\f555";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem3 a:after {
+  content: 'Expenses';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem4 a:before {
+  content: "\f0f3";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem4 a:after {
+  content: 'Reminders';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem5 a:before {
+  content: "\f500";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem5 a:after {
+  content: 'Groups';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem6 a:before {
+  content: "\f201";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem6 a:after {
+  content: 'Report';
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem7 a:before {
+  content: "\f013";
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li#menuItem7 a:after {
+  content: 'Settings';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed {
+  width: 5%;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .close {
+  top: 0;
+  left: 0;
+  position: relative;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .close a.toggleBtn:after {
+  content: "\f0c9";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .profile {
+  display: none;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu {
+  margin-top: 60px;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li {
+  padding: 0 0 40px 15px;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li a:before {
+  font-size: 1.5em;
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem1 a:before {
+  content: "\f015";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem1 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem2 a:before {
+  content: "\f200";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem2 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem3 a:before {
+  content: "\f555";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem3 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem4 a:before {
+  content: "\f0f3";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem4 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem5 a:before {
+  content: "\f500";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem5 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem6 a:before {
+  content: "\f201";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem6 a:after {
+  content: '';
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem7 a:before {
+  content: "\f013";
+}
+
+.my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem7 a:after {
+  content: '';
+}
+
+.my-container .row .col-half {
+  background-image: url("../assets/abstract-sm.png");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  width: 100%;
+  height: 100%;
+}
+
+.my-container .row.half {
+  height: 50%;
+}
+
+.my-container .row.half .half-background {
+  background-image: url("../../assets/abstract-sm.png");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  width: 100%;
+  height: 100%;
 }
 /*# sourceMappingURL=style.css.map */

@@ -10,297 +10,297 @@
     position: relative;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 16px;
-    background: $babyPowder;
-}
+// html,
+// body {
+//     width: 100%;
+//     height: 100%;
+//     position: relative;
+//     font-family: 'Varela Round', sans-serif;
+//     font-size: 16px;
+//     background: $babyPowder;
+// }
 
-body {
+// body {
 
-    /* dashboard */
-    .container {
-        display: block;
-        width: 100%;
-        padding-top: 45.2px;
+//     /* dashboard */
+//     .container {
+//         display: block;
+//         width: 100%;
+//         padding-top: 45.2px;
 
-        .row {
-            display: block;
-            width: 100%;
+//         .row {
+//             display: block;
+//             width: 100%;
 
-            .col.sidebar {
-                width: 17%;
-                height: calc(100vh - 45.2px);
-                background: $seaFoamGreen;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                justify-content: center; 
-                align-content: center;
-                position: relative;
-                .row {
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-                    .menu {
-                        @extend %fa-icon;
-                        @extend .fas;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        flex-wrap: wrap;
-                        margin-top: 40px;
-                        // border: 1px solid black;
-                        padding: 0;
+//             .col.sidebar {
+//                 width: 17%;
+//                 height: calc(100vh - 45.2px);
+//                 background: $seaFoamGreen;
+//                 display: flex;
+//                 flex-direction: column;
+//                 flex-wrap: wrap;
+//                 justify-content: center; 
+//                 align-content: center;
+//                 position: relative;
+//                 .row {
+//                     display: flex;
+//                     flex-direction: row;
+//                     width: 100%;
+//                     .menu {
+//                         @extend %fa-icon;
+//                         @extend .fas;
+//                         display: flex;
+//                         flex-direction: column;
+//                         justify-content: center;
+//                         flex-wrap: wrap;
+//                         margin-top: 40px;
+//                         // border: 1px solid black;
+//                         padding: 0;
 
-                        li {
-                            padding: 0 0 25px 15px;
-                            text-align: left;
-                            list-style: none;
-                            margin-left: -15px;
+//                         li {
+//                             padding: 0 0 25px 15px;
+//                             text-align: left;
+//                             list-style: none;
+//                             margin-left: -15px;
 
-                            a {
-                                text-decoration: none;
-                                color: #8c77d1;
-                                &:hover{
-                                    color: #7160a8;
-                                }
-                                &:before {
-                                    font-family: 'Font Awesome\ 5 Free';
-                                    font-size: 1.3em;
-                                    margin-right: 5px;
-                                }
-                                &:after {
-                                    font-family: 'Varela Round', sans-serif;
-                                    font-size: 1.2em;
-                                }
-
-                                
-                            }
-
-                        }
-                        //Link - dashboard
-                        li#menuItem1 {
-                            a:before {
-                                content: fa-content($fa-var-home);
-                            }
-
-                            a:after {
-                                content: 'Dashboard';
-                            }
-                        }
-
-                        //Link - budget
-                        li#menuItem2 {
-                            a:before {
-                                content: fa-content($fa-var-chart-pie);
-                            }
-
-                            a:after {
-                                content: 'Budgets';
-                            }
-                        }
-
-                        //Link - expenses
-                        li#menuItem3 {
-                            a:before {
-                                content: fa-content($fa-var-wallet);
-                            }
-
-                            a:after {
-                                content: 'Expenses';
-                            }
-                        }
-
-                        //Link - reminders
-                        li#menuItem4 {
-                            a:before {
-                                content: fa-content($fa-var-bell);
-                            }
-
-                            a:after {
-                                content: 'Reminders';
-                            }
-                        }
-
-                        //Link - groups
-                        li#menuItem5 {
-                            a:before {
-                                content: fa-content($fa-var-user-friends);
-                            }
-
-                            a:after {
-                                content: 'Groups';
-                            }
-                        }
-
-                        //Link - view report
-                        li#menuItem6 {
-                            a:before {
-                                content: fa-content($fa-var-chart-line);
-                            }
-
-                            a:after {
-                                content: 'Report';
-                            }
-                        }
-
-                        //Link - settings
-                        li#menuItem7 {
-                            a:before {
-                                content: fa-content($fa-var-cog);
-                            }
-
-                            a:after {
-                                content: 'Settings';
-                            }
-                        }
-                    }
-
-                    .profile {
-                        width: 100%;
-                        text-align: center;
-                        display: block;
-
-                        img {
-                            width: 90px;
-                            border-radius: 50px;
-                        }
-                    }
-
-                }
-
-                .close {
-                    position: absolute;
-                    top: 10px;
-                    right: 15px;
-                    font-size: 1.5em;
-                    cursor: pointer;
-
-                    a.toggleBtn:after{
-                        font-family: 'Font Awesome\ 5 Free';
-                        content: fa-content($fa-var-times);
-                    }
-                    
-                }
-            }
-
-            //sidebar collapsed
-            .col.sidebar.collapsed {
-                width: 5%;
-                .row {
-
-                    .profile {
-                        display: none;
-                    }
-
-                    .menu {
-                        margin-top: 60px;
-                        li {
-                            padding: 0 0 40px 15px;
-
-                            a {
-                                &:before {
-                                    font-size: 1.5em;
-                                }
-                            }
-                        }
-                        //Link - dashboard
-                        li#menuItem1 {
-                            a:before {
-                                content: fa-content($fa-var-home);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - budget
-                        li#menuItem2 {
-                            a:before {
-                                content: fa-content($fa-var-chart-pie);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - expenses
-                        li#menuItem3 {
-                            a:before {
-                                content: fa-content($fa-var-wallet);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - reminders
-                        li#menuItem4 {
-                            a:before {
-                                content: fa-content($fa-var-bell);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - groups
-                        li#menuItem5 {
-                            a:before {
-                                content: fa-content($fa-var-user-friends);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - view report
-                        li#menuItem6 {
-                            a:before {
-                                content: fa-content($fa-var-chart-line);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-
-                        //Link - settings
-                        li#menuItem7 {
-                            a:before {
-                                content: fa-content($fa-var-cog);
-                            }
-
-                            a:after {
-                                content: '';
-                            }
-                        }
-                    }
-
-                }
-
-                .close {
-                    top: 30px;
-                    a.toggleBtn:after{
-                        content: fa-content($fa-var-bars);
-                    }
-                }
-            }
+//                             a {
+//                                 text-decoration: none;
+//                                 color: #8c77d1;
+//                                 &:hover{
+//                                     color: #7160a8;
+//                                 }
+//                                 &:before {
+//                                     font-family: 'Font Awesome\ 5 Free';
+//                                     font-size: 1.3em;
+//                                     margin-right: 5px;
+//                                 }
+//                                 &:after {
+//                                     font-family: 'Varela Round', sans-serif;
+//                                     font-size: 1.2em;
+//                                 }
 
 
-        }
-    }
-}
+//                             }
+
+//                         }
+//                         //Link - dashboard
+//                         li#menuItem1 {
+//                             a:before {
+//                                 content: fa-content($fa-var-home);
+//                             }
+
+//                             a:after {
+//                                 content: 'Dashboard';
+//                             }
+//                         }
+
+//                         //Link - budget
+//                         li#menuItem2 {
+//                             a:before {
+//                                 content: fa-content($fa-var-chart-pie);
+//                             }
+
+//                             a:after {
+//                                 content: 'Budgets';
+//                             }
+//                         }
+
+//                         //Link - expenses
+//                         li#menuItem3 {
+//                             a:before {
+//                                 content: fa-content($fa-var-wallet);
+//                             }
+
+//                             a:after {
+//                                 content: 'Expenses';
+//                             }
+//                         }
+
+//                         //Link - reminders
+//                         li#menuItem4 {
+//                             a:before {
+//                                 content: fa-content($fa-var-bell);
+//                             }
+
+//                             a:after {
+//                                 content: 'Reminders';
+//                             }
+//                         }
+
+//                         //Link - groups
+//                         li#menuItem5 {
+//                             a:before {
+//                                 content: fa-content($fa-var-user-friends);
+//                             }
+
+//                             a:after {
+//                                 content: 'Groups';
+//                             }
+//                         }
+
+//                         //Link - view report
+//                         li#menuItem6 {
+//                             a:before {
+//                                 content: fa-content($fa-var-chart-line);
+//                             }
+
+//                             a:after {
+//                                 content: 'Report';
+//                             }
+//                         }
+
+//                         //Link - settings
+//                         li#menuItem7 {
+//                             a:before {
+//                                 content: fa-content($fa-var-cog);
+//                             }
+
+//                             a:after {
+//                                 content: 'Settings';
+//                             }
+//                         }
+//                     }
+
+//                     .profile {
+//                         width: 100%;
+//                         text-align: center;
+//                         display: block;
+
+//                         img {
+//                             width: 90px;
+//                             border-radius: 50px;
+//                         }
+//                     }
+
+//                 }
+
+//                 .close {
+//                     position: absolute;
+//                     top: 10px;
+//                     right: 15px;
+//                     font-size: 1.5em;
+//                     cursor: pointer;
+
+//                     a.toggleBtn:after{
+//                         font-family: 'Font Awesome\ 5 Free';
+//                         content: fa-content($fa-var-times);
+//                     }
+
+//                 }
+//             }
+
+//             //sidebar collapsed
+//             .col.sidebar.collapsed {
+//                 width: 5%;
+//                 .row {
+
+//                     .profile {
+//                         display: none;
+//                     }
+
+//                     .menu {
+//                         margin-top: 60px;
+//                         li {
+//                             padding: 0 0 40px 15px;
+
+//                             a {
+//                                 &:before {
+//                                     font-size: 1.5em;
+//                                 }
+//                             }
+//                         }
+//                         //Link - dashboard
+//                         li#menuItem1 {
+//                             a:before {
+//                                 content: fa-content($fa-var-home);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - budget
+//                         li#menuItem2 {
+//                             a:before {
+//                                 content: fa-content($fa-var-chart-pie);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - expenses
+//                         li#menuItem3 {
+//                             a:before {
+//                                 content: fa-content($fa-var-wallet);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - reminders
+//                         li#menuItem4 {
+//                             a:before {
+//                                 content: fa-content($fa-var-bell);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - groups
+//                         li#menuItem5 {
+//                             a:before {
+//                                 content: fa-content($fa-var-user-friends);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - view report
+//                         li#menuItem6 {
+//                             a:before {
+//                                 content: fa-content($fa-var-chart-line);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+
+//                         //Link - settings
+//                         li#menuItem7 {
+//                             a:before {
+//                                 content: fa-content($fa-var-cog);
+//                             }
+
+//                             a:after {
+//                                 content: '';
+//                             }
+//                         }
+//                     }
+
+//                 }
+
+//                 .close {
+//                     top: 30px;
+//                     a.toggleBtn:after{
+//                         content: fa-content($fa-var-bars);
+//                     }
+//                 }
+//             }
+
+
+//         }
+//     }
+// }
 
 
 .navbar {
@@ -404,7 +404,6 @@ body {
 
 .header {
     background-image: url("../../assets/abstract.png");
-    min-height: 500px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -472,21 +471,6 @@ body {
     }
 }
 
-/* Login */
-
-.bg-container {
-    width: 100%;
-    height: 50%;
-    position: relative;
-}
-
-.half-background {
-    background-image: url('../../assets/abstract-sm.png');
-    background-repeat: no-repeat;
-    background-size: 100vw;
-    width: 100%;
-    height: 100%;
-}
 
 .logo {
     width: 20%;
@@ -560,7 +544,304 @@ body {
         }
     }
 
+}
 
 
+//dashboard
+.my-container.offset-container{
+    margin-top: 45.2px; //offset Y from navbar
+}
+.my-container {
+    height: 100vh;
+
+    .row {
+        .col-2-sidebar.sidebar {
+            width: 12%;
+            height: calc(100vh - 45.2px);
+            padding: 0 10px;
+            background: $seaFoamGreen;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            position: relative;
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+
+                a.toggleBtn:after {
+                    font-family: 'Font Awesome\ 5 Free';
+                    content: fa-content($fa-var-times);
+                }
+
+            }
+
+            .profile {
+                width: 100%;
+                text-align: center;
+                display: block;
+
+                img {
+                    width: 90px;
+                    border-radius: 50px;
+                }
+            }
+
+            .menu {
+                @extend %fa-icon;
+                @extend .fas;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 40px;
+                // border: 1px solid black;
+                padding: 0;
+
+                li {
+                    padding: 0 0 25px 15px;
+                    text-align: left;
+                    list-style: none;
+                    margin-left: -15px;
+
+                    a {
+                        text-decoration: none;
+                        color: #8c77d1;
+
+                        &:hover {
+                            color: #7160a8;
+                        }
+
+                        &:before {
+                            font-family: 'Font Awesome\ 5 Free';
+                            font-size: 1.3em;
+                            margin-right: 5px;
+                        }
+
+                        &:after {
+                            font-family: 'Varela Round', sans-serif;
+                            font-size: 1.2em;
+                        }
+
+
+                    }
+
+                }
+
+                //Link - dashboard
+                li#menuItem1 {
+                    a:before {
+                        content: fa-content($fa-var-home);
+                    }
+
+                    a:after {
+                        content: 'Dashboard';
+                    }
+                }
+
+                //Link - budget
+                li#menuItem2 {
+                    a:before {
+                        content: fa-content($fa-var-chart-pie);
+                    }
+
+                    a:after {
+                        content: 'Budgets';
+                    }
+                }
+
+                //Link - expenses
+                li#menuItem3 {
+                    a:before {
+                        content: fa-content($fa-var-wallet);
+                    }
+
+                    a:after {
+                        content: 'Expenses';
+                    }
+                }
+
+                //Link - reminders
+                li#menuItem4 {
+                    a:before {
+                        content: fa-content($fa-var-bell);
+                    }
+
+                    a:after {
+                        content: 'Reminders';
+                    }
+                }
+
+                //Link - groups
+                li#menuItem5 {
+                    a:before {
+                        content: fa-content($fa-var-user-friends);
+                    }
+
+                    a:after {
+                        content: 'Groups';
+                    }
+                }
+
+                //Link - view report
+                li#menuItem6 {
+                    a:before {
+                        content: fa-content($fa-var-chart-line);
+                    }
+
+                    a:after {
+                        content: 'Report';
+                    }
+                }
+
+                //Link - settings
+                li#menuItem7 {
+                    a:before {
+                        content: fa-content($fa-var-cog);
+                    }
+
+                    a:after {
+                        content: 'Settings';
+                    }
+                }
+            }
+
+        }
+
+
+        .col-2-sidebar.sidebar.collapsed {
+            width: 5%;
+            .close {
+                top: 0;
+                left: 0;
+                position: relative;
+                align-self: center;
+
+                a.toggleBtn:after{
+                    content: fa-content($fa-var-bars);
+                }
+            }
+            .profile {
+                display: none;
+            }
+
+            .menu {
+                margin-top: 60px;
+
+                li {
+                    padding: 0 0 40px 15px;
+
+                    a {
+                        &:before {
+                            font-size: 1.5em;
+                        }
+                    }
+                }
+
+                //Link - dashboard
+                li#menuItem1 {
+                    a:before {
+                        content: fa-content($fa-var-home);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - budget
+                li#menuItem2 {
+                    a:before {
+                        content: fa-content($fa-var-chart-pie);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - expenses
+                li#menuItem3 {
+                    a:before {
+                        content: fa-content($fa-var-wallet);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - reminders
+                li#menuItem4 {
+                    a:before {
+                        content: fa-content($fa-var-bell);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - groups
+                li#menuItem5 {
+                    a:before {
+                        content: fa-content($fa-var-user-friends);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - view report
+                li#menuItem6 {
+                    a:before {
+                        content: fa-content($fa-var-chart-line);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - settings
+                li#menuItem7 {
+                    a:before {
+                        content: fa-content($fa-var-cog);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+            }
+        }
+
+        .col-half{
+            background-image: url('../assets/abstract-sm.png');
+            background-repeat: no-repeat;
+            background-size: 100vw;
+            width: 100%;
+            height: 100%;
+            // background-color: #eee;
+
+            
+        }
+
+    }////////////////////////
+
+    .row.half{
+        height: 50%;
+        .half-background{
+            background-image: url('../../assets/abstract-sm.png');
+            background-repeat: no-repeat;
+            background-size: 100vw;
+            width: 100%;
+            height: 100%;
+        }
+    }
 
 }

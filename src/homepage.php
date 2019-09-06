@@ -3,6 +3,16 @@
 
 <?php include 'head.php';?>
 <title>BudgetTracker</title>
+
+<style>
+.container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
 <body>
     
     <nav class="navbar transparent">
@@ -17,7 +27,9 @@
         </ul>
     </nav>
 
-    <div class="header">
+    <div class="container-fluid my-container">
+
+     <div class="header">
      <div class="left">
          <span>Spend</span>
          <span>&</span>
@@ -34,6 +46,9 @@ Scroll Up and Down this page to see the parallax scrolling effect.
 This div is just here to enable scrolling.
 Tip: Try to remove the background-attachment property to remove the scrolling effect.
 </div>
+    </div>
+
+   
      
 
 <?php include 'footer.php' ?>
