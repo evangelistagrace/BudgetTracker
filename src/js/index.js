@@ -11,14 +11,14 @@ $(function () {
 });
 
 //expenses chart
-var ctx = document.getElementById('expenses').getContext('2d');
+var ctx = document.getElementById('expensesChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
         labels: ['Food', 'Clothing', 'Travel', 'Gifts', 'Misc'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2],
+            data: [12, 8, 3, 5, 2],
             backgroundColor: [
                 'rgba(92, 219, 149, 0.5)',
                 'rgba(155, 133, 230, 0.5)',

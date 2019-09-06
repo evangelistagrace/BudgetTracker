@@ -62,15 +62,15 @@
                                 <table>
                                     <tr>
                                         <td>Inflow</td>
-                                        <td>+RM 1, 000.00</td>
+                                        <td><span class="text-primary">+RM 1, 000.00</span></td>
                                     </tr>
                                     <tr>
                                         <td>Outflow</td>
-                                        <td>-RM 700.00</td>
+                                        <td><span class="text-secondary">-RM 700.00</span></td>
                                     </tr>
                                     <tr>
                                         <td>Balance</td>
-                                        <td><h4>+RM 300.00</h4></td>
+                                        <td><h4 class="text-primary">+RM 300.00</h4></td>
                                     </tr>
                                 </table>
                             </p>
@@ -96,7 +96,7 @@
                                     </div>
                                 </form>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to reminders >></a>
+                            <a href="#" class="btn btn-secondary">Go to reminders <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
                                     <li><a href="#">Jay's Birthday Party</a></li>
                                 </ul>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to groups >></a>
+                            <a href="#" class="btn btn-secondary">Go to groups <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                 </div>
                                 
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to budgets >></a>
+                            <a href="#" class="btn btn-secondary">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
 
@@ -153,9 +153,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Expenses</h5>
                             <p class="card-text">
-                            <canvas id="expenses" width="200px" height="200px"></canvas>
+                            <canvas id="expensesChart"></canvas>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to expenses >></a>
+                            <a href="#" class="btn btn-secondary">Go to expenses <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 

@@ -6215,6 +6215,10 @@ body {
   margin: 10px;
 }
 
+.my-container .row .col-10-body .row .card .card-body a.btn {
+  float: right;
+}
+
 .my-container .row .col-2-sidebar.sidebar {
   width: 12%;
   height: 100vh;
@@ -6468,6 +6472,7 @@ body {
 
 ul.groups-list {
   list-style-type: square;
+  margin-left: 10px;
 }
 
 .progress-container {
