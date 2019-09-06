@@ -5851,6 +5851,12 @@ readers do not read off random characters that represent icons */
   position: relative;
 }
 
+body {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
+  background: #fcfcfc;
+}
+
 .navbar {
   overflow: hidden;
   position: fixed;
@@ -6194,8 +6200,19 @@ readers do not read off random characters that represent icons */
 
 .my-container .row .col-10-body {
   width: 88%;
-  background: #ccc;
+  background: #fcfcfc;
   margin-left: 12%;
+  padding: 10px 30px;
+}
+
+.my-container .row .col-10-body .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.my-container .row .col-10-body .row .card {
+  margin: 10px;
 }
 
 .my-container .row .col-2-sidebar.sidebar {
@@ -6435,14 +6452,6 @@ readers do not read off random characters that represent icons */
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .menu li#menuItem7 a:after {
   content: '';
-}
-
-.my-container .row .col-half {
-  background-image: url("../assets/abstract-sm.png");
-  background-repeat: no-repeat;
-  background-size: 100vw;
-  width: 100%;
-  height: 100%;
 }
 
 .my-container .row.half {

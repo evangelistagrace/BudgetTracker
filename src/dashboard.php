@@ -31,7 +31,7 @@
         <!-- MAIN CONTENT    -->
         <div class="row">
             <!-- SIDEBAR -->
-            <div class="col-2-sidebar sidebar position-fixed">
+            <div class="col-2-sidebar sidebar collapsed position-fixed">
 
                 <!-- close button -->
                 <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
@@ -53,8 +53,46 @@
                 </ul>
             </div>
 
-            <div class="col-10-body offset-2">
-                hello
+            <div class="col-10-body collapsed">
+                <div class="row">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Balance</h5>
+                            <p class="card-text">
+                                <h1>+RM 500</h1>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Reminders</h5>
+                            <p class="card-text">
+                                <form action="">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Pay hostel fee
+                                        </label>
+                                    </div>
+                                </form>
+                            </p>
+                            <a href="#" class="btn btn-primary">Go to reminders >></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Reminders</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go to reminders -></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
