@@ -22,7 +22,7 @@ body{
     top: 0;
     width: 100%;
     z-index: 9999;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 
     li {
         a {
@@ -90,6 +90,7 @@ body{
 
     a {
         color: $white;
+        font-size: 1.2em;
 
         &:after {
             background: none;
@@ -272,7 +273,7 @@ body{
             width: 88%;
             background: $babyPowder;
             margin-left:12%;
-            padding: 50px 30px 0 30px;
+            padding: 30px 30px 0 30px;
 
             .row{
                 justify-content: center;
@@ -281,11 +282,20 @@ body{
                     margin: 10px;
                     .card-body{
                         // position: relative;
+                        .card-title{
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-size: 1.4em;
+                        }
                         p{
                             
                         }
                         a.btn{
                             float: right;
+                            font-size: 1.1em;
+
+                            i{
+                                margin-left: 3px;
+                            }
                         }
                     }
                 }
@@ -355,12 +365,13 @@ body{
                         &:before {
                             font-family: 'Font Awesome\ 5 Free';
                             font-size: 1.3em;
-                            margin-right: 5px;
+                            margin-right: 7px;
                         }
 
                         &:after {
-                            font-family: 'Varela Round', sans-serif;
-                            font-size: 1.2em;
+                            font-family: 'Manjari', sans-serif;
+                            font-size: 1.1em;
+                            letter-spacing: 0.5px;
                         }
 
 
@@ -456,7 +467,7 @@ body{
         .col-2-sidebar.sidebar.collapsed {
             width: 5%;
             .close {
-                top: 0;
+                top: -10px;
                 left: 0;
                 position: relative;
                 align-self: center;
@@ -470,7 +481,7 @@ body{
             }
 
             .menu {
-                margin-top: 60px;
+                margin-top: 40px;
 
                 li {
                     padding: 0 0 40px 15px;
@@ -599,3 +610,7 @@ ul.groups-list{
             }
         }
     }
+
+a.btn, .menu, .card-title, h1, h2, h3{
+    font-family: 'Source Sans Pro', sans-serif;
+}

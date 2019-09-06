@@ -5863,7 +5863,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 9999;
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .navbar li a {
@@ -5928,6 +5928,7 @@ body {
 
 .navbar.small a {
   color: #ffffff;
+  font-size: 1.2em;
 }
 
 .navbar.small a:after {
@@ -6202,7 +6203,7 @@ body {
   width: 88%;
   background: #fcfcfc;
   margin-left: 12%;
-  padding: 50px 30px 0 30px;
+  padding: 30px 30px 0 30px;
 }
 
 .my-container .row .col-10-body .row {
@@ -6215,8 +6216,18 @@ body {
   margin: 10px;
 }
 
+.my-container .row .col-10-body .row .card .card-body .card-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.4em;
+}
+
 .my-container .row .col-10-body .row .card .card-body a.btn {
   float: right;
+  font-size: 1.1em;
+}
+
+.my-container .row .col-10-body .row .card .card-body a.btn i {
+  margin-left: 3px;
 }
 
 .my-container .row .col-2-sidebar.sidebar {
@@ -6300,12 +6311,13 @@ body {
 .my-container .row .col-2-sidebar.sidebar .menu li a:before {
   font-family: 'Font Awesome\ 5 Free';
   font-size: 1.3em;
-  margin-right: 5px;
+  margin-right: 7px;
 }
 
 .my-container .row .col-2-sidebar.sidebar .menu li a:after {
-  font-family: 'Varela Round', sans-serif;
-  font-size: 1.2em;
+  font-family: 'Manjari', sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
 }
 
 .my-container .row .col-2-sidebar.sidebar .menu li#menuItem1 a:before {
@@ -6374,7 +6386,7 @@ body {
 }
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .close {
-  top: 0;
+  top: -10px;
   left: 0;
   position: relative;
   -ms-flex-item-align: center;
@@ -6391,7 +6403,7 @@ body {
 }
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .menu {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .menu li {
@@ -6485,5 +6497,9 @@ table tr td:first-of-type {
 
 table tr td:nth-of-type(2) {
   text-align: right;
+}
+
+a.btn, .menu, .card-title, h1, h2, h3 {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 /*# sourceMappingURL=style.css.map */
