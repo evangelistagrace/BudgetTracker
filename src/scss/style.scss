@@ -272,10 +272,11 @@ body{
             width: 88%;
             background: $babyPowder;
             margin-left:12%;
-            padding: 10px 30px;
+            padding: 50px 30px 0 30px;
 
             .row{
                 justify-content: center;
+                
                 .card{
                     margin: 10px;
                 }
@@ -566,3 +567,25 @@ body{
     }
 
 }
+
+ul.groups-list{
+    list-style-type: square;
+
+}
+
+.progress-container{
+    margin-top: 10px;
+}
+
+.card-text{
+    
+}table{
+        tr{
+            td:first-of-type{
+                padding-right: 10px;
+            }
+            td:nth-of-type(2){
+                text-align: right;
+            }
+        }
+    }

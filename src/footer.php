@@ -8,6 +8,8 @@
     </script>';
     //bootstrap tooltip
     echo '<script src="../src/js/bootstrap/bootstrap.bundle.min.js"></script>';
+    //chart.js
+    echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>';
     echo '<script src="../src/js/index.js"></script>';
     
 

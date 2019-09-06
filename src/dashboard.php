@@ -59,7 +59,20 @@
                         <div class="card-body">
                             <h5 class="card-title">Balance</h5>
                             <p class="card-text">
-                                <h1>+RM 500</h1>
+                                <table>
+                                    <tr>
+                                        <td>Inflow</td>
+                                        <td>+RM 1, 000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Outflow</td>
+                                        <td>-RM 700.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balance</td>
+                                        <td><h4>+RM 300.00</h4></td>
+                                    </tr>
+                                </table>
                             </p>
                         </div>
                     </div>
@@ -75,22 +88,77 @@
                                             Pay hostel fee
                                         </label>
                                     </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                            Pay phone bill
+                                        </label>
+                                    </div>
                                 </form>
                             </p>
-                            <a href="#" class="btn btn-primary">Go to reminders >></a>
+                            <a href="#" class="btn btn-secondary">Go to reminders >></a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Groups</h5>
+                            <p class="card-text">
+                                <ul class="groups-list">
+                                    <li><a href="#">Family</a></li>
+                                    <li><a href="#">Hostel mates</a></li>
+                                    <li><a href="#">Jay's Birthday Party</a></li>
+                                </ul>
+                            </p>
+                            <a href="#" class="btn btn-secondary">Go to groups >></a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 25rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Reminders</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go to reminders -></a>
+                            <h5 class="card-title">Budgets</h5>
+                            <p class="card-text">
+                                <div class="progress-container">
+                                    <span>Food</span>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 60%"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="progress-container">
+                                    <span>Travel</span>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 40%"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="progress-container">
+                                    <span>Shopping</span>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                </div>
+                                
+                            </p>
+                            <a href="#" class="btn btn-secondary">Go to budgets >></a>
                         </div>
                     </div>
+
+                    <div class="card" style="width: 25rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Expenses</h5>
+                            <p class="card-text">
+                            <canvas id="expenses" width="200px" height="200px"></canvas>
+                            </p>
+                            <a href="#" class="btn btn-secondary">Go to expenses >></a>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

@@ -1,18 +1,4 @@
 
-//toggle navbar on scroll
-$(function () {
-    $(document).scroll(function () {
-      var $nav = $(".navbar");
-      $nav.toggleClass('colored', $(this).scrollTop() > $nav.height());
-      if($nav.hasClass('colored')){
-          $("#logo").attr("src","../assets/bt-logo-color.png");
-          // console.log("has color");  
-      }else{
-          $("#logo").attr("src","../assets/bt-logo-white.png");
-      }
-    });
-});
-  
 //toggle sidebar
 function toggleSidebar() {
     $(".sidebar").toggleClass('collapsed');
@@ -22,4 +8,39 @@ function toggleSidebar() {
 //trigger tooltip
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+});
+
+//expenses chart
+var ctx = document.getElementById('expenses').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Food', 'Clothing', 'Travel', 'Gifts', 'Misc'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2],
+            backgroundColor: [
+                'rgba(92, 219, 149, 0.5)',
+                'rgba(155, 133, 230, 0.5)',
+                'rgba(173, 228, 151, 0.5)',
+                'rgba(185, 227, 198, 0.5)',
+                'rgba(134, 192, 230, 0.5)',
+            ],
+            borderColor: [
+                'rgba(92, 219, 149, 1)',
+                'rgba(155, 133, 230, 1)',
+                'rgba(173, 228, 151, 1)',
+                'rgba(185, 227, 198, 1)',
+                'rgba(134, 192, 230, 1)',
+            ],
+            borderWidth: 2,
+            
+        }]
+    },
+    options: {
+        
+        legend: {
+            position: 'bottom'
+        }
+    }
+});

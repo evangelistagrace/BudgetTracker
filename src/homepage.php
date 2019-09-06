@@ -48,11 +48,8 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
 </div>
     </div>
 
-   
-     
-
 <?php include 'footer.php' ?>
-
+<script src="../src/js/toggleNavbar.js"></script>
 </body>
 
 </html>
