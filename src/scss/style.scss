@@ -234,7 +234,7 @@ body{
         flex-wrap: wrap;
         color: #808080;
 
-        button {
+        a.btn {
             display: block;
             width: 70%;
             border-radius: 50px;
@@ -484,7 +484,7 @@ body{
                 margin-top: 40px;
 
                 li {
-                    padding: 0 0 40px 15px;
+                    padding: 0 0 40px 50%;
 
                     a {
                         &:before {
@@ -611,6 +611,6 @@ ul.groups-list{
         }
     }
 
-a.btn, .menu, .card-title, h1, h2, h3{
+.btn, a.btn, .menu, .card-title, h1, h2, h3{
     font-family: 'Source Sans Pro', sans-serif;
 }

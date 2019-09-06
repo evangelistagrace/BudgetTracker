@@ -6133,7 +6133,7 @@ body {
   color: #808080;
 }
 
-.form-container form button {
+.form-container form a.btn {
   display: block;
   width: 70%;
   border-radius: 50px;
@@ -6154,7 +6154,7 @@ body {
   transition: border .2s linear;
 }
 
-.form-container form button:hover {
+.form-container form a.btn:hover {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
   background: #207cca;
   /* Old browsers */
@@ -6407,7 +6407,7 @@ body {
 }
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .menu li {
-  padding: 0 0 40px 15px;
+  padding: 0 0 40px 50%;
 }
 
 .my-container .row .col-2-sidebar.sidebar.collapsed .menu li a:before {
@@ -6499,7 +6499,7 @@ table tr td:nth-of-type(2) {
   text-align: right;
 }
 
-a.btn, .menu, .card-title, h1, h2, h3 {
+.btn, a.btn, .menu, .card-title, h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 /*# sourceMappingURL=style.css.map */

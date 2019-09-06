@@ -34,7 +34,7 @@
               <input type="password" class="form-control" id="passwordRegister2" name="passwordRegister2"
                 placeholder="Enter your password again">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <a class="btn btn-primary" href="../src/dashboard.php">Register</a>
             <small>Already have an account? <a href="../src/login.php">Login</a></small>
           </form>
         </div>

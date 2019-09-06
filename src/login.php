@@ -28,7 +28,7 @@
               <input type="checkbox" class="form-check-input" id="rememberUser" name="rememberUser">
               <label class="form-check-label" for="rememberUser">Remember Me</label>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <a class="btn btn-primary" href="../src/dashboard.php">Login</a>
             <small>Don't have an account? <a href="../src/register.php">Sign up</a></small>
           </form>
         </div>

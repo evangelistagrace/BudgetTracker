@@ -123,7 +123,7 @@
                                     <span>Food</span>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 60%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%">
                                     </div>
                                 </div>
                                 </div>
@@ -131,7 +131,7 @@
                                     <span>Travel</span>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 40%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="40%">
                                     </div>
                                 </div>
                                 </div>
@@ -139,7 +139,7 @@
                                     <span>Shopping</span>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="50%">
                                     </div>
                                 </div>
                                 </div>
