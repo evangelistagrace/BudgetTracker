@@ -16,7 +16,7 @@
 <body>
     
     <nav class="navbar transparent">
-        <a class="navbar-brand" href="#"><img id="logo" src="../assets/bt-logo-white.png" alt=""></a>
+        <a class="navbar-brand" href="#"><img id="logo" src="../assets/logo-transparent.svg" alt=""></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <li class="nav-link"><a href="../src/register.php">Sign Up</a></li>

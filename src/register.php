@@ -8,7 +8,7 @@
 
     <div class="row half">
       <div class="col half-background">
-        <div class="logo"><img src="../assets/bt-logo-white.png" alt="">
+        <div class="logo"><img src="../assets/logo-transparent.svg" alt="">
           <div class="desc">Register</div>
         </div>
 
