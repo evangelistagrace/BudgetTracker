@@ -6,6 +6,8 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous">
     </script>';
+    //bootstrap tooltip
+    echo '<script src="../src/js/bootstrap/bootstrap.bundle.min.js"></script>';
     echo '<script src="../src/js/index.js"></script>';
     
 

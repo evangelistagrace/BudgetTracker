@@ -30,7 +30,8 @@
 
         <!-- MAIN CONTENT    -->
         <div class="row">
-            <div class="col-2-sidebar sidebar">
+            <!-- SIDEBAR -->
+            <div class="col-2-sidebar sidebar position-fixed">
 
                 <!-- close button -->
                 <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
@@ -42,7 +43,7 @@
 
                 <!-- menu -->
                 <ul class="menu">
-                    <li class="menu-item" id="menuItem1"><a href="#" title="dashboard"></a></li>
+                    <li class="menu-item" id="menuItem1"><a href="#"></a></li>
                     <li class="menu-item" id="menuItem2"><a href="#" title="budgets"></a></li>
                     <li class="menu-item" id="menuItem3"><a href="#" title="expenses"></a></li>
                     <li class="menu-item" id="menuItem4"><a href="#" title="reminders"></a></li>
@@ -50,40 +51,14 @@
                     <li class="menu-item" id="menuItem6"><a href="#" title="report"></a></li>
                     <li class="menu-item" id="menuItem7"><a href="#" title="settings"></a></li>
                 </ul>
+            </div>
 
-
+            <div class="col-10-body offset-2">
+                hello
             </div>
 
         </div>
-
-        <!-- <div class="row">
-            <div class="col sidebar">
-                <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
-                <div class="row">
-                    <div class="profile"><img src="../assets/profile.jpg" alt="">
-                        <div class="desc">@chevvycherokee</div>
-                    </div>
-                </div>
-
-                <div class="row">
-                   
-
-                    </div>
-                </div>
-                
-            </div> -->
-
-
-        <div class="row">
-            <div class="col-2">SIDEBAR</div>
-            <div class="col-7">MAIN</div>
-        </div>
-
-
     </div>
-    </div>
-
-
 
     <?php include 'footer.php' ?>
 

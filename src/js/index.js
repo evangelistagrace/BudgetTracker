@@ -1,5 +1,5 @@
 
-
+//toggle navbar on scroll
 $(function () {
     $(document).scroll(function () {
       var $nav = $(".navbar");
@@ -13,12 +13,13 @@ $(function () {
     });
 });
   
-
-
+//toggle sidebar
 function toggleSidebar() {
-    // $(".sidebar").css("width", "5%");
-
     $(".sidebar").toggleClass('collapsed');
-
-    // $("#menuItem1").html('<i class="fas fa-air-freshener"></i>');
+    $(".col-10-body").toggleClass('collapsed');
 }
+
+//trigger tooltip
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

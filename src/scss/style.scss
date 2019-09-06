@@ -555,9 +555,14 @@
     height: 100vh;
 
     .row {
+        .col-10-body{
+            width: 88%;
+            background: #ccc;
+            margin-left:12%;
+        }
         .col-2-sidebar.sidebar {
             width: 12%;
-            height: calc(100vh - 45.2px);
+            height: 100vh;
             padding: 0 10px;
             background: $seaFoamGreen;
             display: flex;
@@ -566,6 +571,7 @@
             justify-content: center;
             align-content: center;
             position: relative;
+            overflow-x: hidden;
 
             .close {
                 position: absolute;
@@ -711,7 +717,10 @@
 
         }
 
-
+        .col-10-body.collapsed{
+            width: 95%;
+            margin-left: 5%;
+        }
         .col-2-sidebar.sidebar.collapsed {
             width: 5%;
             .close {
