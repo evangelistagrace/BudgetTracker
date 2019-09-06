@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
-<!--Font Awesome-->
-<link rel="stylesheet" href="../fontawesome/css/all.css">
 <title>Dashboard - BudgetTracker</title>
 
 <style>

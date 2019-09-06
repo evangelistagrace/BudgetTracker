@@ -6,6 +6,7 @@
     // Fonts
     echo "<link href=\"https://fonts.googleapis.com/css?family=Nunito|Varela+Round&display=swap\" rel=\"stylesheet\">";
     echo "<link href=\"https://fonts.googleapis.com/css?family=Oleo+Script&display=swap\" rel=\"stylesheet\">"; 
+    echo '<link rel="stylesheet" href="../fontawesome/css/all.css">';
     // Stylesheets
     echo "<link rel=\"stylesheet\" href=\"css/bootstrap/bootstrap.css\">";
     echo "<link rel=\"stylesheet\" href=\"scss/style.css\">";
