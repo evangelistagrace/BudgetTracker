@@ -3,29 +3,10 @@
 <?php include 'head.php'?>
 <title>Dashboard - BudgetTracker</title>
 
-<style>
-    body {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-content: flex-start;
-        flex-wrap: wrap;
-    }
-</style>
 
 <body>
-    <nav class="navbar small">
-        <a class="navbar-brand" href="#"><img id="logo" src="../assets/logo-transparent.svg" alt=""></a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <li class="nav-link"><a href="../src/homepage.php">Log Out <i class="fas fa-sign-out-alt"></i></a></li>
-            </li>
-        </ul>
-    </nav>
-
-
+   
+<?php include 'navbarDashboard.php'?>
     <div class="container-fluid my-container offset-container">
 
         <!-- MAIN CONTENT    -->
@@ -43,7 +24,7 @@
 
                 <!-- menu -->
                 <ul class="menu">
-                    <li class="menu-item" id="menuItem1"><a href="#"></a></li>
+                    <li class="menu-item" id="menuItem1"><a href="#" title="dashboard"></a></li>
                     <li class="menu-item" id="menuItem2"><a href="#" title="budgets"></a></li>
                     <li class="menu-item" id="menuItem3"><a href="#" title="expenses"></a></li>
                     <li class="menu-item" id="menuItem4"><a href="#" title="reminders"></a></li>

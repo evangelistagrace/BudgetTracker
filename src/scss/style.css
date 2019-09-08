@@ -5857,6 +5857,14 @@ body {
   background: #fcfcfc;
 }
 
+.container-fluid.homepage {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .navbar {
   overflow: hidden;
   position: fixed;
@@ -6322,6 +6330,10 @@ body {
   font-family: 'Manjari', sans-serif;
   font-size: 1.1em;
   letter-spacing: 0.5px;
+}
+
+.my-container .row .col-2-sidebar.sidebar .menu li a.active {
+  color: #7160a8;
 }
 
 .my-container .row .col-2-sidebar.sidebar .menu li#menuItem1 a:before {

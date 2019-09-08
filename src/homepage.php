@@ -4,15 +4,6 @@
 <?php include 'head.php';?>
 <title>BudgetTracker</title>
 
-<style>
-.container-fluid {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0;
-    margin-right: auto;
-    margin-left: auto;
-}
-</style>
 <body>
     
     <nav class="navbar transparent">
@@ -27,7 +18,7 @@
         </ul>
     </nav>
 
-    <div class="container-fluid my-container">
+    <div class="container-fluid homepage my-container">
 
      <div class="header">
      <div class="left">

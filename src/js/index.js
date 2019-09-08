@@ -44,3 +44,22 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+
+// activate clicked menu link state
+const links = Array.from(document.querySelectorAll('.menu-item a'));
+
+links.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    // console.log("forEach worked");
+    //remove active class from all other elements
+    links.forEach((link) => {
+       if(link.classList.contains('active')){
+        link.classList.remove('active');
+       }
+      //add active class to target element
+    e.target.classList.add('active');
+    })
+    
+  });
+});
