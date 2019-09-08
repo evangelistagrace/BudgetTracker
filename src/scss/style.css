@@ -6507,15 +6507,71 @@ ul.groups-list {
   margin-top: 10px;
 }
 
-table tr td:first-of-type {
+table.budget {
+  border: none;
+  margin: 0;
+}
+
+table.budget tr {
+  margin: 0;
+}
+
+table.budget tr td {
+  border: none;
+}
+
+table.budget tr td:first-of-type {
+  width: 20%;
+  font-size: 1.3em;
+  vertical-align: bottom;
+}
+
+table.budget tr td:nth-of-type(2) {
+  width: 65%;
+  text-align: right;
+}
+
+table.budget tr td:nth-of-type(2) {
+  width: 65%;
+}
+
+table.budget tr td:nth-of-type(2) .progress {
+  height: 25px;
+}
+
+table.budget tr td:nth-of-type(3) {
+  width: 15%;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+table.budget tr td:nth-of-type(3) i {
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+table.balance tr td:first-of-type {
   padding-right: 10px;
 }
 
-table tr td:nth-of-type(2) {
+table.balance tr td:nth-of-type(2) {
   text-align: right;
+}
+
+.card.budget {
+  padding: 10px;
 }
 
 .menu, .card-title, h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1.title {
+  font-size: 1.7em;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.progress.expense {
+  height: 25px;
 }
 /*# sourceMappingURL=style.css.map */

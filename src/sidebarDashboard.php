@@ -8,8 +8,8 @@
     </div>
 
     <ul class="menu">
-        <li class="menu-item" id="menuItem1"><a href="#" title="dashboard"></a></li>
-        <li class="menu-item" id="menuItem2"><a href="#" title="budgets"></a></li>
+        <li class="menu-item" id="menuItem1"><a href="dashboard.php" title="dashboard"></a></li>
+        <li class="menu-item" id="menuItem2"><a href="personalBudgets.php" title="budgets"></a></li>
         <li class="menu-item" id="menuItem3"><a href="#" title="expenses"></a></li>
         <li class="menu-item" id="menuItem4"><a href="#" title="reminders"></a></li>
         <li class="menu-item" id="menuItem5"><a href="#" title="groups"></a></li>

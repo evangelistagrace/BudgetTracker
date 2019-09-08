@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Balance</h5>
                             <p class="card-text">
-                                <table>
+                                <table class="balance">
                                     <tr>
                                         <td>Inflow</td>
                                         <td><span class="text-primary">+RM 1, 000.00</span></td>
@@ -106,7 +106,7 @@
                                 </div>
                                 
                             </p>
-                            <a href="#" class="btn btn-secondary btn-sm">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
+                            <a href="personalBudgets.php" class="btn btn-secondary btn-sm">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
 
