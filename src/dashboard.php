@@ -96,7 +96,7 @@
                                     </div>
                                 </form>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to reminders <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm">Go to reminders <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
                                     <li><a href="#">Jay's Birthday Party</a></li>
                                 </ul>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to groups <i class="fas fa-arrow-right"></i></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm">Go to groups <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                 </div>
                                 
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
 
@@ -155,7 +155,7 @@
                             <p class="card-text">
                             <canvas id="expensesChart"></canvas>
                             </p>
-                            <a href="#" class="btn btn-secondary">Go to expenses <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm">Go to expenses <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 

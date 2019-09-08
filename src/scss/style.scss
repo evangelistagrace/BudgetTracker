@@ -22,7 +22,7 @@ body{
     top: 0;
     width: 100%;
     z-index: 9999;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Varela Round', sans-serif;
 
     li {
         a {
@@ -32,6 +32,8 @@ body{
             display: inline-block;
             padding: 5px 10px;
             position: relative;
+            font-size: 1em;
+            font-weight: 500;
 
             &:after {
                 background: none repeat scroll 0 0 transparent;
@@ -90,7 +92,7 @@ body{
 
     a {
         color: $white;
-        font-size: 1.2em;
+        font-size: 1em;
 
         &:after {
             background: none;
@@ -234,12 +236,13 @@ body{
         flex-wrap: wrap;
         color: #808080;
 
-        a.btn {
+        a.btn{
             display: block;
             width: 70%;
             border-radius: 50px;
             justify-self: center;
             font-size: 1.2em;
+            font-family: 'Varela Round', sans-serif;
             @include gradientBtn();
 
             &:hover {
@@ -291,7 +294,9 @@ body{
                         }
                         a.btn{
                             float: right;
-                            font-size: 1.1em;
+                            font-size: 0.9em;
+                            font-family: 'Varela Round', sans-serif;
+
 
                             i{
                                 margin-left: 3px;
@@ -611,6 +616,6 @@ ul.groups-list{
         }
     }
 
-.btn, a.btn, .menu, .card-title, h1, h2, h3{
+.menu, .card-title, h1, h2, h3{
     font-family: 'Source Sans Pro', sans-serif;
 }

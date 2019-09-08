@@ -5863,7 +5863,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 9999;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .navbar li a {
@@ -5873,6 +5873,8 @@ body {
   display: inline-block;
   padding: 5px 10px;
   position: relative;
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .navbar li a:after {
@@ -5928,7 +5930,7 @@ body {
 
 .navbar.small a {
   color: #ffffff;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .navbar.small a:after {
@@ -6140,6 +6142,7 @@ body {
   -ms-grid-column-align: center;
       justify-self: center;
   font-size: 1.2em;
+  font-family: 'Varela Round', sans-serif;
   background: #5cdb95;
   /* Old browsers */
   /* FF3.6-15 */
@@ -6223,7 +6226,8 @@ body {
 
 .my-container .row .col-10-body .row .card .card-body a.btn {
   float: right;
-  font-size: 1.1em;
+  font-size: 0.9em;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn i {
@@ -6499,7 +6503,7 @@ table tr td:nth-of-type(2) {
   text-align: right;
 }
 
-.btn, a.btn, .menu, .card-title, h1, h2, h3 {
+.menu, .card-title, h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 /*# sourceMappingURL=style.css.map */
