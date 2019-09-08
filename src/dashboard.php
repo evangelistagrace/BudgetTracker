@@ -13,7 +13,7 @@
             <!-- SIDEBAR -->
             <?php include 'sidebarDashboard.php'?>
 
-            <!-- MIAIN CONTENT -->
+            <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
                 <div class="row">
                     <div class="card" style="width: 18rem;">
