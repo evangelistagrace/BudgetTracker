@@ -15,6 +15,7 @@
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
+            <h1 class="title text-primary">My Dashboard</h1>
                 <div class="row">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">

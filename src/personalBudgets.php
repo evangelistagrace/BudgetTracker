@@ -14,11 +14,12 @@
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
+
+                <h1 class="title text-primary">My Budgets</h1>
+                <div class="row sm"><canvas id="expensesChart"></canvas></div>
+
                 <div class="row">
-                    <h1 class="title text-primary">My Budgets</h1>
-                </div>
-                <div class="row">
-                    <div class="card budget" style="width: 80% ;">
+                    <div class="card budget" style="width: 100% ;">
 
                         <table class='table table-condensed budget'>
                             <tr>
@@ -47,7 +48,7 @@
 
                     </div>
 
-                    <div class="card budget" style="width: 80% ;">
+                    <div class="card budget" style="width: 100% ;">
 
                         <table class='table table-condensed budget'>
                             <tr>
@@ -76,7 +77,7 @@
 
                     </div>
                 </div>
-                <div class="row"></div>
+                <a href="" onclick="popUp()"><div class="btn btn-danger add-btn"><i class="fas fa-plus"></i></div></a>
             </div>
         </div>
     </div>

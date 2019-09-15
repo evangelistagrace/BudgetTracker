@@ -286,10 +286,16 @@ body{
             background: $babyPowder;
             margin-left:12%;
             padding: 30px 30px 0 30px;
+            display:flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
 
             .row{
                 justify-content: center;
-                
+                width: 80%;
+                // margin-bottom: 20px;
                 .card{
                     margin: 10px;
                     .card-body{
@@ -297,9 +303,6 @@ body{
                         .card-title{
                             font-family: 'Source Sans Pro', sans-serif;
                             font-size: 1.4em;
-                        }
-                        p{
-                            
                         }
                         a.btn{
                             float: right;
@@ -313,6 +316,10 @@ body{
                         }
                     }
                 }
+            }
+            .row.sm{
+                width: 50%;
+                margin: auto;
             }
         }
         .col-2-sidebar.sidebar {
@@ -676,8 +683,28 @@ h1.title{
     // text-transform: uppercase;
     font-size: 1.7em;
     font-family: 'Varela Round', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
 }
 // progress bar
 .progress.expense{
     height: 25px;
+}
+
+//floating button
+.add-btn{
+    width: 60px;
+    height: 60px;
+    // background: red;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
