@@ -724,7 +724,8 @@ h1.title{
 
 .popup-box{
     margin: 15% auto;
-    width: 80%;
+    padding: 20px 30px;
+    width: 40%;
     background: $babyPowder;
     .close-btn{
         position: absolute;
@@ -732,8 +733,27 @@ h1.title{
         right: 10px;
         font-style: bold;
         cursor: pointer;
+        z-index: 999999999;
         &:after{
             content: 'X';
         }
+    }
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.form-group{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    label{
+        width: 20%;
+    }
+    .dropdown, .input-group{
+        width: 70%;
     }
 }

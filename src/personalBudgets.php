@@ -78,13 +78,48 @@
                     </div>
                 </div>
                 <div class="btn btn-danger add-btn"><i class="fas fa-plus"></i></div>
-    <div class="popup">
-        <div class="popup-box">
-        <div class="close-btn"></div>    
-        Hello!</div>
-        
-    </div>
-                
+                <div class="popup">
+                    <div class="popup-box">
+                        <div class="close-btn"></div>
+                            <h3 class="text-center mb-3">Add Budget</h3>
+                        <form action="">
+                            <div class="form-group">
+                                <label for="budgetCategory">Category</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="budgetCategory"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded>Pick a
+                                        category</button>
+                                    <div class="dropdown-menu" aria-labelledby="budgetCategory">
+                                        <div class="dropdown-item">Travel</div>
+                                        <div class="dropdown-item">Food</div>
+                                        <div class="dropdown-item">Misc</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budgetAmount">Amount</label>
+                                <div class="input-group ml-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">RM</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        aria-label="Amount (to the nearest ringgit)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block">Add budget</button>
+
+                            </div>
+                        </form>
+                        
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

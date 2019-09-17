@@ -6634,7 +6634,8 @@ h1.title {
 
 .popup-box {
   margin: 15% auto;
-  width: 80%;
+  padding: 20px 30px;
+  width: 40%;
   background: #fcfcfc;
 }
 
@@ -6644,9 +6645,45 @@ h1.title {
   right: 10px;
   font-style: bold;
   cursor: pointer;
+  z-index: 999999999;
 }
 
 .popup-box .close-btn:after {
   content: 'X';
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-group label {
+  width: 20%;
+}
+
+.form-group .dropdown, .form-group .input-group {
+  width: 70%;
 }
 /*# sourceMappingURL=style.css.map */
