@@ -77,7 +77,14 @@
 
                     </div>
                 </div>
-                <a href="" onclick="popUp()"><div class="btn btn-danger add-btn"><i class="fas fa-plus"></i></div></a>
+                <div class="btn btn-danger add-btn"><i class="fas fa-plus"></i></div>
+    <div class="popup">
+        <div class="popup-box">
+        <div class="close-btn"></div>    
+        Hello!</div>
+        
+    </div>
+                
             </div>
         </div>
     </div>

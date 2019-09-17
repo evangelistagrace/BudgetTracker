@@ -63,3 +63,24 @@ links.forEach((link) => {
     
   });
 });
+
+
+//popup box
+const popupBtn = document.querySelector('.add-btn'); //button to trigger popup
+const popup = document.querySelector('.popup'); //popup content
+const popupClose = document.querySelector('.close-btn'); //popup close button
+
+popupBtn.onclick = function () {
+    popup.style.display = "block";
+}
+
+popupClose.onclick = function () {
+    popup.style.display = "none";
+}
+
+
+window.onclick = function (event) {
+    if (event.target == popup) {
+        popup.style.display = "none";
+    }
+}
