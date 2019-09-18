@@ -6652,7 +6652,7 @@ h1.title {
   content: 'X';
 }
 
-form {
+form.popup-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6669,7 +6669,7 @@ form {
       flex-wrap: wrap;
 }
 
-.form-group {
+form.popup-form .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6679,11 +6679,11 @@ form {
           justify-content: space-between;
 }
 
-.form-group label {
+form.popup-form .form-group label {
   width: 20%;
 }
 
-.form-group .dropdown, .form-group .input-group {
+form.popup-form .form-group .dropdown, form.popup-form .form-group .input-group {
   width: 70%;
 }
 /*# sourceMappingURL=style.css.map */

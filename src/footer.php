@@ -10,6 +10,8 @@
     echo '<script src="../src/js/bootstrap/bootstrap.bundle.min.js"></script>';
     //chart.js
     echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>';
+    //bootstrap select
+    echo '<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>';
     echo '<script src="../src/js/index.js"></script>';
     
 

@@ -739,21 +739,23 @@ h1.title{
         }
     }
 }
-form{
+form.popup-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-}
-.form-group{
-    display: flex;
-    width: 70%;
-    justify-content: space-between;
-    label{
-        width: 20%;
-    }
-    .dropdown, .input-group{
+
+    .form-group{
+        display: flex;
         width: 70%;
+        justify-content: space-between;
+        label{
+            width: 20%;
+        }
+        .dropdown, .input-group{
+            width: 70%;
+        }
     }
 }
+

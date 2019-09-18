@@ -82,19 +82,14 @@
                     <div class="popup-box">
                         <div class="close-btn"></div>
                             <h3 class="text-center mb-3">Add Budget</h3>
-                        <form action="">
+                        <form class="popup-form" action="">
                             <div class="form-group">
                                 <label for="budgetCategory">Category</label>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="budgetCategory"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded>Pick a
-                                        category</button>
-                                    <div class="dropdown-menu" aria-labelledby="budgetCategory">
-                                        <div class="dropdown-item">Travel</div>
-                                        <div class="dropdown-item">Food</div>
-                                        <div class="dropdown-item">Misc</div>
-                                    </div>
-                                </div>
+                                <select class="selectpicker show-tick" data-style="btn-secondary" title="Pick a category">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Barbecue</option>
+</select>
                             </div>
 
                             <div class="form-group">
