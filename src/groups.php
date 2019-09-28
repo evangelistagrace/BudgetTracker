@@ -64,37 +64,35 @@
                             <h3 class="text-center mb-4 mt-4">Add Group</h3>
                             <form class="popup-form" action="">
                                 <div class="form-group">
-                                    <label for="expenseTitle">Title</label>
+                                    <label for="groupTitle">Group Name</label>
                                     <div class="input-group ml-3">
-                                        <input type="text" class="form-control" name="expenseTitle" id="expenseTitle">
+                                        <input type="text" class="form-control" name="groupTitle" id="groupTitle">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="budgetCategory">Category</label>
-                                    <select class="selectpicker show-tick" data-style="btn-secondary"
-                                        title="Pick a category">
-                                        <option>Travel</option>
-                                        <option>Food</option>
-                                        <option>Groceries</option>
-                                        <option>Misc</option>
+                                    <label for="groupIcon">Group Icon</label>
+                                    <div class="input-group ml-3">
+                                             <select id="groupIcon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
+                                        title="Pick an icon">
+                                        <option value="icon-1" data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>"></option>
+                                        <option value="icon-2" data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>"></option>
+                                        <option value="icon-3" data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>"></option>
+
                                     </select>
+                                    </div>
+                               
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="budgetAmount">Amount</label>
+                                    <label for="budgetAmount">Add Members</label>
                                     <div class="input-group ml-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">RM</span>
-                                        </div>
-                                        <input type="text" class="form-control"
-                                            aria-label="Amount (to the nearest ringgit)">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">.00</span>
-                                        </div>
+                                        <input type="email" class="form-control mb-3" placeholder="Enter an email...">
+                                        <input type="email" class="form-control" placeholder="Enter an email...">
+                                    
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add reminder</button>
+                                    <button class="btn btn-primary btn-lg btn-block">Add group</button>
 
                                 </div>
                             </form>

@@ -834,6 +834,9 @@ form.popup-form {
         .dropdown,
         .input-group {
             width: 70%;
+            input{
+                width: 100%;
+            }
         }
     }
 }
@@ -888,8 +891,17 @@ form.popup-form {
     }
 }
 
-/*checkbox*/
+.selectpicker{
+    option{
+        img{
+            width: 10px;
+        }
+    }
+}
 
+select#groupIcon option[value="icon-1"]   { background-image:url("/assets/icons/icon-1.png");   }
+
+//checkbox
 .checkbox {
     opacity: 0;
     position: relative;

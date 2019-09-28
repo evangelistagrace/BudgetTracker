@@ -6733,6 +6733,11 @@ form.popup-form .form-group .input-group {
   width: 70%;
 }
 
+form.popup-form .form-group .dropdown input,
+form.popup-form .form-group .input-group input {
+  width: 100%;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -6785,7 +6790,14 @@ form.popup-form .form-group .input-group {
   position: relative;
 }
 
-/*checkbox*/
+.selectpicker option img {
+  width: 10px;
+}
+
+select#groupIcon option[value="icon-1"] {
+  background-image: url("/assets/icons/icon-1.png");
+}
+
 .checkbox {
   opacity: 0;
   position: relative;
