@@ -6247,11 +6247,6 @@ body {
   margin: 10px;
 }
 
-.my-container .row .col-10-body .row .card .card-body .card-title {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.4em;
-}
-
 .my-container .row .col-10-body .row .card .card-body a.btn {
   float: right;
   font-size: 0.9em;
@@ -6583,25 +6578,30 @@ table.balance tr td:nth-of-type(2) {
   text-align: right;
 }
 
-.table.expenses, .table.reminders {
+.table.expenses,
+.table.reminders {
   border: none;
 }
 
-.table.expenses tr, .table.reminders tr {
+.table.expenses tr,
+.table.reminders tr {
   border-bottom: 1px solid #ececec;
 }
 
-.table.expenses tr td, .table.reminders tr td {
+.table.expenses tr td,
+.table.reminders tr td {
   border: none;
   text-align: center;
   position: relative;
 }
 
-.table.expenses tr td i, .table.reminders tr td i {
+.table.expenses tr td i,
+.table.reminders tr td i {
   margin: 10px;
 }
 
-.table.expenses tr td .circle, .table.reminders tr td .circle {
+.table.expenses tr td .circle,
+.table.reminders tr td .circle {
   width: 10px;
   height: 10px;
   background-color: red;
@@ -6631,6 +6631,43 @@ h1.title {
   font-family: 'Varela Round', sans-serif;
   text-align: center;
   margin-bottom: 30px;
+}
+
+.card.group {
+  padding: 5px;
+}
+
+.card.group .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+}
+
+.card.group .card-body .row {
+  width: 100%;
+}
+
+.card.group .card-body .row .col-3 {
+  margin-right: 20px;
+}
+
+.card.group .card-body .row .col-3 img {
+  width: 80px;
+  opacity: .8;
+}
+
+.card.group .card-body .row .col-8 h1.card-title {
+  font-size: 1.4rem;
+  font-family: 'Varela Round', sans-serif;
+  margin-top: 3px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.card.group .card-body .row .col-8 .links {
+  text-align: center;
 }
 
 .progress.expense {

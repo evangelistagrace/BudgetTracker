@@ -52,9 +52,9 @@
                     </div>
                     
                 </div>
-                <a class="btn btn-danger add-btn" href="#addExpenses"><i class="fas fa-plus"></i></a>
+                <a class="btn btn-danger add-btn" href="#addReminder"><i class="fas fa-plus"></i></a>
 
-                <div id="addExpenses" class="overlay">
+                <div id="addReminder" class="overlay">
                     <div class="popup">
                         
                         <div class="content"><a class="close" href="#">x</a>
