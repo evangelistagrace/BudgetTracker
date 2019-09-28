@@ -19,10 +19,13 @@
                 
                 <div class="row">
                     <div class="card expenses">
+                    <div class="progress" style="height: 3px;">
+  <div class="progress-bar progress-reminder" role="progressbar" style="width: 0%; background-color: #8c77d1" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
                         <div class="card-body">
-                        <table class='table table-condensed expenses'>
+                        <table class='table table-condensed reminders'>
                             <tr>
-                                <td><input type="checkbox" class="form-control"></td>
+                                <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div></td>
                                 <td>Pay hostel rent</td>
                                 <td><div class="small"><div class="circle"></div>Bills</div></td>
                                 <td>RM 600.00</td>
@@ -33,7 +36,7 @@
                             </tr>
 
                             <tr>
-                                <td><input type="checkbox" class="form-control"></td>
+                            <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div></td>
                                 <td>Pay phone bill</td>
                                 <td><div class="small"><div class="circle"></div>Bills</div></td>
                                 <td>RM 60</td>

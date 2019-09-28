@@ -1,4 +1,38 @@
 console.log("js file loaded");
+
+//reminder checkboxes and progress
+var checkboxes = Array.from(document.querySelectorAll('.checkbox'));
+var countChecked = 0;
+var totalCheckbox = checkboxes.length;
+var progressPercentage = 0;
+var progressBar = document.querySelector('.progress-reminder');
+
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function (e) {
+        if (this.checked) {
+            console.log("checked");
+            var pseudoCheck = e.target.nextSibling;
+            //create tick
+            var tick = document.createElement('i');
+            tick.className = 'fas';
+            tick.classList.add('fa-check');
+            pseudoCheck.appendChild(tick);
+            countChecked++;
+        
+        } else {
+            var pseudoChecked = e.target.nextSibling.firstChild;
+            pseudoChecked.parentNode.removeChild(pseudoChecked);
+            countChecked--;
+        }
+
+        progressPercentage = countChecked * (1/totalCheckbox) * 100;
+        progressBar.style.width = progressPercentage + '%';
+    
+    });
+});
+
+
+
 //toggle sidebar
 function toggleSidebar() {
     $(".sidebar").toggleClass('collapsed');
@@ -63,6 +97,13 @@ links.forEach((link) => {
     
   });
 });
+
+
+ 
+
+// 
+// console.log(totalCheckbox);
+
 
 
 // //popup box
