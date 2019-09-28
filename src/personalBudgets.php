@@ -77,48 +77,56 @@
 
                     </div>
                 </div>
-                <div class="btn btn-danger add-btn"><i class="fas fa-plus"></i></div>
-                <div class="popup">
-                    <div class="popup-box">
-                        <div class="close-btn"></div>
-                            <h3 class="text-center mb-3">Add Budget</h3>
-                        <form class="popup-form" action="">
-                            <div class="form-group">
-                                <label for="budgetCategory">Category</label>
-                                <select class="selectpicker show-tick" data-style="btn-secondary" title="Pick a category">
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Barbecue</option>
-</select>
-                            </div>
+                <a class="btn btn-danger add-btn" href="#addBudget"><i class="fas fa-plus"></i></a>
 
-                            <div class="form-group">
-                                <label for="budgetAmount">Amount</label>
-                                <div class="input-group ml-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">RM</span>
-                                    </div>
-                                    <input type="text" class="form-control"
-                                        aria-label="Amount (to the nearest ringgit)">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
+
+
+                <div id="addBudget" class="overlay">
+                    <div class="popup">
+
+                        <div class="content"><a class="close" href="#">x</a>
+                            <h3 class="text-center mb-4 mt-4">Add Budget</h3>
+                            <form class="popup-form" action="">
+                                <div class="form-group">
+                                    <label for="budgetCategory">Category</label>
+                                    <select class="selectpicker show-tick" data-style="btn-secondary"
+                                        title="Pick a category">
+                                        <option>Travel</option>
+                                        <option>Food</option>
+                                        <option>Groceries</option>
+                                        <option>Misc</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="budgetAmount">Amount</label>
+                                    <div class="input-group ml-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">RM</span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                            aria-label="Amount (to the nearest ringgit)">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block">Add budget</button>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-lg btn-block">Add budget</button>
 
-                            </div>
-                        </form>
-                        
+                                </div>
+                            </form>
+                        </div>
                     </div>
-
                 </div>
 
             </div>
         </div>
     </div>
+
+
     <?php include 'footer.php' ?>
+
 
 </body>
 

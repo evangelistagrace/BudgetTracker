@@ -6620,6 +6620,73 @@ h1.title {
   cursor: pointer;
 }
 
+.popup {
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  height: 100%;
+  display: none;
+}
+
+.popup-box {
+  margin: 15% auto;
+  padding: 20px 30px;
+  width: 40%;
+  background: #fcfcfc;
+}
+
+.popup-box .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-style: bold;
+  cursor: pointer;
+  z-index: 999999999;
+}
+
+.popup-box .close-btn:after {
+  content: 'X';
+}
+
+form.popup-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+form.popup-form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+form.popup-form .form-group label {
+  width: 20%;
+}
+
+form.popup-form .form-group .dropdown, form.popup-form .form-group .input-group {
+  width: 70%;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
