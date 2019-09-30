@@ -87,6 +87,9 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
+
+
+
 //expenses chart
 var ctx = document.getElementById('expensesChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -121,6 +124,7 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
 
 //expenses by day chart
 var ctx = document.getElementById('expensesByDayChart').getContext('2d');
@@ -177,6 +181,7 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
 
 
 // activate clicked menu link state

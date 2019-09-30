@@ -37,22 +37,45 @@
                                 <td class="right">
                                     <div class='progress expense'>
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 50%;">
-                                            50%
+                                            style="width: 60%;">
+                                            60%
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-
                         </table>
-
                     </div>
 
                     <div class="card budget" style="width: 100% ;">
-
                         <table class='table table-condensed budget'>
                             <tr>
                                 <td rowspan="2">Travel</td>
+                                <td>
+                                    <div><small>+RM 50</small></div>
+                                    <div><small>left RM 80</small></div>
+                                </td>
+                                <td class="small" rowspan="2">
+                                    <a href="#"><i class="fas fa-edit text-primary"></i></a>
+                                    <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="right">
+                                    <div class='progress expense'>
+                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                            style="width: 40%;">
+                                            40%
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="card budget" style="width: 100% ;">
+                        <table class='table table-condensed budget'>
+                            <tr>
+                                <td rowspan="2">Groceries</td>
                                 <td>
                                     <div><small>+RM 50</small></div>
                                     <div><small>left RM 80</small></div>
@@ -72,10 +95,12 @@
                                     </div>
                                 </td>
                             </tr>
-
                         </table>
-
                     </div>
+
+
+
+
                 </div>
                 <a class="btn btn-danger add-btn" href="#addBudget"><i class="fas fa-plus"></i></a>
 

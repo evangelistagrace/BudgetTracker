@@ -341,7 +341,7 @@ body {
             }
 
             .col {
-                .card.settings {
+                .card.settings, .card.groupView {
                     .card-body {
 
                         .row {
@@ -772,11 +772,8 @@ table.balance {
     padding: 10px;
 }
 
-.card.expenses {
-    width: 70%;
-}
-
-.card.settings {
+.card.expenses, 
+.card.settings{
     width: 70%;
 }
 

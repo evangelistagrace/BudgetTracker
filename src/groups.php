@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
-<title>My Budgets - BudgetTracker</title>
+<title>My Groups - BudgetTracker</title>
 
 <body>
 
@@ -24,7 +24,7 @@
                                 <div class="col-3"><img src="../assets/icons/icon-1.png" alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title">Family</h1>
-                                    <div class="links small">View | Edit | Delete</div>
+                                    <div class="links small"><a href="groupView.php">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                 <div class="col-3"><img src="../assets/icons/icon-2.png" alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title">Amy's Birthday</h1>
-                                    <div class="links small">View | Edit | Delete</div>
+                                    <div class="links small"><a href="">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <div class="col-3"><img src="../assets/icons/icon-3.png" alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title">Hostel</h1>
-                                    <div class="links small">View</div>
+                                    <div class="links small"><a href="">View</a></div>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="groupTitle">Group Name</label>
                                     <div class="input-group ml-3">
-                                        <input type="text" class="form-control" name="groupTitle" id="groupTitle">
+                                        <input type="text" class="form-control" name="groupTitle" id="groupTitle"placeholder="Enter group name">
                                     </div>
                                 </div>
                                 <div class="form-group">
