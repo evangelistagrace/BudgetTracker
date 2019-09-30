@@ -17,9 +17,10 @@ body {
     background: $babyPowder;
 }
 
-.btn{
+.btn {
     cursor: pointer;
 }
+
 .container-fluid.homepage {
     width: 100%;
     padding-right: 0;
@@ -291,6 +292,8 @@ body {
 
         .col-10-body {
             width: 88%;
+            margin-bottom: 40px;
+
             background: $babyPowder;
             margin-left: 12%;
             padding: 30px 30px 0 30px;
@@ -317,7 +320,6 @@ body {
                         }
 
                         a.btn {
-                            float: right;
                             font-size: 0.9em;
                             font-family: 'Varela Round', sans-serif;
 
@@ -326,6 +328,9 @@ body {
                                 margin-left: 3px;
                             }
                         }
+                        a.btn.right{
+                            float: right;
+                        }
                     }
                 }
             }
@@ -333,6 +338,20 @@ body {
             .row.sm {
                 width: 50%;
                 margin: auto;
+            }
+
+            .col {
+                .card.settings {
+                    .card-body {
+
+                        .row {
+
+                            width: 100%;
+                            margin: auto;
+                        }
+                    }
+
+                }
             }
         }
 
@@ -701,7 +720,8 @@ table.balance {
 }
 
 .table.expenses,
-.table.reminders {
+.table.reminders,
+.table.settings {
     border: none;
 
     tr {
@@ -728,12 +748,35 @@ table.balance {
     }
 }
 
+.table.settings {
+    tr {
+        border-bottom: none;
+
+        td:nth-of-type(even) {
+            padding-right: 10px;
+        }
+    }
+
+}
+
+.table.settings2{
+    td{
+        position: relative;
+        text-align: left;
+        
+    }
+}
+
 //cards
 .card.budget {
     padding: 10px;
 }
 
 .card.expenses {
+    width: 70%;
+}
+
+.card.settings {
     width: 70%;
 }
 
@@ -756,7 +799,8 @@ h1.title {
 }
 
 .card.group {
-padding: 5px;
+    padding: 5px;
+
     .card-body {
         display: flex;
         padding: 5px;
@@ -766,23 +810,25 @@ padding: 5px;
 
             .col-3 {
                 margin-right: 20px;
+
                 img {
                     width: 80px;
                     opacity: .8;
                 }
-                
+
             }
-            .col-8{
+
+            .col-8 {
                 h1.card-title {
                     font-size: 1.4rem;
                     font-family: 'Varela Round', sans-serif;
                     margin-top: 3px;
-                    padding-bottom:5px;
+                    padding-bottom: 5px;
                     border-bottom: 1px solid #ddd;
                     text-align: center;
                 }
 
-                .links{
+                .links {
                     text-align: center;
                 }
 
@@ -838,10 +884,12 @@ form.popup-form {
         .input-group {
             width: 70%;
             justify-content: space-between;
-            input.block{
+
+            input.block {
                 width: 100%;
             }
-            .btn-round{
+
+            .btn-round {
                 padding: 3px;
                 width: 30px;
                 height: 30px;
@@ -903,15 +951,17 @@ form.popup-form {
     }
 }
 
-.selectpicker{
-    option{
-        img{
+.selectpicker {
+    option {
+        img {
             width: 10px;
         }
     }
 }
 
-select#groupIcon option[value="icon-1"]   { background-image:url("/assets/icons/icon-1.png");   }
+select#groupIcon option[value="icon-1"] {
+    background-image: url("/assets/icons/icon-1.png");
+}
 
 //checkbox
 .checkbox {
@@ -942,4 +992,83 @@ select#groupIcon option[value="icon-1"]   { background-image:url("/assets/icons/
     bottom: -10px;
     right: -12px;
     color: #FF7851;
+}
+
+//custom radiobutton
+/* The container */
+.container {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 0;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(102, 184, 201);
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: rgb(255, 255, 255);
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #FF7851;
+}
+
+a.btn-round {
+    padding: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    vertical-align: center;
+}
+
+hr{
+    margin: 30px 0;
 }

@@ -19,7 +19,7 @@ checkboxes.forEach(checkbox => {
             pseudoCheck.appendChild(tick);
             countChecked++;
         
-        } else {
+        } else if($("input[type='checkbox']:not(:checked)")) {
             var pseudoChecked = e.target.nextSibling.firstChild;
             pseudoChecked.parentNode.removeChild(pseudoChecked);
             countChecked--;
@@ -31,6 +31,49 @@ checkboxes.forEach(checkbox => {
     });
 });
 
+//settings radio options
+function settingRadio() {
+    var radioBtnChecked = document.querySelector("input[type='radio']:checked");
+    var radioBtnNotChecked = Array.from(document.querySelectorAll("input[type='radio']:not(checked)"));
+
+    var pseudoCheck = radioBtnChecked.nextSibling;
+    var circle = document.createElement('i');
+    circle.className = 'fas';
+    circle.classList.add('fa-circle');
+    pseudoCheck.appendChild(circle);
+
+    radioBtnNotChecked.forEach(radioBtn => {
+        console.log("unchecked");
+        if (radioBtn.nextSibling.firstChild.contains(circle)) {
+            var pseudoChecked = radioBtn.nextSibling.firstChild;
+            pseudoChecked.parentNode.removeChild(pseudoChecked);
+        }
+        
+    })
+}
+
+
+
+// radioBtns.forEach(radioBtn => {
+//     radioBtn.addEventListener('change', function (e) {
+//         if (radioBtn.checked) {
+//             console.log("checked");
+//             var pseudoCheck = e.target.nextSibling;
+//             //create tick
+//             var circle = document.createElement('i');
+//             circle.className = 'fas';
+//             circle.classList.add('fa-circle');
+//             pseudoCheck.appendChild(circle);
+        
+//         } else if($("input[type='radio']:not(:checked)")){
+//             console.log("unchecked");
+            
+//             var pseudoChecked = e.target.nextSibling.firstChild;
+//             pseudoChecked.parentNode.removeChild(pseudoChecked);
+//         }
+    
+//     });
+// });
 
 
 //toggle sidebar

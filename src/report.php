@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
-<title>My Budgets - BudgetTracker</title>
+<title>My Report - BudgetTracker</title>
 
 <body>
 
