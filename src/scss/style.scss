@@ -17,6 +17,9 @@ body {
     background: $babyPowder;
 }
 
+.btn{
+    cursor: pointer;
+}
 .container-fluid.homepage {
     width: 100%;
     padding-right: 0;
@@ -834,8 +837,17 @@ form.popup-form {
         .dropdown,
         .input-group {
             width: 70%;
-            input{
+            justify-content: space-between;
+            input.block{
                 width: 100%;
+            }
+            .btn-round{
+                padding: 3px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50px;
+                text-align: center;
+                vertical-align: center;
             }
         }
     }
@@ -859,7 +871,7 @@ form.popup-form {
     }
 
     .popup {
-        margin: 10% auto;
+        margin: 5% auto;
         padding: 20px;
         background: #fff;
         border-radius: 5px;

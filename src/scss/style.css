@@ -5857,6 +5857,10 @@ body {
   background: #fcfcfc;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .container-fluid.homepage {
   width: 100%;
   padding-right: 0;
@@ -6731,11 +6735,24 @@ form.popup-form .form-group label {
 form.popup-form .form-group .dropdown,
 form.popup-form .form-group .input-group {
   width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-form.popup-form .form-group .dropdown input,
-form.popup-form .form-group .input-group input {
+form.popup-form .form-group .dropdown input.block,
+form.popup-form .form-group .input-group input.block {
   width: 100%;
+}
+
+form.popup-form .form-group .dropdown .btn-round,
+form.popup-form .form-group .input-group .btn-round {
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  text-align: center;
+  vertical-align: center;
 }
 
 .overlay {
@@ -6758,7 +6775,7 @@ form.popup-form .form-group .input-group input {
 }
 
 .overlay .popup {
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;

@@ -5857,6 +5857,10 @@ body {
   background: #fcfcfc;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .container-fluid.homepage {
   width: 100%;
   padding-right: 0;
@@ -5930,6 +5934,7 @@ body {
 .navbar.small {
   background-color: #91a0e6;
   padding: 0 10px;
+  z-index: 1;
 }
 
 .navbar.small .navbar-brand img {
@@ -6210,6 +6215,10 @@ body {
   height: 100vh;
 }
 
+.my-container .row {
+  position: relative;
+}
+
 .my-container .row .col-10-body {
   width: 88%;
   background: #fcfcfc;
@@ -6240,11 +6249,6 @@ body {
 
 .my-container .row .col-10-body .row .card {
   margin: 10px;
-}
-
-.my-container .row .col-10-body .row .card .card-body .card-title {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.4em;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn {
@@ -6578,11 +6582,51 @@ table.balance tr td:nth-of-type(2) {
   text-align: right;
 }
 
+.table.expenses,
+.table.reminders {
+  border: none;
+}
+
+.table.expenses tr,
+.table.reminders tr {
+  border-bottom: 1px solid #ececec;
+}
+
+.table.expenses tr td,
+.table.reminders tr td {
+  border: none;
+  text-align: center;
+  position: relative;
+}
+
+.table.expenses tr td i,
+.table.reminders tr td i {
+  margin: 10px;
+}
+
+.table.expenses tr td .circle,
+.table.reminders tr td .circle {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50px;
+  display: inline-block;
+  margin-right: 3px;
+}
+
 .card.budget {
   padding: 10px;
 }
 
-.menu, .card-title, h1, h2, h3 {
+.card.expenses {
+  width: 70%;
+}
+
+.menu,
+.card-title,
+h1,
+h2,
+h3 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -6591,6 +6635,43 @@ h1.title {
   font-family: 'Varela Round', sans-serif;
   text-align: center;
   margin-bottom: 30px;
+}
+
+.card.group {
+  padding: 5px;
+}
+
+.card.group .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+}
+
+.card.group .card-body .row {
+  width: 100%;
+}
+
+.card.group .card-body .row .col-3 {
+  margin-right: 20px;
+}
+
+.card.group .card-body .row .col-3 img {
+  width: 80px;
+  opacity: .8;
+}
+
+.card.group .card-body .row .col-8 h1.card-title {
+  font-size: 1.4rem;
+  font-family: 'Varela Round', sans-serif;
+  margin-top: 3px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.card.group .card-body .row .col-8 .links {
+  text-align: center;
 }
 
 .progress.expense {
@@ -6618,38 +6699,6 @@ h1.title {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   cursor: pointer;
-}
-
-.popup {
-  z-index: 999999;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 300px;
-  height: 100%;
-  display: none;
-}
-
-.popup-box {
-  margin: 15% auto;
-  padding: 20px 30px;
-  width: 40%;
-  background: #fcfcfc;
-}
-
-.popup-box .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-style: bold;
-  cursor: pointer;
-  z-index: 999999999;
-}
-
-.popup-box .close-btn:after {
-  content: 'X';
 }
 
 form.popup-form {
@@ -6683,8 +6732,117 @@ form.popup-form .form-group label {
   width: 20%;
 }
 
-form.popup-form .form-group .dropdown, form.popup-form .form-group .input-group {
+form.popup-form .form-group .dropdown,
+form.popup-form .form-group .input-group {
   width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+form.popup-form .form-group .dropdown input.block,
+form.popup-form .form-group .input-group input.block {
+  width: 100%;
+}
+
+form.popup-form .form-group .dropdown .btn-round,
+form.popup-form .form-group .input-group .btn-round {
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.377);
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay .popup {
+  margin: 5% auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  -webkit-transition: all 5s ease-in-out;
+  transition: all 5s ease-in-out;
+}
+
+.overlay .popup .close {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.overlay .popup .close:hover {
+  color: #232524;
+}
+
+.overlay .popup .content {
+  max-height: 30%;
+  overflow: auto;
+  position: relative;
+}
+
+.selectpicker option img {
+  width: 10px;
+}
+
+select#groupIcon option[value="icon-1"] {
+  background-image: url("/assets/icons/icon-1.png");
+}
+
+.checkbox {
+  opacity: 0;
+  position: relative;
+  z-index: 99;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.pseudo-checkbox {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  border: 3px solid #66b8c9;
+  cursor: pointer;
+}
+
+.fa-check {
+  position: absolute;
+  bottom: -10px;
+  right: -12px;
+  color: #FF7851;
 }
 
 /* 

@@ -86,11 +86,19 @@
                                 <div class="form-group">
                                     <label for="budgetAmount">Add Members</label>
                                     <div class="input-group ml-3">
-                                        <input type="email" class="form-control mb-3" placeholder="Enter an email...">
-                                        <input type="email" class="form-control" placeholder="Enter an email...">
-                                    
+                                        <input type="email" class="form-control mb-3 block" placeholder="Enter an email...">
+                                        <input type="email" class="form-control block" placeholder="Enter an email...">   
                                     </div>
                                 </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="budgetAmount"></label>
+                                    <div class="input-group ml-3">
+                                        <div class="btn btn-round btn-secondary">+</div>
+                                        <div class="btn btn-secondary">Send invitation</div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-lg btn-block">Add group</button>
 
