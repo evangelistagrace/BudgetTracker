@@ -5861,6 +5861,10 @@ body {
   cursor: pointer;
 }
 
+a {
+  color: #6CC3D5;
+}
+
 .container-fluid.homepage {
   width: 100%;
   padding-right: 0;
@@ -6270,7 +6274,7 @@ body {
   margin: auto;
 }
 
-.my-container .row .col-10-body .col .card.settings .card-body .row {
+.my-container .row .col-10-body .col .card.settings .card-body .row, .my-container .row .col-10-body .col .card.groupView .card-body .row {
   width: 100%;
   margin: auto;
 }
@@ -6628,6 +6632,11 @@ table.balance tr td:nth-of-type(2) {
   margin-right: 3px;
 }
 
+.table.expenses tr td:first-of-type {
+  width: 20%;
+  overflow: auto;
+}
+
 .table.settings tr {
   border-bottom: none;
 }
@@ -6645,10 +6654,7 @@ table.balance tr td:nth-of-type(2) {
   padding: 10px;
 }
 
-.card.expenses {
-  width: 70%;
-}
-
+.card.expenses,
 .card.settings {
   width: 70%;
 }

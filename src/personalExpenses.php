@@ -26,8 +26,8 @@
                         <table class='table table-condensed expenses'>
                             <tr>
                                 <td>Lunch</td>
-                                <td><div class="small"><div class="circle"></div>Food</div></td>
-                                <td>Rm 10</td>
+                                <td><div class="small"><div class="circle bg-danger"></div>Food</div></td>
+                                <td>RM 7.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
@@ -36,8 +36,8 @@
 
                             <tr>
                                 <td>Dinner</td>
-                                <td><div class="small"><div class="circle"></div>Food</div></td>
-                                <td>Rm 10</td>
+                                <td><div class="small"><div class="circle bg-danger"></div>Food</div></td>
+                                <td>RM 6.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
@@ -53,9 +53,9 @@
                         <div class="card-body">
                         <table class='table table-condensed expenses'>
                             <tr>
-                                <td>Lunch</td>
-                                <td><div class="small"><div class="circle"></div>Food</div></td>
-                                <td>Rm 10</td>
+                                <td>Monthly grocery shopping</td>
+                                <td><div class="small"><div class="circle bg-primary"></div>Groceries</div></td>
+                                <td>RM 70.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
@@ -64,8 +64,8 @@
 
                             <tr>
                                 <td>Dinner</td>
-                                <td><div class="small"><div class="circle"></div>Food</div></td>
-                                <td>Rm 10</td>
+                                <td><div class="small"><div class="circle bg-danger"></div>Food</div></td>
+                                <td>RM 10.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
@@ -74,6 +74,25 @@
 
                         </table>
                         </div>
+
+                        <div class="card-header">
+                            Friday, 10th August
+                        </div>
+                        <div class="card-body">
+                        <table class='table table-condensed expenses'>
+                            <tr>
+                                <td>Travel to Rawang</td>
+                                <td><div class="small"><div class="circle bg-warning"></div>Travel</div></td>
+                                <td>RM 20.00</td>
+                                <td>
+                                    <a href="#"><i class="fas fa-edit text-primary"></i></a>
+                                    <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                </td>
+                            </tr>
+
+                        </table>
+                        </div>
+
                     </div>
                     
                 </div>
@@ -113,9 +132,6 @@
                                     </div>
                                     <input type="text" class="form-control"
                                         aria-label="Amount (to the nearest ringgit)">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

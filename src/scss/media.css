@@ -5861,6 +5861,10 @@ body {
   cursor: pointer;
 }
 
+a {
+  color: #6CC3D5;
+}
+
 .container-fluid.homepage {
   width: 100%;
   padding-right: 0;
@@ -6221,6 +6225,7 @@ body {
 
 .my-container .row .col-10-body {
   width: 88%;
+  margin-bottom: 40px;
   background: #fcfcfc;
   margin-left: 12%;
   padding: 30px 30px 0 30px;
@@ -6252,7 +6257,6 @@ body {
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn {
-  float: right;
   font-size: 0.9em;
   font-family: 'Varela Round', sans-serif;
 }
@@ -6261,8 +6265,17 @@ body {
   margin-left: 3px;
 }
 
+.my-container .row .col-10-body .row .card .card-body a.btn.right {
+  float: right;
+}
+
 .my-container .row .col-10-body .row.sm {
   width: 50%;
+  margin: auto;
+}
+
+.my-container .row .col-10-body .col .card.settings .card-body .row, .my-container .row .col-10-body .col .card.groupView .card-body .row {
+  width: 100%;
   margin: auto;
 }
 
@@ -6583,29 +6596,34 @@ table.balance tr td:nth-of-type(2) {
 }
 
 .table.expenses,
-.table.reminders {
+.table.reminders,
+.table.settings {
   border: none;
 }
 
 .table.expenses tr,
-.table.reminders tr {
+.table.reminders tr,
+.table.settings tr {
   border-bottom: 1px solid #ececec;
 }
 
 .table.expenses tr td,
-.table.reminders tr td {
+.table.reminders tr td,
+.table.settings tr td {
   border: none;
   text-align: center;
   position: relative;
 }
 
 .table.expenses tr td i,
-.table.reminders tr td i {
+.table.reminders tr td i,
+.table.settings tr td i {
   margin: 10px;
 }
 
 .table.expenses tr td .circle,
-.table.reminders tr td .circle {
+.table.reminders tr td .circle,
+.table.settings tr td .circle {
   width: 10px;
   height: 10px;
   background-color: red;
@@ -6614,11 +6632,30 @@ table.balance tr td:nth-of-type(2) {
   margin-right: 3px;
 }
 
+.table.expenses tr td:first-of-type {
+  width: 20%;
+  overflow: auto;
+}
+
+.table.settings tr {
+  border-bottom: none;
+}
+
+.table.settings tr td:nth-of-type(even) {
+  padding-right: 10px;
+}
+
+.table.settings2 td {
+  position: relative;
+  text-align: left;
+}
+
 .card.budget {
   padding: 10px;
 }
 
-.card.expenses {
+.card.expenses,
+.card.settings {
   width: 70%;
 }
 
@@ -6627,7 +6664,7 @@ table.balance tr td:nth-of-type(2) {
 h1,
 h2,
 h3 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 
 h1.title {
@@ -6843,6 +6880,84 @@ select#groupIcon option[value="icon-1"] {
   bottom: -10px;
   right: -12px;
   color: #FF7851;
+}
+
+/* The container */
+.container {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 0;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 3px solid #66b8c9;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: white;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: white;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FF7851;
+}
+
+a.btn-round {
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  text-align: center;
+  vertical-align: center;
+}
+
+hr {
+  margin: 30px 0;
 }
 
 /* 

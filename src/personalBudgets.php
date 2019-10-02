@@ -16,7 +16,7 @@
             <div class="col-10-body collapsed">
 
                 <h1 class="title text-primary">My Budgets</h1>
-                <div class="row sm"><canvas id="expensesChart"></canvas></div>
+                <div class="row sm"><canvas id="budgetChart"></canvas></div>
 
                 <div class="row">
                     <div class="card budget" style="width: 100% ;">
@@ -25,8 +25,8 @@
                             <tr>
                                 <td rowspan="2">Food</td>
                                 <td>
-                                    <div><small>+RM 50</small></div>
-                                    <div><small>left RM 80</small></div>
+                                    <div><small>+RM 23.00</small></div>
+                                    <div><small>left RM 77.00</small></div>
                                 </td>
                                 <td class="small" rowspan="2">
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
@@ -37,8 +37,8 @@
                                 <td class="right">
                                     <div class='progress expense'>
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 60%;">
-                                            60%
+                                            style="width: 23%;">
+                                            23%
                                         </div>
                                     </div>
                                 </td>
@@ -51,8 +51,8 @@
                             <tr>
                                 <td rowspan="2">Travel</td>
                                 <td>
-                                    <div><small>+RM 50</small></div>
-                                    <div><small>left RM 80</small></div>
+                                    <div><small>+RM 70.00</small></div>
+                                    <div><small>left RM 130.00</small></div>
                                 </td>
                                 <td class="small" rowspan="2">
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
@@ -63,8 +63,8 @@
                                 <td class="right">
                                     <div class='progress expense'>
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 40%;">
-                                            40%
+                                            style="width: 35%;">
+                                            35%
                                         </div>
                                     </div>
                                 </td>
@@ -77,8 +77,8 @@
                             <tr>
                                 <td rowspan="2">Groceries</td>
                                 <td>
-                                    <div><small>+RM 50</small></div>
-                                    <div><small>left RM 80</small></div>
+                                    <div><small>+RM 20.00</small></div>
+                                    <div><small>left RM 60.00</small></div>
                                 </td>
                                 <td class="small" rowspan="2">
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
@@ -89,8 +89,8 @@
                                 <td class="right">
                                     <div class='progress expense'>
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 50%;">
-                                            50%
+                                            style="width: 25%;">
+                                            25%
                                         </div>
                                     </div>
                                 </td>
@@ -152,6 +152,42 @@
 
     <?php include 'footer.php' ?>
 
+    <script>
+    //budget chart
+var ctx = document.getElementById('budgetChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Food', 'Travel', 'Groceries'],
+        datasets: [{
+            label: '# of Votes',
+            data: [94.74, 189.47, 75.79],
+            backgroundColor: [
+                'rgba(92, 219, 149, 0.5)',
+                'rgba(155, 133, 230, 0.5)',
+                'rgba(173, 228, 151, 0.5)',
+               
+            ],
+            borderColor: [
+                'rgba(92, 219, 149, 1)',
+                'rgba(155, 133, 230, 1)',
+                'rgba(173, 228, 151, 1)',
+                
+            ],
+            borderWidth: 2,
+            
+        }]
+    },
+    options: {
+        
+        legend: {
+            position: 'bottom'
+        }
+    }
+});
+
+    
+    </script>
 
 </body>
 

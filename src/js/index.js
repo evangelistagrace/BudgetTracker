@@ -126,6 +126,7 @@ var myChart = new Chart(ctx, {
 });
 
 
+
 //expenses by day chart
 var ctx = document.getElementById('expensesByDayChart').getContext('2d');
 var myChart = new Chart(ctx, {

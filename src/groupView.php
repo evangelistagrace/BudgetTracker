@@ -18,7 +18,7 @@
                 <h1 class="title text-primary">My Groups</h1>
 
                 
-              <a href=""><h6 class="text-info text-left"><i class="fas fa-angle-double-left"></i>Back to My Groups</i></h6></a>
+              <a href="groups.php"><h6 class="text-info text-left"><i class="fas fa-angle-double-left"></i>Back to My Groups</i></h6></a>
 
 
                 <div class="row justify-content-center">
@@ -128,66 +128,7 @@
                     </div>
 
                 </div>
-                <a class="btn btn-danger add-btn" href="#addGroup"><i class="fas fa-plus"></i></a>
-
-                <div id="addGroup" class="overlay">
-                    <div class="popup">
-
-                        <div class="content"><a class="close" href="#">x</a>
-                            <h3 class="text-center mb-4 mt-4">Add Group</h3>
-                            <form class="popup-form" action="">
-                                <div class="form-group">
-                                    <label for="groupTitle">Group Name</label>
-                                    <div class="input-group ml-3">
-                                        <input type="text" class="form-control" name="groupTitle" id="groupTitle"
-                                            placeholder="Enter group name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="groupIcon">Group Icon</label>
-                                    <div class="input-group ml-3">
-                                        <select id="groupIcon" class="selectpicker show-tick" data-style="btn-secondary"
-                                            data-width="100%" data-size="3" title="Pick an icon">
-                                            <option value="icon-1"
-                                                data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>">
-                                            </option>
-                                            <option value="icon-2"
-                                                data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>">
-                                            </option>
-                                            <option value="icon-3"
-                                                data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>">
-                                            </option>
-
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="budgetAmount">Add Members</label>
-                                    <div class="input-group ml-3">
-                                        <input type="email" class="form-control mb-3 block"
-                                            placeholder="Enter an email...">
-                                        <input type="email" class="form-control block" placeholder="Enter an email...">
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label for="budgetAmount"></label>
-                                    <div class="input-group ml-3">
-                                        <div class="btn btn-round btn-secondary">+</div>
-                                        <div class="btn btn-secondary">Send invitation</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add group</button>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+               
 
             </div>
         </div>

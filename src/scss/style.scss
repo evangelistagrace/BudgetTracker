@@ -21,6 +21,10 @@ body {
     cursor: pointer;
 }
 
+a{
+    color: #6CC3D5;
+}
+
 .container-fluid.homepage {
     width: 100%;
     padding-right: 0;
@@ -744,6 +748,15 @@ table.balance {
                 display: inline-block;
                 margin-right: 3px;
             }
+        }
+    }
+}
+
+.table.expenses{
+    tr{
+        td:first-of-type {
+            width: 20%;
+            overflow: auto;
         }
     }
 }

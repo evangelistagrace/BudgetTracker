@@ -27,7 +27,7 @@
                             <tr>
                                 <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div></td>
                                 <td>Pay hostel rent</td>
-                                <td><div class="small"><div class="circle"></div>Bills</div></td>
+                                <td><div class="small"><div class="circle bg-secondary"></div>Bills</div></td>
                                 <td>RM 600.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
@@ -38,8 +38,8 @@
                             <tr>
                             <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div></td>
                                 <td>Pay phone bill</td>
-                                <td><div class="small"><div class="circle"></div>Bills</div></td>
-                                <td>RM 60</td>
+                                <td><div class="small"><div class="circle bg-secondary"></div>Bills</div></td>
+                                <td>RM 60.00</td>
                                 <td>
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="#"><i class="far fa-trash-alt text-danger"></i></a>

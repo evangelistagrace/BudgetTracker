@@ -24,15 +24,15 @@
                                 <table class="balance">
                                     <tr>
                                         <td>Inflow</td>
-                                        <td><span class="text-primary">+RM 1, 000.00</span></td>
+                                        <td><span class="text-primary">+RM 900.00</span></td>
                                     </tr>
                                     <tr>
                                         <td>Outflow</td>
-                                        <td><span class="text-secondary">-RM 700.00</span></td>
+                                        <td><span class="text-secondary">-RM 113.00</span></td>
                                     </tr>
                                     <tr>
                                         <td>Balance</td>
-                                        <td><h4 class="text-primary">+RM 300.00</h4></td>
+                                        <td><h4 class="text-primary">+RM 787.00</h4></td>
                                     </tr>
                                 </table>
                             </p>
@@ -58,7 +58,7 @@
                                     </div>
                                 </form>
                             </p>
-                            <a href="#" class="btn btn-secondary btn-sm right">Go to reminders <i class="fas fa-arrow-right"></i></a>
+                            <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                                     <li><a href="#">Jay's Birthday Party</a></li>
                                 </ul>
                             </p>
-                            <a href="#" class="btn btn-secondary btn-sm right">Go to groups <i class="fas fa-arrow-right"></i></i></a>
+                            <a href="groups.php" class="btn btn-secondary btn-sm right">Go to groups <i class="fas fa-arrow-right"></i></i></a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                                 <div class="progress-container">
                                     <span>Food</span>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 60%"
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 23%"
                                         aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%">
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div class="progress-container">
                                     <span>Travel</span>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 40%"
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 35%"
                                         aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="40%">
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                 <div class="progress-container">
                                     <span>Groceries</span>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%"
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:25%"
                                         aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="50%">
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                             <p class="card-text">
                             <canvas id="expensesChart"></canvas>
                             </p>
-                            <a href="#" class="btn btn-secondary btn-sm right">Go to expenses <i class="fas fa-arrow-right"></i></a>
+                            <a href="personalExpenses.php" class="btn btn-secondary btn-sm right">Go to expenses <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
 
