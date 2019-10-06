@@ -15,7 +15,7 @@
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
 
-                <h1 class="title text-primary">My Settings</h1>
+                <h1 class="title text-primary">Settings</h1>
 
                 <div class="row">
                     <div class="card settings">
