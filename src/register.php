@@ -1,3 +1,7 @@
+<?php 
+  require 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
@@ -13,7 +17,7 @@
         </div>
 
         <div class="form-container">
-          <form>
+          <form name="register" action="register.php" method="POST">
             <div class="form-group">
               <label for="emailRegister">Email</label>
               <input type="email" class="form-control" id="emailRegister" name="emailRegister"
@@ -34,7 +38,7 @@
               <input type="password" class="form-control" id="passwordRegister2" name="passwordRegister2"
                 placeholder="Enter your password again">
             </div>
-            <a class="btn btn-primary" href="../src/dashboard.php">Register</a>
+            <button class="btn btn-primary btn-block" type="submit" name="submit">Register</button>
             <small>Already have an account? <a href="../src/login.php">Login</a></small>
           </form>
         </div>
@@ -46,3 +50,11 @@
 </body>
 
 </html>
+
+
+<?php
+
+$query = "INSERT INTO users (user_email, user_name, user_password) VALUES ('$_POST[emailRegister]','$_POST[usernameRegister]','$_POST[passwordRegister]')";
+$result = pg_query($query);
+
+?>

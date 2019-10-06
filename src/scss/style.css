@@ -6152,7 +6152,7 @@ a {
   color: #808080;
 }
 
-.form-container form a.btn {
+.form-container form a.btn, .form-container form .btn-block {
   display: block;
   width: 70%;
   border-radius: 50px;
@@ -6174,7 +6174,7 @@ a {
   transition: border .2s linear;
 }
 
-.form-container form a.btn:hover {
+.form-container form a.btn:hover, .form-container form .btn-block:hover {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#207cca+0,5cdb95+100 */
   background: #207cca;
   /* Old browsers */
