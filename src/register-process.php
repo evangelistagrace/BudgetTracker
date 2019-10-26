@@ -27,6 +27,13 @@ if(isset($_POST['register'])){
     if($password2 == ''){
         array_push($errors, "Please reenter your password");        
     }
+
+    // check for existing account
+    $sql = pg_query("SELECT * FROM users WHERE email = '$email'");
+    $result = pg_fetch_assoc($sql);
+    if($result){
+        array_push($errors, "Email already taken");
+    }
     if($password != $password2){
         array_push($errors, "Passwords do not match");
     }
