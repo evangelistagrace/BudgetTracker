@@ -1,3 +1,7 @@
+<?php
+    require 'config.php'
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -32,8 +36,6 @@
 </html>
 <?php
 if(isset($_POST['submit'])){
-    
-    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=413506");
     if($db){
         echo "success";
     }else{
