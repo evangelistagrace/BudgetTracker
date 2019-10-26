@@ -27,32 +27,31 @@ if(isset($_POST['register'])){
     if($password2 == ''){
         array_push($errors, "Please reenter your password");        
     }
-
-    // check for existing account
-    $sql = pg_query("SELECT * FROM users WHERE email = '$email'");
-    $result = pg_fetch_assoc($sql);
-    if($result){
-        array_push($errors, "Email already taken");
-    }
     if($password != $password2){
         array_push($errors, "Passwords do not match");
     }
+    // check for existing account
+    $sql = pg_query("SELECT * FROM users WHERE email = '$email' OR username = '$username'LIMIT 1");
+    $result = pg_fetch_assoc($sql);
+    if($result){
+        if($result['email'] === $email){
+            array_push($errors, "Email already taken");
+        }if($result['username'] === $username){
+            array_push($errors, "Username already taken");
+        }
+    }
 
+    // insert data into database
     if(count($errors) == 0){
         $query = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$password')";
         $result = pg_query($query);
         // empty form fields
-        $email = "";
-        $username = "";
-        $password = "";
-        $password2 = "";
+        // $email = "";
+        // $username = "";
+        // $password = "";
+        // $password2 = "";
+        header('location: dashboard.php');
     }
-
-
-    
-
-    
-
 }
 
 ?>
