@@ -31,7 +31,7 @@ if(isset($_POST['register'])){
         array_push($errors, "Passwords do not match");
     }
     // check for existing account
-    $sql = pg_query("SELECT * FROM users WHERE email = '$email' OR username = '$username'LIMIT 1");
+    $sql = pg_query("SELECT * FROM users WHERE email = '$email' OR username = '$username' LIMIT 1");
     $result = pg_fetch_assoc($sql);
     if($result){
         if($result['email'] === $email){
@@ -43,10 +43,21 @@ if(isset($_POST['register'])){
 
     // insert data into database
     if(count($errors) == 0){
+        // enter user data into users table
         $query = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$password')";
         $result = pg_query($query);
+
+        // get new userID
+        $query = pg_query("SELECT * FROM users WHERE username = '$username' ");
+        $result = pg_fetch_assoc($query);
+
+        // create default categories for user
+        $username = $result['username'];
+        $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Food')";
+        $result = pg_query($query);
+
         // set session variables
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $userID;
         $_SESSION['email'] = $email;
         header('location: dashboard.php');
     }
