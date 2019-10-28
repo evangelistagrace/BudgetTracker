@@ -8,4 +8,10 @@ if(isset($_GET['del-category'])){
     header('location: settings.php');
 }
 
+if(isset($_POST['add-category'])){
+    $categoryname = $_POST['new-category'];
+    $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
+    header('location: settings.php');
+}
+
 ?>

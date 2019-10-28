@@ -88,16 +88,17 @@ $income = "Add income...";
 
                             <h5 class="text-left"><strong>Categories</strong></h5>
                             <table class='table table-condensed settings2'>
-
-                                <tr>
-                                    <td style="width: 90%">
-                                        <input class="form-control" type="text" name="newCategory" id="newCategory"
-                                            placeholder="Enter a new category...">
-                                    </td>
-                                    <td style="width: 10%">
-                                        <a href="" class="btn btn-danger btn-round">+</a>
-                                    </td>
-                                </tr>
+                                <form action="settings-process.php" method="POST">
+                                    <tr>
+                                        <td style="width: 90%">
+                                            <input class="form-control" type="text" name="new-category" id="newCategory"
+                                                placeholder="Enter a new category...">
+                                        </td>
+                                        <td style="width: 10%">
+                                            <button type="submit" name="add-category" class="btn btn-danger btn-round">+</button>
+                                        </td>
+                                    </tr>
+                                </form>
 
                                 <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' "); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
