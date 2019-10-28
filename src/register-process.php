@@ -45,11 +45,9 @@ if(isset($_POST['register'])){
     if(count($errors) == 0){
         $query = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$password')";
         $result = pg_query($query);
-        // empty form fields
-        // $email = "";
-        // $username = "";
-        // $password = "";
-        // $password2 = "";
+        // set session variables
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
         header('location: dashboard.php');
     }
 }

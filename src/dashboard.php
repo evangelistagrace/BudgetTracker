@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+if(!isset($_SESSION['username'])){
+    echo "You are not logged in";
+    header('location: homepage.php');
+}
+?>
 <title>Dashboard - BudgetTracker</title>
-
 
 <body>
    

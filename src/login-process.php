@@ -23,6 +23,9 @@ if(isset($_POST['login'])){
     $result = pg_fetch_assoc($sql);
     if($result){
         if($result['password'] === $password){
+            // set session variables
+            $_SESSION['username'] = $result['username'];
+            $_SESSION['email'] = $result['email'];
             header('location: dashboard.php');
         }else{
             array_push($errors, "Username and password don't match");

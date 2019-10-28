@@ -1,10 +1,19 @@
 <?php
 
+    require 'config.php';
+
     echo '<div class="col-2-sidebar sidebar collapsed position-fixed">
     <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
 
     <div class="profile"><img src="../assets/profile.jpg" alt="">
-        <div class="desc">@chevvycherokee</div>
+        <div class="desc">@';
+        
+        if(isset($_SESSION['username'])){
+            echo $_SESSION['username']; 
+        }
+
+
+       echo '</div>
     </div>
 
     <ul class="menu">
