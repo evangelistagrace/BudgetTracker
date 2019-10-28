@@ -6604,14 +6604,13 @@ table.balance tr td:nth-of-type(2) {
 .table.expenses tr,
 .table.reminders tr,
 .table.settings tr {
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid #a08181;
 }
 
 .table.expenses tr td,
 .table.reminders tr td,
 .table.settings tr td {
   border: none;
-  text-align: center;
   position: relative;
 }
 
@@ -6960,8 +6959,8 @@ hr {
   margin: 30px 0;
 }
 
-.form-control input {
-  color: #aaa;
+.form-control {
+  color: #8c8c8c;
 }
 
 .form-control input:focus {

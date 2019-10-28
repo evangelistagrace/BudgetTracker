@@ -6611,7 +6611,6 @@ table.balance tr td:nth-of-type(2) {
 .table.reminders tr td,
 .table.settings tr td {
   border: none;
-  text-align: center;
   position: relative;
 }
 
@@ -6645,7 +6644,11 @@ table.balance tr td:nth-of-type(2) {
   padding-right: 10px;
 }
 
-.table.settings2 td {
+.table.settings2 tr:first-of-type td {
+  border: none;
+}
+
+.table.settings2 tr td {
   position: relative;
   text-align: left;
 }

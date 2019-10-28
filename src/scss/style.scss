@@ -317,12 +317,6 @@ a{
 
                     .card-body {
 
-                        // position: relative;
-                        .card-title {
-                            //font-family: 'Source Sans Pro', sans-serif;
-                            //font-size: 1.4em;
-                        }
-
                         a.btn {
                             font-size: 0.9em;
                             font-family: 'Varela Round', sans-serif;
@@ -730,10 +724,10 @@ table.balance {
 
     tr {
         border-bottom: 1px solid rgb(236, 236, 236);
+        
 
         td {
             border: none;
-            text-align: center;
             position: relative;
 
             i {
@@ -773,11 +767,18 @@ table.balance {
 }
 
 .table.settings2{
-    td{
-        position: relative;
-        text-align: left;
+    tr {
+        &:first-of-type td{
+            border: none;
+        }
         
+        td{
+            position: relative;
+            text-align: left;
+            
+        }
     }
+    
 }
 
 //cards
