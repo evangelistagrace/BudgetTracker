@@ -1076,12 +1076,14 @@ select#groupIcon option[value="icon-1"] {
 }
 
 button.btn-round {
-    padding: 3px;
-    width: 30px;
-    height: 30px;
+    padding: 0;
+    width: 35px;
+    height: 35px;
     border-radius: 50px;
     text-align: center;
     vertical-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
 }
 
 hr{

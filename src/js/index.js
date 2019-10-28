@@ -1,5 +1,21 @@
 console.log("js file loaded");
 
+// edit category names
+const editCategoryNames = Array.from(document.querySelectorAll("#editCategoryName"));
+editCategoryNames.forEach(btn => {
+    btn.addEventListener('click', editCategoryName);
+});
+
+function editCategoryName(e){
+    const tr = e.target.parentNode.parentNode.previousElementSibling;
+    // tr.removeChild(tr.firstChild);
+    const input = tr.firstChild;
+    input.removeAttribute('readonly')
+    input.classList.remove('form-control-plaintext');
+    input.classList.add('form-control');
+
+}
+
 //reminder checkboxes and progress
 var checkboxes = Array.from(document.querySelectorAll('.checkbox'));
 var countChecked = 0;
@@ -204,7 +220,6 @@ links.forEach((link) => {
 });
 
 
- 
 
 // 
 // console.log(totalCheckbox);

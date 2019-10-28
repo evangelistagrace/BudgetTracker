@@ -103,9 +103,9 @@ $income = "Add income...";
                                 <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' "); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
-                                    <td style="width: 90%"><?php echo $result['categoryname'] ?></td>
+                                    <td style="width: 90%"><input type="text" readonly class="form-control-plaintext" id="categoryName" value="<?php echo $result['categoryname'] ?>"></td>
                                     <td style="width: 10%">
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
+                                        <a id="editCategoryName"><i class="fas fa-edit text-primary"></i></a>
                                         <a href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
