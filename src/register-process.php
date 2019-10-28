@@ -57,7 +57,7 @@ if(isset($_POST['register'])){
         $result = pg_query($query);
 
         // set session variables
-        $_SESSION['username'] = $userID;
+        $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
         header('location: dashboard.php');
     }
