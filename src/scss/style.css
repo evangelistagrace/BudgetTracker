@@ -6653,6 +6653,10 @@ table.balance tr td:nth-of-type(2) {
   text-align: left;
 }
 
+.table.settings2 tr td a {
+  margin: 0 2px;
+}
+
 .card.budget {
   padding: 10px;
 }

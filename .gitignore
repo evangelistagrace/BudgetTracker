@@ -1,0 +1,7 @@
+node_modules/
+.cache/
+dist/
+coverage/
+.vscode/
+.env
+src/scss/style.css.map
