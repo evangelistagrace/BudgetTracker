@@ -6939,8 +6939,8 @@ select#groupIcon option[value="icon-1"] {
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
-  top: 4px;
-  left: 4px;
+  top: 5px;
+  left: 5px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -6958,5 +6958,13 @@ a.btn-round {
 
 hr {
   margin: 30px 0;
+}
+
+.form-control {
+  color: #8c8c8c;
+}
+
+.form-control input:focus {
+  color: #000;
 }
 /*# sourceMappingURL=style.css.map */
