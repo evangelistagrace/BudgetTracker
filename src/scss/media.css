@@ -6604,7 +6604,7 @@ table.balance tr td:nth-of-type(2) {
 .table.expenses tr,
 .table.reminders tr,
 .table.settings tr {
-  border-bottom: 1px solid #a08181;
+  border-bottom: 1px solid #ececec;
 }
 
 .table.expenses tr td,
@@ -6644,9 +6644,17 @@ table.balance tr td:nth-of-type(2) {
   padding-right: 10px;
 }
 
-.table.settings2 td {
+.table.settings2 tr:first-of-type td {
+  border: none;
+}
+
+.table.settings2 tr td {
   position: relative;
   text-align: left;
+}
+
+.table.settings2 tr td a {
+  margin: 0 2px;
 }
 
 .card.budget {

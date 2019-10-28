@@ -2,6 +2,7 @@
 <html lang="en">
 <?php 
 include 'head.php';
+require 'settings-process.php';
 
 // initialize variables
 $username = $_SESSION['username'];
@@ -104,7 +105,7 @@ $income = "Add income...";
                                     <td style="width: 90%"><?php echo $result['categoryname'] ?></td>
                                     <td style="width: 10%">
                                         <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                        <a href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
