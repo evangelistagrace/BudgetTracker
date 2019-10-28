@@ -5,3 +5,4 @@ coverage/
 .vscode/
 .env
 src/scss/style.css.map
+*.map
