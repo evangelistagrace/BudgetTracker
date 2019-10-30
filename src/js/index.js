@@ -1,41 +1,50 @@
 console.log("js file loaded");
 
 // edit category names
-const editCategoryNames = Array.from(document.querySelectorAll("#editCategoryName"));
-editCategoryNames.forEach(btn => {
-    btn.toggle = 0;
-    btn.addEventListener('click', editCategoryName);
-});
+// const editCategoryNames = Array.from(document.querySelectorAll("#editCategoryName"));
+// editCategoryNames.forEach(btn => {
+//     btn.toggle = 0;
+//     btn.addEventListener('click', editCategoryName);
+// });
 
-function editCategoryName(e){
-    const btn = this;
-    const editBtn = e.target;
-    const tr = editBtn.parentNode.parentNode.previousElementSibling;
-    const input = tr.firstChild;
-    if(btn.toggle == 0){
-        // change edit button to save button
-        editBtn.classList.remove('fa-edit');
-        editBtn.classList.add('fa-save');
-        // make input editable
-        input.removeAttribute('readonly');
-        input.classList.remove('form-control-plaintext');
-        input.classList.add('form-control');
-        // set button toggle state
-        btn.toggle = 1;
+// function editCategoryName(e){
+//     const btn = this;
+//     const editBtn = e.target;
+//     const td = editBtn.parentNode.parentNode.previousElementSibling; //previous td
+//     const link = editBtn.parentNode; //a:link of editBtn
+//     const input = td.firstChild; //input inside td
+//     if(btn.toggle == 0){
+//         // change edit button to save button
+//         editBtn.classList.remove('fa-edit');
+//         editBtn.classList.add('fa-save');
+//         // make input editable
+//         input.removeAttribute('readonly');
+//         input.classList.remove('form-control-plaintext');
+//         input.classList.add('form-control');
 
-    }else if(btn.toggle == 1){
-         // change save button to edit button
-         editBtn.classList.remove('fa-save');
-         editBtn.classList.add('fa-edit');
-         // make input not editable
-         input.setAttribute('readonly', true);
-         input.classList.remove('form-control');
-         input.classList.add('form-control-plaintext');
-         // set button toggle state
-         btn.toggle = 0;
-    }
+//         // set button link
+//         link.removeAttribute('href');
+
+//         // set button toggle state
+//         btn.toggle = 1;
+        
+
+//     }else if(btn.toggle == 1){
+//          // change save button to edit button
+//          editBtn.classList.remove('fa-save');
+//          editBtn.classList.add('fa-edit');
+//          // make input not editable
+//          input.setAttribute('readonly', true);
+//          input.classList.remove('form-control');
+//          input.classList.add('form-control-plaintext');
+
+//          let link2 =  "<?php echo $link ?>";
+//          link.setAttribute('href', `settings-process.php?edit-category="${link2}"`);
+//          // set button toggle state
+//          btn.toggle = 0;
+//     }
     
-}
+// }
 
 //reminder checkboxes and progress
 var checkboxes = Array.from(document.querySelectorAll('.checkbox'));

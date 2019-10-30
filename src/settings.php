@@ -7,7 +7,12 @@ require 'settings-process.php';
 // initialize variables
 $username = $_SESSION['username'];
 $income = "Add income...";
-
+if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
+    $editState = false;
+}else{
+    $editState = $_GET['editState'];
+    $categoryid = $_GET['categoryid'];
+}
 ?>
 <title>Settings - BudgetTracker</title>
 
@@ -91,7 +96,7 @@ $income = "Add income...";
                                 <form action="settings-process.php" method="POST">
                                     <tr>
                                         <td style="width: 90%">
-                                            <input class="form-control" type="text" name="new-category" id="newCategory"
+                                            <input class="form-control" type="text" name="new-category" id="newCategory" required
                                                 placeholder="Enter a new category...">
                                         </td>
                                         <td style="width: 10%">
@@ -100,13 +105,40 @@ $income = "Add income...";
                                     </tr>
                                 </form>
 
-                                <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' "); ?>
+                                <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
+                                        <!-- <a id="editCategoryName"><i class="fas fa-edit text-primary"></i></a> -->
+                                        <!-- edit category -->
+                                    <?php if($editState == false) :?>
                                     <td style="width: 90%"><input type="text" readonly class="form-control-plaintext" id="categoryName" value="<?php echo $result['categoryname'] ?>"></td>
                                     <td style="width: 10%">
-                                        <a id="editCategoryName"><i class="fas fa-edit text-primary"></i></a>
+                                        <a id="editCategoryName" href="settings.php?editState=true&categoryid=<?php echo $result['categoryid'] ?>"><i class="fas fa-edit text-primary"></i></a>
+                                        <!-- delete category -->
                                         <a href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i class="far fa-trash-alt text-danger"></i></a>
+                                    </td>
+                                    <?php elseif($editState == true) :?>
+                                        <!-- category to be edited -->
+                                        <?php if($result['categoryid'] == $categoryid):?> 
+                                        <form action="settings-process.php" method="POST">
+                                            <td style="width: 90%"><input type="text" class="form-control" id="categoryName" name="categoryname" value="<?php echo $result['categoryname'] ?>"><input type="hidden" name="categoryid" value="<?php echo $result['categoryid'] ?>"></td>
+                                            <td style="width: 10%">
+                                                <!-- edit category -->
+                                                <button id="editCategoryName" type="submit" name="edit-category"><i class="fas fa-save text-primary"></i></button>
+                                                <!-- delete category -->
+                                                <a href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </form>
+                                        <!-- rest of the categories -->
+                                        <?php else: ?>
+                                        <td style="width: 90%"><input type="text" readonly class="form-control-plaintext" id="categoryName" value="<?php echo $result['categoryname'] ?>"></td>
+                                        <td style="width: 10%">
+                                            <a id="editCategoryName" href="settings.php?editState=true&categoryid=<?php echo $result['categoryid'] ?>"><i class="fas fa-edit text-primary"></i></a>
+                                            <!-- delete category -->
+                                            <a href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i class="far fa-trash-alt text-danger"></i></a>
+                                        </td>
+                                        <?php endif ?>
+                                    <?php endif ?>
                                     </td>
                                 </tr>
                                 <?php } ?>
