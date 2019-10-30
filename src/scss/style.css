@@ -6976,4 +6976,8 @@ hr {
 .form-control input:focus {
   color: #000;
 }
+
+td a i:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */

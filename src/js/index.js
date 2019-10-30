@@ -3,17 +3,38 @@ console.log("js file loaded");
 // edit category names
 const editCategoryNames = Array.from(document.querySelectorAll("#editCategoryName"));
 editCategoryNames.forEach(btn => {
+    btn.toggle = 0;
     btn.addEventListener('click', editCategoryName);
 });
 
 function editCategoryName(e){
-    const tr = e.target.parentNode.parentNode.previousElementSibling;
-    // tr.removeChild(tr.firstChild);
+    const btn = this;
+    const editBtn = e.target;
+    const tr = editBtn.parentNode.parentNode.previousElementSibling;
     const input = tr.firstChild;
-    input.removeAttribute('readonly')
-    input.classList.remove('form-control-plaintext');
-    input.classList.add('form-control');
+    if(btn.toggle == 0){
+        // change edit button to save button
+        editBtn.classList.remove('fa-edit');
+        editBtn.classList.add('fa-save');
+        // make input editable
+        input.removeAttribute('readonly');
+        input.classList.remove('form-control-plaintext');
+        input.classList.add('form-control');
+        // set button toggle state
+        btn.toggle = 1;
 
+    }else if(btn.toggle == 1){
+         // change save button to edit button
+         editBtn.classList.remove('fa-save');
+         editBtn.classList.add('fa-edit');
+         // make input not editable
+         input.setAttribute('readonly', true);
+         input.classList.remove('form-control');
+         input.classList.add('form-control-plaintext');
+         // set button toggle state
+         btn.toggle = 0;
+    }
+    
 }
 
 //reminder checkboxes and progress
@@ -68,30 +89,6 @@ function settingRadio() {
     })
 }
 
-
-
-// radioBtns.forEach(radioBtn => {
-//     radioBtn.addEventListener('change', function (e) {
-//         if (radioBtn.checked) {
-//             console.log("checked");
-//             var pseudoCheck = e.target.nextSibling;
-//             //create tick
-//             var circle = document.createElement('i');
-//             circle.className = 'fas';
-//             circle.classList.add('fa-circle');
-//             pseudoCheck.appendChild(circle);
-        
-//         } else if($("input[type='radio']:not(:checked)")){
-//             console.log("unchecked");
-            
-//             var pseudoChecked = e.target.nextSibling.firstChild;
-//             pseudoChecked.parentNode.removeChild(pseudoChecked);
-//         }
-    
-//     });
-// });
-
-
 //toggle sidebar
 function toggleSidebar() {
     $(".sidebar").toggleClass('collapsed');
@@ -102,7 +99,6 @@ function toggleSidebar() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
-
 
 
 
@@ -199,49 +195,3 @@ var myChart = new Chart(ctx, {
     }
 });
 
-
-
-// activate clicked menu link state
-const links = Array.from(document.querySelectorAll('.menu-item a'));
-
-links.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    // console.log("forEach worked");
-    //remove active class from all other elements
-    links.forEach((link) => {
-       if(link.classList.contains('active')){
-        link.classList.remove('active');
-       }
-      //add active class to target element
-    e.target.classList.add('active');
-    })
-    
-  });
-});
-
-
-
-// 
-// console.log(totalCheckbox);
-
-
-
-// //popup box
-// const popupBtn = document.querySelector('.add-btn'); //button to trigger popup
-// const popup = document.querySelector('.popup'); //popup content
-// const popupClose = document.querySelector('.close-btn'); //popup close button
-
-// popupBtn.onclick = function () {
-//     popup.style.display = "block";
-// }
-
-// popupClose.onclick = function () {
-//     popup.style.display = "none";
-// }
-
-
-// window.onclick = function (event) {
-//     if (event.target == popup) {
-//         popup.style.display = "none";
-//     }
-// }
