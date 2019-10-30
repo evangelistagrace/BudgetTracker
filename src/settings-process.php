@@ -13,31 +13,39 @@ if(isset($_GET['del-category'])){
 if(isset($_POST['add-category'])){
     $categoryname = $_POST['new-category'];
     if(!empty($categoryname)){
-        // todo: check for duplicate categories
+        // check for duplicate categories
         $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."'");
         while($result = pg_fetch_array($query)){
             if($result['categoryname'] == $categoryname) {
-                array_push($errors, "Category already exists.");
+                array_push($errors, "Category '$categoryname' already exists.");
             }
         }
 
         if(count($errors) == 0){
             $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
         }
-        
     }
-
-    
-    
-   
 }
 
 
 if(isset($_POST['edit-category'])){
     $categoryid = $_POST['categoryid'];
     $categoryname = $_POST['categoryname'];
-    $query = pg_query("UPDATE categories SET categoryname = '$categoryname' WHERE categoryid = $categoryid");
-    header('location: settings.php');
+
+    if(!empty($categoryname)){
+        // check for duplicate categories
+        $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."'");
+        while($result = pg_fetch_array($query)){
+            if($result['categoryname'] == $categoryname) {
+                array_push($errors, "Category '$categoryname' already exists.");
+            }
+        }
+
+        if(count($errors) == 0){
+            $query = pg_query("UPDATE categories SET categoryname = '$categoryname' WHERE categoryid = $categoryid");
+   
+        }
+    }
 }
 
 ?>
