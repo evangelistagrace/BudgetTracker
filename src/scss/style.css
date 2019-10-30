@@ -6980,4 +6980,9 @@ hr {
 td a i:hover {
   cursor: pointer;
 }
+
+#editCategoryName {
+  background: transparent;
+  border: transparent;
+}
 /*# sourceMappingURL=style.css.map */

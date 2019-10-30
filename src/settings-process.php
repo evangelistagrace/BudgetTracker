@@ -1,6 +1,8 @@
 <?php
 require 'config.php';
 
+$errors = array();
+
 if(isset($_GET['del-category'])){
     $categoryname = $_GET['del-category'];
     $query = pg_query("DELETE FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = $categoryname");
@@ -11,18 +13,25 @@ if(isset($_GET['del-category'])){
 if(isset($_POST['add-category'])){
     $categoryname = $_POST['new-category'];
     if(!empty($categoryname)){
-        $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
-        header('location: settings.php');
+        // todo: check for duplicate categories
+        $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."'");
+        while($result = pg_fetch_array($query)){
+            if($result['categoryname'] == $categoryname) {
+                array_push($errors, "Category already exists.");
+            }
+        }
+
+        if(count($errors) == 0){
+            $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
+        }
+        
     }
+
+    
+    
    
 }
 
-// if(isset($_GET['edit-category'])){
-//     $categoryname = $_GET['edit-category'];
-//     $query = pg_query("DELETE FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = $categoryname");
-//     $_SESSION['message'] = "Category deleted";
-//     header('location: settings.php');
-// }
 
 if(isset($_POST['edit-category'])){
     $categoryid = $_POST['categoryid'];

@@ -6981,6 +6981,11 @@ td a i:hover {
   cursor: pointer;
 }
 
+#editCategoryName {
+  background: transparent;
+  border: none;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
