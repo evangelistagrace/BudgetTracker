@@ -20,13 +20,11 @@ if(isset($_POST['add-category'])){
                 array_push($errors, "Category '$categoryname' already exists.");
             }
         }
-
         if(count($errors) == 0){
             $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
         }
     }
 }
-
 
 if(isset($_POST['edit-category'])){
     $categoryid = $_POST['categoryid'];
@@ -40,7 +38,6 @@ if(isset($_POST['edit-category'])){
                 array_push($errors, "Category '$categoryname' already exists.");
             }
         }
-
         if(count($errors) == 0){
             $query = pg_query("UPDATE categories SET categoryname = '$categoryname' WHERE categoryid = $categoryid");
    

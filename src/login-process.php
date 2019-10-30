@@ -30,6 +30,8 @@ if(isset($_POST['login'])){
         }else{
             array_push($errors, "Username and password don't match");
         }
+    }else {
+        array_push($errors, "No account found for user '$username'.");
     }
     
 
