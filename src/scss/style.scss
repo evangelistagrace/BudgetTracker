@@ -21,7 +21,7 @@ body {
     cursor: pointer;
 }
 
-a{
+a {
     color: #6CC3D5;
 }
 
@@ -255,7 +255,8 @@ a{
         flex-wrap: wrap;
         color: #808080;
 
-        a.btn, .btn-block {
+        a.btn,
+        .btn-block {
             display: block;
             width: 70%;
             border-radius: 50px;
@@ -326,7 +327,8 @@ a{
                                 margin-left: 3px;
                             }
                         }
-                        a.btn.right{
+
+                        a.btn.right {
                             float: right;
                         }
                     }
@@ -339,7 +341,9 @@ a{
             }
 
             .col {
-                .card.settings, .card.groupView {
+
+                .card.settings,
+                .card.groupView {
                     .card-body {
 
                         .row {
@@ -724,7 +728,7 @@ table.balance {
 
     tr {
         border-bottom: 1px solid rgb(236, 236, 236);
-        
+
 
         td {
             border: none;
@@ -746,8 +750,8 @@ table.balance {
     }
 }
 
-.table.expenses{
-    tr{
+.table.expenses {
+    tr {
         td:first-of-type {
             width: 20%;
             overflow: auto;
@@ -766,23 +770,23 @@ table.balance {
 
 }
 
-.table.settings2{
+.table.settings2 {
     tr {
-        &:first-of-type td{
+        &:first-of-type td {
             border: none;
         }
 
-        td{
+        td {
             position: relative;
             text-align: left;
 
             a {
                 margin: 0 2px;
             }
-            
+
         }
     }
-    
+
 }
 
 //cards
@@ -790,8 +794,8 @@ table.balance {
     padding: 10px;
 }
 
-.card.expenses, 
-.card.settings{
+.card.expenses,
+.card.settings {
     width: 70%;
 }
 
@@ -895,30 +899,34 @@ form.popup-form {
             width: 20%;
         }
 
-        table{
+        table {
             width: 100%;
-            tr{
+
+            tr {
                 width: 100%;
                 display: flex;
-                
-                td{
-                    display:flex;
-                    &:nth-child(1){
-                        flex:1;
+
+                td {
+                    display: flex;
+
+                    &:nth-child(1) {
+                        flex: 1;
                     }
-    
-                    &:nth-child(2){
+
+                    &:nth-child(2) {
                         justify-content: flex-end;
                         flex: 2;
+
                         .dropdown {
                             width: 100%;
                         }
+
                         .input-group {
-                            width:100%;
+                            width: 100%;
                         }
                     }
                 }
-               
+
             }
         }
 
@@ -1113,7 +1121,7 @@ button.btn-round {
     font-weight: 800;
 }
 
-hr{
+hr {
     margin: 30px 0;
 }
 
@@ -1134,4 +1142,3 @@ td a i:hover {
     background: transparent;
     border: transparent;
 }
-
