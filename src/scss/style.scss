@@ -895,6 +895,33 @@ form.popup-form {
             width: 20%;
         }
 
+        table{
+            width: 100%;
+            tr{
+                width: 100%;
+                display: flex;
+                
+                td{
+                    display:flex;
+                    &:nth-child(1){
+                        flex:1;
+                    }
+    
+                    &:nth-child(2){
+                        justify-content: flex-end;
+                        flex: 2;
+                        .dropdown {
+                            width: 100%;
+                        }
+                        .input-group {
+                            width:100%;
+                        }
+                    }
+                }
+               
+            }
+        }
+
         .dropdown,
         .input-group {
             width: 70%;
@@ -1107,3 +1134,4 @@ td a i:hover {
     background: transparent;
     border: transparent;
 }
+
