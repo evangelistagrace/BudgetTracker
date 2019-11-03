@@ -169,7 +169,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">RM</span>
                                                     </div>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control text-right"
                                                         aria-label="Amount (to the nearest ringgit)" placeholder="0.00">
                                                 </div>
                                             </td>

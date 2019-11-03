@@ -35,12 +35,40 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                         <div class="card-body">
                             <h5 class="text-left"><strong>Income</strong></h5>
                             <table class='table table-condensed settings'>
-                                <tr>
-                                    <td style="width:70%"><input class="form-control" name="income" id="income"
-                                            type="text" value="<?php echo $income ?>"></td>
-                                    <td style="width:20%"><button class="btn btn-block btn-info">Add Income</button>
-                                    </td>
-                                </tr>
+                                <form action="settings.php" method="POST">
+                                    <tr>
+                                        <?php 
+                                        $query = pg_query("SELECT income FROM users WHERE username ='".$_SESSION['username']."' "); 
+                                        $result = pg_fetch_array($query);
+
+                                        if($result['income'] == 0){
+                                         $placeholder = "Enter total income..."; $btnText = "Add Income";
+                                        }
+                                        elseif($result['income'] > 0){
+                                        $placeholder = $result['income']; 
+                                        $btnText = "Edit Income";
+                                        }?>
+                                        <td style="width:70%">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RM</span>
+                                                </div><input class="form-control text-right" name="new-income"
+                                                    id="income" type="text" value=""
+                                                    placeholder="<?php echo $placeholder ?>">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td style="width:20%"><button name="add-income"
+                                                class="btn btn-block btn-info"><?php echo $btnText ?></button>
+                                        </td>
+
+                                    </tr>
+
+                                </form>
+
                             </table>
                             <hr>
 
@@ -73,7 +101,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                             <h5 class="text-left"><strong>Reminders</strong></h5>
                             <table class='table table-condensed settings'>
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox">
+                                    <td><input type="checkbox" class="checkbox" checked>
                                         <div class="pseudo-checkbox"></div>
                                     </td>
 

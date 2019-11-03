@@ -8,29 +8,34 @@ var totalCheckbox = checkboxes.length;
 var progressPercentage = 0;
 var progressBar = document.querySelector('.progress-reminder');
 
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function (e) {
-        if (this.checked) {
-            console.log("checked");
-            var pseudoCheck = e.target.nextSibling;
-            //create tick
-            var tick = document.createElement('i');
-            tick.className = 'fas';
-            tick.classList.add('fa-check');
-            pseudoCheck.appendChild(tick);
-            countChecked++;
-        
-        } else if($("input[type='checkbox']:not(:checked)")) {
-            var pseudoChecked = e.target.nextSibling.firstChild;
-            pseudoChecked.parentNode.removeChild(pseudoChecked);
-            countChecked--;
-        }
 
-        progressPercentage = countChecked * (1/totalCheckbox) * 100;
-        progressBar.style.width = progressPercentage + '%';
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', checkboxTick);
     
-    });
 });
+
+function checkboxTick(e) {
+    let cbox = e.target;
+    if (cbox.checked) {
+        console.log("checked");
+        var pseudoCheck = e.target.nextSibling;
+        //create tick
+        var tick = document.createElement('i');
+        tick.className = 'fas';
+        tick.classList.add('fa-check');
+        pseudoCheck.appendChild(tick);
+        countChecked++;
+    
+    } else if(!cbox.checked) {
+        var pseudoChecked = e.target.nextSibling.firstChild;
+        pseudoChecked.parentNode.removeChild(pseudoChecked);
+        countChecked--;
+    }
+
+    progressPercentage = countChecked * (1/totalCheckbox) * 100;
+    progressBar.style.width = progressPercentage + '%';
+
+}
 
 //settings radio options
 function settingRadio() {

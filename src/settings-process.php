@@ -45,4 +45,13 @@ if(isset($_POST['edit-category'])){
     }
 }
 
+
+if(isset($_POST['add-income'])){
+    $income = $_POST['new-income'];
+    if(!empty($income)){
+            $query = pg_query("UPDATE users SET income = $income WHERE username = '".$_SESSION['username']."'");
+        }
+    
+}
+
 ?>
