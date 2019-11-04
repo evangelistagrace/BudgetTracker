@@ -85,8 +85,10 @@ require 'personalBudgets-process.php';
                                                     data-size="3" title="Pick a category" name="category-name">
                                                     <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
+                                                    <?php if($result['categorybudget'] == 0)  :?>
                                                     <option value="<?php echo $result['categoryname'] ?>">
                                                         <?php echo $result['categoryname'] ?></option>
+                                                    <?php endif ?>
                                                     <?php endwhile ?>
                                                 </select>
                                             </td>
