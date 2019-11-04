@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+require 'personalBudgets-process.php';
+
+?>
+
 <title>My Budgets - BudgetTracker</title>
 
 <body>
@@ -65,26 +70,23 @@
 
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Add Budget</h3>
-                            <form class="popup-form" action="">
+                            <form class="popup-form" action="personalBudgets.php" method="POST">
                                 <div class="form-group">
                                     <table>
                                         <tr>
                                             <td><label for="budgetCategory">Category</label></td>
                                             <td>
                                                 <select class="selectpicker show-tick" data-style="btn-secondary"
-                                                    data-size="3" title="Pick a category">
+                                                    data-size="3" title="Pick a category" name="category-name">
                                                     <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
-                                                    <option value="$result['categoryname']">
+                                                    <option value="<?php echo $result['categoryname'] ?>">
                                                         <?php echo $result['categoryname'] ?></option>
                                                     <?php endwhile ?>
                                                 </select>
                                             </td>
                                         </tr>
-
-
                                     </table>
-
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +99,7 @@
                                                         <span class="input-group-text">RM</span>
                                                     </div>
                                                     <input type="text" class="form-control text-right"
-                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0">
+                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0" name="category-budget">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">.00</span>
                                                     </div>
@@ -109,8 +111,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add budget</button>
-
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-budget">Add budget</button>
                                 </div>
                             </form>
                         </div>
