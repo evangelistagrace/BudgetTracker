@@ -4,6 +4,13 @@
 include 'head.php';
 require 'personalBudgets-process.php';
 
+// initialize variables
+// edit variables
+// if(isset($_GET['editState'])){
+    $categoryname = $_GET['categoryname'];
+    $categorybudget = $_GET['categorybudget'];
+// }
+
 ?>
 
 <title>My Budgets - BudgetTracker</title>
@@ -24,7 +31,7 @@ require 'personalBudgets-process.php';
                 <div class="row sm"><canvas id="budgetChart"></canvas></div>
 
                 <div class="row">
-                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
                 <?php while($result = pg_fetch_array($query)) :?>
                 <?php if($result['categorybudget'] == 0) : ?>
                 <!-- don't display budgets that have not yet been set -->
@@ -40,7 +47,7 @@ require 'personalBudgets-process.php';
                                     <div><small>left RM <?php echo $result['categorybalance']?></small></div>
                                 </td>
                                 <td class="small" rowspan="2">
-                                    <a href="#"><i class="fas fa-edit text-primary"></i></a>
+                                    <a href="personalBudgets.php?categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>#editBudget"><i class="fas fa-edit text-primary"></i></a>
                                     <a href="personalBudgets-process.php?del-budget='<?php echo $result['categoryname'] ?>'"><i class="far fa-trash-alt text-danger"></i></a>
                                 </td>
                             </tr>
@@ -57,12 +64,10 @@ require 'personalBudgets-process.php';
                     </div>
                     <?php endif ?>
                     <?php endwhile ?>
-
-                   
                 </div>
 
 
-                <!-- POP-UP -->
+                <!-- POP-UP: Add budget -->
                 <a class="btn btn-danger add-btn" href="#addBudget"><i class="fas fa-plus"></i></a>
 
                 <div id="addBudget" class="overlay">
@@ -111,6 +116,56 @@ require 'personalBudgets-process.php';
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-budget">Add budget</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Pop-up: Edit budget -->
+                <div id="editBudget" class="overlay">
+                    <div class="popup">
+
+                        <div class="content"><a class="close" href="#">x</a>
+                            <h3 class="text-center mb-4 mt-4">Edit Budget</h3>
+                            <form class="popup-form" action="personalBudgets.php" method="POST">
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="budgetCategory">Category</label></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-block">
+                                                    <?php echo $categoryname ?>
+                                                </button>
+                                                <input type="hidden" name="category-name" value=<?php echo $categoryname ?>>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="budgetAmount">Amount</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">RM</span>
+                                                    </div>
+                                                    <input type="text" class="form-control text-right"
+                                                        aria-label="Amount (to the nearest ringgit)" name="category-budget" placeholder="<?php echo $categorybudget ?>">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-budget">Edit budget</button>
                                 </div>
                             </form>
                         </div>
