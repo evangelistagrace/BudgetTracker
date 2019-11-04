@@ -41,7 +41,7 @@ require 'personalBudgets-process.php';
                                 </td>
                                 <td class="small" rowspan="2">
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                    <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                    <a href="personalBudgets-process.php?del-budget='<?php echo $result['categoryname'] ?>'"><i class="far fa-trash-alt text-danger"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -107,7 +107,6 @@ require 'personalBudgets-process.php';
                                             </td>
                                         </tr>
                                     </table>
-
 
                                 </div>
                                 <div class="form-group">

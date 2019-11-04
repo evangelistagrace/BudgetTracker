@@ -160,7 +160,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     <?php elseif($editState == true) :?>
                                     <!-- category to be edited -->
                                     <?php if($result['categoryid'] == $categoryid):?>
-                                    <form action="settings" method="POST">
+                                    <form action="settings.php" method="POST">
                                         <td style="width: 90%"><input type="text" class="form-control" id="categoryName"
                                                 name="categoryname" value="<?php echo $result['categoryname'] ?>"><input
                                                 type="hidden" name="categoryid"
