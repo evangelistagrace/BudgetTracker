@@ -19,14 +19,20 @@
                 <div class="row sm"><canvas id="budgetChart"></canvas></div>
 
                 <div class="row">
-                    <div class="card budget" style="width: 100% ;">
+                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                <?php while($result = pg_fetch_array($query)) :?>
+                <?php if($result['categorybudget'] == 0) : ?>
+                <!-- don't display budgets that have not yet been set -->
+                <?php elseif($result['categorybudget'] > 0)  :?>
 
+                    <div class="card budget" style="width: 100% ;">
                         <table class='table table-condensed budget'>
+                            
                             <tr>
-                                <td rowspan="2">Food</td>
+                                <td rowspan="2"><?php echo $result['categoryname'] ?></td>
                                 <td>
-                                    <div><small>+RM 23.00</small></div>
-                                    <div><small>left RM 77.00</small></div>
+                                    <div><small>+RM 0.00</small></div>
+                                    <div><small>left RM <?php echo $result['categorybalance']?></small></div>
                                 </td>
                                 <td class="small" rowspan="2">
                                     <a href="#"><i class="fas fa-edit text-primary"></i></a>
@@ -37,66 +43,17 @@
                                 <td class="right">
                                     <div class='progress expense'>
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 23%;">
-                                            23%
+                                            style="width: 1%;">1%
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                    <?php endif ?>
+                    <?php endwhile ?>
 
-                    <div class="card budget" style="width: 100% ;">
-                        <table class='table table-condensed budget'>
-                            <tr>
-                                <td rowspan="2">Travel</td>
-                                <td>
-                                    <div><small>+RM 70.00</small></div>
-                                    <div><small>left RM 130.00</small></div>
-                                </td>
-                                <td class="small" rowspan="2">
-                                    <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                    <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="right">
-                                    <div class='progress expense'>
-                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 35%;">
-                                            35%
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="card budget" style="width: 100% ;">
-                        <table class='table table-condensed budget'>
-                            <tr>
-                                <td rowspan="2">Groceries</td>
-                                <td>
-                                    <div><small>+RM 20.00</small></div>
-                                    <div><small>left RM 60.00</small></div>
-                                </td>
-                                <td class="small" rowspan="2">
-                                    <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                    <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="right">
-                                    <div class='progress expense'>
-                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: 25%;">
-                                            25%
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                   
                 </div>
 
 
