@@ -13,7 +13,7 @@ if(isset($_POST['add-expense'])) {
 
     // format expense amount 
     if (strpos($expenseamount, '.') !== false) {
-        // echo 'true'; //contains '.'
+        // do nothing
     }else{
         $expenseamount .= ".00";
     }
