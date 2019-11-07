@@ -135,7 +135,7 @@ require 'personalExpenses-process.php';
                                             <td><label for="expenseTitle">Title</label></td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="expense-title"
+                                                    <input type="text" class="form-control" name="expense-name"
                                                         id="expenseTitle" placeholder="Expense name">
                                                 </div>
                                             </td>
