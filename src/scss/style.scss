@@ -728,11 +728,12 @@ table.balance {
 
     tr {
         border-bottom: 1px solid rgb(236, 236, 236);
+        display: flex;
 
 
         td {
             border: none;
-            position: relative;
+            flex:1;
 
             i {
                 margin: 10px;

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+require 'personalExpenses-process.php';
+?>
+
 <title>My Expenses - BudgetTracker</title>
 
 <body>
@@ -124,14 +128,14 @@
 
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Add Expenses</h3>
-                            <form class="popup-form" action="">
+                            <form class="popup-form" action="personalExpenses.php" method="POST">
                                 <div class="form-group">
                                     <table>
                                         <tr>
                                             <td><label for="expenseTitle">Title</label></td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="expenseTitle"
+                                                    <input type="text" class="form-control" name="expense-title"
                                                         id="expenseTitle" placeholder="Expense name">
                                                 </div>
                                             </td>
@@ -147,10 +151,10 @@
                                             <td>
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
-                                                        data-size="3" title="Pick a category">
+                                                        data-size="3" title="Pick a category" name="category-name">
                                                         <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
-                                                        <option value="$result['categoryname']">
+                                                        <option value="<?php echo $result['categoryname'] ?>">
                                                             <?php echo $result['categoryname'] ?></option>
                                                         <?php endwhile ?>
                                                     </select>
@@ -170,7 +174,7 @@
                                                         <span class="input-group-text">RM</span>
                                                     </div>
                                                     <input type="text" class="form-control text-right"
-                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00">
+                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00" name="expense-amount">
                                                 </div>
                                             </td>
                                         </tr>
@@ -183,7 +187,7 @@
                                             <td><label for="expenseDate">Date</label></td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input class="form-control" type="date" name="expenseDate"
+                                                    <input class="form-control" type="date" name="expense-date"
                                                         id="expenseDate">
                                                 </div>
                                             </td>
@@ -193,7 +197,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add expense</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-expense">Add expense</button>
 
                                 </div>
                             </form>

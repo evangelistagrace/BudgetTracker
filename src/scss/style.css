@@ -6608,13 +6608,18 @@ table.balance tr td:nth-of-type(2) {
 .table.reminders tr,
 .table.settings tr {
   border-bottom: 1px solid #ececec;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .table.expenses tr td,
 .table.reminders tr td,
 .table.settings tr td {
   border: none;
-  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .table.expenses tr td i,
