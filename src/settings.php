@@ -34,7 +34,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                     <div class="card settings">
                         <div class="card-body">
                             <h5 class="text-left"><strong>Income</strong></h5>
-                            <table class='table table-condensed settings'>
+                            <table class='table table-condensed settings2'>
                                 <form action="settings.php" method="POST">
                                     <tr>
                                         <?php 
@@ -73,7 +73,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                             <hr>
 
                             <h5 class="text-left"><strong>Budget</strong></h5>
-                            <table class='table table-condensed settings'>
+                            <table class='table table-condensed settings2'>
                                 <tr>
                                     <td><label class="container">
                                             <input type="radio" checked="checked" name="radio">
@@ -99,7 +99,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
 
 
                             <h5 class="text-left"><strong>Reminders</strong></h5>
-                            <table class='table table-condensed settings'>
+                            <table class='table table-condensed settings2'>
                                 <tr>
                                     <td><input type="checkbox" class="checkbox" checked>
                                         <div class="pseudo-checkbox"></div>
