@@ -23,33 +23,21 @@ require 'personalExpenses-process.php';
 
                 <div class="row">
                     <div class="card expenses">
+                    <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ")?>
+                    <?php while($expense = pg_fetch_array($query)) : ?>
                         <div class="card-header">
-                            Monday, 12th August
+                            <?php echo $expense['expensedate']?>
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed expenses'>
                                 <tr>
-                                    <td>Lunch</td>
+                                    <td><?php echo $expense['expensename']?></td>
                                     <td>
                                         <div class="small">
-                                            <div class="circle bg-danger"></div>Food
+                                            <div class="circle bg-danger"></div><?php echo $expense['categoryname']?>
                                         </div>
                                     </td>
-                                    <td>RM 7.00</td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Dinner</td>
-                                    <td>
-                                        <div class="small">
-                                            <div class="circle bg-danger"></div>Food
-                                        </div>
-                                    </td>
-                                    <td>RM 6.00</td>
+                                    <td>RM <?php echo $expense['expenseamount']?></td>
                                     <td>
                                         <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                         <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
@@ -59,63 +47,8 @@ require 'personalExpenses-process.php';
                             </table>
                         </div>
 
-                        <div class="card-header">
-                            Sunday, 11th August
-                        </div>
-                        <div class="card-body">
-                            <table class='table table-condensed expenses'>
-                                <tr>
-                                    <td>Monthly grocery shopping</td>
-                                    <td>
-                                        <div class="small">
-                                            <div class="circle bg-primary"></div>Groceries
-                                        </div>
-                                    </td>
-                                    <td>RM 70.00</td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Dinner</td>
-                                    <td>
-                                        <div class="small">
-                                            <div class="circle bg-danger"></div>Food
-                                        </div>
-                                    </td>
-                                    <td>RM 10.00</td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </div>
-
-                        <div class="card-header">
-                            Friday, 10th August
-                        </div>
-                        <div class="card-body">
-                            <table class='table table-condensed expenses'>
-                                <tr>
-                                    <td>Travel to Rawang</td>
-                                    <td>
-                                        <div class="small">
-                                            <div class="circle bg-warning"></div>Travel
-                                        </div>
-                                    </td>
-                                    <td>RM 20.00</td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </div>
+                        
+                        <?php endwhile ?>
                     </div>
                 </div>
 
