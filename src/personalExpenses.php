@@ -23,11 +23,16 @@ require 'personalExpenses-process.php';
 
                 <div class="row">
                     <div class="card expenses">
-                    <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ")?>
-                    <?php while($expense = pg_fetch_array($query)) : ?>
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ")?>
+                        <?php $date1 = date('2000-01-01') ?>
+                        <?php while($expense = pg_fetch_assoc($query)) : ?>
+                        <?php $date2 = $expense['expensedate']?>
+                        <?php if($date2 !== $date1) :?>
                         <div class="card-header">
-                            <?php echo $expense['expensedate']?>
+                            <?php echo date("j F Y", strtotime($expense['expensedate'])) ?>
                         </div>
+                        <?php $date1 = $date2?>
+                        <?php endif ?>
                         <div class="card-body">
                             <table class='table table-condensed expenses'>
                                 <tr>
@@ -47,7 +52,7 @@ require 'personalExpenses-process.php';
                             </table>
                         </div>
 
-                        
+
                         <?php endwhile ?>
                     </div>
                 </div>
@@ -107,7 +112,8 @@ require 'personalExpenses-process.php';
                                                         <span class="input-group-text">RM</span>
                                                     </div>
                                                     <input type="text" class="form-control text-right"
-                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00" name="expense-amount">
+                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00"
+                                                        name="expense-amount">
                                                 </div>
                                             </td>
                                         </tr>
@@ -130,7 +136,8 @@ require 'personalExpenses-process.php';
 
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-expense">Add expense</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit"
+                                        name="add-expense">Add expense</button>
 
                                 </div>
                             </form>
