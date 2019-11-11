@@ -29,38 +29,24 @@ require 'reminders-process.php';
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
+                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid ") ?>
+                            <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                     <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div>
                                     </td>
-                                    <td>Pay hostel rent</td>
+                                    <td><?php echo $reminder['remindername'] ?></td>
                                     <td>
                                         <div class="small">
-                                            <div class="circle bg-secondary"></div>Bills
+                                            <div class="circle bg-secondary"></div><?php echo $reminder['categoryname'] ?>
                                         </div>
                                     </td>
-                                    <td>RM 600.00</td>
+                                    <td>RM <?php echo $reminder['reminderamount'] ?></td>
                                     <td>
                                         <a href="#"><i class="fas fa-edit text-primary"></i></a>
                                         <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div>
-                                    </td>
-                                    <td>Pay phone bill</td>
-                                    <td>
-                                        <div class="small">
-                                            <div class="circle bg-secondary"></div>Bills
-                                        </div>
-                                    </td>
-                                    <td>RM 60.00</td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                </tr>
-
+                            <?php endwhile ?>
                             </table>
                         </div>
                     </div>
