@@ -1,4 +1,21 @@
 <?php
+require 'config.php';
+
+if(isset($_GET['reminder-done'])){
+    $reminderdone = $_GET['reminder-done'];
+    $reminderid = $_GET['reminder-id'];
+
+   if($reminderdone === 't'){
+       $query = pg_query("UPDATE reminders SET reminderdone = 'true' WHERE reminderid = $reminderid ");
+   }elseif($reminderdone === 'f'){
+        $query = pg_query("UPDATE reminders SET reminderdone = 'false' WHERE reminderid = $reminderid ");
+    }
+    
+    if($query){
+        header('location: reminders.php');
+    }
+    
+}
 
 if(isset($_POST['add-reminder'])){
     $remindername = $_POST['reminder-name'];
@@ -19,5 +36,7 @@ if(isset($_POST['add-reminder'])){
 
     $query = pg_query("INSERT INTO reminders(categoryid, remindername, reminderamount, reminderdone) VALUES ($categoryid, '$remindername', $reminderamount, false)");
 }
+
+
 
 ?>

@@ -29,11 +29,16 @@ require 'reminders-process.php';
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
-                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid ") ?>
+                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid ORDER BY reminders.reminderid") ?>
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div>
+                                <?php if($reminder['reminderdone'] === f):?>
+                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>"><i class="far fa-square"></i></a></div>
                                     </td>
+                                <?php elseif($reminder['reminderdone'] === t):?>
+                                    <td><a href="reminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i class="fas fa-check-square"></i></a></div>
+                                    </td>
+                                <?php endif ?>
                                     <td><?php echo $reminder['remindername'] ?></td>
                                     <td>
                                         <div class="small">
