@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+require 'reminders-process.php';
+?>
 <title>My Budgets - BudgetTracker</title>
 
 <body>
@@ -27,8 +30,7 @@
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox">
-                                        <div class="pseudo-checkbox"></div>
+                                    <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div>
                                     </td>
                                     <td>Pay hostel rent</td>
                                     <td>
@@ -44,8 +46,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox">
-                                        <div class="pseudo-checkbox"></div>
+                                    <td><input type="checkbox" class="checkbox"><div class="pseudo-checkbox"></div>
                                     </td>
                                     <td>Pay phone bill</td>
                                     <td>
@@ -74,15 +75,15 @@
 
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Add Reminder</h3>
-                            <form class="popup-form" action="">
+                            <form class="popup-form" action="reminders.php" method="POST">
                                 <div class="form-group">
                                     <table>
                                         <tr>
                                             <td><label for="expenseTitle">Title</label></td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="expenseTitle"
-                                                        id="expenseTitle" placeholder="e.g: Pay phone bill...">
+                                                    <input type="text" class="form-control" name="reminder-name"
+                                                        id="reminderName" placeholder="e.g: Pay phone bill...">
                                                 </div>
                                             </td>
                                         </tr>
@@ -93,16 +94,15 @@
                                         <tr>
                                             <td><label for="budgetCategory">Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
-                                                    data-size="3" title="Pick a category">
+                                                    data-size="3" title="Pick a category" name="category-name">
                                                     <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
-                                                    <option value="$result['categoryname']">
+                                                    <option value="<?php echo $result['categoryname'] ?>">
                                                         <?php echo $result['categoryname'] ?></option>
                                                     <?php endwhile ?>
                                                 </select></td>
                                         </tr>
                                     </table>
-
                                 </div>
 
                                 <div class="form-group">
@@ -115,7 +115,7 @@
                                                         <span class="input-group-text">RM</span>
                                                     </div>
                                                     <input type="text" class="form-control text-right"
-                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00">
+                                                        aria-label="Amount (to the nearest ringgit)" placeholder="0.00" name="reminder-amount">
                                                 </div>
                                             </td>
                                         </tr>
@@ -123,7 +123,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add reminder</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-reminder">Add reminder</button>
 
                                 </div>
                             </form>
