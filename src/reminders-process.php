@@ -41,11 +41,28 @@ if(isset($_GET['reminder-done'])){
 
 if(isset($_GET['del-reminder'])){
     $reminderid = $_GET['del-reminder'];
-
     $query = pg_query("DELETE FROM reminders WHERE reminderid = $reminderid");
-
     header('location: reminders.php');
+}
 
+if(isset($_POST['edit-reminder'])){
+    $reminderid = $_POST['reminder-id'];
+    $remindername = $_POST['reminder-name'];
+    $remindercategory = $_POST['reminder-category'];
+    $reminderamount = $_POST['reminder-amount'];
+
+    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$remindercategory'");
+    $result = pg_fetch_array($query);
+    $categoryid = $result['categoryid'];
+
+    // format reminder amount 
+    if (strpos($reminderamount, '.') !== false) {
+        // do nothing
+    }else{
+        $reminderamount .= ".00";
+    }
+
+    $query = pg_query("UPDATE reminders SET remindername = '$remindername', categoryid = $categoryid, reminderamount = $reminderamount WHERE reminderid = $reminderid");
 }
 
 ?>
