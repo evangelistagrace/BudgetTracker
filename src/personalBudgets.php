@@ -6,10 +6,8 @@ require 'personalBudgets-process.php';
 
 // initialize variables
 // edit variables
-// if(isset($_GET['editState'])){
-    $categoryname = $_GET['categoryname'];
-    $categorybudget = $_GET['categorybudget'];
-// }
+$categoryname = $_GET['categoryname'];
+$categorybudget = $_GET['categorybudget'];
 
 ?>
 
@@ -156,7 +154,7 @@ require 'personalBudgets-process.php';
                                                         <span class="input-group-text">RM</span>
                                                     </div>
                                                     <input type="text" class="form-control text-right"
-                                                        aria-label="Amount (to the nearest ringgit)" name="category-budget" placeholder="<?php echo $categorybudget ?>">
+                                                        aria-label="Amount (to the nearest ringgit)" name="category-budget" value=<?php echo $categorybudget ?>>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">.00</span>
                                                     </div>

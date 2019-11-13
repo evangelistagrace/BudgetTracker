@@ -31,5 +31,27 @@ if(isset($_GET['del-expense'])){
 
 }
 
+if(isset($_POST['edit-expense'])){
+    $expenseid = $_POST['expense-id'];
+    $expensename = $_POST['expense-name'];
+    $expensecategory = $_POST['expense-category'];
+    $expenseamount = $_POST['expense-amount'];
+    $expensedate = $_POST['expense-date'];
+
+    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$expensecategory' ");
+    $result = pg_fetch_array($query);
+    $categoryid = $result['categoryid'];
+
+    // format expense amount 
+    if (strpos($expenseamount, '.') !== false) {
+        // do nothing
+    }else{
+        $expenseamount .= ".00";
+    }
+
+    $query = pg_query("UPDATE expenses SET categoryid = $categoryid, expensename = '$expensename', expenseamount = $expenseamount, expensedate = '$expensedate' WHERE expenseid = $expenseid ");
+
+}
+
 
 ?>
