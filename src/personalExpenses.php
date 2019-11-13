@@ -23,7 +23,7 @@ require 'personalExpenses-process.php';
 
                 <div class="row">
                     <div class="card expenses">
-                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ORDER BY expenses.expensedate DESC")?>
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
                         <?php $date2 = $expense['expensedate']?>
@@ -45,7 +45,7 @@ require 'personalExpenses-process.php';
                                     <td>RM <?php echo $expense['expenseamount']?></td>
                                     <td>
                                         <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                        <a href="personalExpenses-process.php?del-expense=<?php echo $expense['expenseid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
 
