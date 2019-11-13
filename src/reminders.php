@@ -48,7 +48,7 @@ require 'reminders-process.php';
                                     <td>RM <?php echo $reminder['reminderamount'] ?></td>
                                     <td>
                                         <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                        <a href="reminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
                             <?php endwhile ?>
