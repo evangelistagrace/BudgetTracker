@@ -1,3 +1,10 @@
-
-
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+- Update expenses when reminder to-do is ticked off/unticked
+- send email notification if budget is exceeded
+- send push notification if budget is exceeded
+- sync data to charts
+- sync data in dashboard 
+- download report as pdf
+- sync user settings 
+- add group functionality
+- optimize app for mobile view (PWA and media queries)
+- clean up code
