@@ -6,3 +6,5 @@ coverage/
 .env
 src/scss/style.css.map
 *.map
+
+/vendor/

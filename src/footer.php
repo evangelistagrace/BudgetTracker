@@ -13,6 +13,7 @@
     //bootstrap select
     echo '<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>';
     echo '<script src="../src/js/index.js"></script>';
+    echo '<script src="../src/js/charts.js"></script>';
     
 
 ?>

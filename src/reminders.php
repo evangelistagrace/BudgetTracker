@@ -30,7 +30,7 @@ $reminderamount = $_GET['reminder-amount'];
                 <div class="row">
                     <div class="card expenses">
                         <div class="progress" style="height: 3px;">
-                            <div class="progress-bar progress-reminder" role="progressbar"
+                            <div class="progress-bar progress-reminder" id="progress-reminder" role="progressbar"
                                 style="width: 0%; background-color: #8c77d1" aria-valuenow="25" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -40,10 +40,10 @@ $reminderamount = $_GET['reminder-amount'];
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
-                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>"><i class="far fa-square"></i></a></div>
+                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>"><i class="far fa-square reminder-check"></i></a></div>
                                     </td>
                                 <?php elseif($reminder['reminderdone'] === t):?>
-                                    <td><a href="reminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i class="fas fa-check-square"></i></a></div>
+                                    <td><a href="reminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i class="fas fa-check-square reminder-check"></i></a></div>
                                     </td>
                                 <?php endif ?>
                                     <td><?php echo $reminder['remindername'] ?></td>
@@ -203,7 +203,10 @@ $reminderamount = $_GET['reminder-amount'];
         </div>
     </div>
 
+    
+
     <?php include 'footer.php' ?>
+
 
 </body>
 
