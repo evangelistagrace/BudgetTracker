@@ -1,15 +1,12 @@
 console.log("js file loaded");
 
-
+// to-do list checkbox and progess bar
 var checkboxes = Array.from(document.querySelectorAll('.fa-check-square')).length;
 var countChecked = 0;
 var totalCheckbox = Array.from(document.querySelectorAll('.reminder-check')).length;
 var progressPercentage = 0;
 var progressBar = document.querySelector('#progress-reminder');
-
-//Add/remove ticks to checkboxes on click
 progressPercentage = checkboxes * (1/totalCheckbox) * 100;
-// console.log(progressPercentage);
 progressBar.style.width = progressPercentage + '%';
 
 
@@ -30,7 +27,6 @@ function settingRadio() {
             var pseudoChecked = radioBtn.nextSibling.firstChild;
             pseudoChecked.parentNode.removeChild(pseudoChecked);
         }
-        
     })
 }
 
