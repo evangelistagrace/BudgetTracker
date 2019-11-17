@@ -8,3 +8,8 @@
 - add group functionality
 - optimize app for mobile view (PWA and media queries)
 - clean up code
+- deploy app to Heroku
+
+
+limitations
+- can't input apostrophe for reminder/budget/expense name

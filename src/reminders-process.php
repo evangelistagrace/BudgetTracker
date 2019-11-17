@@ -4,7 +4,7 @@ require 'config.php';
 
 
 if(isset($_POST['add-reminder'])){
-    $remindername = $_POST['reminder-name'];
+    $remindername =  $_POST['reminder-name'];
     $reminderamount = $_POST['reminder-amount'];
     $categoryname = $_POST['category-name'];
 

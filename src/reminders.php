@@ -81,7 +81,7 @@ $reminderamount = $_GET['reminder-amount'];
                                             <td>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="reminder-name"
-                                                        id="reminderName" placeholder="e.g: Pay phone bill...">
+                                                        id="reminderName" maxlength="140" placeholder="e.g: Pay phone bill...">
                                                 </div>
                                             </td>
                                         </tr>
