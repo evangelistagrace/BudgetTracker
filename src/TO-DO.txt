@@ -2,6 +2,7 @@
 - send email notification if budget is exceeded
 - send push notification if budget is exceeded
 - sync data to charts
+- make chart clickable and display relevant data/information
 - sync data in dashboard 
 - download report as pdf
 - sync user settings 

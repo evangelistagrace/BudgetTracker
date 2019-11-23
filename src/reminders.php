@@ -10,6 +10,9 @@ $remindername = $_GET['reminder-name'];
 $remindercategory = $_GET['reminder-category'];
 $reminderamount = $_GET['reminder-amount'];
 
+$text = "Helloooo";
+$json_text = json_encode($text);
+
 ?>
 <title>My Budgets - BudgetTracker</title>
 
@@ -203,7 +206,10 @@ $reminderamount = $_GET['reminder-amount'];
         </div>
     </div>
 
-    
+    <script>
+        var text = '<?php echo $json_text ?>';
+        console.log(text);
+    </script>
 
     <?php include 'footer.php' ?>
 
