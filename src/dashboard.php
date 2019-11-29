@@ -75,18 +75,19 @@ if(!isset($_SESSION['username'])){
                             <h5 class="card-title">Reminders</h5>
                             <p class="card-text">
                                 <form action="">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Pay hostel fee
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                        <label class="form-check-label" for="defaultCheck2">
-                                            Pay phone bill
-                                        </label>
-                                    </div>
+                                    <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderdone LIMIT 2") ?>
+                                    <table class="table">
+                                        <?php while($reminder = pg_fetch_array($query)):?>
+                                            <tr>
+                                                <?php if($reminder['reminderdone'] === f):?>
+                                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&category-id=<?php echo $reminder['categoryid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
+                                                    </td>
+
+                                                    <td><?php echo $reminder['remindername'] ?></td>
+                                                <?php endif ?>
+                                            </tr>
+                                        <?php endwhile ?>
+                                    </table>
                                 </form>
                             </p>
                             <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i class="fas fa-arrow-right"></i></a>
