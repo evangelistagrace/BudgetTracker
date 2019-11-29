@@ -805,6 +805,16 @@ table.balance {
 
 }
 
+table.dashboard-reminders {
+    tr {
+        td {
+          border-top: none; 
+          padding: 0.1rem; 
+        }
+        
+    }
+}
+
 //cards
 .card.budget {
     padding: 10px;

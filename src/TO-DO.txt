@@ -8,6 +8,7 @@
 - send push notification if budget is exceeded
 - optimize app for mobile view (PWA and media queries)
 - clean up code
+- come up with mock data
 - deploy app to Heroku
 
 
