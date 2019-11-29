@@ -43,7 +43,7 @@ $json_text = json_encode($text);
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
-                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>"><i class="far fa-square reminder-check"></i></a></div>
+                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&category-id=<?php echo $reminder['categoryid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
                                     </td>
                                 <?php elseif($reminder['reminderdone'] === t):?>
                                     <td><a href="reminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i class="fas fa-check-square reminder-check"></i></a></div>

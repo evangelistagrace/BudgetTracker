@@ -26,11 +26,20 @@ if(isset($_POST['add-reminder'])){
 if(isset($_GET['reminder-done'])){
     $reminderdone = $_GET['reminder-done'];
     $reminderid = $_GET['reminder-id'];
+    $categoryid = $_GET['category-id'];
+    $remindername = $_GET['reminder-name'];
+    $reminderamount = $_GET['reminder-amount'];
+    $remindercheckeddate= date("Y-m-d");
+
 
    if($reminderdone === 't'){
        $query = pg_query("UPDATE reminders SET reminderdone = 'true' WHERE reminderid = $reminderid ");
+       // insert reminder as expense
+       $query = pg_query("INSERT INTO expenses (categoryid, expensename, expenseamount, expensedate) VALUES ($categoryid, '$remindername','$reminderamount','$remindercheckeddate') ");
    }elseif($reminderdone === 'f'){
+    //    update boolean value
         $query = pg_query("UPDATE reminders SET reminderdone = 'false' WHERE reminderid = $reminderid ");
+        
     }
     
     if($query){
