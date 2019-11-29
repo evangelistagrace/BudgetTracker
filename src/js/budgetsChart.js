@@ -13,12 +13,12 @@ var myChart = new Chart(ctx, {
                 'rgba(173, 228, 151, 0.5)'
 
             ],
-            // borderColor: [
-            //     'rgba(92, 219, 149, 1)',
-            //     'rgba(155, 133, 230, 1)',
-            //     'rgba(173, 228, 151, 1)'
+            borderColor: [
+                'rgba(92, 219, 149, 1)',
+                'rgba(155, 133, 230, 1)',
+                'rgba(173, 228, 151, 1)'
 
-            // ],
+            ],
             borderWidth: 2
         }]
     },
