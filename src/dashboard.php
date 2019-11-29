@@ -111,31 +111,27 @@ if(!isset($_SESSION['username'])){
                         <div class="card-body">
                             <h5 class="card-title">Budgets</h5>
                             <p class="card-text">
-                                <div class="progress-container">
-                                    <span>Food</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 23%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%">
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="progress-container">
-                                    <span>Travel</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 35%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="40%">
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="progress-container">
-                                    <span>Groceries</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:25%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="50%">
-                                    </div>
-                                </div>
-                                </div>
-                                
+                                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
+                                <?php while($result = pg_fetch_array($query)) :?>
+                                    <?php if($result['categorybudget'] > 0)  :?>
+                                        <div class="progress-container">
+                                            <span><?php echo $result['categoryname'] ?></span>
+                                            <div class="progress">
+                                                <?php 
+                                                    $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                                    $result2 = pg_fetch_array($query2);
+
+                                                    $percentage = $result2['amount']/$result['categorybudget'] * 100;
+                                                    $percentage = number_format($percentage, 0);
+                                                    if($percentage > '100'){
+                                                        $percentage = '100';
+                                                    }
+                                                ?>
+                                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%</div>
+                                            </div>
+                                        </div>
+                                    <?php endif ?>
+                                <?php endwhile ?>
                             </p>
                             <a href="personalBudgets.php" class="btn btn-secondary btn-sm right">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
                         </div>

@@ -31,55 +31,51 @@ $categorybudget = $_GET['categorybudget'];
                 <div class="row">
                 <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
                 <?php while($result = pg_fetch_array($query)) :?>
-                <?php if($result['categorybudget'] == 0) : ?>
-                <!-- don't display budgets that have not yet been set -->
-                
-                <?php elseif($result['categorybudget'] > 0)  :?>
-
-                    <div class="card budget" style="width: 100% ;">
-                        <table class='table table-condensed budget'>
-                            <tr>
-                                <td rowspan="2"><?php echo $result['categoryname'] ?></td>
-                                <td>
-                                    <?php $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
-                                    $result2 = pg_fetch_array($query2);
-                                    ?>
-                                    <div><small>+RM <?php echo $result2['amount'] ?? 0 ?></small></div>
-                                    <?php 
-                                        $balance = $result['categorybudget'] - $result2['amount'];
-                                        // format reminder amount 
-                                        if (strpos($balance, '.') !== false) {
-                                            // do nothing
-                                        }else{
-                                            $balance .= ".00";
-                                        }
-                                    ?>
-                                    <div><small>left RM <?php echo $balance ?></small></div>
-                                </td>
-                                <td class="small" rowspan="2">
-                                    <a href="personalBudgets.php?categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>#editBudget"><i class="fas fa-edit text-primary"></i></a>
-                                    <a href="personalBudgets-process.php?del-budget='<?php echo $result['categoryname'] ?>'"><i class="far fa-trash-alt text-danger"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="right">
-                                    <div class='progress expense'>
-                                         <?php 
-                                            $percentage = $result2['amount']/$result['categorybudget'] * 100;
-                                            $percentage = number_format($percentage, 0);
-                                            if($percentage > '100'){
-                                                $percentage = '100';
+                    <?php if($result['categorybudget'] > 0)  :?>
+                        <div class="card budget" style="width: 100% ;">
+                            <table class='table table-condensed budget'>
+                                <tr>
+                                    <td rowspan="2"><?php echo $result['categoryname'] ?></td>
+                                    <td>
+                                        <?php $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                        $result2 = pg_fetch_array($query2);
+                                        ?>
+                                        <div><small>+RM <?php echo $result2['amount'] ?? 0 ?></small></div>
+                                        <?php 
+                                            $balance = $result['categorybudget'] - $result2['amount'];
+                                            // format reminder amount 
+                                            if (strpos($balance, '.') !== false) {
+                                                // do nothing
+                                            }else{
+                                                $balance .= ".00";
                                             }
-                                         ?>
-                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                            style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
+                                        ?>
+                                        <div><small>left RM <?php echo $balance ?></small></div>
+                                    </td>
+                                    <td class="small" rowspan="2">
+                                        <a href="personalBudgets.php?categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>#editBudget"><i class="fas fa-edit text-primary"></i></a>
+                                        <a href="personalBudgets-process.php?del-budget='<?php echo $result['categoryname'] ?>'"><i class="far fa-trash-alt text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="right">
+                                        <div class='progress expense'>
+                                            <?php 
+                                                $percentage = $result2['amount']/$result['categorybudget'] * 100;
+                                                $percentage = number_format($percentage, 0);
+                                                if($percentage > '100'){
+                                                    $percentage = '100';
+                                                }
+                                            ?>
+                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                                style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <?php endif ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <?php endif ?>
                     <?php endwhile ?>
                 </div>
 
