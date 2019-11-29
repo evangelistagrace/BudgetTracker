@@ -55,9 +55,6 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                                 </div><input class="form-control text-right" name="new-income"
                                                     id="income" type="text" value=""
                                                     placeholder="<?php echo $placeholder ?>">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
                                             </div>
 
                                         </td>

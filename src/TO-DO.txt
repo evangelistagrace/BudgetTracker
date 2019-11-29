@@ -1,12 +1,11 @@
-- Update expenses when reminder to-do is ticked off/unticked
-- send email notification if budget is exceeded
-- send push notification if budget is exceeded
+- sync data in dashboard 
 - sync data to charts
 - make chart clickable and display relevant data/information
-- sync data in dashboard 
 - download report as pdf
 - sync user settings 
 - add group functionality
+- send email notification if budget is exceeded
+- send push notification if budget is exceeded
 - optimize app for mobile view (PWA and media queries)
 - clean up code
 - deploy app to Heroku

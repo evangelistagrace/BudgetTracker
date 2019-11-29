@@ -28,16 +28,42 @@ if(!isset($_SESSION['username'])){
                             <p class="card-text">
                                 <table class="balance">
                                     <tr>
+                                        <?php $query = pg_query("SELECT * FROM users WHERE username = '".$_SESSION['username']."' ");
+                                            $result = pg_fetch_array($query);
+                                            $income = $result['income'];
+                                        ?>
                                         <td>Inflow</td>
-                                        <td><span class="text-primary">+RM 900.00</span></td>
+                                        <td><span class="text-primary">+RM <?php echo $income ?></span></td>
                                     </tr>
                                     <tr>
+                                        <?php 
+                                            $query = pg_query("SELECT expenses.expenseamount, expenses.categoryid, categories.categoryid FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid WHERE username = '".$_SESSION['username']."'");
+                                            $outflow = 0;
+                                            while($result = pg_fetch_array($query)){
+                                                $outflow = $outflow + $result['expenseamount'];
+                                            }
+                                            // format outflow amount 
+                                            if (strpos($outflow, '.') !== false) {
+                                                // do nothing
+                                            }else{
+                                                $outflow .= ".00";
+                                            }
+                                        ?>
                                         <td>Outflow</td>
-                                        <td><span class="text-secondary">-RM 113.00</span></td>
+                                        <td><span class="text-secondary">-RM <?php echo $outflow ?></span></td>
                                     </tr>
                                     <tr>
+                                        <?php 
+                                            $balance = $income - $outflow;
+                                            // format balance amount 
+                                            if (strpos($balance, '.') !== false) {
+                                                // do nothing
+                                            }else{
+                                                $balance .= ".00";
+                                            }
+                                        ?>
                                         <td>Balance</td>
-                                        <td><h4 class="text-primary">+RM 787.00</h4></td>
+                                        <td><h4 class="text-primary">+RM <?php echo $balance ?></h4></td>
                                     </tr>
                                 </table>
                             </p>
