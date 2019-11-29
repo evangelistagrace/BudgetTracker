@@ -1,6 +1,8 @@
+
+
 //expenses chart
-var ctx = document.getElementById('expensesChart').getContext('2d');
-var myChart = new Chart(ctx, {
+var ctx2 = document.getElementById('expensesChart').getContext('2d');
+var myChart2 = new Chart(ctx2, {
     type: 'doughnut',
     data: {
         labels: ['Food', 'Clothing', 'Travel', 'Gifts', 'Misc'],
@@ -12,16 +14,16 @@ var myChart = new Chart(ctx, {
                 'rgba(155, 133, 230, 0.5)',
                 'rgba(173, 228, 151, 0.5)',
                 'rgba(185, 227, 198, 0.5)',
-                'rgba(134, 192, 230, 0.5)',
+                'rgba(134, 192, 230, 0.5)'
             ],
             borderColor: [
                 'rgba(92, 219, 149, 1)',
                 'rgba(155, 133, 230, 1)',
                 'rgba(173, 228, 151, 1)',
                 'rgba(185, 227, 198, 1)',
-                'rgba(134, 192, 230, 1)',
+                'rgba(134, 192, 230, 1)'
             ],
-            borderWidth: 2,
+            borderWidth: 2
             
         }]
     },
@@ -36,8 +38,8 @@ var myChart = new Chart(ctx, {
 
 
 //expenses by day chart
-var ctx = document.getElementById('expensesByDayChart').getContext('2d');
-var myChart = new Chart(ctx, {
+var ctx3 = document.getElementById('expensesByDayChart').getContext('2d');
+var myChart3 = new Chart(ctx3, {
     type: 'bar',
     data: {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
@@ -79,7 +81,7 @@ var myChart = new Chart(ctx, {
                 ],
             backgroundColor: 'rgba(255,153,123,.5)',
             borderColor: 'rgba(255,153,123,.9)',
-            borderWidth: 2,
+            borderWidth: 2
             
         }]
     },
@@ -90,5 +92,3 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
-

@@ -9,6 +9,13 @@ require 'personalBudgets-process.php';
 $categoryname = $_GET['categoryname'];
 $categorybudget = $_GET['categorybudget'];
 
+// budget array
+$query3 = pg_query("SELECT SUM(categorybudget) as totalbudget FROM categories WHERE username = '".$_SESSION['username']."' "); 
+$result3 = pg_fetch_array($query3);
+
+$budgetNames = array();
+$budgetAngles = array();
+
 ?>
 
 <title>My Budgets - BudgetTracker</title>
@@ -27,7 +34,6 @@ $categorybudget = $_GET['categorybudget'];
 
                 <h1 class="title text-primary">My Budgets</h1>
                 <div class="row sm"><canvas id="budgetChart"></canvas></div>
-
                 <div class="row">
                 <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
                 <?php while($result = pg_fetch_array($query)) :?>
@@ -37,8 +43,10 @@ $categorybudget = $_GET['categorybudget'];
                                 <tr>
                                     <td rowspan="2"><?php echo $result['categoryname'] ?></td>
                                     <td>
-                                        <?php $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                        <?php 
+                                        $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
                                         $result2 = pg_fetch_array($query2);
+
                                         ?>
                                         <div><small>+RM <?php echo $result2['amount'] ?? 0 ?></small></div>
                                         <?php 
@@ -62,6 +70,10 @@ $categorybudget = $_GET['categorybudget'];
                                         <div class='progress expense'>
                                             <?php 
                                                 $percentage = $result2['amount']/$result['categorybudget'] * 100;
+
+                                                $angle = round($result['categorybudget']/$result3['totalbudget'] * 360, 2);
+                                                array_push($budgetAngles, $angle);
+
                                                 $percentage = number_format($percentage, 0);
                                                 if($percentage > '100'){
                                                     $percentage = '100';
@@ -77,6 +89,7 @@ $categorybudget = $_GET['categorybudget'];
                         </div>
                         <?php endif ?>
                     <?php endwhile ?>
+
                 </div>
 
 
@@ -191,43 +204,12 @@ $categorybudget = $_GET['categorybudget'];
         </div>
     </div>
 
+     <script>
+        let budgetAngles;
+        budgetAngles = <?php echo json_encode($budgetAngles) ?>
+     </script>                                               
 
     <?php include 'footer.php' ?>
-
-    <script>
-        //budget chart
-        var ctx = document.getElementById('budgetChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Food', 'Travel', 'Groceries'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [94.74, 189.47, 75.79],
-                    backgroundColor: [
-                        'rgba(92, 219, 149, 0.5)',
-                        'rgba(155, 133, 230, 0.5)',
-                        'rgba(173, 228, 151, 0.5)',
-
-                    ],
-                    borderColor: [
-                        'rgba(92, 219, 149, 1)',
-                        'rgba(155, 133, 230, 1)',
-                        'rgba(173, 228, 151, 1)',
-
-                    ],
-                    borderWidth: 2,
-
-                }]
-            },
-            options: {
-
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        });
-    </script>
 
 </body>
 
