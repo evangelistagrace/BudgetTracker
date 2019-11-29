@@ -71,8 +71,8 @@ $budgetAngles = array();
                                             <?php 
                                                 $percentage = $result2['amount']/$result['categorybudget'] * 100;
 
-                                                $angle = round($result['categorybudget']/$result3['totalbudget'] * 360, 2);
-                                                array_push($budgetAngles, $angle);
+                                                array_push($budgetNames, $result['categoryname']);
+                                                array_push($budgetAngles, $result['categorybudget']);
 
                                                 $percentage = number_format($percentage, 0);
                                                 if($percentage > '100'){
@@ -89,7 +89,7 @@ $budgetAngles = array();
                         </div>
                         <?php endif ?>
                     <?php endwhile ?>
-
+                    <?php  print_r($budgetNames) ?>                                
                 </div>
 
 
@@ -205,7 +205,8 @@ $budgetAngles = array();
     </div>
 
      <script>
-        let budgetAngles;
+        let budgetAngles; let budgetNames;
+        budgetNames = <?php echo json_encode($budgetNames) ?>;
         budgetAngles = <?php echo json_encode($budgetAngles) ?>
      </script>                                               
 

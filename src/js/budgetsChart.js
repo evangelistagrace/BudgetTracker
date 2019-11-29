@@ -3,7 +3,7 @@ var ctx = document.getElementById('budgetChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Food', 'Travel', 'Groceries'],
+        labels: budgetNames,
         datasets: [{
             label: '# of Votes',
             data: budgetAngles, //array passed from personalBudgets.php script
