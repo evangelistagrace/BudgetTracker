@@ -31,7 +31,7 @@ $expensedate = $_GET['expense-date'];
 
                 <div class="row">
                     <div class="card expenses">
-                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname, categories.categorycolor  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
                         <?php $date2 = $expense['expensedate']?>
@@ -47,7 +47,7 @@ $expensedate = $_GET['expense-date'];
                                     <td><?php echo $expense['expensename']?></td>
                                     <td>
                                         <div class="small">
-                                            <div class="circle bg-danger"></div><?php echo $expense['categoryname']?>
+                                            <div class='<?php echo "circle bg-{$expense['categorycolor']}" ?>'></div><?php echo $expense['categoryname']?>
                                         </div>
                                     </td>
                                     <td>RM <?php echo $expense['expenseamount']?></td>
@@ -59,8 +59,6 @@ $expensedate = $_GET['expense-date'];
 
                             </table>
                         </div>
-
-
                         <?php endwhile ?>
                     </div>
                 </div>

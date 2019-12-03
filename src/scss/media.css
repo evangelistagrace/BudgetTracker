@@ -5843,6 +5843,86 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Brands';
 }
 
+.watermelon-red {
+  color: #e97877;
+}
+
+.bg-watermelon-red {
+  background-color: #e97877;
+}
+
+.mustard {
+  color: #f9d677;
+}
+
+.bg-mustard {
+  background-color: #f9d677;
+}
+
+.lime {
+  color: #dfd277;
+}
+
+.bg-lime {
+  background-color: #dfd277;
+}
+
+.cyan {
+  color: #4ccead;
+}
+
+.bg-cyan {
+  background-color: #4ccead;
+}
+
+.dark-blue {
+  color: #348c9f;
+}
+
+.bg-dark-blue {
+  background-color: #348c9f;
+}
+
+.hot-pink {
+  color: #dc6372;
+}
+
+.bg-hot-pink {
+  background-color: #dc6372;
+}
+
+.mud {
+  color: #c18f6b;
+}
+
+.bg-mud {
+  background-color: #c18f6b;
+}
+
+.baby-blue {
+  color: #73aad8;
+}
+
+.bg-baby-blue {
+  background-color: #73aad8;
+}
+
+.lavender {
+  color: #c785da;
+}
+
+.bg-lavender {
+  background-color: #c785da;
+}
+
+.tangerine {
+  color: #fa9a4c;
+}
+
+.bg-tangerine {
+  background-color: #fa9a4c;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -6654,7 +6734,6 @@ table.balance tr td:nth-of-type(2) {
 .table.settings tr td .circle {
   width: 10px;
   height: 10px;
-  background-color: red;
   border-radius: 50px;
   display: inline-block;
   margin-right: 3px;
@@ -6689,9 +6768,24 @@ table.balance tr td:nth-of-type(2) {
   margin: 0 2px;
 }
 
+.table.settings2 tr td .badge {
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 5px;
+}
+
 table.dashboard-reminders tr td {
   border-top: none;
   padding: 0.1rem;
+}
+
+.borderless {
+  padding-top: 10px;
+}
+
+.borderless tr td {
+  border: none;
+  padding-top: 0;
 }
 
 .card.budget {
@@ -6756,7 +6850,7 @@ h1.title {
 }
 
 .progress.expense {
-  height: 25px;
+  height: 18px;
 }
 
 .add-btn {
