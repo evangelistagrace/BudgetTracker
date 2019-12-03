@@ -2,6 +2,7 @@
 @import '../../fontawesome/scss/fontawesome.scss';
 @import "../../fontawesome/scss/solid.scss";
 @import "../../fontawesome/scss/brands.scss";
+@import "colors";
 
 * {
     box-sizing: border-box;
@@ -1179,94 +1180,3 @@ td a i:hover {
     border: transparent;
 }
 
-// colors
-$watermelon-red: #E45755;
-$mustard: #F8CC55;
-$lime: #D8C855;
-$cyan: #30B291;
-$dark-blue: #225B67;
-$hot-pink: #D43C4F;
-$mud: #B07449;
-$baby-blue: #5195CF;
-$lavender: #B967D1;
-$tangerine: #FA8120;
-
-.watermelon-red{
-    color: $watermelon-red;
-}
-
-.bg-watermelon-red {
-    background-color: $watermelon-red;
-}
-
-.mustard {
-    color: $mustard;
-}
-
-.bg-mustard {
-    background-color: $mustard;
-}
-
-.lime {
-    color: $lime;
-}
-
-.bg-lime {
-    background-color: $lime;
-}
-
-.cyan {
-    color: $cyan;
-}
-
-.bg-cyan {
-    background-color: $cyan;
-}
-
-.dark-blue {
-    color: $dark-blue;
-}
-
-.bg-dark-blue {
-    background-color: $dark-blue;
-}
-
-.hot-pink {
-    color: $hot-pink;
-}
-
-.bg-hot-pink {
-    background-color: $hot-pink;
-}
-
-.mud {
-    color: $mud;
-}
-
-.bg-mud {
-    background-color: $mud;
-}
-
-.baby-blue {
-    color: $baby-blue;
-}
-
-.bg-baby-blue {
-    background-color: $baby-blue;
-}
-
-.lavender {
-    color: $lavender;
-}
-
-.bg-lavender {
-    background-color: $lavender;
-}
-
-.tangerine {
-    color: $tangerine;
-}
-
-.bg-tangerine {
-    background-color: $tangerine;
-}
