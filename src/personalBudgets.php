@@ -13,8 +13,11 @@ $categorybudget = $_GET['categorybudget'];
 $query3 = pg_query("SELECT SUM(categorybudget) as totalbudget FROM categories WHERE username = '".$_SESSION['username']."' "); 
 $result3 = pg_fetch_array($query3);
 
+// arrays for generating budget chart
 $budgetNames = array();
 $budgetAngles = array();
+$budgetColors = array();
+
 
 ?>
 
@@ -91,6 +94,10 @@ $budgetAngles = array();
                                             <?php 
                                                 array_push($budgetNames, $result['categoryname']);
                                                 array_push($budgetAngles, $result['categorybudget']);
+                                                // capture hexcolor codes and store in array
+                                                $color = explode(" ", $result['categorycolor']);
+                                                array_push($budgetColors, $color[1]);
+
                                             ?>
                                             <?php if($percentage == '100'): ?>
                                                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
@@ -110,7 +117,7 @@ $budgetAngles = array();
                         </div>
                         <?php endif ?>
                     <?php endwhile ?>
-                    <!-- <?php  print_r($budgetNames) ?>                                 -->
+                    <!-- <?php  print_r($budgetColors) ?>                                 -->
                 </div>
 
 
@@ -226,9 +233,11 @@ $budgetAngles = array();
     </div>
 
      <script>
-        let budgetAngles; let budgetNames;
+        let budgetAngles, budgetNames, budgetColors;
         budgetNames = <?php echo json_encode($budgetNames) ?>;
-        budgetAngles = <?php echo json_encode($budgetAngles) ?>
+        budgetAngles = <?php echo json_encode($budgetAngles) ?>;
+        budgetColors = <?php echo json_encode($budgetColors) ?>;
+
      </script>                                               
 
     <?php include 'footer.php' ?>

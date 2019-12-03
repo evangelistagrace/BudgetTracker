@@ -151,15 +151,16 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                                     <select id="groupIcon" class="selectpicker show-tick"
                                                         data-style="bg-light text-dark" data-width="100%" data-size="3"
                                                         title="Pick a color" name="category-color">
-                                                        <option value="watermelon-red" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
-                                                        <option value="mustard" data-icon="fas fa-circle mustard">Mustard</option>
-                                                        <option value="lime" data-icon="fas fa-circle lime">Lime</option>
-                                                        <option value="dark-blue" data-icon="fas fa-circle dark-blue">Dark blue</option>
-                                                        <option value="hot-pink" data-icon="fas fa-circle hot-pink">Hot Pink</option>
-                                                        <option value="mud" data-icon="fas fa-circle mud">Mud</option>
-                                                        <option value="baby-blue" data-icon="fas fa-circle baby-blue">Baby Blue</option>
-                                                        <option value="lavender" data-icon="fas fa-circle lavender">Lavender</option>
-                                                        <option value="tangerine" data-icon="fas fa-circle tangerine">Tangerine</option>
+                                                        <option value="watermelon-red #E45755" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
+                                                        <option value="mustard #F8CC55" data-icon="fas fa-circle mustard">Mustard</option>
+                                                        <option value="lime #D8C855" data-icon="fas fa-circle lime">Lime</option>
+                                                        <option value="cyan #30B291" data-icon="fas fa-circle cyan">Cyan</option>
+                                                        <option value="dark-blue #225B67" data-icon="fas fa-circle dark-blue">Dark blue</option>
+                                                        <option value="hot-pink #D43C4F" data-icon="fas fa-circle hot-pink">Hot Pink</option>
+                                                        <option value="mud #B07449" data-icon="fas fa-circle mud">Mud</option>
+                                                        <option value="baby-blue #5195CF" data-icon="fas fa-circle baby-blue">Baby Blue</option>
+                                                        <option value="lavender #B967D1" data-icon="fas fa-circle lavender">Lavender</option>
+                                                        <option value="tangerine #FA8120" data-icon="fas fa-circle tangerine">Tangerine</option>
                                                     </select>
                                                 </div>
                                             </div>
