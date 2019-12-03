@@ -11,7 +11,9 @@ if(isset($_GET['del-category'])){
 }
 
 if(isset($_POST['add-category'])){
-    $categoryname = $_POST['new-category'];
+    $categoryname = $_POST['category-name'];
+    $categorycolor = $_POST['category-color'];
+
     if(!empty($categoryname)){
         // check for duplicate categories
         $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."'");
@@ -20,10 +22,15 @@ if(isset($_POST['add-category'])){
                 array_push($errors, "Category '$categoryname' already exists.");
             }
         }
-        if(count($errors) == 0){
-            $query = pg_query("INSERT INTO categories (username, categoryname) VALUES ('".$_SESSION['username']."', '$categoryname')");
-        }
+        
     }
+    if($categorycolor == ""){
+        array_push($errors, "Choose category color");
+    }
+    if(count($errors) == 0){
+            $query = pg_query("INSERT INTO categories (username, categoryname, categorycolor) VALUES ('".$_SESSION['username']."', '$categoryname', '$categorycolor')");
+
+        }
 }
 
 if(isset($_POST['edit-category'])){
@@ -38,11 +45,12 @@ if(isset($_POST['edit-category'])){
                 array_push($errors, "Category '$categoryname' already exists.");
             }
         }
-        if(count($errors) == 0){
+        
+    }
+    if(count($errors) == 0){
             $query = pg_query("UPDATE categories SET categoryname = '$categoryname' WHERE categoryid = $categoryid");
    
         }
-    }
 }
 
 

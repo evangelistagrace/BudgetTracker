@@ -117,8 +117,10 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                             <hr>
 
                             <h5 class="text-left"><strong>Categories</strong></h5>
-                            <table class='table table-condensed settings2'>
-                                <form action="settings.php" method="POST">
+
+                            <form action="settings.php" method="POST">
+                                <br>
+                                <table class="table borderless">
                                     <?php if(count($errors)) : ?>
                                     <div class="error">
                                         <?php foreach($errors as $error): ?>
@@ -127,24 +129,59 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     </div>
                                     <?php endif ?>
                                     <tr>
-                                        <td style="width: 90%">
-                                            <input class="form-control" type="text" name="new-category" id="newCategory"
-                                                required placeholder="Enter a new category...">
+                                        <td style="width:60%">
+                                            
+                                            <input class="form-control" type="text" name="category-name" required
+                                                placeholder="Category Name">
                                         </td>
-                                        <td style="width: 10%">
-                                            <button type="submit" name="add-category"
-                                                class="btn btn-danger btn-round">+</button>
+                                        <td style="width:40%">
+                                            <!-- <label for="budget-amount">Budget amount</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RM</span>
+                                                </div><input class="form-control text-right" name="budget-amount"
+                                                    type="text" value="" placeholder="">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <select id="groupIcon" class="selectpicker show-tick"
+                                                        data-style="bg-light text-dark" data-width="100%" data-size="3"
+                                                        title="Pick a color" name="category-color">
+                                                        <option value="watermelon-red" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
+                                                        <option value="mustard" data-icon="fas fa-circle mustard">Mustard</option>
+                                                        <option value="lime" data-icon="fas fa-circle lime">Lime</option>
+                                                        <option value="dark-blue" data-icon="fas fa-circle dark-blue">Dark blue</option>
+                                                        <option value="hot-pink" data-icon="fas fa-circle hot-pink">Hot Pink</option>
+                                                        <option value="mud" data-icon="fas fa-circle mud">Mud</option>
+                                                        <option value="baby-blue" data-icon="fas fa-circle baby-blue">Baby Blue</option>
+                                                        <option value="lavender" data-icon="fas fa-circle lavender">Lavender</option>
+                                                        <option value="tangerine" data-icon="fas fa-circle tangerine">Tangerine</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
-                                </form>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button type="submit" name="add-category" class="btn btn-info btn-block">Add
+                                                new category</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
 
+
+                            <table class='table table-condensed settings2'>
                                 <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
                                     <!-- edit category -->
                                     <?php if($editState == false) :?>
-                                    <td style="width: 90%"><input type="text" readonly class="form-control-plaintext"
-                                            id="categoryName" value="<?php echo $result['categoryname'] ?>"></td>
+                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['categorycolor']}" ?>'><?php echo $result['categoryname'] ?></div></td>
                                     <td style="width: 10%">
                                         <a id="editCategoryName"
                                             href="settings.php?editState=true&categoryid=<?php echo $result['categoryid'] ?>"><i
@@ -192,7 +229,6 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                 <?php } ?>
 
                             </table>
-
                         </div>
                     </div>
                 </div>
