@@ -44,21 +44,41 @@ $budgetAngles = array();
                                     <td rowspan="2"><?php echo $result['categoryname'] ?></td>
                                     <td>
                                         <?php 
-                                        $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
-                                        $result2 = pg_fetch_array($query2);
+                                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                            $result2 = pg_fetch_array($query2);
 
-                                        ?>
-                                        <div><small>+RM <?php echo $result2['amount'] ?? 0 ?></small></div>
-                                        <?php 
+                                            $percentage = $result2['amount']/$result['categorybudget'] * 100;
+                                            $percentage = number_format($percentage, 0);
+                                            if($percentage > '100'){
+                                                $percentage = '100';
+                                            }
                                             $balance = $result['categorybudget'] - $result2['amount'];
-                                            // format reminder amount 
+                                            // format balance amount 
                                             if (strpos($balance, '.') !== false) {
                                                 // do nothing
                                             }else{
                                                 $balance .= ".00";
                                             }
                                         ?>
-                                        <div><small>left RM <?php echo $balance ?></small></div>
+                                        <div><small>Used +RM <?php echo $result2['amount'] ?? 0 ?></small></div>
+                                        <?php 
+                                            if($balance < 0){
+                                                $negativeBalance = abs($balance);
+                                            }
+
+                                            // format balance amount 
+                                            if (strpos($negativeBalance, '.') !== false) {
+                                                // do nothing
+                                            }else{
+                                                $negativeBalance .= ".00";
+                                            }
+
+                                        ?>
+                                        <?php if($balance  < '0'): ?>
+                                            <div><small class="text-danger">Overspent -RM <?php echo $negativeBalance ?></small></div>
+                                        <?php else: ?>
+                                            <div><small>Left +RM <?php echo $balance ?></small></div>
+                                        <?php endif ?>
                                     </td>
                                     <td class="small" rowspan="2">
                                         <a href="personalBudgets.php?categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>#editBudget"><i class="fas fa-edit text-primary"></i></a>
@@ -69,19 +89,20 @@ $budgetAngles = array();
                                     <td class="right">
                                         <div class='progress expense'>
                                             <?php 
-                                                $percentage = $result2['amount']/$result['categorybudget'] * 100;
-
                                                 array_push($budgetNames, $result['categoryname']);
                                                 array_push($budgetAngles, $result['categorybudget']);
-
-                                                $percentage = number_format($percentage, 0);
-                                                if($percentage > '100'){
-                                                    $percentage = '100';
-                                                }
                                             ?>
+                                            <?php if($percentage == '100'): ?>
+                                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                                style="width: <?php echo $percentage ?>%;">
+                                                </div>
+                                            <?php else: ?>
+
                                             <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
+                                                style="width: <?php echo $percentage ?>%;">
                                             </div>
+
+                                            <?php endif ?>
                                         </div>
                                     </td>
                                 </tr>
