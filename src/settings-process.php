@@ -43,16 +43,17 @@ if(isset($_POST['edit-budget'])){
     $budgetamount = $_POST['budget-amount'];
     $budgetcolor = $_POST['budget-color'];
     
-    // if(!empty($budgetname)){
-    //     // check for duplicate budgets
-    //     $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."'");
-    //     while($result = pg_fetch_array($query)){
-    //         if($result['budgetname'] == $budgetname) {
-    //             array_push($errors, "Budget '$budgetname' already exists.");
-    //         }
-    //     }
+    if(!empty($budgetname)){
+        // check for duplicate budgets
+        $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."'");
+        while($result = pg_fetch_array($query)){
+            if($result['budgetid'] != $budgetid) {
+                if($result['budgetname'] == $budgetname)
+                    array_push($errors, "Budget '$budgetname' already exists.");
+            }
+        }
         
-    // }
+    }
     if(count($errors) == 0){
             $query = pg_query("UPDATE budgets SET budgetname = '$budgetname', budgetamount = $budgetamount, budgetcolor = '$budgetcolor' WHERE budgetid = $budgetid");
    
