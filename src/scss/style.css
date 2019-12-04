@@ -6748,14 +6748,10 @@ table.balance tr td:nth-of-type(2) {
 }
 
 .table.settings tr {
-  border-bottom: none;
+  border: none;
 }
 
-.table.settings tr td:nth-of-type(even) {
-  padding-right: 10px;
-}
-
-.table.settings2 tr:first-of-type td {
+.table.settings tr td {
   border: none;
 }
 
@@ -6782,6 +6778,14 @@ table.balance tr td:nth-of-type(2) {
 table.dashboard-reminders tr td {
   border-top: none;
   padding: 0.1rem;
+}
+
+.table.borderless tr td {
+  border: none;
+}
+
+.table.borderless tr:nth-child(2) td {
+  padding-top: 0;
 }
 
 .card.budget {

@@ -776,21 +776,16 @@ table.balance {
 
 .table.settings {
     tr {
-        border-bottom: none;
-
-        td:nth-of-type(even) {
-            padding-right: 10px;
+        border: none;
+        td {
+            border: none;
+            
         }
     }
-
 }
 
 .table.settings2 {
     tr {
-        &:first-of-type td {
-            border: none;
-            
-        }
 
         td {
             position: relative;
@@ -825,6 +820,20 @@ table.dashboard-reminders{
     }
 }
 
+.table.borderless{
+    tr{
+        td{
+            border: none;
+        }
+    }
+    tr:nth-child(2){
+        td{
+            padding-top:0;
+        }
+        
+    }
+    
+}
 
 
 

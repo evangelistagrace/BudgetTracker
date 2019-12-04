@@ -37,7 +37,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                     <div class="card settings">
                         <div class="card-body">
                             <h5 class="text-left"><strong>Income</strong></h5>
-                            <table class='table table-condensed settings2'>
+                            <table class='table borderless'>
                                 <form action="settings.php" method="POST">
                                     <tr>
                                         <?php 
@@ -120,7 +120,6 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                             <h5 class="text-left"><strong>Budgets</strong></h5>
 
                             <form action="settings.php" method="POST">
-                                <br>
                                 <table class="table borderless">
                                     <?php if(count($errors)) : ?>
                                     <div class="error">
@@ -131,7 +130,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     <?php endif ?>
                                     <tr>
                                         <td style="width:35%">
-                                            <input class="form-control" type="text" name="category-name" required
+                                            <input class="form-control" type="text" name="budget-name" required
                                                 placeholder="Budget Name">
                                         </td>
                                         <td style="width: 35%">
@@ -139,8 +138,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">RM</span>
                                                 </div>
-                                                <input class="form-control text-right" name="new-income"
-                                                    id="income" type="text" value=""
+                                                <input class="form-control text-right" name="budget-amount" type="text" value=""
                                                     placeholder="0">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
@@ -152,7 +150,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                                 <div class="input-group">
                                                     <select id="groupIcon" class="selectpicker show-tick"
                                                         data-style="bg-light text-dark" data-width="100%" data-size="3"
-                                                        title="Pick a color" name="category-color">
+                                                        title="Pick a color" name="budget-color">
                                                         <option value="watermelon-red #E45755" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
                                                         <option value="mustard #F8CC55" data-icon="fas fa-circle mustard">Mustard</option>
                                                         <option value="lime #D8C855" data-icon="fas fa-circle lime">Lime</option>
@@ -170,7 +168,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <button type="submit" name="add-category" class="btn btn-info btn-block">Add
+                                            <button type="submit" name="add-budget" class="btn btn-info btn-block">Add
                                                 new budget</button>
                                         </td>
                                     </tr>
