@@ -11,10 +11,10 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
     $editState = false;
 }else{
     $editState = $_GET['editState'];
-    $categoryid = $_GET['categoryid'];
-    $categoryname = $_GET['categoryname'];
-    $categorybudget = $_GET['categorybudget'];
-    $categorycolor = $_GET['categorycolor'];
+    $budgetid = $_GET['budgetid'];
+    $budgetname = $_GET['budgetname'];
+    $budgetamount = $_GET['budgetamount'];
+    $budgetcolor = $_GET['budgetcolor'];
 }
 ?>
 <title>Settings - BudgetTracker</title>
@@ -177,25 +177,25 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
 
 
                             <table class='table table-condensed settings2'>
-                                <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid"); ?>
+                                <?php  $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
-                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['categorycolor']}" ?>'><?php echo $result['categoryname'] ?></div></td>
+                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'><?php echo $result['budgetname'] ?></div></td>
                                     
                                     <td style="width: 10%" rowspan="2">
                                         <!-- edit budget -->
-                                        <a id="editCategoryName"
-                                            href="settings.php?editState=true&categoryid=<?php echo $result['categoryid']?>&categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>&categorycolor=<?php echo $result['categorycolor']?>"><i
+                                        <a id="editbudgetName"
+                                            href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
                                         <!-- delete budget -->
                                         <a
-                                            href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i
+                                            href="settings-process.php?del-budget='<?php echo $result['budgetname']; ?>'"><i
                                                 class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
                                 <tr class="borderless">
                                     <td class="borderless">
-                                        <small>RM <?php echo $result['categorybudget']?></small>
+                                        <small>RM <?php echo $result['budgetamount']?></small>
                                     </td>
                                 </tr>
                                 <?php } ?>

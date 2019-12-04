@@ -10,25 +10,25 @@ if(isset($_GET['del-category'])){
     header('location: settings.php');
 }
 
-if(isset($_POST['add-category'])){
-    $categoryname = $_POST['category-name'];
-    $categorycolor = $_POST['category-color'];
+if(isset($_POST['add-budget'])){
+    $budgetname = $_POST['budget-name'];
+    $budgetamount = $_POST['budget-amount'];
+    $budgetcolor = $_POST['budget-color'];
 
-    if(!empty($categoryname)){
+    if(!empty($budgetname)){
         // check for duplicate categories
-        $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."'");
+        $query = pg_query("SELECT * FROM budget WHERE username = '".$_SESSION['username']."'");
         while($result = pg_fetch_array($query)){
-            if($result['categoryname'] == $categoryname) {
-                array_push($errors, "Category '$categoryname' already exists.");
+            if($result['budgetname'] == $budgetname) {
+                array_push($errors, "Budget '$budgetname' already exists.");
             }
         }
-        
     }
-    if($categorycolor == ""){
-        array_push($errors, "Choose category color");
+    if($budgetcolor == ""){
+        array_push($errors, "Choose a budget color");
     }
     if(count($errors) == 0){
-            $query = pg_query("INSERT INTO categories (username, categoryname, categorycolor) VALUES ('".$_SESSION['username']."', '$categoryname', '$categorycolor')");
+            $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
 
         }
 }
