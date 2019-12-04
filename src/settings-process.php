@@ -3,10 +3,10 @@ require 'config.php';
 
 $errors = array();
 
-if(isset($_GET['del-category'])){
-    $categoryname = $_GET['del-category'];
-    $query = pg_query("DELETE FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = $categoryname");
-    $_SESSION['message'] = "Category deleted";
+if(isset($_GET['del-budget'])){
+    $budgetname = $_GET['del-budget'];
+    $query = pg_query("DELETE FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = $budgetname");
+    $_SESSION['message'] = "budget deleted";
     header('location: settings.php');
 }
 
@@ -17,7 +17,7 @@ if(isset($_POST['add-budget'])){
 
     if(!empty($budgetname)){
         // check for duplicate categories
-        $query = pg_query("SELECT * FROM budget WHERE username = '".$_SESSION['username']."'");
+        $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."'");
         while($result = pg_fetch_array($query)){
             if($result['budgetname'] == $budgetname) {
                 array_push($errors, "Budget '$budgetname' already exists.");
