@@ -7,8 +7,13 @@ require 'settings-process.php';
 // initialize variables
 $username = $_SESSION['username'];
 $income = "Add income...";
-if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
+if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
+    // set default GET values
     $editState = false;
+    $budgetid = "";
+    $budgetname = "";
+    $budgetamount = "";
+    $budgetcolor = "";
 }else{
     $editState = $_GET['editState'];
     $budgetid = $_GET['budgetid'];
@@ -130,16 +135,17 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     <?php endif ?>
                                     <tr>
                                         <td style="width:35%">
+                                            <input type="hidden" name="budget-id" value=<?php echo $budgetid ?>>
                                             <input class="form-control" type="text" name="budget-name" required
-                                                placeholder="Budget Name">
+                                                placeholder="Budget Name" value=<?php echo $budgetname ?>>
                                         </td>
                                         <td style="width: 35%">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">RM</span>
                                                 </div>
-                                                <input class="form-control text-right" name="budget-amount" type="text" value=""
-                                                    placeholder="0">
+                                                <input class="form-control text-right" name="budget-amount" type="text"
+                                                    placeholder="0" value=<?php echo $budgetamount ?>>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                                 </div>
@@ -150,7 +156,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                                 <div class="input-group">
                                                     <select id="groupIcon" class="selectpicker show-tick"
                                                         data-style="bg-light text-dark" data-width="100%" data-size="3"
-                                                        title="Pick a color" name="budget-color">
+                                                        title="Pick a color" name="budget-color" value=<?php echo $budgetcolor ?>>
                                                         <option value="watermelon-red #E45755" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
                                                         <option value="mustard #F8CC55" data-icon="fas fa-circle mustard">Mustard</option>
                                                         <option value="lime #D8C855" data-icon="fas fa-circle lime">Lime</option>
@@ -167,10 +173,20 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">
-                                            <button type="submit" name="add-budget" class="btn btn-info btn-block">Add
-                                                new budget</button>
-                                        </td>
+                                        
+                                            <?php if($editState == true):?>
+                                                <td colspan="2">
+                                                <button type="submit" name="edit-budget" class="btn btn-primary btn-block"><i class="fas fa-check"></i> Save budget</button></td>
+                                                <td colspan="1">
+                                                    <button type="submit" name="cancel-budget" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Cancel</button>
+                                                </td>
+                                            <?php else: ?>
+                                                <td colspan="3">
+                                                    <button type="submit" name="add-budget" class="btn btn-info btn-block"><i class="fas fa-plus"></i> Add budget</button>
+                                                </td>
+                                                
+                                            <?php endif ?>
+                                        
                                     </tr>
                                 </table>
                             </form>
@@ -180,16 +196,14 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                 <?php  $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
-                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'><?php echo $result['budgetname'] ?></div></td>
+                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['budgetcolorname']}" ?>'><?php echo $result['budgetname'] ?></div></td>
                                     
                                     <td style="width: 10%" rowspan="2">
                                         <!-- edit budget -->
-                                        <a id="editbudgetName"
-                                            href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                        <a href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
                                         <!-- delete budget -->
-                                        <a
-                                            href="settings-process.php?del-budget='<?php echo $result['budgetname']; ?>'"><i
+                                        <a href="settings-process.php?del-budget='<?php echo $result['budgetname']; ?>'"><i
                                                 class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>

@@ -7053,13 +7053,6 @@ select#groupIcon option[value="icon-1"] {
   cursor: pointer;
 }
 
-.fa-check {
-  position: absolute;
-  bottom: -10px;
-  right: -12px;
-  color: #FF7851;
-}
-
 /* The container */
 .container {
   display: inline-block;
