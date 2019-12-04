@@ -157,6 +157,10 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                                     <select id="groupIcon" class="selectpicker show-tick"
                                                         data-style="bg-light text-dark" data-width="100%" data-size="3"
                                                         title="Pick a color" name="budget-color" value=<?php echo $budgetcolor ?>>
+                                                        <?php  $query = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' "); ?>
+                                                        <?php while($result = pg_fetch_array($query)): ?>
+
+                                                        <?php endwhile ?>
                                                         <option value="watermelon-red #E45755" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
                                                         <option value="mustard #F8CC55" data-icon="fas fa-circle mustard">Mustard</option>
                                                         <option value="lime #D8C855" data-icon="fas fa-circle lime">Lime</option>
@@ -200,7 +204,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                     
                                     <td style="width: 10%" rowspan="2">
                                         <!-- edit budget -->
-                                        <a href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                        <a href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolorname']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
                                         <!-- delete budget -->
                                         <a href="settings-process.php?del-budget='<?php echo $result['budgetname']; ?>'"><i

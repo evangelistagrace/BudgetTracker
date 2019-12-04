@@ -62,6 +62,20 @@ if(isset($_POST['register'])){
         $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Miscellaneous')";
         $result = pg_query($query);
 
+        // create default colors for user
+        $query = "INSERT INTO colors (colorname, colorhex, colortaken, username) VALUES 
+        ('watermelon-red', '#e97877', false, '$username'),
+        ('mustard', '#f9d677', false, '$username'),
+        ('lime', '#dfd277', false, '$username'),
+        ('cyan', '#4ccead', false, '$username'),
+        ('dark-blue', '#348c9f', false, '$username'),
+        ('hot-pink', '#dc6372', false, '$username'),
+        ('mud', '#c18f6b', false, '$username'),
+        ('baby-blue', '#73aad8', false, '$username'),
+        ('lavender', '#c785da', false, '$username'),
+        ('tangerine', '#fa9a4c', false, '$username')";
+        $result = pg_query($query);
+
         // set session variables
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
