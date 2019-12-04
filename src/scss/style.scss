@@ -808,6 +808,11 @@ table.balance {
         }
     }
 
+    tr.borderless, td.borderless {
+        border-top: none;
+        padding-top: 0;
+    }
+
 }
 
 table.dashboard-reminders{
@@ -820,15 +825,8 @@ table.dashboard-reminders{
     }
 }
 
-.borderless {
-    padding-top: 10px;
-    tr {
-        
-        td {
-            border: none; padding-top: 0;
-        }
-    }
-}
+
+
 
 //cards
 .card.budget {

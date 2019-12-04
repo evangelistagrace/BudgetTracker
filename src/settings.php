@@ -12,6 +12,9 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
 }else{
     $editState = $_GET['editState'];
     $categoryid = $_GET['categoryid'];
+    $categoryname = $_GET['categoryname'];
+    $categorybudget = $_GET['categorybudget'];
+    $categorycolor = $_GET['categorycolor'];
 }
 ?>
 <title>Settings - BudgetTracker</title>
@@ -61,9 +64,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                         <td style="width:20%"><button name="add-income"
                                                 class="btn btn-block btn-info"><?php echo $btnText ?></button>
                                         </td>
-
                                     </tr>
-
                                 </form>
 
                             </table>
@@ -116,7 +117,7 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
 
                             <hr>
 
-                            <h5 class="text-left"><strong>Categories</strong></h5>
+                            <h5 class="text-left"><strong>Budgets</strong></h5>
 
                             <form action="settings.php" method="POST">
                                 <br>
@@ -129,23 +130,24 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                     </div>
                                     <?php endif ?>
                                     <tr>
-                                        <td style="width:60%">
-                                            
+                                        <td style="width:35%">
                                             <input class="form-control" type="text" name="category-name" required
-                                                placeholder="Category Name">
+                                                placeholder="Budget Name">
                                         </td>
-                                        <td style="width:40%">
-                                            <!-- <label for="budget-amount">Budget amount</label>
+                                        <td style="width: 35%">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">RM</span>
-                                                </div><input class="form-control text-right" name="budget-amount"
-                                                    type="text" value="" placeholder="">
+                                                </div>
+                                                <input class="form-control text-right" name="new-income"
+                                                    id="income" type="text" value=""
+                                                    placeholder="0">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                                 </div>
-                                            </div> -->
-
+                                            </div>
+                                        </td>
+                                        <td style="width:30%">
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select id="groupIcon" class="selectpicker show-tick"
@@ -167,9 +169,9 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="3">
                                             <button type="submit" name="add-category" class="btn btn-info btn-block">Add
-                                                new category</button>
+                                                new budget</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -180,51 +182,22 @@ if(!isset($_GET['editState']) && !isset($_GET['categoryid'])){
                                 <?php  $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
-                                    <!-- edit category -->
-                                    <?php if($editState == false) :?>
                                     <td style="width: 90%"><div class='<?php echo "badge bg-{$result['categorycolor']}" ?>'><?php echo $result['categoryname'] ?></div></td>
-                                    <td style="width: 10%">
+                                    
+                                    <td style="width: 10%" rowspan="2">
+                                        <!-- edit budget -->
                                         <a id="editCategoryName"
-                                            href="settings.php?editState=true&categoryid=<?php echo $result['categoryid'] ?>"><i
+                                            href="settings.php?editState=true&categoryid=<?php echo $result['categoryid']?>&categoryname=<?php echo $result['categoryname']?>&categorybudget=<?php echo $result['categorybudget']?>&categorycolor=<?php echo $result['categorycolor']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
-                                        <!-- delete category -->
+                                        <!-- delete budget -->
                                         <a
                                             href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i
                                                 class="far fa-trash-alt text-danger"></i></a>
                                     </td>
-                                    <?php elseif($editState == true) :?>
-                                    <!-- category to be edited -->
-                                    <?php if($result['categoryid'] == $categoryid):?>
-                                    <form action="settings.php" method="POST">
-                                        <td style="width: 90%"><input type="text" class="form-control" id="categoryName"
-                                                name="categoryname" value="<?php echo $result['categoryname'] ?>"><input
-                                                type="hidden" name="categoryid"
-                                                value="<?php echo $result['categoryid'] ?>"></td>
-                                        <td style="width: 10%">
-                                            <!-- edit category -->
-                                            <button id="editCategoryName" type="submit" name="edit-category"><i
-                                                    class="fas fa-save text-primary"></i></button>
-                                            <!-- delete category -->
-                                            <a
-                                                href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i
-                                                    class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </form>
-                                    <!-- rest of the categories -->
-                                    <?php else: ?>
-                                    <td style="width: 90%"><input type="text" readonly class="form-control-plaintext"
-                                            id="categoryName" value="<?php echo $result['categoryname'] ?>"></td>
-                                    <td style="width: 10%">
-                                        <a id="editCategoryName"
-                                            href="settings.php?editState=true&categoryid=<?php echo $result['categoryid'] ?>"><i
-                                                class="fas fa-edit text-primary"></i></a>
-                                        <!-- delete category -->
-                                        <a
-                                            href="settings-process.php?del-category='<?php echo $result['categoryname']; ?>'"><i
-                                                class="far fa-trash-alt text-danger"></i></a>
-                                    </td>
-                                    <?php endif ?>
-                                    <?php endif ?>
+                                </tr>
+                                <tr class="borderless">
+                                    <td class="borderless">
+                                        <small>RM <?php echo $result['categorybudget']?></small>
                                     </td>
                                 </tr>
                                 <?php } ?>

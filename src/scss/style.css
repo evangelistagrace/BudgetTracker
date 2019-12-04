@@ -6774,18 +6774,14 @@ table.balance tr td:nth-of-type(2) {
   padding: 5px;
 }
 
+.table.settings2 tr.borderless, .table.settings2 td.borderless {
+  border-top: none;
+  padding-top: 0;
+}
+
 table.dashboard-reminders tr td {
   border-top: none;
   padding: 0.1rem;
-}
-
-.borderless {
-  padding-top: 10px;
-}
-
-.borderless tr td {
-  border: none;
-  padding-top: 0;
 }
 
 .card.budget {
