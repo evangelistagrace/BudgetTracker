@@ -159,18 +159,23 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                                         title="Pick a color" name="budget-color" value=<?php echo $budgetcolor ?>>
                                                         <?php  $query = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' "); ?>
                                                         <?php while($result = pg_fetch_array($query)): ?>
+                                                            <?php if($editState == false):?> 
+                                                                <?php if($result['colortaken'] == f): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>'><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                            <?php elseif($editState == true):?>
+                                                                <?php if($budgetcolor == $result['colorname']): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>' selected><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                                <?php if($result['colortaken'] == f): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>'><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                            <?php endif ?>
 
+
+
+                                                           
                                                         <?php endwhile ?>
-                                                        <option value="watermelon-red #E45755" data-icon="fas fa-circle watermelon-red">Watermelon Red</option>
-                                                        <option value="mustard #F8CC55" data-icon="fas fa-circle mustard">Mustard</option>
-                                                        <option value="lime #D8C855" data-icon="fas fa-circle lime">Lime</option>
-                                                        <option value="cyan #30B291" data-icon="fas fa-circle cyan">Cyan</option>
-                                                        <option value="dark-blue #225B67" data-icon="fas fa-circle dark-blue">Dark blue</option>
-                                                        <option value="hot-pink #D43C4F" data-icon="fas fa-circle hot-pink">Hot Pink</option>
-                                                        <option value="mud #B07449" data-icon="fas fa-circle mud">Mud</option>
-                                                        <option value="baby-blue #5195CF" data-icon="fas fa-circle baby-blue">Baby Blue</option>
-                                                        <option value="lavender #B967D1" data-icon="fas fa-circle lavender">Lavender</option>
-                                                        <option value="tangerine #FA8120" data-icon="fas fa-circle tangerine">Tangerine</option>
                                                     </select>
                                                 </div>
                                             </div>
