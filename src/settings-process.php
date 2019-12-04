@@ -5,6 +5,11 @@ $errors = array();
 
 if(isset($_GET['del-budget'])){
     $budgetname = $_GET['del-budget'];
+    $budgetcolor = $_GET['budget-color'];
+
+    // set deleted budget color as not taken
+    $query = pg_query("UPDATE colors SET colortaken = false WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+
     $query = pg_query("DELETE FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = $budgetname");
     $_SESSION['message'] = "budget deleted";
     header('location: settings.php');
@@ -15,9 +20,9 @@ if(isset($_POST['add-budget'])){
     $budgetamount = $_POST['budget-amount'];
     // separate color name and color hex value
     $budgetcolor = $_POST['budget-color'];
-    $color = explode(" ", $budgetcolor);
-    $budgetcolorname = $color[0];
-    $budgetcolorhex= $color[1];
+
+    // set selected color as taken
+    $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
 
     if(!empty($budgetname)){
         // check for duplicate categories
@@ -32,7 +37,7 @@ if(isset($_POST['add-budget'])){
         array_push($errors, "Choose a budget color");
     }
     if(count($errors) == 0){
-            $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolorname, budgetcolorhex) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolorname', '$budgetcolorhex')");
+            $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
 
         }
 }
@@ -41,7 +46,22 @@ if(isset($_POST['edit-budget'])){
     $budgetid = $_POST['budget-id'];
     $budgetname = $_POST['budget-name'];
     $budgetamount = $_POST['budget-amount'];
+    $budgetpreviouscolor = $_POST['budget-previous-color'];
     $budgetcolor = $_POST['budget-color'];
+
+    $query = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ");
+    while($result = pg_fetch_array($query)){
+        if($budgetcolor == $budgetpreviouscolor){
+            //do nothing
+
+        }elseif($budgetcolor != $budgetpreviouscolor){
+            // set current color
+            $query1 = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+
+            // unset previous color
+            $query2 = pg_query("UPDATE colors SET colortaken = false WHERE colorname = '$budgetpreviouscolor' AND username = '".$_SESSION['username']."' ");
+        }
+    }
     
     if(!empty($budgetname)){
         // check for duplicate budgets
