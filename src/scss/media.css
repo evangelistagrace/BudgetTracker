@@ -5934,7 +5934,7 @@ readers do not read off random characters that represent icons */
 body {
   font-family: 'Varela Round', sans-serif;
   font-size: 16px;
-  background: black;
+  background: #fcfcfc;
 }
 
 .btn {
@@ -6748,14 +6748,10 @@ table.balance tr td:nth-of-type(2) {
 }
 
 .table.settings tr {
-  border-bottom: none;
+  border: none;
 }
 
-.table.settings tr td:nth-of-type(even) {
-  padding-right: 10px;
-}
-
-.table.settings2 tr:first-of-type td {
+.table.settings tr td {
   border: none;
 }
 
@@ -6775,12 +6771,21 @@ table.balance tr td:nth-of-type(2) {
 }
 
 .table.settings2 tr.borderless, .table.settings2 td.borderless {
-  border-top: 0px transparent solid;
+  border-top: none;
+  padding-top: 0;
 }
 
 table.dashboard-reminders tr td {
   border-top: none;
   padding: 0.1rem;
+}
+
+.table.borderless tr td {
+  border: none;
+}
+
+.table.borderless tr:nth-child(2) td {
+  padding-top: 0;
 }
 
 .card.budget {
@@ -7046,13 +7051,6 @@ select#groupIcon option[value="icon-1"] {
   opacity: 1;
   border: 3px solid #66b8c9;
   cursor: pointer;
-}
-
-.fa-check {
-  position: absolute;
-  bottom: -10px;
-  right: -12px;
-  color: #FF7851;
 }
 
 /* The container */

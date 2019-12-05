@@ -18,7 +18,6 @@ if(isset($_GET['del-budget'])){
 if(isset($_POST['add-budget'])){
     $budgetname = $_POST['budget-name'];
     $budgetamount = $_POST['budget-amount'];
-    // separate color name and color hex value
     $budgetcolor = $_POST['budget-color'];
 
     // set selected color as taken
@@ -36,10 +35,21 @@ if(isset($_POST['add-budget'])){
     if($budgetcolor == ""){
         array_push($errors, "Choose a budget color");
     }
-    if(count($errors) == 0){
-            $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
+    if($budgetamount == ""){
+        array_push($errors, "Enter a budget amount");
+    }
 
-        }
+    // format budget amount 
+    if (strpos($budgetamount, '.') !== false) {
+        // do nothing
+    }else{
+        $budgetamount .= ".00";
+    }
+
+    if(count($errors) == 0){
+        $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
+
+    }
 }
 
 if(isset($_POST['edit-budget'])){
