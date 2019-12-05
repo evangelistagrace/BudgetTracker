@@ -7,7 +7,7 @@ require 'reminders-process.php';
 // initialize edit variables
 $reminderid = $_GET['edit-reminder'];
 $remindername = $_GET['reminder-name'];
-$remindercategory = $_GET['reminder-category'];
+$reminderbudget = $_GET['reminder-budget'];
 $reminderamount = $_GET['reminder-amount'];
 
 $text = "Helloooo";
@@ -39,11 +39,11 @@ $json_text = json_encode($text);
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
-                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
-                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&category-id=<?php echo $reminder['categoryid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
+                                    <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
                                     </td>
                                     <td><?php echo $reminder['remindername'] ?></td>
                                 <?php elseif($reminder['reminderdone'] === t):?>
@@ -53,12 +53,12 @@ $json_text = json_encode($text);
                                 <?php endif ?>
                                     <td>
                                         <div class="small">
-                                            <div class="circle bg-secondary"></div><?php echo $reminder['categoryname'] ?>
+                                            <div class='<?php echo "circle bg-{$reminder['budgetcolor']}" ?>'></div><?php echo $reminder['budgetname'] ?>
                                         </div>
                                     </td>
                                     <td>RM <?php echo $reminder['reminderamount'] ?></td>
                                     <td>
-                                        <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-category=<?php echo $reminder['categoryname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>
+                                        <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>
                                         <a href="reminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
@@ -94,13 +94,13 @@ $json_text = json_encode($text);
                                 <div class="form-group">
                                     <table>
                                         <tr>
-                                            <td><label for="budgetCategory">Category</label></td>
+                                            <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
-                                                    data-size="3" title="Pick a category" name="category-name">
-                                                    <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                                                    data-size="3" title="Pick a category" name="budget-name">
+                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
-                                                    <option value="<?php echo $result['categoryname'] ?>">
-                                                        <?php echo $result['categoryname'] ?></option>
+                                                    <option value="<?php echo $result['budgetname'] ?>">
+                                                        <?php echo $result['budgetname'] ?></option>
                                                     <?php endwhile ?>
                                                 </select></td>
                                         </tr>
@@ -158,17 +158,17 @@ $json_text = json_encode($text);
                                 <div class="form-group">
                                     <table>
                                         <tr>
-                                            <td><label for="budgetCategory">Category</label></td>
+                                            <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
-                                                    data-size="3" title="Pick a category" name="reminder-category">
-                                                    <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                                                    data-size="3" title="Pick a category" name="reminder-budget">
+                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
-                                                    <?php if($result['categoryname'] == $remindercategory): ?>
-                                                        <option value="<?php echo $result['categoryname'] ?>" selected>
-                                                        <?php echo $result['categoryname'] ?></option>
+                                                    <?php if($result['budgetname'] == $reminderbudget): ?>
+                                                        <option value="<?php echo $result['budgetname'] ?>" selected>
+                                                        <?php echo $result['budgetname'] ?></option>
                                                     <?php else: ?>
-                                                    <option value="<?php echo $result['categoryname'] ?>">
-                                                        <?php echo $result['categoryname'] ?></option>
+                                                    <option value="<?php echo $result['budgetname'] ?>">
+                                                        <?php echo $result['budgetname'] ?></option>
                                                     <?php endif ?>
                                                     <?php endwhile ?>
                                                 </select></td>

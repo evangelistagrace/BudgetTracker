@@ -6,12 +6,12 @@ require 'config.php';
 if(isset($_POST['add-reminder'])){
     $remindername =  $_POST['reminder-name'];
     $reminderamount = $_POST['reminder-amount'];
-    $categoryname = $_POST['category-name'];
+    $budgetname = $_POST['budget-name'];
 
-    // get corresponding categoryid based on categoryname
-    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$categoryname' ");
+    // get corresponding budgetid based on budgetname
+    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
-    $categoryid = $result['categoryid'];
+    $budgetid = $result['budgetid'];
 
     // format reminder amount 
     if (strpos($reminderamount, '.') !== false) {
@@ -20,13 +20,13 @@ if(isset($_POST['add-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO reminders(categoryid, remindername, reminderamount, reminderdone) VALUES ($categoryid, '$remindername', $reminderamount, false)");
+    $query = pg_query("INSERT INTO reminders(budgetid, remindername, reminderamount, reminderdone) VALUES ($budgetid, '$remindername', $reminderamount, false)");
 }
 
 if(isset($_GET['reminder-done'])){
     $reminderdone = $_GET['reminder-done'];
     $reminderid = $_GET['reminder-id'];
-    $categoryid = $_GET['category-id'];
+    $budgetid = $_GET['budget-id'];
     $remindername = $_GET['reminder-name'];
     $reminderamount = $_GET['reminder-amount'];
     $remindercheckeddate= date("Y-m-d");
@@ -35,7 +35,7 @@ if(isset($_GET['reminder-done'])){
    if($reminderdone === 't'){
        $query = pg_query("UPDATE reminders SET reminderdone = 'true' WHERE reminderid = $reminderid ");
        // insert reminder as expense
-       $query = pg_query("INSERT INTO expenses (categoryid, expensename, expenseamount, expensedate) VALUES ($categoryid, '$remindername','$reminderamount','$remindercheckeddate') ");
+       $query = pg_query("INSERT INTO expenses (budgetid, expensename, expenseamount, expensedate) VALUES ($budgetid, '$remindername','$reminderamount','$remindercheckeddate') ");
    }elseif($reminderdone === 'f'){
     //    update boolean value
         $query = pg_query("UPDATE reminders SET reminderdone = 'false' WHERE reminderid = $reminderid ");
@@ -57,12 +57,12 @@ if(isset($_GET['del-reminder'])){
 if(isset($_POST['edit-reminder'])){
     $reminderid = $_POST['reminder-id'];
     $remindername = $_POST['reminder-name'];
-    $remindercategory = $_POST['reminder-category'];
+    $reminderbudget = $_POST['reminder-budget'];
     $reminderamount = $_POST['reminder-amount'];
 
-    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$remindercategory'");
+    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
-    $categoryid = $result['categoryid'];
+    $budgetid = $result['budgetid'];
 
     // format reminder amount 
     if (strpos($reminderamount, '.') !== false) {
@@ -71,7 +71,7 @@ if(isset($_POST['edit-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("UPDATE reminders SET remindername = '$remindername', categoryid = $categoryid, reminderamount = $reminderamount WHERE reminderid = $reminderid");
+    $query = pg_query("UPDATE reminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount WHERE reminderid = $reminderid");
 }
 
 ?>
