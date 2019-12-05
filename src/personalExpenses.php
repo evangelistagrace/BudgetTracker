@@ -7,7 +7,7 @@ require 'personalExpenses-process.php';
 // initialize variables
 $expenseid = $_GET['edit-expense'];
 $expensename = $_GET['expense-name'];
-$expensecategory = $_GET['expense-category'];
+$expensebudget = $_GET['expense-budget'];
 $expenseamount = $_GET['expense-amount'];
 $expensedate = $_GET['expense-date'];
 
@@ -31,7 +31,7 @@ $expensedate = $_GET['expense-date'];
 
                 <div class="row">
                     <div class="card expenses">
-                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.categoryid, expenses.expensename, expenses.expenseamount, expenses.expensedate, categories.username, categories.categoryname, categories.categorycolor  FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
                         <?php $date2 = $expense['expensedate']?>
@@ -47,12 +47,14 @@ $expensedate = $_GET['expense-date'];
                                     <td><?php echo $expense['expensename']?></td>
                                     <td>
                                         <div class="small">
-                                            <div class='<?php echo "circle bg-{$expense['categorycolor']}" ?>'></div><?php echo $expense['categoryname']?>
+                                            <div class='<?php echo "circle bg-{$expense['budgetcolor']}" ?>'></div><?php echo $expense['budgetname']?>
                                         </div>
                                     </td>
                                     <td>RM <?php echo $expense['expenseamount']?></td>
                                     <td>
-                                        <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&category-id=<?php echo $expense['categoryid']?>&expense-name=<?php echo $expense['expensename']?>&expense-category=<?php echo $expense['categoryname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
+                                        <!-- edit expense -->
+                                        <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name=<?php echo $expense['expensename']?>&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
+                                        <!-- delete expense -->
                                         <a href="personalExpenses-process.php?del-expense=<?php echo $expense['expenseid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
@@ -92,15 +94,15 @@ $expensedate = $_GET['expense-date'];
                                 <div class="form-group">
                                     <table>
                                         <tr>
-                                            <td><label for="budgetCategory">Category</label></td>
+                                            <td><label for="budgetCategory">Budget Category</label></td>
                                             <td>
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
-                                                        data-size="3" title="Pick a category" name="category-name">
-                                                        <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                                                        data-size="3" title="Pick a category" name="budget-name">
+                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
-                                                        <option value="<?php echo $result['categoryname'] ?>">
-                                                            <?php echo $result['categoryname'] ?></option>
+                                                        <option value="<?php echo $result['budgetname'] ?>">
+                                                            <?php echo $result['budgetname'] ?></option>
                                                         <?php endwhile ?>
                                                     </select>
                                                 </div>
@@ -178,19 +180,19 @@ $expensedate = $_GET['expense-date'];
                                 <div class="form-group">
                                     <table>
                                         <tr>
-                                            <td><label for="budgetCategory">Category</label></td>
+                                            <td><label for="budgetCategory">Budget Category</label></td>
                                             <td>
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
-                                                        data-size="3" title="Pick a category" name="expense-category" >
-                                                        <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ")?>
+                                                        data-size="3" title="Pick a category" name="expense-budget" >
+                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
-                                                        <?php if($result['categoryname'] == $expensecategory): ?>
-                                                            <option value="<?php echo $result['categoryname'] ?>" selected>
-                                                            <?php echo $result['categoryname'] ?></option>
+                                                        <?php if($result['budgetname'] == $expensebudget): ?>
+                                                            <option value="<?php echo $result['budgetname'] ?>" selected>
+                                                            <?php echo $result['budgetname'] ?></option>
                                                         <?php else:?>
-                                                        <option value="<?php echo $result['categoryname'] ?>">
-                                                            <?php echo $result['categoryname'] ?></option>
+                                                        <option value="<?php echo $result['budgetname'] ?>">
+                                                            <?php echo $result['budgetname'] ?></option>
                                                         <?php endif ?>
                                                         <?php endwhile ?>
                                                     </select>

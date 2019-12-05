@@ -38,24 +38,24 @@ $budgetColors = array();
                 <h1 class="title text-primary">My Budgets</h1>
                 <div class="row sm"><canvas id="budgetChart"></canvas></div>
                 <div class="row">
-                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
+                <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
                 <?php while($result = pg_fetch_array($query)) :?>
-                    <?php if($result['categorybudget'] > 0)  :?>
+                    <?php if($result['budgetamount'] > 0)  :?>
                         <div class="card budget" style="width: 100% ;">
                             <table class='table table-condensed budget'>
                                 <tr>
-                                    <td rowspan="2"><?php echo $result['categoryname'] ?></td>
+                                    <td rowspan="2"><?php echo $result['budgetname'] ?></td>
                                     <td>
                                         <?php 
-                                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."'"); 
                                             $result2 = pg_fetch_array($query2);
 
-                                            $percentage = $result2['amount']/$result['categorybudget'] * 100;
+                                            $percentage = $result2['amount']/$result['budgetamount'] * 100;
                                             $percentage = number_format($percentage, 0);
                                             if($percentage > '100'){
                                                 $percentage = '100';
                                             }
-                                            $balance = $result['categorybudget'] - $result2['amount'];
+                                            $balance = $result['budgetamount'] - $result2['amount'];
                                             // format balance amount 
                                             if (strpos($balance, '.') !== false) {
                                                 // do nothing
@@ -89,11 +89,11 @@ $budgetColors = array();
                                     <td class="right">
                                         <div class='progress expense'>
                                             <?php 
-                                                array_push($budgetNames, $result['categoryname']);
-                                                array_push($budgetAngles, $result['categorybudget']);
-                                                // capture hexcolor codes and store in array
-                                                $color = explode(" ", $result['categorycolor']);
-                                                array_push($budgetColors, $color[1]);
+                                                array_push($budgetNames, $result['budgetname']);
+                                                array_push($budgetAngles, $result['budgetamount']);
+                                                $color = pg_fetch_array(pg_query("SELECT * FROM colors WHERE colorname = '".$result['budgetcolor']."' "));
+                                                $budgetColor = $color['colorhex'];
+                                                array_push($budgetColors, $budgetColor);
 
                                             ?>
                                             <?php if($percentage == '100'): ?>

@@ -4,15 +4,15 @@ require 'config.php';
 
 
 if(isset($_POST['add-expense'])) {
-    $categoryname = $_POST['category-name'];
+    $budgetname = $_POST['budget-name'];
     $expensename = $_POST['expense-name'];
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
 
     // select corresponding categoryid from category table
-    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$categoryname' ");
+    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
-    $categoryid = $result['categoryid'];
+    $budgetid = $result['budgetid'];
 
     // format expense amount 
     if (strpos($expenseamount, '.') !== false) {
@@ -21,7 +21,7 @@ if(isset($_POST['add-expense'])) {
         $expenseamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO expenses(categoryid, expensename, expenseamount, expensedate) VALUES ($categoryid,'$expensename', $expenseamount, '$expensedate') ");
+    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate) VALUES ($budgetid,'$expensename', $expenseamount, '$expensedate') ");
 }
 
 if(isset($_GET['del-expense'])){
@@ -34,13 +34,13 @@ if(isset($_GET['del-expense'])){
 if(isset($_POST['edit-expense'])){
     $expenseid = $_POST['expense-id'];
     $expensename = $_POST['expense-name'];
-    $expensecategory = $_POST['expense-category'];
+    $expensebudget = $_POST['expense-budget'];
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
 
-    $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' AND categoryname = '$expensecategory' ");
+    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$expensebudget' ");
     $result = pg_fetch_array($query);
-    $categoryid = $result['categoryid'];
+    $budgetid = $result['budgetid'];
 
     // format expense amount 
     if (strpos($expenseamount, '.') !== false) {
@@ -49,7 +49,7 @@ if(isset($_POST['edit-expense'])){
         $expenseamount .= ".00";
     }
 
-    $query = pg_query("UPDATE expenses SET categoryid = $categoryid, expensename = '$expensename', expenseamount = $expenseamount, expensedate = '$expensedate' WHERE expenseid = $expenseid ");
+    $query = pg_query("UPDATE expenses SET budgetid = $budgetid, expensename = '$expensename', expenseamount = $expenseamount, expensedate = '$expensedate' WHERE expenseid = $expenseid ");
 
 }
 
