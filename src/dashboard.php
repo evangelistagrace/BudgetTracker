@@ -37,7 +37,7 @@ if(!isset($_SESSION['username'])){
                                     </tr>
                                     <tr>
                                         <?php 
-                                            $query = pg_query("SELECT expenses.expenseamount, expenses.categoryid, categories.categoryid FROM expenses INNER JOIN categories ON expenses.categoryid = categories.categoryid WHERE username = '".$_SESSION['username']."'");
+                                            $query = pg_query("SELECT expenses.expenseamount, expenses.budgetid, budgets.budgetid FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."'");
                                             $outflow = 0;
                                             while($result = pg_fetch_array($query)){
                                                 $outflow = $outflow + $result['expenseamount'];
@@ -111,23 +111,23 @@ if(!isset($_SESSION['username'])){
                         <div class="card-body">
                             <h5 class="card-title">Budgets</h5>
                             <p class="card-text">
-                                <?php $query = pg_query("SELECT * FROM categories WHERE username = '".$_SESSION['username']."' ORDER BY categoryid")?>
+                                <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
                                 <?php while($result = pg_fetch_array($query)) :?>
-                                    <?php if($result['categorybudget'] > 0)  :?>
+                                    <?php if($result['budgetamount'] > 0)  :?>
                                         <div class="progress-container">
-                                            <span><?php echo $result['categoryname'] ?></span>
+                                            <span><?php echo $result['budgetname'] ?></span>
                                             <div class="progress">
                                                 <?php 
-                                                    $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE categoryid = '".$result['categoryid']."'"); 
+                                                    $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."'"); 
                                                     $result2 = pg_fetch_array($query2);
 
-                                                    $percentage = $result2['amount']/$result['categorybudget'] * 100;
+                                                    $percentage = $result2['amount']/$result['budgetamount'] * 100;
                                                     $percentage = number_format($percentage, 0);
                                                     if($percentage > '100'){
                                                         $percentage = '100';
                                                     }
                                                 ?>
-                                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $percentage ?>%;"></div>
                                             </div>
                                         </div>
                                     <?php endif ?>
