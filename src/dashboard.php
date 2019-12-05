@@ -74,12 +74,12 @@ if(!isset($_SESSION['username'])){
                         <div class="card-body">
                             <h5 class="card-title">Reminders</h5>
                             <p class="card-text">
-                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.categoryid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, categories.categoryid, categories.categoryname FROM reminders INNER JOIN categories ON reminders.categoryid = categories.categoryid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                                 <table class="table dashboard-reminders">
                                     <?php while($reminder = pg_fetch_array($query)):?>
                                         <tr>
                                             <?php if($reminder['reminderdone'] === f):?>
-                                                <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&category-id=<?php echo $reminder['categoryid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
+                                                <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
                                                 </td>
 
                                                 <td><?php echo $reminder['remindername'] ?></td>

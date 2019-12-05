@@ -58,7 +58,10 @@ $json_text = json_encode($text);
                                     </td>
                                     <td>RM <?php echo $reminder['reminderamount'] ?></td>
                                     <td>
+                                        <!-- edit reminder -->
                                         <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>
+                                        
+                                        <!-- delete reminder -->
                                         <a href="reminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>

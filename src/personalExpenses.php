@@ -53,7 +53,7 @@ $expensedate = $_GET['expense-date'];
                                     <td>RM <?php echo $expense['expenseamount']?></td>
                                     <td>
                                         <!-- edit expense -->
-                                        <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name=<?php echo $expense['expensename']?>&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
+                                        <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name='<?php echo $expense['expensename']?>'&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
                                         <!-- delete expense -->
                                         <a href="personalExpenses-process.php?del-expense=<?php echo $expense['expenseid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>

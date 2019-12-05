@@ -79,6 +79,8 @@ $budgetColors = array();
                                         ?>
                                         <?php if($balance  < '0'): ?>
                                             <div><small class="text-danger">Overspent -RM <?php echo $negativeBalance ?></small></div>
+                                        <?php elseif($balance == '0'): ?>
+                                            <div><small>Left RM <?php echo $balance ?></small></div>
                                         <?php else: ?>
                                             <div><small>Left +RM <?php echo $balance ?></small></div>
                                         <?php endif ?>
