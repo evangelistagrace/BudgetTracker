@@ -5,12 +5,13 @@ $errors = array();
 
 if(isset($_GET['del-budget'])){
     $budgetname = $_GET['del-budget'];
-    $budgetcolor = $_GET['budget-color'];
+    $budgetcolor = $_GET['budgetcolor'];
 
     // set deleted budget color as not taken
     $query = pg_query("UPDATE colors SET colortaken = false WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
 
-    $query = pg_query("DELETE FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = $budgetname");
+    $query = pg_query("DELETE FROM budgets WHERE budgetname = '$budgetname' AND username = '".$_SESSION['username']."' ");
+    
     $_SESSION['message'] = "budget deleted";
     header('location: settings.php');
 }
