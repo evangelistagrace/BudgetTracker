@@ -56,6 +56,13 @@ $GLOBALS['BALANCE']= 90;
 
                                                     $expensesPercentage = $result2['totalexpense']/$result['totalbudget'] * 100;
                                                     $balance = $result['totalbudget'] - $result2['totalexpense'];
+                                                    $totalBudget = $result['totalbudget'];
+                                                    // format expense amount 
+                                                    if (strpos($totalBudget, '.') !== false) {
+                                                        // trim
+                                                        $totalBudget = trim($totalBudget, '.00');
+
+                                                    }
                                                     $GLOBALS['BALANCE']= $balance;
 
                                                 ?>
@@ -66,7 +73,7 @@ $GLOBALS['BALANCE']= 90;
                                                         <td style="width:75%"><div class="progress budget-overview">
                                                     <div class="progress-bar budget-progress progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $expensesPercentage?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div></td>
-                                                        <td style="width:15%"><span>RM <?php echo $result['totalbudget']?></span></td>
+                                                        <td style="width:15%"><span>RM <?php echo $totalBudget?></span></td>
                                                         </tr>
                                                     </table>
                                                 </section>

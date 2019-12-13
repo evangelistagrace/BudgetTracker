@@ -6338,6 +6338,10 @@ a {
   margin: 10px;
 }
 
+.my-container .row .col-10-body .row .card .card-body {
+  padding: 0.8rem;
+}
+
 .my-container .row .col-10-body .row .card .card-body a.btn {
   font-size: 0.9em;
   font-family: 'Varela Round', sans-serif;
@@ -6627,8 +6631,12 @@ ul.groups-list {
   margin-top: 10px;
 }
 
-.table {
+.table.expenses {
   margin-bottom: 0;
+}
+
+.table.expenses tr td {
+  padding: 0.5rem;
 }
 
 table.budget {
@@ -6720,13 +6728,13 @@ table.balance tr td:nth-of-type(2) {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  text-align: center;
+  text-align: left;
 }
 
 .table.expenses tr td i,
 .table.reminders tr td i,
 .table.settings tr td i {
-  margin: 10px;
+  margin-right: 10px;
 }
 
 .table.expenses tr td .circle,
@@ -6744,6 +6752,14 @@ table.balance tr td:nth-of-type(2) {
 }
 
 .table.expenses tr td:last-of-type {
+  text-align: right;
+}
+
+.table.table.reminders tr td:first-of-type {
+  text-align: left;
+}
+
+.table.table.reminders tr td:last-of-type {
   text-align: right;
 }
 
@@ -6794,7 +6810,7 @@ table.dashboard-reminders tr td {
 
 .card.expenses,
 .card.settings {
-  width: 70%;
+  width: 80%;
 }
 
 .card-text {
@@ -7247,5 +7263,9 @@ table.table-overview tr td:nth-child(2) {
 table.table-overview tr td span {
   font-size: 11px;
   margin: 3px;
+}
+
+.fa-square, .fa-check-square {
+  font-size: 18px;
 }
 /*# sourceMappingURL=style.css.map */

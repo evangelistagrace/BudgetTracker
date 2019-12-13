@@ -58,7 +58,6 @@ $expensedate = $_GET['expense-date'];
                                         <a href="personalExpenses-process.php?del-expense=<?php echo $expense['expenseid']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
-
                             </table>
                         </div>
                         <?php endwhile ?>

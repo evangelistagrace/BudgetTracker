@@ -75,31 +75,6 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                             </table>
                             <hr>
 
-                            <h5 class="text-left"><strong>Budget</strong></h5>
-                            <table class='table table-condensed settings2'>
-                                <tr>
-                                    <td><label class="container">
-                                            <input type="radio" checked="checked" name="radio">
-                                            <span class="checkmark"></span>
-                                        </label></td>
-                                    <td>Monthly recurring</td>
-
-                                    <td><label class="container">
-                                            <input type="radio" name="radio">
-                                            <span class="checkmark"></span>
-                                        </label></td>
-                                    <td>Weekly recurring</td>
-
-                                    <td><label class="container">
-                                            <input type="radio" name="radio">
-                                            <span class="checkmark"></span>
-                                        </label></td>
-                                    <td>Daily recurring</td>
-                                </tr>
-
-                            </table>
-                            <hr>
-
 
                             <h5 class="text-left"><strong>Reminders</strong></h5>
                             <table class='table table-condensed settings2'>
@@ -123,7 +98,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                             <hr>
 
                             <h5 class="text-left"><strong>Budgets</strong></h5>
-
+                            <small>Create up to 10 budgets</small>
                             <form action="settings.php" method="POST">
                                 <table class="table borderless">
                                     <?php if(count($errors)) : ?>

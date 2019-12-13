@@ -318,7 +318,7 @@ a {
                     margin: 10px;
 
                     .card-body {
-
+                        padding: 0.8rem;
                         a.btn {
                             font-size: 0.9em;
                             font-family: 'Varela Round', sans-serif;
@@ -666,9 +666,17 @@ ul.groups-list {
 }
 
 //tables
-.table {
+.table.expenses{
     margin-bottom: 0;
+    tr {
+        td{
+            padding: 0.5rem;
+        }
+    }
+    
 }
+
+
 
 table.budget {
     border: none;
@@ -746,10 +754,10 @@ table.balance {
         td {
             border: none;
             flex:1;
-            text-align: center; 
+            text-align: left; 
 
             i {
-                margin: 10px;
+                margin-right: 10px;
             }
 
             .circle {
@@ -764,6 +772,17 @@ table.balance {
 }
 
 .table.expenses {
+    tr {
+        td:first-of-type {
+            text-align: left;
+        }
+        td:last-of-type {
+            text-align: right;
+        }
+    }
+}
+
+.table.table.reminders {
     tr {
         td:first-of-type {
             text-align: left;
@@ -844,7 +863,7 @@ table.dashboard-reminders{
 
 .card.expenses,
 .card.settings {
-    width: 70%;
+    width: 80%;
 }
 
 .card-text {
@@ -1265,3 +1284,8 @@ section.mini-section{
       font-size: 11px;
       margin: 3px;
   }
+
+//   icons
+.fa-square, .fa-check-square{
+    font-size: 18px;
+}

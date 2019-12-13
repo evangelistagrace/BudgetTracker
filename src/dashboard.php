@@ -65,11 +65,10 @@ if(!isset($_SESSION['username'])){
                                     </tr>
                                     <tr>
                                         <?php 
-                                            $query = pg_query("SELECT expenses.expenseamount, expenses.budgetid, budgets.budgetid FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."'");
-                                            $outflow = 0;
-                                            while($result = pg_fetch_array($query)){
-                                                $outflow = $outflow + $result['expenseamount'];
-                                            }
+                                            $query = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE username = '".$_SESSION['username']."'"); 
+                                            $result2 = pg_fetch_array($query);
+
+                                            $outflow = $result2['totalexpense'];
                                             // format outflow amount 
                                             if (strpos($outflow, '.') !== false) {
                                                 // do nothing
