@@ -1219,14 +1219,14 @@ section.mini-section{
     overflow: visible;
   }
   
-  .progress-bar.budget-overview {
+  .budget-progress {
     position: relative;
     border-top-left-radius:10px;
     border-bottom-left-radius:10px;
 
   }
   
-  .progress-bar.budget-overview:before{
+  .budget-progress:before{
     position: absolute;
     right: calc(-40px);
     top: -45px;
@@ -1238,7 +1238,7 @@ section.mini-section{
     border-radius: 5px;
     font-size: 11px;
   }
-  .progress-bar.budget-overview:after{
+  .budget-progress:after{
     border-right: 3px solid #F3969A;
     padding:20px;
     position: absolute;

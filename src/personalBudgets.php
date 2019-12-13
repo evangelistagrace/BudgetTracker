@@ -18,7 +18,7 @@ $budgetNames = array();
 $budgetAngles = array();
 $budgetColors = array();
 
-
+$GLOBALS['BALANCE']= 90;
 ?>
 
 <title>My Budgets - BudgetTracker</title>
@@ -45,42 +45,29 @@ $budgetColors = array();
                                         <div class="card-title">Overview</div>
                                         <div class="card-text">
                                             <div class="row mt-4" style="width:100%">
-                                                <!-- <div class="col" style="padding:0;margin:0; flex:1" >
-                                                    <small>RM 0</small>
-                                                </div>
-
+                                               
+                                                <section class="mini-section">
                                                 <?php 
                                                     $query = pg_query("SELECT SUM(budgetamount) as totalbudget FROM budgets WHERE username = '".$_SESSION['username']."'"); 
                                                     $result = pg_fetch_array($query);
 
-                                                    $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE username = '".$_SESSION['username']."'"); 
-                                                    $result2 = pg_fetch_array($query);
+                                                    $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses "); 
+                                                    $result2 = pg_fetch_array($query2);
+
+                                                    $balance = $result['totalbudget'] - $result2['totalexpense'];
+                                                    $GLOBALS['BALANCE']= $balance;
+
                                                 ?>
 
-
-                                                <div class="col" style="flex:7;padding:2px;margin:0;">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                        style="width: <?php echo 80 ?>%;"></div>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="col" style="padding:0;margin:0; flex:3">
-                                                    
-                                                    <small>RM <?php echo $result['totalbudget'] ?></small>
-                                                </div> -->
-
-                                                <section class="mini-section">
                                                     <table class="table-overview">
                                                         <tr>
                                                         <td style="width:10%"><span>RM 0</span></td>
                                                         <td style="width:75%"><div class="progress budget-overview">
-                                                    <div class="progress-bar budget-overview progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar budget-progress progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div></td>
                                                         <td style="width:15%"><span>RM 100</span></td>
                                                         </tr>
                                                     </table>
-                                                
                                                 </section>
                                             </div>
                                         </div>
@@ -183,10 +170,22 @@ $budgetColors = array();
     </div>
 
      <script>
-        let budgetAngles, budgetNames, budgetColors;
+        let budgetAngles, budgetNames, budgetColors, BALANCE;
         budgetNames = <?php echo json_encode($budgetNames) ?>;
         budgetAngles = <?php echo json_encode($budgetAngles) ?>;
         budgetColors = <?php echo json_encode($budgetColors) ?>;
+
+        BALANCE = <?php echo $GLOBALS['BALANCE'] ?>;
+
+        if (BALANCE < 0) {
+            BALANCE = Math.abs(BALANCE);
+            BALANCE = "-RM " + BALANCE;
+        }else {
+            BALANCE = "RM " + BALANCE + " left";
+
+        }
+
+
 
      </script>                                               
 

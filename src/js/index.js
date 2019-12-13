@@ -1,5 +1,7 @@
 console.log("js file loaded");
 
+
+
 // to-do list checkbox and progess bar
 var checkboxes = Array.from(document.querySelectorAll('.fa-check-square')).length;
 var countChecked = 0;
@@ -29,6 +31,7 @@ function settingRadio() {
         }
     })
 }
+
 
 //toggle sidebar
 function toggleSidebar() {
