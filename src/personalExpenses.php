@@ -140,9 +140,8 @@ $expensedate = $_GET['expense-date'];
                                             </td>
                                         </tr>
                                     </table>
-
-
                                 </div>
+                                
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit"
                                         name="add-expense">Add expense</button>

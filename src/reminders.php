@@ -9,6 +9,8 @@ $reminderid = $_GET['edit-reminder'];
 $remindername = $_GET['reminder-name'];
 $reminderbudget = $_GET['reminder-budget'];
 $reminderamount = $_GET['reminder-amount'];
+$reminderdate = $_GET['reminder-date'];
+
 
 $text = "Helloooo";
 $json_text = json_encode($text);
@@ -39,7 +41,7 @@ $json_text = json_encode($text);
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
-                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
@@ -57,10 +59,10 @@ $json_text = json_encode($text);
                                         </div>
                                     </td>
                                     <td>RM <?php echo $reminder['reminderamount'] ?></td>
-                                    <td>14 December</td>
+                                    <td><?php echo date("j F", strtotime($reminder['reminderdate'])) ?></td>
                                     <td>
                                         <!-- edit reminder -->
-                                        <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>
+                                        <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>
                                         
                                         <!-- delete reminder -->
                                         <a href="reminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i class="far fa-trash-alt text-danger"></i></a>
@@ -126,8 +128,23 @@ $json_text = json_encode($text);
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
+
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="reminderDate">Due Date</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="date" name="reminder-date"
+                                                        id="reminderDate">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-reminder">Add reminder</button>
 
@@ -195,8 +212,23 @@ $json_text = json_encode($text);
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
+
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="reminderDate">Due Date</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="date" name="reminder-date" value=<?php echo $reminderdate ?>
+                                                        id="reminderDate">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit" name="edit-reminder">Edit reminder</button>
 

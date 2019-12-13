@@ -7,6 +7,7 @@ if(isset($_POST['add-reminder'])){
     $remindername =  $_POST['reminder-name'];
     $reminderamount = $_POST['reminder-amount'];
     $budgetname = $_POST['budget-name'];
+    $reminderdate = $_POST['reminder-date'];
 
     // get corresponding budgetid based on budgetname
     $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
@@ -20,7 +21,7 @@ if(isset($_POST['add-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO reminders(budgetid, remindername, reminderamount, reminderdone, username) VALUES ($budgetid, '$remindername', $reminderamount, false, '".$_SESSION['username']."')");
+    $query = pg_query("INSERT INTO reminders(budgetid, remindername, reminderamount, reminderdate, reminderdone, username) VALUES ($budgetid, '$remindername', $reminderamount, '$reminderdate', false, '".$_SESSION['username']."')");
 }
 
 if(isset($_GET['reminder-done'])){
@@ -59,6 +60,8 @@ if(isset($_POST['edit-reminder'])){
     $remindername = $_POST['reminder-name'];
     $reminderbudget = $_POST['reminder-budget'];
     $reminderamount = $_POST['reminder-amount'];
+    $reminderdate = $_POST['reminder-date'];
+
 
     $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
@@ -71,7 +74,7 @@ if(isset($_POST['edit-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("UPDATE reminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount WHERE reminderid = $reminderid");
+    $query = pg_query("UPDATE reminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount, reminderdate = '$reminderdate' WHERE reminderid = $reminderid");
 }
 
 ?>
