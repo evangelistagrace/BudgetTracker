@@ -55,15 +55,15 @@ $GLOBALS['BALANCE']= 90;
                                                     $result2 = pg_fetch_array($query2);
 
                                                     $expensesPercentage = $result2['totalexpense']/$result['totalbudget'] * 100;
-                                                    $balance = $result['totalbudget'] - $result2['totalexpense'];
+                                                    $GLOBALS['BALANCE'] = $result['totalbudget'] - $result2['totalexpense'];
                                                     $totalBudget = $result['totalbudget'];
-                                                    // format expense amount 
+                                                    // format total budget amount 
                                                     if (strpos($totalBudget, '.') !== false) {
                                                         // trim
-                                                        $totalBudget = trim($totalBudget, '.00');
+                                                        $totalBudget = str_replace(".00","",$totalBudget);;
 
                                                     }
-                                                    $GLOBALS['BALANCE']= $balance;
+                                                    
 
                                                 ?>
 
@@ -73,7 +73,7 @@ $GLOBALS['BALANCE']= 90;
                                                         <td style="width:75%"><div class="progress budget-overview">
                                                     <div class="progress-bar budget-progress progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $expensesPercentage?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div></td>
-                                                        <td style="width:15%"><span>RM <?php echo $totalBudget?></span></td>
+                                                        <td style="width:15%"><span>RM <?php echo $totalBudget ?></span></td>
                                                         </tr>
                                                     </table>
                                                 </section>
@@ -101,7 +101,7 @@ $GLOBALS['BALANCE']= 90;
                                     <td rowspan="2"><?php echo $result['budgetname'] ?></td>
                                     <td>
                                         <?php 
-                                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."'"); 
+                                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."' AND username = '".$_SESSION['username']."' "); 
                                             $result2 = pg_fetch_array($query2);
 
                                             $percentage = $result2['amount']/$result['budgetamount'] * 100;
@@ -183,7 +183,7 @@ $GLOBALS['BALANCE']= 90;
         budgetAngles = <?php echo json_encode($budgetAngles) ?>;
         budgetColors = <?php echo json_encode($budgetColors) ?>;
 
-        BALANCE = <?php echo $GLOBALS['BALANCE'] ?>;
+        BALANCE = <?php echo json_encode($GLOBALS['BALANCE']) ?>;
 
         if (BALANCE < 0) {
             BALANCE = Math.abs(BALANCE);
