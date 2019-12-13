@@ -10,8 +10,8 @@ if(!isset($_SESSION['username'])){
 <title>Dashboard - BudgetTracker</title>
 
 <body>
-   
-<?php include 'navbarDashboard.php'?>
+
+    <?php include 'navbarDashboard.php'?>
     <div class="container-fluid my-container offset-container">
 
         <div class="row">
@@ -20,7 +20,7 @@ if(!isset($_SESSION['username'])){
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
-            <h1 class="title text-primary">My Dashboard</h1>
+                <h1 class="title text-primary">My Dashboard</h1>
                 <div class="row">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -63,7 +63,9 @@ if(!isset($_SESSION['username'])){
                                             }
                                         ?>
                                         <td>Balance</td>
-                                        <td><h4 class="text-primary">+RM <?php echo $balance ?></h4></td>
+                                        <td>
+                                            <h4 class="text-primary">+RM <?php echo $balance ?></h4>
+                                        </td>
                                     </tr>
                                 </table>
                             </p>
@@ -72,86 +74,108 @@ if(!isset($_SESSION['username'])){
 
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Reminders</h5>
+                            <h5 class="card-title">Reminder</h5>
                             <p class="card-text">
                                 <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                                 <table class="table dashboard-reminders">
                                     <?php while($reminder = pg_fetch_array($query)):?>
-                                        <tr>
-                                            <?php if($reminder['reminderdone'] === f):?>
-                                                <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
-                                                </td>
-
-                                                <td><?php echo $reminder['remindername'] ?></td>
-                                            <?php endif ?>
-                                        </tr>
-                                    <?php endwhile ?>
-                                </table>
-                            </p>
-                            <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i class="fas fa-arrow-right"></i></a>
+                                    <tr>
+                                        <?php if($reminder['reminderdone'] === f):?>
+                                        <td><a
+                                                href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
+                                                    class="far fa-square reminder-check"></i></a>
                         </div>
-                    </div>
+                        </td>
 
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Groups</h5>
-                            <p class="card-text">
-                                <ul class="groups-list">
-                                    <li><a href="#">Family</a></li>
-                                    <li><a href="#">Hostel mates</a></li>
-                                    <li><a href="#">Jay's Birthday Party</a></li>
-                                </ul>
-                            </p>
-                            <a href="groups.php" class="btn btn-secondary btn-sm right">Go to groups <i class="fas fa-arrow-right"></i></i></a>
-                        </div>
+                        <td><?php echo $reminder['remindername'] ?></td>
+                        <?php endif ?>
+                        </tr>
+                        <?php endwhile ?>
+                        </table>
+                        </p>
+                        <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="card" style="width: 25rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Budgets</h5>
-                            <p class="card-text">
-                                <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
-                                <?php while($result = pg_fetch_array($query)) :?>
-                                    <?php if($result['budgetamount'] > 0)  :?>
-                                        <div class="progress-container">
-                                            <span><?php echo $result['budgetname'] ?></span>
-                                            <div class="progress">
-                                                <?php 
-                                                    $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."'"); 
-                                                    $result2 = pg_fetch_array($query2);
 
-                                                    $percentage = $result2['amount']/$result['budgetamount'] * 100;
-                                                    $percentage = number_format($percentage, 0);
-                                                    if($percentage > '100'){
-                                                        $percentage = '100';
-                                                    }
-                                                ?>
-                                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $percentage ?>%;"></div>
-                                            </div>
-                                        </div>
-                                    <?php endif ?>
-                                <?php endwhile ?>
-                            </p>
-                            <a href="personalBudgets.php" class="btn btn-secondary btn-sm right">Go to budgets <i class="fas fa-arrow-right"></i></i></a>
-                        </div>
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Groups</h5>
+                        <p class="card-text">
+                            <ul class="groups-list">
+                                <li><a href="#">Family</a></li>
+                                <li><a href="#">Hostel mates</a></li>
+                                <li><a href="#">Jay's Birthday Party</a></li>
+                            </ul>
+                        </p>
+                        <a href="groups.php" class="btn btn-secondary btn-sm right">Go to groups <i
+                                class="fas fa-arrow-right"></i></i></a>
                     </div>
+                </div>
+            </div>
 
-                    <div class="card" style="width: 25rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Expenses</h5>
-                            <p class="card-text">
+
+
+
+
+            <div class="row">
+                <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Budgets</h5>
+                        <p class="card-text">
+                            <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
+                            <?php while($result = pg_fetch_array($query)) :?>
+                            <?php if($result['budgetamount'] > 0)  :?>
+                            <div class="progress-container">
+                                <span><?php echo $result['budgetname'] ?></span>
+                                <div class="progress">
+                                    <?php 
+                                    $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."'"); 
+                                    $result2 = pg_fetch_array($query2);
+
+                                    $percentage = $result2['amount']/$result['budgetamount'] * 100;
+                                    $percentage = number_format($percentage, 0);
+                                    if($percentage > '100'){
+                                        $percentage = '100';
+                                    }
+                                    ?>
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                        style="width: <?php echo $percentage ?>%;"></div>
+                                </div>
+                            </div>
+                            <?php endif ?>
+                            <?php endwhile ?>
+                        </p>
+                        <a href="personalBudgets.php" class="btn btn-secondary btn-sm right">Go to budgets <i
+                                class="fas fa-arrow-right"></i></i></a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Expenses</h5>
+                        <p class="card-text">
                             <canvas id="expensesChart"></canvas>
-                            </p>
-                            <a href="personalExpenses.php" class="btn btn-secondary btn-sm right">Go to expenses <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                        </p>
+                        <a href="personalExpenses.php" class="btn btn-secondary btn-sm right">Go to expenses <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
-
                 </div>
 
             </div>
-
         </div>
+
+
+
+
+
+    </div>
+
+
+    </div>
+
+    </div>
     </div>
 
     <?php include 'footer.php' ?>
