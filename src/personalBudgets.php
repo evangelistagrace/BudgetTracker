@@ -44,8 +44,8 @@ $budgetColors = array();
                                     <div class="card-body">
                                         <div class="card-title">Overview</div>
                                         <div class="card-text">
-                                            <div class="row" style="width:100%">
-                                                <div class="col" style="padding:0;margin:0; flex:1" >
+                                            <div class="row mt-4" style="width:100%">
+                                                <!-- <div class="col" style="padding:0;margin:0; flex:1" >
                                                     <small>RM 0</small>
                                                 </div>
 
@@ -68,7 +68,20 @@ $budgetColors = array();
                                                 <div class="col" style="padding:0;margin:0; flex:3">
                                                     
                                                     <small>RM <?php echo $result['totalbudget'] ?></small>
-                                                </div>
+                                                </div> -->
+
+                                                <section class="mini-section">
+                                                    <table class="table-overview">
+                                                        <tr>
+                                                        <td style="width:10%"><span>RM 0</span></td>
+                                                        <td style="width:75%"><div class="progress budget-overview">
+                                                    <div class="progress-bar budget-overview progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div></td>
+                                                        <td style="width:15%"><span>RM 100</span></td>
+                                                        </tr>
+                                                    </table>
+                                                
+                                                </section>
                                             </div>
                                         </div>
                                         

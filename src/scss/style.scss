@@ -1204,3 +1204,64 @@ small.right {
         display: table-cell;
     }
 }
+
+
+// mini budget overview
+section.mini-section{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+  }
+  
+  .progress.budget-overview{
+    overflow: visible;
+  }
+  
+  .progress-bar.budget-overview {
+    position: relative;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+
+  }
+  
+  .progress-bar.budget-overview:before{
+    position: absolute;
+    right: calc(-40px);
+    top: -45px;
+    width:auto;
+    padding: 3px;
+    content: 'RM 50.00 left';
+    color: white;
+    background-color: #F3969A;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+  .progress-bar.budget-overview:after{
+    border-right: 3px solid #F3969A;
+    padding:20px;
+    position: absolute;
+    right: 0;
+    bottom:0;
+    content: '';
+  }
+  
+  table.table-overview{
+    padding:0;
+    margin:0;
+    width: 100%;
+    // border: 1px solid black;
+  }
+  
+  table.table-overview tr td:nth-child(1){
+    text-align: right;
+  }
+  table.table-overview tr td:nth-child(2){
+    text-align: left;
+  }
+
+  table.table-overview tr td span{
+      font-size: 11px;
+      margin: 3px;
+  }

@@ -22,7 +22,35 @@ if(!isset($_SESSION['username'])){
             <div class="col-10-body collapsed">
                 <h1 class="title text-primary">My Dashboard</h1>
                 <div class="row">
-                    <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Reminders</h5>
+                            <p class="card-text">
+                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                                <table class="table dashboard-reminders">
+                                    <?php while($reminder = pg_fetch_array($query)):?>
+                                    <tr>
+                                        <?php if($reminder['reminderdone'] === f):?>
+                                        <td><a
+                                                href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
+                                                    class="far fa-square reminder-check"></i></a>
+                        
+                        </td>
+
+                        <td><?php echo $reminder['remindername'] ?></td>
+                        <?php endif ?>
+                        </tr>
+                        <?php endwhile ?>
+                        </table>
+                        </p>
+                        <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card" style="width: 25rem;">
                         <div class="card-body">
                             <h5 class="card-title">Balance</h5>
                             <p class="card-text">
@@ -72,34 +100,9 @@ if(!isset($_SESSION['username'])){
                         </div>
                     </div>
 
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Reminder</h5>
-                            <p class="card-text">
-                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
-                                <table class="table dashboard-reminders">
-                                    <?php while($reminder = pg_fetch_array($query)):?>
-                                    <tr>
-                                        <?php if($reminder['reminderdone'] === f):?>
-                                        <td><a
-                                                href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
-                                                    class="far fa-square reminder-check"></i></a>
-                        
-                        </td>
-
-                        <td><?php echo $reminder['remindername'] ?></td>
-                        <?php endif ?>
-                        </tr>
-                        <?php endwhile ?>
-                        </table>
-                        </p>
-                        <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i
-                                class="fas fa-arrow-right"></i></a>
-                    </div>
-                    </div>
 
 
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 25rem;">
                     <div class="card-body">
                         <h5 class="card-title">Groups</h5>
                         <p class="card-text">
