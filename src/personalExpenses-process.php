@@ -21,7 +21,7 @@ if(isset($_POST['add-expense'])) {
         $expenseamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate) VALUES ($budgetid,'$expensename', $expenseamount, '$expensedate') ");
+    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'$expensename', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
 }
 
 if(isset($_GET['del-expense'])){

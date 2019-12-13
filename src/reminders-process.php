@@ -20,7 +20,7 @@ if(isset($_POST['add-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO reminders(budgetid, remindername, reminderamount, reminderdone) VALUES ($budgetid, '$remindername', $reminderamount, false)");
+    $query = pg_query("INSERT INTO reminders(budgetid, remindername, reminderamount, reminderdone, username) VALUES ($budgetid, '$remindername', $reminderamount, false, '".$_SESSION['username']."')");
 }
 
 if(isset($_GET['reminder-done'])){

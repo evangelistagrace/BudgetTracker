@@ -31,7 +31,7 @@ $expensedate = $_GET['expense-date'];
 
                 <div class="row">
                     <div class="card expenses">
-                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE expenses.username = '".$_SESSION['username']."' ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
                         <?php $date2 = $expense['expensedate']?>

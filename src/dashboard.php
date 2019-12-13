@@ -26,7 +26,7 @@ if(!isset($_SESSION['username'])){
                         <div class="card-body">
                             <h5 class="card-title">Reminders</h5>
                             <p class="card-text">
-                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                                 <table class="table dashboard-reminders">
                                     <?php while($reminder = pg_fetch_array($query)):?>
                                     <tr>

@@ -51,9 +51,10 @@ $GLOBALS['BALANCE']= 90;
                                                     $query = pg_query("SELECT SUM(budgetamount) as totalbudget FROM budgets WHERE username = '".$_SESSION['username']."'"); 
                                                     $result = pg_fetch_array($query);
 
-                                                    $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses "); 
+                                                    $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE username = '".$_SESSION['username']."'"); 
                                                     $result2 = pg_fetch_array($query2);
 
+                                                    $expensesPercentage = $result2['totalexpense']/$result['totalbudget'] * 100;
                                                     $balance = $result['totalbudget'] - $result2['totalexpense'];
                                                     $GLOBALS['BALANCE']= $balance;
 
@@ -63,9 +64,9 @@ $GLOBALS['BALANCE']= 90;
                                                         <tr>
                                                         <td style="width:10%"><span>RM 0</span></td>
                                                         <td style="width:75%"><div class="progress budget-overview">
-                                                    <div class="progress-bar budget-progress progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar budget-progress progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $expensesPercentage?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div></td>
-                                                        <td style="width:15%"><span>RM 100</span></td>
+                                                        <td style="width:15%"><span>RM <?php echo $result['totalbudget']?></span></td>
                                                         </tr>
                                                     </table>
                                                 </section>

@@ -39,7 +39,7 @@ $json_text = json_encode($text);
                         </div>
                         <div class="card-body">
                             <table class='table table-condensed reminders'>
-                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                            <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
