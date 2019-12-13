@@ -847,7 +847,9 @@ table.dashboard-reminders{
     width: 70%;
 }
 
-
+.card-text {
+    display:flex; justify-content:center;align-content:center;flex-wrap:no-wrap;
+}
 
 .menu,
 .card-title,
@@ -1185,3 +1187,20 @@ td a i:hover {
     border: transparent;
 }
 
+small.left {
+    float: left;
+    &:after {
+        content: "";
+        clear: both;
+        display: table-cell;
+    }
+}
+
+small.right {
+    float:right;
+    &:after {
+        content: "";
+        clear: both;
+        display: table-cell;
+    }
+}

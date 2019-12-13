@@ -36,7 +36,53 @@ $budgetColors = array();
             <div class="col-10-body collapsed">
 
                 <h1 class="title text-primary">My Budgets</h1>
-                <div class="row sm"><canvas id="budgetChart"></canvas></div>
+                <div class="row">
+                    <table style="width: 100%">
+                        <tr style="height: 400px;">
+                            <td style="width:40%">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title">Overview</div>
+                                        <div class="card-text">
+                                            <div class="row" style="width:100%">
+                                                <div class="col" style="padding:0;margin:0; flex:1" >
+                                                    <small>RM 0</small>
+                                                </div>
+
+                                                <?php 
+                                                    $query = pg_query("SELECT SUM(budgetamount) as totalbudget FROM budgets WHERE username = '".$_SESSION['username']."'"); 
+                                                    $result = pg_fetch_array($query);
+
+                                                    $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE username = '".$_SESSION['username']."'"); 
+                                                    $result2 = pg_fetch_array($query);
+                                                ?>
+
+
+                                                <div class="col" style="flex:7;padding:2px;margin:0;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                                        style="width: <?php echo 80 ?>%;"></div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col" style="padding:0;margin:0; flex:3">
+                                                    
+                                                    <small>RM <?php echo $result['totalbudget'] ?></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:60%">
+                                <canvas id="budgetChart"></canvas>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
                 <div class="row">
                 <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
                 <?php while($result = pg_fetch_array($query)) :?>

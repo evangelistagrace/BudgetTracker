@@ -6797,6 +6797,19 @@ table.dashboard-reminders tr td {
   width: 70%;
 }
 
+.card-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: no-wrap;
+      flex-wrap: no-wrap;
+}
+
 .menu,
 .card-title,
 h1,
@@ -7148,5 +7161,25 @@ td a i:hover {
 #editCategoryName {
   background: transparent;
   border: transparent;
+}
+
+small.left {
+  float: left;
+}
+
+small.left:after {
+  content: "";
+  clear: both;
+  display: table-cell;
+}
+
+small.right {
+  float: right;
+}
+
+small.right:after {
+  content: "";
+  clear: both;
+  display: table-cell;
 }
 /*# sourceMappingURL=style.css.map */
