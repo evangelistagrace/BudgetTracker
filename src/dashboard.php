@@ -84,7 +84,7 @@ if(!isset($_SESSION['username'])){
                                         <td><a
                                                 href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
                                                     class="far fa-square reminder-check"></i></a>
-                        </div>
+                        
                         </td>
 
                         <td><?php echo $reminder['remindername'] ?></td>
@@ -96,7 +96,7 @@ if(!isset($_SESSION['username'])){
                         <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i
                                 class="fas fa-arrow-right"></i></a>
                     </div>
-                </div>
+                    </div>
 
 
                 <div class="card" style="width: 18rem;">
@@ -114,9 +114,6 @@ if(!isset($_SESSION['username'])){
                     </div>
                 </div>
             </div>
-
-
-
 
 
             <div class="row">
@@ -165,10 +162,6 @@ if(!isset($_SESSION['username'])){
 
             </div>
         </div>
-
-
-
-
 
     </div>
 
