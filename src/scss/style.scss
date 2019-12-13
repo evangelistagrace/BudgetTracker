@@ -333,6 +333,9 @@ a {
                             float: right;
                         }
                     }
+                    .card-body.reminders{
+                        padding: 0;
+                    }
                 }
             }
 
@@ -741,6 +744,13 @@ table.balance {
     display: flex;
     align-content: center;
     flex-flow: column wrap;
+    thead{
+        tr{
+            th{
+                text-align: left;
+            }
+        }
+    }
     tbody{
         width: 100%;
 

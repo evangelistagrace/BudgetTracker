@@ -34,32 +34,41 @@ $json_text = json_encode($text);
 
                 <div class="row">
                     <div class="card expenses">
-                        <div class="progress" style="height: 3px;">
-                            <div class="progress-bar progress-reminder" id="progress-reminder" role="progressbar"
-                                style="width: 0%; background-color: #8c77d1" aria-valuenow="25" aria-valuemin="0"
+                        <div class="progress" style="height: 5px;">
+                            <div class="progress-bar progress-reminder bg-secondary" id="progress-reminder" role="progressbar"
+                                style="width: 0%" aria-valuenow="25" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body reminders">
                             <table class='table table-condensed reminders'>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="flex:1"></th>
+                                        <th style="flex:4">Item</th>
+                                        <th style="flex:2">Category</th>
+                                        <th style="flex:2">Payment</th>
+                                        <th style="flex:2">Due</th>
+                                        <th style="flex:1"></th>
+
+                                    </tr>
+                                </thead>
                             <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname, budgets.budgetcolor FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                             <?php while($reminder = pg_fetch_array($query)):?>
                                 <tr>
                                 <?php if($reminder['reminderdone'] === f):?>
                                     <td><a href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i class="far fa-square reminder-check"></i></a></div>
                                     </td>
-                                    <td><?php echo $reminder['remindername'] ?></td>
+                                    <td style="flex:4"><?php echo $reminder['remindername'] ?></td>
                                 <?php elseif($reminder['reminderdone'] === t):?>
                                     <td><a href="reminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i class="fas fa-check-square reminder-check"></i></a></div>
                                     </td>
-                                    <td><s><?php echo $reminder['remindername'] ?></s></td>
+                                    <td style="flex:4"><s><?php echo $reminder['remindername'] ?></s></td>
                                 <?php endif ?>
-                                    <td>
-                                        <div class="small">
-                                            <div class='<?php echo "circle bg-{$reminder['budgetcolor']}" ?>'></div><?php echo $reminder['budgetname'] ?>
-                                        </div>
+                                    <td style="flex:2">
+                                        <div class='<?php echo "circle bg-{$reminder['budgetcolor']}" ?>'></div><?php echo $reminder['budgetname'] ?>
                                     </td>
-                                    <td>RM <?php echo $reminder['reminderamount'] ?></td>
-                                    <td><?php echo date("j F", strtotime($reminder['reminderdate'])) ?></td>
+                                    <td style="flex:2">RM <?php echo $reminder['reminderamount'] ?></td>
+                                    <td style="flex:2"><?php echo date("j F", strtotime($reminder['reminderdate'])) ?></td>
                                     <td>
                                         <!-- edit reminder -->
                                         <a href="reminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i class="fas fa-edit text-primary"></i></a>

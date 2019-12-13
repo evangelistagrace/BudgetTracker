@@ -6355,6 +6355,10 @@ a {
   float: right;
 }
 
+.my-container .row .col-10-body .row .card .card-body.reminders {
+  padding: 0;
+}
+
 .my-container .row .col-10-body .row.sm {
   width: 50%;
   margin: auto;
@@ -6703,6 +6707,12 @@ table.balance tr td:nth-of-type(2) {
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
+}
+
+.table.expenses thead tr th,
+.table.reminders thead tr th,
+.table.settings thead tr th {
+  text-align: left;
 }
 
 .table.expenses tbody,
