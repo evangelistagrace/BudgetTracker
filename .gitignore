@@ -1,4 +1,4 @@
-node_modules/
+/node_modules
 .cache/
 dist/
 coverage/
@@ -8,3 +8,4 @@ src/scss/style.css.map
 *.map
 
 /vendor/
+
