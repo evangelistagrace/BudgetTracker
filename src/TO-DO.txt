@@ -1,3 +1,11 @@
+COLOR CODES:
+- Green  -> Information/ General heading
+- Red -> Warning
+- Blue -> Link
+- Pink -> Indicator/Emphasis
+- Yellow -> Progress
+
+
 - add constraint to check if reminder/expense amount exceeds budget amount??
 - sync data in dashboard 
 - sync data to charts

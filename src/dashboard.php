@@ -22,27 +22,63 @@ if(!isset($_SESSION['username'])){
             <div class="col-10-body collapsed">
                 <h1 class="title text-primary">My Dashboard</h1>
                 <div class="row">
-                <div class="card" style="width: 50rem;">
+                <div class="card" style="width: 51rem;">
                         <div class="card-body">
                             <h5 class="card-title">Reminders</h5>
-                            <p class="card-text">
-                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
-                                <table class="table dashboard-reminders">
-                                    <?php while($reminder = pg_fetch_array($query)):?>
+                                <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                                <?php $query2 = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+                                <table class="table table-striped dashboard-reminders">
+                                <thead class="thead-light">
                                     <tr>
-                                        <?php if($reminder['reminderdone'] === f):?>
-                                        <td><a
-                                                href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
-                                                    class="far fa-square reminder-check"></i></a>
-                        
-                        </td>
+                                        <th class="dashboard-reminders title">Due this week</th>
+                                    </tr>
+                                </thead>
+                                    <?php $currentDate = strtotime(date("Y-m-d")); while($reminder = pg_fetch_array($query)):?>
+                                    <tr>
+                                    <?php 
+                                        $reminderDate = strtotime(date("Y-m-d", strtotime($reminder['reminderdate']))); 
+                                        $days = ($reminderDate - $currentDate)/60/60/24;
+                                        // print_r($days);
+                                    ?>
+                                    <?php if($days <  7): ?>
+                                    <?php if($reminder['reminderdone'] === f):?>
+                                    <td><a
+                                            href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
+                                                class="far fa-square reminder-check"></i></a>
+                    
+                                    </td>
 
                         <td><?php echo $reminder['remindername'] ?></td>
                         <?php endif ?>
+                        <?php endif?>
+                        </tr>
+                        <?php endwhile ?>
+                        <thead>
+                            <tr>
+                                <th class="dashboard-reminders title">Due next week</th>
+                            </tr>
+                        </thead>
+                        <?php $currentDate = strtotime(date("Y-m-d")); while($reminder = pg_fetch_array($query2)):?>
+                                    <tr>
+                                    <?php 
+                                        $reminderDate = strtotime(date("Y-m-d", strtotime($reminder['reminderdate']))); 
+                                        $days = ($reminderDate - $currentDate)/60/60/24;
+                                        // print_r($days);
+                                    ?>
+                                    <?php if($days >  7): ?>
+                                    <?php if($reminder['reminderdone'] === f):?>
+                                    <td><a
+                                            href="reminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
+                                                class="far fa-square reminder-check"></i></a>
+                    
+                                    </td>
+
+                        <td><?php echo $reminder['remindername'] ?></td>
+                        <?php endif ?>
+                        <?php endif?>
                         </tr>
                         <?php endwhile ?>
                         </table>
-                        </p>
                         <a href="reminders.php" class="btn btn-secondary btn-sm right">Go to reminders <i
                                 class="fas fa-arrow-right"></i></a>
                     </div>

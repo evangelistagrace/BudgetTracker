@@ -18,6 +18,8 @@ body {
     background: $babyPowder;
 }
 
+
+
 .btn {
     cursor: pointer;
 }
@@ -815,7 +817,6 @@ table.balance {
 
 .table.settings2 {
     tr {
-
         td {
             position: relative;
             text-align: left;
@@ -838,16 +839,56 @@ table.balance {
     }
 
 }
-
-table.dashboard-reminders{
-    tr {
-        td {
-          border-top: none; 
-          padding: 0.1rem; 
-        }
-        
+.dashboard-reminders .title{
+    color: #808080;
+    font-size: 13px;
+    &:before{
+        font-family: "Font Awesome 5 Free";
+        content: '\f024';
+        display: inline-block;
+        // transform: scaleX(-1);
+        margin-right: 5px;
+        color: #808080;
     }
 }
+
+table.dashboard-reminders.table-striped{
+    tbody{
+        tr {
+            display: flex;
+            flex: 1;
+            background-color: rgb(250, 250, 250);
+            td {
+            border:0; 
+            padding: 0.4rem; 
+            color: #808080;
+            }
+        }
+        tr:hover{
+            background-color: rgb(238, 238, 238);
+        }
+    }
+    
+    
+    thead {
+        tr {
+            display: flex;
+            flex: 1;
+            th {
+              border: none; 
+              padding: 0.4rem; 
+              color: #808080;
+            }
+            
+        }
+    }
+
+    thead.thead-light th{
+        // background-color: lightgrey;
+        color: #808080;
+    }
+}
+
 
 .table.borderless{
     tr{
@@ -864,7 +905,10 @@ table.dashboard-reminders{
     
 }
 
-
+.table .thead-light th{
+    background-color: transparent;
+    border: none;
+}
 
 //cards
 .card.budget {
