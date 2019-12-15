@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+
+include 'head.php';
+
+// initialize arrays for expenses chart
+$budgetNames = array();
+$expenseAngles = array();
+$budgetColors = array();
+
+?>
+
 <title>My Report - BudgetTracker</title>
 
 <body>
@@ -26,13 +36,43 @@
                     </div>
                 </div>
 
+                <!-- SQL query -->
+                <?php
+
+                    // expenses total by budget/category
+                    $query = pg_query("SELECT budgetid, SUM (expenseamount) as total FROM expenses WHERE username = '".$_SESSION['username']."' GROUP BY budgetid ");
+                    // corresponding budget name
+                    $query2 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ");
+                    // corresponding budget/expense category color code
+                    $query3 = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ");
+                    // total expenses
+                    $query4 = pg_query("SELECT SUM(expenseamount) AS totalexpenses FROM expenses WHERE username = '".$_SESSION['username']."' ");
+
+                    // test if query works
+                    // if($query4){
+                    //     print_r("query executed");
+                    // }
+
+
+                    while($expense = pg_fetch_array($query)){
+                        while($budget = pg_fetch_array($query2)){
+                            if($expense['budgetid'] = $budget['budgetid'] ){
+                                array_push($budgetNames, $budget['budgetname']);
+                            }
+                        }
+                    }
+
+                    // print_r($budgetNames);
+
+                ?>
+
                 <div class="row">
                     <div class="col-5">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title"><h5>Expenses by Category</h5></div>
                                 <div class="card-text">
-                                    <canvas id="expensesChart"></canvas>
+                                    <canvas id="expensesByCategoryChart"></canvas>
                                 </div>
                             </div>
                         </div>
