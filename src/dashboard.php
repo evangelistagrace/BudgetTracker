@@ -2,6 +2,8 @@
 <html lang="en">
 <?php 
 include 'head.php';
+require 'report-process.php';
+
 if(!isset($_SESSION['username'])){
     echo "You are not logged in";
     header('location: homepage.php');
@@ -191,7 +193,7 @@ if(!isset($_SESSION['username'])){
                     <div class="card-body">
                         <h5 class="card-title">Expenses</h5>
                         <p class="card-text">
-                            <canvas id="expensesChart"></canvas>
+                            <canvas id="expensesByCategoryChart"></canvas>
                         </p>
                         <a href="personalExpenses.php" class="btn btn-secondary btn-sm right">Go to expenses <i
                                 class="fas fa-arrow-right"></i></a>
@@ -209,6 +211,13 @@ if(!isset($_SESSION['username'])){
     </div>
     </div>
 
+    <script>
+         let expenseAngles, budgetNames, budgetColors;
+        budgetNames = <?php echo json_encode($budgetNames) ?>;
+        expenseAngles = <?php echo json_encode($expenseAngles) ?>;
+        budgetColors = <?php echo json_encode($budgetColors) ?>;
+    </script>
+    
     <?php include 'footer.php' ?>
 
 </body>
