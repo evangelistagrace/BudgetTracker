@@ -5,7 +5,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: budgetNames,
         datasets: [{
-            label: '# of Votes',
+            label: '',
             data: budgetAngles, //array passed from personalBudgets.php script
             backgroundColor: budgetColors,
             borderColor: budgetColors,
