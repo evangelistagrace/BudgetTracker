@@ -5,7 +5,6 @@
 include 'head.php';
 require 'report-process.php';
 
-
 ?>
 
 <title>My Report - BudgetTracker</title>
@@ -44,6 +43,7 @@ require 'report-process.php';
                             </div>
                         </div>
                     </div>
+
                     <div class="col-7">
                         <div class="card">
                             <div class="card-body">
@@ -97,10 +97,15 @@ require 'report-process.php';
     </div>
 
     <script>
+        // expenses by category
          let expenseAngles, budgetNames, budgetColors;
         budgetNames = <?php echo json_encode($budgetNames) ?>;
         expenseAngles = <?php echo json_encode($expenseAngles) ?>;
         budgetColors = <?php echo json_encode($budgetColors) ?>;
+
+        // expenses by day
+        let expenseAmountsByDay;
+        expenseAmountsByDay = <?php echo json_encode($expenseAmountsByDay) ?>
     </script>
 
     <?php include 'footer.php' ?>

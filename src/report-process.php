@@ -2,12 +2,12 @@
 
 require 'config.php';
 
+// EXPENSE BY CATEGORY CHART
 
 // initialize arrays for expenses chart
 $budgetNames = array();
 $expenseAngles = array();
 $budgetColors = array();
-
 
 // expenses total by budget/category
 $query = pg_query("SELECT budgetid, SUM (expenseamount) as total FROM expenses WHERE username = '".$_SESSION['username']."' GROUP BY budgetid ORDER BY budgetid ASC");
@@ -40,5 +40,35 @@ while($expense = pg_fetch_array($query)){
     // populate expenseAngles array
     array_push($expenseAngles, $expense['total']);
 }
+
+
+ // EXPENSE BY DAY CHART
+
+ $day = 1; //start from first day of the month
+ $month = 12; // an arbitary number for the month
+ $count = 0; // counter
+ $expenseDays = array();
+ $expenseAmounts = array();
+ $expenseAmountsByDay = array(); //to be passed to js file
+
+ $query5 = pg_query("SELECT expensedate, SUM(expenseamount) AS totalexpenses, EXTRACT(DAY FROM expensedate) AS expenseday FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND username = '".$_SESSION['username']."' GROUP BY expensedate ORDER BY expensedate ASC ");
+
+ while($expense = pg_fetch_array($query5)){
+     array_push($expenseDays, $expense['expenseday']);
+     array_push($expenseAmounts, $expense['totalexpenses']);
+
+ }
+
+ while($day <= 31){
+     if($day != $expenseDays[$count]){
+         array_push($expenseAmountsByDay, 0); 
+     }
+     elseif($day = $expenseDays[$count]){
+         array_push($expenseAmountsByDay, $expenseAmounts[$count]);
+         $count++; //increment counter if match is found
+     }
+     $day++;
+ }
+
 
 ?>
