@@ -14,6 +14,17 @@ if(isset($_POST['add-expense'])) {
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
+    // format expense name with single quote 
+    if (strpos($expensename, "'") !== false) { //if single quote is inside input
+        //split to pre and post apostrophe
+        $pieces = explode("'", $expensename);
+        $pieces[0] .= "'";
+        $pieces[1] = "'" . $pieces[1];
+        $expensename = implode("", $pieces);
+    }else{
+        $expensename .= "with apostrophe";
+    }
+
     // format expense amount 
     if (strpos($expenseamount, '.') !== false) {
         // do nothing
@@ -21,7 +32,7 @@ if(isset($_POST['add-expense'])) {
         $expenseamount .= ".00";
     }
 
-    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'$expensename', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
+    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
 }
 
 if(isset($_GET['del-expense'])){
