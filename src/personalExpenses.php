@@ -52,6 +52,17 @@ $expensedate = $_GET['expense-date'];
                                     </td>
                                     <td>RM <?php echo $expense['expenseamount']?></td>
                                     <td>
+                                        <?php
+                                            // format expense name with single quote 
+                                            if (strpos($expense['expensename'], "'") !== false) { //if single quote is inside input
+                                                //split to pre and post apostrophe
+                                                $pieces = explode("'", $expense['expensename']);
+                                                $pieces[0] .= "%27";
+                                                // $pieces[1] = "'" . $pieces[1];
+                                                $expense['expensename'] = implode("", $pieces);
+                                            }
+
+                                        ?>
                                         <!-- edit expense -->
                                         <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name='<?php echo $expense['expensename']?>'&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
                                         <!-- delete expense -->

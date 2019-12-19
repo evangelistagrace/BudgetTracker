@@ -101,6 +101,13 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                             <small>Create up to 10 budgets</small>
                             <form action="settings.php" method="POST">
                                 <table class="table borderless">
+                                    <?php if(count($warnings)): ?>
+                                    <div class="error">
+                                        <?php foreach($warnings as $warning): ?>
+                                        <div class="alert alert-warning"><?php echo $warning ?></div>
+                                        <?php endforeach ?>
+                                    </div>
+                                    <?php endif ?>
                                     <?php if(count($errors)) : ?>
                                     <div class="error">
                                         <?php foreach($errors as $error): ?>

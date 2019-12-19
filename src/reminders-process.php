@@ -14,6 +14,15 @@ if(isset($_POST['add-reminder'])){
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
+    // format expense name with single quote 
+    if (strpos($remindername, "'") !== false) { //if single quote is inside input
+        //split to pre and post apostrophe
+        $pieces = explode("'", $remindername);
+        $pieces[0] .= "'";
+        $pieces[1] = "'" . $pieces[1];
+        $remindername = implode("", $pieces);
+    }
+
     // format reminder amount 
     if (strpos($reminderamount, '.') !== false) {
         // do nothing
@@ -66,6 +75,15 @@ if(isset($_POST['edit-reminder'])){
     $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
+
+    // format reminder name with single quote 
+    if (strpos($remindername, "'") !== false) { //if single quote is inside input
+        //split to pre and post apostrophe
+        $pieces = explode("'", $remindername);
+        $pieces[0] .= "'";
+        $pieces[1] = "'" . $pieces[1];
+        $remindername = implode("", $pieces);
+    }
 
     // format reminder amount 
     if (strpos($reminderamount, '.') !== false) {

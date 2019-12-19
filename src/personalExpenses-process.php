@@ -21,8 +21,6 @@ if(isset($_POST['add-expense'])) {
         $pieces[0] .= "'";
         $pieces[1] = "'" . $pieces[1];
         $expensename = implode("", $pieces);
-    }else{
-        $expensename .= "with apostrophe";
     }
 
     // format expense amount 
@@ -52,6 +50,15 @@ if(isset($_POST['edit-expense'])){
     $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$expensebudget' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
+
+    // format expense name with single quote 
+    if (strpos($expensename, "'") !== false) { //if single quote is inside input
+        //split to pre and post apostrophe
+        $pieces = explode("'", $expensename);
+        $pieces[0] .= "'";
+        $pieces[1] = "'" . $pieces[1];
+        $expensename = implode("", $pieces);
+    }
 
     // format expense amount 
     if (strpos($expenseamount, '.') !== false) {

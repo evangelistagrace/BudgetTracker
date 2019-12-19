@@ -2,6 +2,8 @@
 require 'config.php';
 
 $errors = array();
+$warnings = array();
+
 
 if(isset($_GET['del-budget'])){
     $budgetname = $_GET['del-budget'];
@@ -23,6 +25,29 @@ if(isset($_POST['add-budget'])){
 
     // set selected color as taken
     $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+
+    // find total budget amount
+    $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM budgets WHERE username = '".$_SESSION['username']."' ");
+    $result = pg_fetch_array($query3);
+    $totalBudget = $result['totalbudget'] + $budgetamount;
+
+    // format total budget amount 
+    if (strpos($totalBudget, '.') !== false) {
+        // do nothing
+    }else{
+        $totalBudget .= ".00";
+    }
+
+    // find income
+    $query4 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
+    $result = pg_fetch_array($query4);
+    $income = $result['income'];
+
+    // if total budget exceeds income, push warning message
+    if($totalBudget > $income){
+        array_push($warnings, "Total budget " . "(RM " . $totalBudget . ")" . " exceeds income " . "(RM " . $income . ").");
+    }
+
 
     if(!empty($budgetname)){
         // check for duplicate categories
