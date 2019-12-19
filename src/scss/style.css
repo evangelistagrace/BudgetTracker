@@ -6905,11 +6905,6 @@ table.dashboard-reminders.table-striped thead.thead-light th {
   padding: 10px;
 }
 
-.card.expenses,
-.card.settings {
-  width: 80%;
-}
-
 .card-text {
   display: -webkit-box;
   display: -ms-flexbox;

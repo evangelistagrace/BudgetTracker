@@ -5,10 +5,13 @@ COLOR CODES:
 - Pink -> Indicator/Emphasis
 - Yellow -> Progress
 
-
+DONE:
 - add constraint to check if reminder/expense amount exceeds budget amount??
 - sync data in dashboard 
 - sync data to charts
+
+TO-DO:
+- AJAX for checking budget/expense overflow?
 - make chart clickable and display relevant data/information
 - download report as pdf
 - sync user settings 
@@ -22,7 +25,5 @@ COLOR CODES:
 
 
 limitations
-- can't input apostrophe for reminder/budget/expense name
+- can't input apostrophe for reminder/budget/expense name (solved for input data, not for edit data)
 
-
-Update (3/12):

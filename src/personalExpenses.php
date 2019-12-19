@@ -11,6 +11,8 @@ $expensebudget = $_GET['expense-budget'];
 $expenseamount = $_GET['expense-amount'];
 $expensedate = $_GET['expense-date'];
 
+
+
 ?>
 
 <title>My Expenses - BudgetTracker</title>
@@ -30,7 +32,14 @@ $expensedate = $_GET['expense-date'];
                 <h1 class="title text-primary">My Expenses</h1>
 
                 <div class="row">
-                    <div class="card expenses">
+                <?php if(count($warnings)): ?>
+                <div class="error" style="width: 80%">
+                    <?php foreach($warnings as $warning): ?>
+                    <div class="alert alert-warning"><?php echo $warning ?></div>
+                    <?php endforeach ?>
+                </div>
+                <?php endif ?>
+                    <div class="card" style="width: 80%">
                         <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE expenses.username = '".$_SESSION['username']."' ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
@@ -44,25 +53,14 @@ $expensedate = $_GET['expense-date'];
                         <div class="card-body">
                             <table class='table table-condensed expenses'>
                                 <tr>
-                                    <td><?php echo $expense['expensename']?></td>
-                                    <td>
+                                    <td style="flex:4"><?php echo $expense['expensename']?></td>
+                                    <td style="flex:2">
                                         <div class="small">
                                             <div class='<?php echo "circle bg-{$expense['budgetcolor']}" ?>'></div><?php echo $expense['budgetname']?>
                                         </div>
                                     </td>
-                                    <td>RM <?php echo $expense['expenseamount']?></td>
-                                    <td>
-                                        <?php
-                                            // format expense name with single quote 
-                                            if (strpos($expense['expensename'], "'") !== false) { //if single quote is inside input
-                                                //split to pre and post apostrophe
-                                                $pieces = explode("'", $expense['expensename']);
-                                                $pieces[0] .= "%27";
-                                                // $pieces[1] = "'" . $pieces[1];
-                                                $expense['expensename'] = implode("", $pieces);
-                                            }
-
-                                        ?>
+                                    <td style="flex:2">RM <?php echo $expense['expenseamount']?></td>
+                                    <td style="flex:2">
                                         <!-- edit expense -->
                                         <a href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name='<?php echo $expense['expensename']?>'&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i class="fas fa-edit text-primary"></i></a>
                                         <!-- delete expense -->

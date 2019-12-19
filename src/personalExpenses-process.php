@@ -1,7 +1,7 @@
 <?php
 
 require 'config.php';
-
+$warnings = array();
 
 if(isset($_POST['add-expense'])) {
     $budgetname = $_POST['budget-name'];
@@ -29,6 +29,28 @@ if(isset($_POST['add-expense'])) {
     }else{
         $expenseamount .= ".00";
     }
+
+     // find total expense amount
+     $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE username = '".$_SESSION['username']."' ");
+     $result = pg_fetch_array($query2);
+     $totalExpense = $result['totalexpense'] + $expenseamount;
+ 
+     // format total expense amount 
+     if (strpos($totalExpense, '.') !== false) {
+         // do nothing
+     }else{
+         $totalExpense .= ".00";
+     }
+ 
+     // find income
+     $query3 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
+     $result = pg_fetch_array($query3);
+     $income = $result['income'];
+ 
+     // if total expense exceeds income, push warning message
+     if($totalExpense > $income){
+         array_push($warnings, "Total expense " . "(RM " . $totalExpense . ")" . " exceeds income " . "(RM " . $income . ").");
+     }
 
     $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
 }
