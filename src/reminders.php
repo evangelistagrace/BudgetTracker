@@ -33,7 +33,7 @@ $json_text = json_encode($text);
                 <h1 class="title text-primary">My Reminders</h1>
 
                 <div class="row">
-                    <div class="card expenses">
+                    <div class="card" style="width: 80%">
                         <div class="progress" style="height: 5px;border-radius:0;">
                             <div class="progress-bar progress-reminder bg-secondary" id="progress-reminder" role="progressbar"
                                 style="width: 0%; border-radius:0;" aria-valuenow="25" aria-valuemin="0"

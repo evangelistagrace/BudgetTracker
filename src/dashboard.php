@@ -138,7 +138,7 @@ if(!isset($_SESSION['username'])){
                                             }
                                         ?>
                                         <td>Outflow</td>
-                                        <td><h5 class="text-secondary">-RM <?php echo $outflow ?></h5></td>
+                                        <td><h5 class="text-primary">-RM <?php echo $outflow ?></h5></td>
                                     </tr>
                                     <tr>
                                         <?php 
@@ -149,10 +149,20 @@ if(!isset($_SESSION['username'])){
                                             }else{
                                                 $balance .= ".00";
                                             }
+
+                                            if($balance < 0){
+                                                $negativeBalance = abs($balance);
+                                            }
                                         ?>
                                         <td>Balance</td>
                                         <td>
-                                            <h3 class="text-primary">+RM <?php echo $balance ?></h3>
+                                            <?php if($balance > 0): ?>
+                                                <h3 class="text-primary">+RM <?php echo $balance ?></h3>
+                                            <?php elseif($balance == 0): ?>
+                                                <h3 class="text-primary">RM <?php echo $balance ?></h3> 
+                                            <?php elseif($balance < 0): ?>
+                                                <h3 class="text-danger">-RM <?php echo $negativeBalance ?></h3>
+                                            <?php endif ?>
                                         </td>
                                     </tr>
                                 </table>

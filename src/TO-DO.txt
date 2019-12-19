@@ -26,4 +26,5 @@ TO-DO:
 
 limitations
 - can't input apostrophe for reminder/budget/expense name (solved for input data, not for edit data)
+- If a budget has been deleted, any expense with that budget is not displayed under expenses but is recorded in the chart
 
