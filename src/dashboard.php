@@ -99,7 +99,7 @@ if(!isset($_SESSION['username'])){
                                             $income = $result['income'];
                                         ?>
                                         <td>Inflow</td>
-                                        <td><span class="text-primary">+RM <?php echo $income ?></span></td>
+                                        <td><h5 class="text-primary">+RM <?php echo $income ?></h5></td>
                                     </tr>
                                     <tr>
                                         <?php 
@@ -115,7 +115,7 @@ if(!isset($_SESSION['username'])){
                                             }
                                         ?>
                                         <td>Outflow</td>
-                                        <td><span class="text-secondary">-RM <?php echo $outflow ?></span></td>
+                                        <td><h5 class="text-secondary">-RM <?php echo $outflow ?></h5></td>
                                     </tr>
                                     <tr>
                                         <?php 
@@ -129,7 +129,7 @@ if(!isset($_SESSION['username'])){
                                         ?>
                                         <td>Balance</td>
                                         <td>
-                                            <h4 class="text-primary">+RM <?php echo $balance ?></h4>
+                                            <h3 class="text-primary">+RM <?php echo $balance ?></h3>
                                         </td>
                                     </tr>
                                 </table>
@@ -177,8 +177,16 @@ if(!isset($_SESSION['username'])){
                                         $percentage = '100';
                                     }
                                     ?>
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: <?php echo $percentage ?>%;"></div>
+                                     <?php if($percentage == '100'): ?>
+                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                        style="width: <?php echo $percentage ?>%;">
+                                        </div>
+                                    <?php else: ?>
+
+                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                            style="width: <?php echo $percentage ?>%;">
+                                        </div>
+                                    <?php endif ?>
                                 </div>
                             </div>
                             <?php endif ?>

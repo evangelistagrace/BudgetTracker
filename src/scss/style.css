@@ -6717,6 +6717,10 @@ table.budget tr td:nth-of-type(3) i {
   padding: 0 10px;
 }
 
+table.balance {
+  width: 90%;
+}
+
 table.balance tr td:first-of-type {
   padding-right: 10px;
 }

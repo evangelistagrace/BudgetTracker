@@ -36,7 +36,7 @@ require 'report-process.php';
                         <div class="card" style="width: 25rem;">
                             <div class="card-body">
                                 <div class="card-title"><h5>Expenses by Category</h5></div>
-                                <div class="card-text">
+                                <div class="card-text mt-5">
                                     <canvas id="expensesByCategoryChart"></canvas>
                                 </div>
                             </div>
@@ -66,20 +66,20 @@ require 'report-process.php';
 
                             $percentage = $result2['amount']/$result['budgetamount'] * 100;
                             $percentage = number_format($percentage, 0);
-                            if($percentage > '100'){
-                                $percentage = '100';
-                            }
+                            // if($percentage > '100'){
+                            //     $percentage = '100';
+                            // }
                             ?>
                                 <div class="progress-container">
                                     <span><?php echo $result['budgetname'] ?></span>
                                     <div class="progress">
-                                        <?php if($percentage == '100'): ?>
+                                        <?php if($percentage > '100'): ?>
                                             <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                            style="width: <?php echo $percentage ?>%;">
+                                            style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
                                             </div>
                                         <?php else: ?>
                                             <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                style="width: <?php echo $percentage ?>%;">
+                                                style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
                                             </div>
                                         <?php endif ?>
                                     </div>
