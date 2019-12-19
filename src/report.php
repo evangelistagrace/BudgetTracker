@@ -33,8 +33,7 @@ require 'report-process.php';
                 </div>
 
                 <div class="row">
-                    <div class="col-5">
-                        <div class="card">
+                        <div class="card" style="width: 25rem;">
                             <div class="card-body">
                                 <div class="card-title"><h5>Expenses by Category</h5></div>
                                 <div class="card-text">
@@ -42,10 +41,8 @@ require 'report-process.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-7">
-                        <div class="card">
+                        <div class="card" style="width: 35rem;">
                             <div class="card-body">
                                 <div class="card-title"><h5>Expenses by Day</h5></div>
                                 <div class="card-text">
@@ -53,41 +50,42 @@ require 'report-process.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
 
+
                 <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title"><h5>Expenses by Budget</h5></div>
-                                <div class="card-text">
+                    <div class="card" style="width: 61rem;">
+                        <div class="card-body">
+                            <div class="card-title"><h5>Expenses by Budget</h5></div>
+                            <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
+                            <?php while($result = pg_fetch_array($query)) :?>
+                            <?php if($result['budgetamount'] > 0)  :?>
+                            <?php 
+                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."' AND username = '".$_SESSION['username']."' "); 
+                            $result2 = pg_fetch_array($query2);
+
+                            $percentage = $result2['amount']/$result['budgetamount'] * 100;
+                            $percentage = number_format($percentage, 0);
+                            if($percentage > '100'){
+                                $percentage = '100';
+                            }
+                            ?>
                                 <div class="progress-container">
-                                    <span>Food</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 60%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%">
+                                    <span><?php echo $result['budgetname'] ?></span>
+                                    <div class="progress">
+                                        <?php if($percentage == '100'): ?>
+                                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                            style="width: <?php echo $percentage ?>%;">
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                                style="width: <?php echo $percentage ?>%;">
+                                            </div>
+                                        <?php endif ?>
                                     </div>
                                 </div>
-                                </div>
-                                <div class="progress-container">
-                                    <span>Travel</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 40%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="40%">
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="progress-container">
-                                    <span>Shopping</span>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%"
-                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="50%">
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-                            </div>
+                            <?php endif ?>
+                            <?php endwhile ?>
                         </div>
                     </div>
                 </div>

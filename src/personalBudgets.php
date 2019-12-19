@@ -63,7 +63,6 @@ $GLOBALS['BALANCE']= 90;
                                                         $totalBudget = str_replace(".00","",$totalBudget);;
 
                                                     }
-                                                    
 
                                                 ?>
 
