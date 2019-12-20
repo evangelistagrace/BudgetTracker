@@ -8,4 +8,4 @@ src/scss/style.css.map
 *.map
 
 /vendor/
-
+./sendgrid.env
