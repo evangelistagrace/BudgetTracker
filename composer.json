@@ -1,5 +1,6 @@
 {
     "name": "composer/budget-tracker",
+    "description": "Budget tracking web application",
     "authors": [
         {
             "name": "Evangelista Grace",

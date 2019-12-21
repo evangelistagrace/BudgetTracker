@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php'; // If you're using Composer (recommended)
-Dotenv::load(__DIR__);
+// Dotenv::load(__DIR__);
 // Comment out the above line if not using Composer
 // require("<PATH TO>/sendgrid-php.php");
 // If not using Composer, uncomment the above line and
@@ -16,7 +16,7 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$sendgrid = new \SendGrid('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');
+$sendgrid = new \SendGrid('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');
 try {
     $response = $sendgrid->send($email);
     print $response->statusCode() . "\n";
