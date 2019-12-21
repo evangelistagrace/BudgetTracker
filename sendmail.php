@@ -1,29 +1,39 @@
 <?php
-require 'vendor/autoload.php'; // If you're using Composer (recommended)
-// Dotenv::load(__DIR__);
-// Comment out the above line if not using Composer
-// require("<PATH TO>/sendgrid-php.php");
-// If not using Composer, uncomment the above line and
-// download sendgrid-php.zip from the latest release here,
-// replacing <PATH TO> with the path to the sendgrid-php.php file,
-// which is included in the download:
-// https://github.com/sendgrid/sendgrid-php/releases
-$email = new \SendGrid\Mail\Mail(); 
-$email->setFrom("evangrace98@gmail.com", "Evan");
-$email->setSubject("Sending with SendGrid is Fun");
-$email->addTo("grace.evangrace@gmail.com", "Grace");
-$email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-$email->addContent(
-    "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
-);
-$sendgrid = new \SendGrid('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');
-try {
-    $response = $sendgrid->send($email);
-    print $response->statusCode() . "\n";
-    print_r($response->headers());
-    print $response->body() . "\n";
-} catch (Exception $e) {
-    echo 'Caught exception: '. $e->getMessage() ."\n";
-}
+
+// require 'sendmail-process.php';
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Send mail</title>
+</head>
+<body>
+    <h1>Send an email</h1>
+    <form action="sendmail.php" method="POST">
+        <div class="form-group">
+            <label for="senderEmail">From:</label>
+            <input type="email" class="form-control" name="senderEmail">
+        </div>
+        <div class="form-group">
+            <label for="recipientEmail">To:</label>
+            <input type="email" class="form-control" name="recipientEmail">
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" class="form-control" name="subject">
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea class="form-control" rows="3" name="message"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" name="sendMail">Send</button>
+        </div>
+    </form>
+</body>
+</html>
