@@ -21,6 +21,7 @@
         <li class="menu-item" id="menuItem2"><a href="personalBudgets.php" title="budgets"></a></li>
         <li class="menu-item" id="menuItem3"><a href="personalExpenses.php" title="expenses"></a></li>
         <li class="menu-item" id="menuItem4"><a href="reminders.php" title="reminders"></a></li>
+        <li class="menu-item" id="menuItem8"><a href="notifications.php" title="notifications"></a></li>
         <li class="menu-item" id="menuItem5"><a href="groups.php" title="groups"></a></li>
         <li class="menu-item" id="menuItem6"><a href="report.php" title="report"></a></li>
         <li class="menu-item" id="menuItem7"><a href="settings.php" title="settings"></a></li>

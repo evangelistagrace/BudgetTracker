@@ -480,7 +480,7 @@ a {
                 //Link - reminders
                 li#menuItem4 {
                     a:before {
-                        content: fa-content($fa-var-bell);
+                        content: fa-content($fa-var-list);
                     }
 
                     a:after {
@@ -518,6 +518,17 @@ a {
 
                     a:after {
                         content: 'Settings';
+                    }
+                }
+
+                //Link - notifications
+                li#menuItem8 {
+                    a:before {
+                        content: fa-content($fa-var-bell);
+                    }
+
+                    a:after {
+                        content: 'Notifications';
                     }
                 }
             }
@@ -597,7 +608,7 @@ a {
                 //Link - reminders
                 li#menuItem4 {
                     a:before {
-                        content: fa-content($fa-var-bell);
+                        content: fa-content($fa-var-list);
                     }
 
                     a:after {
@@ -631,6 +642,17 @@ a {
                 li#menuItem7 {
                     a:before {
                         content: fa-content($fa-var-cog);
+                    }
+
+                    a:after {
+                        content: '';
+                    }
+                }
+
+                //Link - notifications
+                li#menuItem8 {
+                    a:before {
+                        content: fa-content($fa-var-bell);
                     }
 
                     a:after {

@@ -11,6 +11,7 @@ DONE:
 - sync data to charts
 
 TO-DO:
+- Notification page for alerts, add requests, warnings, etc
 - AJAX for checking budget/expense overflow?
 - make chart clickable and display relevant data/information
 - download report as pdf
@@ -18,6 +19,7 @@ TO-DO:
 - add group functionality
 - send email notification if budget is exceeded
 - send push notification if budget is exceeded
+- allow users to upload profile picture
 - optimize app for mobile view (PWA and media queries)
 - clean up code
 - come up with mock data
