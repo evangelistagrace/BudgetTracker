@@ -3,7 +3,7 @@
 <?php 
 
 include 'head.php';
-require 'report-process.php';
+require 'groupView-process.php';
 
 // initialize variables
 $groupingid = $_GET['grouping-id'];
@@ -175,7 +175,45 @@ $groupingid = $_GET['grouping-id'];
 
                                     <!-- settings -->
                                     <div class="tab-pane" id="7">
-                                        <div class="card-text">Overview</div>
+                                        <div class="row">
+                                            <div class="card settings" style="width: 60rem">
+                                                <div class="card-body">
+                                                    <h5 class="text-left"><strong>Maximum Budget</strong></h5>
+                                                        <table class='table borderless'>
+                                                            <form action="groupView.php?grouping-id=<?php echo $groupingid ?>" method="POST">
+                                                                <tr>
+                                                                    <?php 
+                                                                    $query = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid AND memberusername ='".$_SESSION['username']."' "); 
+                                                                    $result = pg_fetch_array($query);
+
+                                                                    if($result['maxbudget'] == 0){
+                                                                    $placeholder = "Enter maximum budget..."; $btnText = "Add Max. Budget";
+                                                                    }
+                                                                    elseif($result['maxbudget'] > 0){
+                                                                    $placeholder = $result['maxbudget']; 
+                                                                    $btnText = "Edit Max. Budget";
+                                                                    }?>
+                                                                    <td style="width:65%">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">RM</span>
+                                                                            </div><input class="form-control text-right" name="new-max-budget"
+                                                                                id="income" type="text" value=""
+                                                                                placeholder="<?php echo $placeholder ?>">
+                                                                        </div>
+                                                                    <input type="hidden" name="grouping-id" value=<?php echo $groupingid ?>>
+                                                                    </td>
+                                                                    <td style="width:25%"><button name="add-max-budget"
+                                                                            class="btn btn-block btn-info"><?php echo $btnText ?></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </form>
+
+                                                        </table>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
