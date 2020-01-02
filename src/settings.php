@@ -94,7 +94,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                 </tr>
 
                             </table>
-
+\
                             <hr>
 
                             <h5 class="text-left"><strong>Budgets</strong></h5>

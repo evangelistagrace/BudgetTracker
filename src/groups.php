@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+require 'groups-process.php';
+?>
 <title>My Groups - BudgetTracker</title>
 
 <body>
@@ -59,25 +62,23 @@
 
                 <div id="addGroup" class="overlay">
                     <div class="popup">
-
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Add Group</h3>
-                            <form class="popup-form" action="">
+                            <form class="popup-form" action="groups.php" method="POST">
                                 <div class="form-group">
                                     <label for="groupTitle">Group Name</label>
                                     <div class="input-group ml-3">
-                                        <input type="text" class="form-control" name="groupTitle" id="groupTitle"placeholder="Enter group name">
+                                        <input type="text" class="form-control" name="group-name" placeholder="Enter group name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="groupIcon">Group Icon</label>
                                     <div class="input-group ml-3">
-                                             <select id="groupIcon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
+                                             <select id="groupIcon" name="group-icon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
                                         title="Pick an icon">
                                         <option value="icon-1" data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>"></option>
                                         <option value="icon-2" data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>"></option>
                                         <option value="icon-3" data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>"></option>
-
                                     </select>
                                     </div>
                                
@@ -100,7 +101,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Add group</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit"name="add-group">Add group</button>
 
                                 </div>
                             </form>
