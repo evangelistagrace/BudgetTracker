@@ -32,7 +32,7 @@ require 'groups-process.php';
                             </div>
                         </div>
                     </div>
-
+<!-- 
                     <div class="card group" style="width:18rem;">
                         <div class="card-body">
                             <div class="row">
@@ -55,7 +55,7 @@ require 'groups-process.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 <a class="btn btn-danger add-btn" href="#addGroup"><i class="fas fa-plus"></i></a>
