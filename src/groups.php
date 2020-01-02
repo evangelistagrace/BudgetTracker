@@ -21,17 +21,26 @@ require 'groups-process.php';
                 <h1 class="title text-primary">My Groups</h1>
 
                 <div class="row">
+
+                    <?php 
+                        //select all groups the session user is in
+                        $query = pg_query("SELECT * FROM groups WHERE memberusername = '".$_SESSION['username']."' ");
+                        
+                    ?>
+
+                    <?php while($group = pg_fetch_array($query)): ?>
                     <div class="card group" style="width:18rem;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-3"><img src="../assets/icons/icon-1.png" alt=""></div>
                                 <div class="col-8">
-                                    <h1 class="card-title">Family</h1>
+                                    <h1 class="card-title"><?php echo $group['groupname'] ?></h1>
                                     <div class="links small"><a href="groupView.php">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php endwhile ?>
 <!-- 
                     <div class="card group" style="width:18rem;">
                         <div class="card-body">
