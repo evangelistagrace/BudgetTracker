@@ -11,6 +11,7 @@ DONE:
 - sync data to charts
 
 TO-DO:
+- recurring reminder (one-off reminder/ recurring reminder option when creating a reminder)
 - Notification page for alerts, add requests, warnings, etc
 - AJAX for checking budget/expense overflow?
 - make chart clickable and display relevant data/information

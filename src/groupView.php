@@ -71,9 +71,79 @@ $groupingid = $_GET['grouping-id'];
 
                                     <!-- overview -->
                                     <div class="tab-pane active" id="1">
-                                        <p class="card-text">
-                                            wer
-                                        </p>
+                                        <div class="row">
+                                            <!-- reminders -->
+                                            <div class="card" style="width: 25rem">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Reminders</h5>
+                                                    <table class="table table-striped dashboard-reminders">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th class="dashboard-reminders title">Overdue</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr>
+                                                            <td>title</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- balance -->
+                                            <div class="card" style="width: 25rem">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Balance</h5>
+                                                    <table class="balance">
+                                                        <tr>
+                                                            <td>Inflow</td>
+                                                            <td><h5 class="text-primary">+RM <?php echo 'income' ?></h5></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Outflow</td>
+                                                            <td><h5 class="text-primary">-RM <?php echo 'outflow' ?></h5></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Balance</td>
+                                                            <td>
+                                                                <?php $balance = 0 ?>
+                                                                <?php if($balance > 0): ?>
+                                                                    <h3 class="text-primary">+RM <?php echo $balance ?></h3>
+                                                                <?php elseif($balance == 0): ?>
+                                                                    <h3 class="text-primary">RM <?php echo $balance ?></h3> 
+                                                                <?php elseif($balance < 0): ?>
+                                                                    <h3 class="text-danger">-RM <?php echo $negativeBalance ?></h3>
+                                                                <?php endif ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- budgets -->
+                                            <div class="card" style="width: 25rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Budgets</h5>
+                                                    <p class="card-text">
+                                                       //budgets
+                                                    </p>
+                                                    <a href="#" class="btn btn-secondary btn-sm right">Go to group budgets <i
+                                                            class="fas fa-arrow-right"></i></i></a>
+                                                </div>
+                                            </div>
+
+                                            <!-- expenses -->
+                                            <div class="card" style="width: 25rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Expenses</h5>
+                                                    <p class="card-text">
+                                                       //expenses
+                                                    </p>
+                                                    <a href="#" class="btn btn-secondary btn-sm right">Go to group expenses <i
+                                                            class="fas fa-arrow-right"></i></i></a>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                     <!-- budgets -->

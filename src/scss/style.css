@@ -7527,4 +7527,9 @@ table.table-overview tr td span {
 .nav-tabs {
   border-bottom: none;
 }
+
+.card-body .tab-content .tab-pane .row {
+  width: 100%;
+  font-size: 1rem;
+}
 /*# sourceMappingURL=style.css.map */
