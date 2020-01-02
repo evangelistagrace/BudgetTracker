@@ -32,7 +32,7 @@ require 'groups-process.php';
                     <div class="card group" style="width:18rem;">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-3"><img src="../assets/icons/icon-1.png" alt=""></div>
+                                <div class="col-3"><img src=<?php echo $group['groupicon'] ?> alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title"><?php echo $group['groupname'] ?></h1>
                                     <div class="links small"><a href="groupView.php">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
@@ -41,30 +41,6 @@ require 'groups-process.php';
                         </div>
                     </div>
                     <?php endwhile ?>
-<!-- 
-                    <div class="card group" style="width:18rem;">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-3"><img src="../assets/icons/icon-2.png" alt=""></div>
-                                <div class="col-8">
-                                    <h1 class="card-title">Amy's Birthday</h1>
-                                    <div class="links small"><a href="">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card group" style="width:18rem;">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-3"><img src="../assets/icons/icon-3.png" alt=""></div>
-                                <div class="col-8">
-                                    <h1 class="card-title">Hostel</h1>
-                                    <div class="links small"><a href="">View</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
                 <a class="btn btn-danger add-btn" href="#addGroup"><i class="fas fa-plus"></i></a>
@@ -83,11 +59,11 @@ require 'groups-process.php';
                                 <div class="form-group">
                                     <label for="groupIcon">Group Icon</label>
                                     <div class="input-group ml-3">
-                                             <select id="groupIcon" name="group-icon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
+                                        <select id="groupIcon" name="group-icon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
                                         title="Pick an icon">
-                                        <option value="icon-1" data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>"></option>
-                                        <option value="icon-2" data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>"></option>
-                                        <option value="icon-3" data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>"></option>
+                                        <option value="../assets/icons/icon-1.png" data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>"></option>
+                                        <option value="../assets/icons/icon-2.png" data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>"></option>
+                                        <option value="../assets/icons/icon-3.png" data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>"></option>
                                     </select>
                                     </div>
                                

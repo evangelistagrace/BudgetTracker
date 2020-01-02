@@ -9,12 +9,11 @@ if(isset($_POST['add-group'])){
     $query = pg_query("SELECT MAX(groupingid) as maxgroupid FROM groups");
     $result = pg_fetch_array($query);
     $newgroupingid = $result['maxgroupid'] + 1;
-
     $groupname = $_POST['group-name'];
-    $groupicon = 'null';
+    $groupicon = $_POST['group-icon'];
 
     // the first member of the group is the admin itself
-    $query = pg_query("INSERT INTO groups(groupingid, adminusername, groupname, groupicon, memberusername) VALUES ($newgroupingid, '".$_SESSION['username']."', '".$groupname."', $groupicon, '".$_SESSION['username']."')");
+    $query = pg_query("INSERT INTO groups(groupingid, adminusername, groupname, groupicon, memberusername) VALUES ($newgroupingid, '".$_SESSION['username']."', '".$groupname."', '$groupicon', '".$_SESSION['username']."')");
 
 
 }
