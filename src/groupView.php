@@ -5,6 +5,9 @@
 include 'head.php';
 require 'report-process.php';
 
+// initialize variables
+$groupingid = $_GET['grouping-id'];
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -27,13 +30,18 @@ require 'report-process.php';
                     <h6 class="text-info text-left"><i class="fas fa-angle-double-left"></i>Back to My Groups</i></h6>
                 </a>
 
+                <?php 
+                        //select all groups the session user is in
+                        $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid ");
+                        
+                    ?>
 
+                <?php while($group = pg_fetch_array($query)): ?>
                 <div class="row justify-content-center">
                     <div class="col-4">
-                        <h3 class="text-primary text-center">Family</h3>
+                        <h3 class="text-primary text-center"><?php echo $group['groupname'] ?></h3>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="container">
@@ -64,7 +72,7 @@ require 'report-process.php';
                                     <!-- overview -->
                                     <div class="tab-pane active" id="1">
                                         <p class="card-text">
-                                        wer
+                                            wer
                                         </p>
                                     </div>
 
@@ -91,7 +99,7 @@ require 'report-process.php';
                                     <!-- report -->
                                     <div class="tab-pane" id="6">
                                         <div class="card-text">
-                                            
+
                                         </div>
                                     </div>
 
@@ -106,6 +114,8 @@ require 'report-process.php';
 
                     </div>
                 </div>
+
+                <?php endwhile ?>
 
             </div>
         </div>
