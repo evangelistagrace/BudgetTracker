@@ -12,6 +12,7 @@ DONE:
 
 TO-DO:
 - recurring reminder (one-off reminder/ recurring reminder option when creating a reminder)
+- restrict user from deleting a budget if there are existing expenses with that budget
 - Notification page for alerts, add requests, warnings, etc
 - AJAX for checking budget/expense overflow?
 - make chart clickable and display relevant data/information

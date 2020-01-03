@@ -14,7 +14,21 @@
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
-                <div class="row"></div>
+                <div class="row">
+                    <?php
+                        $query = pg_query("SELECT * FROM notifications WHERE username = '".$_SESSION['username']."' ");
+
+                    ?>
+
+                    <?php while($notification = pg_fetch_array($query)): ?>
+                        <div class="card">
+                        <div class="card-body">
+                            <div class="card-title"><?php echo $notification['notificationtitle']?></div>
+                        </div>
+                    </div>
+                    <?php  endwhile ?>
+                    
+                </div>
             </div>
 
     <?php include 'footer.php' ?>
