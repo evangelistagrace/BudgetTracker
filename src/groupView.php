@@ -240,19 +240,19 @@ $groupingid = $_GET['grouping-id'];
 
                                                     <!-- members -->
                                                     <h5 class="text-left"><strong>Members</strong></h5>
-                                                    <small>Send an email invitation</small>
+                                                    <small>Add members</small>
                                                     <table class='table borderless'>
                                                         <form action="groupView.php?grouping-id=<?php echo $groupingid ?>" method="POST">
                                                             <tr>
                                                                 <td style="width:65%">
                                                                     <div class="input-group">
-                                                                        <input class="form-control text-left" name="new-member" type="email" value=""
+                                                                        <input class="form-control text-left" name="invitation-email" type="email" value=""
                                                                             placeholder="Enter an email...">
                                                                     </div>
                                                                 <input type="hidden" name="grouping-id" value=<?php echo $groupingid ?>>
                                                                 </td>
-                                                                <td style="width:25%"><button name="add-member"
-                                                                        class="btn btn-block btn-info"><?php echo 'Add member' ?></button>
+                                                                <td style="width:25%"><button name="send-invitation"
+                                                                        class="btn btn-block btn-info"><?php echo 'Send Invitation' ?></button>
                                                                 </td>
                                                             </tr>
                                                         </form>
