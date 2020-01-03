@@ -93,10 +93,14 @@ $groupingid = $_GET['grouping-id'];
                                             <div class="card" style="width: 25rem">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Balance</h5>
+                                                    <?php
+                                                        $query = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid AND memberusername ='".$_SESSION['username']."' "); 
+                                                        $result = pg_fetch_array($query);
+                                                    ?>
                                                     <table class="balance">
                                                         <tr>
                                                             <td>Inflow</td>
-                                                            <td><h5 class="text-primary">+RM <?php echo 'income' ?></h5></td>
+                                                            <td><h5 class="text-primary">+RM <?php echo $result['maxbudget'] ?></h5></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Outflow</td>
@@ -208,9 +212,82 @@ $groupingid = $_GET['grouping-id'];
                                                                     </td>
                                                                 </tr>
                                                             </form>
-
                                                         </table>
                                                     <hr>
+                                                    
+                                                    <!-- reminders -->
+                                                    <h5 class="text-left"><strong>Reminders</strong></h5>
+                                                    <table class='table table-condensed settings2'>
+                                                        <tr>
+                                                            <td><input type="checkbox" class="checkbox" checked>
+                                                                <div class="pseudo-checkbox"></div>
+                                                            </td>
+
+                                                            <td>Allow pop-up reminders</td>
+
+                                                            <td><input type="checkbox" class="checkbox">
+                                                                <div class="pseudo-checkbox"></div>
+                                                            </td>
+
+                                                            <td>Allow push notifications</td>
+                                                        </tr>
+                                                    </table>
+                                                    <hr>
+                                                    
+                                                    <!-- budgets -->
+                                                    <h5 class="text-left"><strong>Budgets</strong></h5>
+                                                    <hr>
+
+                                                    <!-- members -->
+                                                    <h5 class="text-left"><strong>Members</strong></h5>
+                                                    <small>Send an email invitation</small>
+                                                    <table class='table borderless'>
+                                                        <form action="groupView.php?grouping-id=<?php echo $groupingid ?>" method="POST">
+                                                            <tr>
+                                                                <td style="width:65%">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control text-left" name="new-member" type="email" value=""
+                                                                            placeholder="Enter an email...">
+                                                                    </div>
+                                                                <input type="hidden" name="grouping-id" value=<?php echo $groupingid ?>>
+                                                                </td>
+                                                                <td style="width:25%"><button name="add-member"
+                                                                        class="btn btn-block btn-info"><?php echo 'Add member' ?></button>
+                                                                </td>
+                                                            </tr>
+                                                        </form>
+                                                    </table>
+
+                                                    <table class="table borderless text-left">
+                                                        <form action="groupView.php?grouping-id=<?php echo $groupingid ?>" method="POST">
+                                                            <?php 
+                                                                $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid");
+                                                            ?>
+                                                            <?php while($member = pg_fetch_array($query)): ?>
+                                                                <tr>
+                                                                    <td rowspan="2">
+                                                                        //profile picture
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $member['memberusername'] ?>
+                                                                    </td>
+                                                                    <td rowspan="2">
+                                                                        <!-- edit member -->
+                                                                        <a href="#"><i
+                                                                                class="fas fa-edit text-primary"></i></a>
+                                                                        <!-- delete member -->
+                                                                        <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                                                    </td>
+                                                                </tr> 
+                                                                <tr>
+                                                                    <td>
+                                                                        <small>//email</small>
+                                                                    </td>
+                                                                </tr>   
+                                                            <?php endwhile ?>
+                                                        </form>
+                                                    </table>
+
                                                 </div>
                                             </div>
                                         </div>

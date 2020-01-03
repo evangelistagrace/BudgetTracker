@@ -7444,4 +7444,9 @@ table.table-overview tr td span {
   width: 100%;
   font-size: 1rem;
 }
+
+.card-body .tab-content .tab-pane .row small {
+  display: block;
+  text-align: left;
+}
 /*# sourceMappingURL=style.css.map */
