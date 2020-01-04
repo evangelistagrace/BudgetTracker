@@ -7129,7 +7129,7 @@ h1.title {
 .add-btn {
   width: 60px;
   height: 60px;
-  color: #241717;
+  color: white;
   border-radius: 50px;
   text-align: center;
   padding: 10px;
@@ -7450,7 +7450,7 @@ table.table-overview tr td span {
   text-align: left;
 }
 
-.row.notification-container {
+.my-container .row .col-10-body .row.notification-container {
   margin: auto;
   padding: 30px;
   width: 80%;
@@ -7463,12 +7463,17 @@ table.table-overview tr td span {
           flex-flow: column;
 }
 
-.row.notification-container .card {
+.my-container .row .col-10-body .row.notification-container .card {
   width: 100%;
-  margin-bottom: 5px;
   display: block;
+  margin: 5px;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.my-container .row .col-10-body .row.notification-container .card:hover {
+  background-color: rgba(253, 253, 253, 0.933);
 }
 
 .card-body {

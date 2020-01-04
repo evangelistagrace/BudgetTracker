@@ -1168,7 +1168,7 @@ h1.title {
 .add-btn {
     width: 60px;
     height: 60px;
-    color: rgb(36, 23, 23);
+    color: white;
     border-radius: 50px;
     text-align: center;
     padding: 10px;
@@ -1463,7 +1463,10 @@ rgba(0, 0, 0, 0.03);
     }
 }
 
-.row.notification-container{
+
+// notifications page
+
+.my-container .row .col-10-body .row.notification-container{
     margin:auto;
     padding: 30px;
     width: 80%;
@@ -1471,10 +1474,15 @@ rgba(0, 0, 0, 0.03);
     flex-flow: column;
     .card{
       width: 100%;
-      margin-bottom: 5px;
       display: block;
+      margin: 5px;
       transition: opacity 0.3s;
+      cursor: pointer;
+      &:hover{
+        background-color: rgba(253, 253, 253, 0.933);
     }
+    }
+    
   }
   
   
