@@ -5976,6 +5976,14 @@ a {
   color: #6CC3D5;
 }
 
+.container-fluid.homepage {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .nav {
   padding-left: 0;
   margin-bottom: 0;
@@ -6109,14 +6117,6 @@ a {
   .nav-tabs.nav-justified > .active > a:focus {
     border-bottom-color: #fff;
   }
-}
-
-.container-fluid.homepage {
-  width: 100%;
-  padding-right: 0;
-  padding-left: 0;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .navbar {
@@ -7129,7 +7129,7 @@ h1.title {
 .add-btn {
   width: 60px;
   height: 60px;
-  color: white;
+  color: #241717;
   border-radius: 50px;
   text-align: center;
   padding: 10px;
@@ -7448,5 +7448,95 @@ table.table-overview tr td span {
 .card-body .tab-content .tab-pane .row small {
   display: block;
   text-align: left;
+}
+
+.row.notification-container {
+  margin: auto;
+  padding: 30px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.row.notification-container .card {
+  width: 100%;
+  margin-bottom: 5px;
+  display: block;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+.card-body table {
+  width: 100%;
+}
+
+.card-body table tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-body table tr td a.btn {
+  font-size: 0.8rem;
+  padding: 3px;
+}
+
+.card-body table tr td:nth-child(2) {
+  text-align: right;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.card-title:before {
+  display: inline-block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  padding-bottom: 3px;
+  margin-right: 10px;
+}
+
+.notification-invitation .card-body .card-title:before {
+  color: #90CAF9;
+  border-color: #90CAF9;
+  content: "\f007";
+}
+
+.notification-warning .card-body .card-title:before {
+  color: #FFE082;
+  border-color: #FFE082;
+  content: "\f071";
+}
+
+.notification-danger .card-body .card-title:before {
+  color: #FFAB91;
+  border-color: #FFAB91;
+  content: "\f00d";
+}
+
+.notification-reminder .card-body .card-title:before {
+  color: #CE93D8;
+  border-color: #CE93D8;
+  content: "\f017";
+}
+
+.card.display-none {
+  display: none;
+  -webkit-transition: opacity 2s;
+  transition: opacity 2s;
 }
 /*# sourceMappingURL=style.css.map */
