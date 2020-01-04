@@ -36,13 +36,14 @@ if(isset($_POST['send-invitation'])){
     //select username from email 
     $query = pg_query("SELECT * FROM users WHERE email = '$invitationemail'");
     $result = pg_fetch_array($query);
-    $username = $result['username']; //recipient
-    
+    $recipientusername = $result['username']; //recipient
+    $senderusername = $_SESSION['username']; //sender
+    $bolddata = $groupname;
 
     // send notification if user exists
-    if($username){
+    if($recipientusername){
         // send invitation email/notification
-        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, username) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$username')");
+        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$recipientusername', '$senderusername', '$bolddata')");
     }else{
         echo 'unsucessful';
     }
