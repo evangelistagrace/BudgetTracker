@@ -29,17 +29,20 @@ if(isset($_POST['send-invitation'])){
 
     $notificationtitle = "Invitation to join" . " " . $groupname;
     $notificationmessage = "Join here: <insert link>";
+    $notificationdate = date("Y-m-d"); //current date
+    $notificationtype = 'Invitation';
+    $notificationstatus = 'SENT';
 
     //select username from email 
     $query = pg_query("SELECT * FROM users WHERE email = '$invitationemail'");
     $result = pg_fetch_array($query);
-    $username = $result['username'];
-    $notificationstatus = 'SENT';
+    $username = $result['username']; //recipient
+    
 
     // send notification if user exists
     if($username){
         // send invitation email/notification
-        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, username, notificationstatus) VALUES ('$notificationtitle', '$notificationmessage', '$username', '$notificationstatus')");
+        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, username) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$username')");
     }else{
         echo 'unsucessful';
     }
