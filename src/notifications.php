@@ -25,37 +25,42 @@ require 'notifications-process.php'
             $query = pg_query("SELECT * FROM notifications WHERE recipientusername = '".$_SESSION['username']."' ");
           ?>
 
-          <?php while($notification = pg_fetch_array($query)): ?>
-            <!-- invitation -->
-            <?php if($notification['notificationtype'] = 'Invitation'): ?>
-              
-              <div class="card notification-card notification-invitation">
-              
-                <div class="card-body">
-                  <table>
-                    <tr>
-                      <td style="width:70%">
-                        <div class="card-title"><?php echo $notification['senderusername'] . ' invited you to join '?><b><?php echo $notification['bolddata']?></b><?php echo ' group'?></div>
-                      </td>
-                      <td style="width:30%">
-                      <form action="notifications.php" method="POST">
-                         <!-- accept invitation -->
-                         <input type="hidden" name="grouping-id" value=<?php echo $notification['groupingid'] ?>>
-                          <button type="submit" name="accept-invitation" class="btn btn-primary">Accept</button>
-                          <!-- decline invitation -->
-                          <a href="#" class="btn btn-danger dismiss-notification">Decline</a>
-                      </form>
-                       
-                      </td>
-                    </tr>
-                    <tr colspan="2">
-                      <td><small><i class="far fa-calendar-alt mr-1"></i><?php $d = $notification['notificationdate']; $date = date("j F Y", strtotime($d)); echo $date ?></small></td>
-                    </tr>
-                  </table>
+          <?php if(count(pg_num_rows($query)) > 1): ?>
+            <?php echo count(pg_num_rows($query)) ?>
+            <?php while($notification = pg_fetch_array($query)): ?>
+              <!-- invitation -->
+              <?php if($notification['notificationtype'] = 'Invitation'): ?>
+                
+                <div class="card notification-card notification-invitation">
+                  <div class="card-body">
+                    <table>
+                      <tr>
+                        <td style="width:70%">
+                          <div class="card-title"><?php echo $notification['senderusername'] . ' invited you to join '?><b><?php echo $notification['bolddata']?></b><?php echo ' group'?></div>
+                        </td>
+                        <td style="width:30%">
+                        <!-- accept invitation -->
+                        <a href="notifications-process.php?accept-grouping-id=<?php echo $notification['groupingid'] ?>" class="btn btn-primary">Accept</a>
+                        <!-- decline invitation -->
+                        <a href="notifications-process.php?decline-notification-id=<?php echo $notification['id'] ?>" class="btn btn-danger dismiss-notification">Decline</a>
+                        </td>
+                      </tr>
+                      <tr colspan="2">
+                        <td><small><i class="far fa-calendar-alt mr-1"></i><?php $d = $notification['notificationdate']; $date = date("j F Y", strtotime($d)); echo $date ?></small></td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            <?php endif ?>
-          <?php endwhile ?>
+              <?php endif ?>
+            <?php endwhile ?>
+
+          <?php elseif(count(pg_num_rows($query)) == 1): ?>
+            <h4 class="text-center">All caught up!</h4>
+          <?php endif ?>
+
+
+
+          
           <!-- <div class="card notification-card notification-invitation">
             <div class="card-body">
               <table>
@@ -125,6 +130,33 @@ require 'notifications-process.php'
       </div>
 
       <?php include 'footer.php' ?>
+      <script>
+        const dismissAll = document.getElementById('dismiss-all');
+const dismissBtns = Array.from(document.querySelectorAll('.dismiss-notification'));
+
+const notificationCards = document.querySelectorAll('.notification-card');
+
+dismissBtns.forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault;
+    console.log("clicked")
+    var parent = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+    parent.classList.add('display-none');
+  })
+});
+
+dismissAll.addEventListener('click', function(e){
+  e.preventDefault;
+  notificationCards.forEach(card => {
+    card.classList.add('display-none');
+  });
+  const row = document.querySelector('.notification-container');
+  const message = document.createElement('h4');
+  message.classList.add('text-center');
+  message.innerHTML = 'All caught up!';
+  row.appendChild(message);
+})
+      </script>
 
 </body>
 
