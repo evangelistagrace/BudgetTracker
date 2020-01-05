@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php'?>
+<?php 
+include 'head.php';
+require 'notifications-process.php'
+?>
 <title>My Notifications - BudgetTracker</title>
 
 <body>
@@ -35,8 +38,14 @@
                         <div class="card-title"><?php echo $notification['senderusername'] . ' invited you to join '?><b><?php echo $notification['bolddata']?></b><?php echo ' group'?></div>
                       </td>
                       <td style="width:30%">
-                        <a href="#" class="btn btn-primary">View</a>
-                        <a href="#" class="btn btn-danger dismiss-notification">Dismiss</a>
+                      <form action="notifications.php" method="POST">
+                         <!-- accept invitation -->
+                         <input type="hidden" name="grouping-id" value=<?php echo $notification['groupingid'] ?>>
+                          <button type="submit" name="accept-invitation" class="btn btn-primary">Accept</button>
+                          <!-- decline invitation -->
+                          <a href="#" class="btn btn-danger dismiss-notification">Decline</a>
+                      </form>
+                       
                       </td>
                     </tr>
                     <tr colspan="2">
