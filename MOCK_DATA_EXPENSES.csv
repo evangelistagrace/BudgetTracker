@@ -1,51 +1,51 @@
 expense_name,category,amount,date
-suscipit nulla,Groceries,37,11/04/2019
-sed,Groceries,14,11/22/2019
-egestas metus,Groceries,13,12/18/2019
-volutpat,Food,34,01/02/2020
-pede lobortis,Groceries,19,11/21/2019
-pede,Bills,19,01/03/2020
-vestibulum ante,Bills,25,12/12/2019
-mi integer ac,Travel,10,12/05/2019
-vitae consectetuer eget,Bills,46,11/26/2019
-orci nullam molestie,Travel,35,11/29/2019
-nam ultrices,Travel,27,12/18/2019
-sed ante,Groceries,44,11/22/2019
-nullam,Travel,31,01/04/2020
-curae,Bills,46,11/24/2019
-tortor duis mattis,Food,15,01/01/2020
-mattis,Groceries,45,11/03/2019
-lacinia erat,Gifts,17,11/27/2019
-curae,Food,45,11/18/2019
-proin eu,Food,22,11/29/2019
-nulla pede,Groceries,32,11/14/2019
-augue,Bills,12,12/18/2019
-nulla,Groceries,9,11/12/2019
-quisque erat,Groceries,40,11/05/2019
-mauris morbi,Bills,24,12/22/2019
-viverra pede,Groceries,14,01/06/2020
-augue a suscipit,Groceries,14,12/21/2019
-ante ipsum,Travel,28,12/18/2019
-duis aliquam,Groceries,11,11/14/2019
-vulputate,Bills,9,11/05/2019
-lorem integer tincidunt,Gifts,6,12/27/2019
-magna vestibulum aliquet,Groceries,28,11/25/2019
-cum sociis,Groceries,43,11/22/2019
-mus,Gifts,24,11/22/2019
-sit amet,Gifts,47,11/29/2019
-sit amet sapien,Gifts,36,12/18/2019
-odio consequat,Gifts,49,11/24/2019
-bibendum,Groceries,36,11/11/2019
-pulvinar lobortis est,Bills,35,12/07/2019
-vel ipsum,Food,35,12/20/2019
-sapien non,Groceries,5,12/19/2019
-pellentesque,Travel,8,12/09/2019
-vel,Gifts,38,11/02/2019
-sapien,Groceries,21,12/13/2019
-tortor quis turpis,Travel,11,01/07/2020
-neque libero,Groceries,46,12/27/2019
-dui maecenas tristique,Groceries,48,01/01/2020
-ultrices aliquet,Travel,6,12/10/2019
-sit,Groceries,35,12/22/2019
-semper,Gifts,24,12/29/2019
-feugiat,Gifts,37,12/30/2019
+in est risus,Travel,38,17/12/2019
+duis aliquam convallis,Gifts,29,14/12/2019
+duis at,Gifts,50,19/12/2019
+quam,Travel,45,20/12/2019
+et magnis,Groceries,25,09/12/2019
+donec,Food,44,04/12/2019
+ipsum primis,Travel,17,16/12/2019
+nisi eu,Travel,5,15/12/2019
+in felis,Bills,35,09/12/2019
+faucibus accumsan odio,Bills,10,24/12/2019
+in,Gifts,43,15/12/2019
+blandit,Gifts,12,28/12/2019
+augue quam sollicitudin,Gifts,31,28/12/2019
+tempor convallis nulla,Food,44,27/12/2019
+ut nunc vestibulum,Travel,5,16/12/2019
+in imperdiet et,Food,30,06/12/2019
+id,Travel,13,06/12/2019
+viverra pede,Gifts,38,25/12/2019
+curae mauris,Bills,47,21/12/2019
+ac nibh,Groceries,17,27/12/2019
+eget orci,Gifts,26,24/12/2019
+curae duis faucibus,Travel,8,28/12/2019
+congue,Travel,36,29/12/2019
+eget,Gifts,47,19/12/2019
+nulla sed,Travel,24,02/12/2019
+mi,Groceries,27,29/12/2019
+lacinia eget tincidunt,Travel,22,21/12/2019
+vitae nisi nam,Travel,39,26/12/2019
+tempus vel,Groceries,27,11/12/2019
+ac,Bills,16,21/12/2019
+quam sapien,Travel,24,06/12/2019
+ac diam cras,Groceries,16,21/12/2019
+et,Travel,18,15/12/2019
+duis ac nibh,Bills,15,04/12/2019
+quis orci eget,Bills,20,29/12/2019
+in libero,Travel,33,13/12/2019
+congue diam,Gifts,47,03/12/2019
+vestibulum,Groceries,43,16/12/2019
+integer ac,Travel,11,13/12/2019
+orci,Travel,48,13/12/2019
+suscipit ligula in,Food,40,22/12/2019
+parturient montes nascetur,Travel,45,08/12/2019
+viverra,Groceries,41,17/12/2019
+at,Travel,47,07/12/2019
+faucibus orci,Groceries,7,06/12/2019
+luctus,Gifts,39,09/12/2019
+parturient,Food,46,13/12/2019
+tempus,Bills,10,08/12/2019
+consequat ut nulla,Food,19,13/12/2019
+maecenas ut,Bills,40,06/12/2019
