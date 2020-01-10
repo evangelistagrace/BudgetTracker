@@ -160,16 +160,16 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr style="justify-content: center;">
                                         
                                         <?php if($editState == true):?>
-                                            <td colspan="2">
+                                            <td style="width: 50%">
                                             <button type="submit" name="edit-budget" class="btn btn-primary btn-block"><i class="fas fa-check"></i> Save budget</button></td>
-                                            <td colspan="1">
+                                            <td style="width: 50%">
                                                 <button type="submit" name="cancel-budget" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Cancel</button>
                                             </td>
                                         <?php else: ?>
-                                            <td colspan="3">
+                                            <td style="width:100%">
                                                 <button type="submit" name="add-budget" class="btn btn-info btn-block"><i class="fas fa-plus"></i> Add budget</button>
                                             </td>
                                             

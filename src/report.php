@@ -24,7 +24,7 @@ require 'report-process.php';
                 <h1 class="title text-primary">My Report</h1>
 
                 <div class="row justify-content-center">
-                    <div class="col-4"><h4 class="text-info text-center"><i class="fas fa-angle-double-left"></i> August <i class="fas fa-angle-double-right"></i></h4></div>
+                    <div class="col-4"><h4 class="text-info text-center"><i class="fas fa-angle-double-left"></i> December 2019 <i class="fas fa-angle-double-right"></i></h4></div>
                 </div>
                 <div class="row justify-content-end">
                     <div class="col-3">

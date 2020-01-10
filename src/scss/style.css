@@ -7496,7 +7496,7 @@ table.table-overview tr td span {
 }
 
 .card-body table tr td:nth-child(2) {
-  text-align: right;
+  text-align: left;
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
@@ -7543,5 +7543,11 @@ table.table-overview tr td span {
   display: none;
   -webkit-transition: opacity 2s;
   transition: opacity 2s;
+}
+
+small, .small {
+  font-size: 80%;
+  font-weight: 400;
+  text-align: left;
 }
 /*# sourceMappingURL=style.css.map */
