@@ -457,8 +457,12 @@ a {
 
                     .card-body {
                         padding: 0.8rem;
+                        display: flex;
+                        flex-flow: column wrap;
+                        justify-content: space-around;
 
                         a.btn {
+                            align-self: flex-end;
                             font-size: 0.9em;
                             font-family: 'Varela Round', sans-serif;
 

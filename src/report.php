@@ -36,7 +36,7 @@ require 'report-process.php';
                         <div class="card" style="width: 25rem;">
                             <div class="card-body">
                                 <div class="card-title"><h5>Expenses by Category</h5></div>
-                                <div class="card-text mt-5">
+                                <div class="card-text">
                                     <canvas id="expensesByCategoryChart"></canvas>
                                 </div>
                             </div>

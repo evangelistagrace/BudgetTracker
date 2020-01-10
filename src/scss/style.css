@@ -6506,9 +6506,20 @@ a {
 
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   font-size: 0.9em;
   font-family: 'Varela Round', sans-serif;
 }
