@@ -12,7 +12,6 @@ $expenseamount = $_GET['expense-amount'];
 $expensedate = $_GET['expense-date'];
 
 
-
 ?>
 
 <title>My Expenses - BudgetTracker</title>

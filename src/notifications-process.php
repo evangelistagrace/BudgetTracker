@@ -3,7 +3,6 @@ require 'config.php';
 
 if(isset($_GET['accept-grouping-id'])){
     $groupingid = $_GET['accept-grouping-id'];
-    echo $groupingid;
     // find admin username
     $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid LIMIT 1");
     $result = pg_fetch_array($query);
