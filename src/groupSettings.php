@@ -3,7 +3,7 @@
 <?php 
 
 include 'head.php';
-require 'groupBudgets-process.php';
+require 'groupSettings-process.php';
 
 // initialize variables
 $groupingid = $_GET['grouping-id'];
@@ -87,7 +87,7 @@ $groupingid = $_GET['grouping-id'];
                                             <div class="card-body">
                                                 <h5 class="text-left"><strong>Maximum Budget</strong></h5>
                                                 <table class='table borderless'>
-                                                    <form action="groupView.php?grouping-id=<?php echo $groupingid ?>"
+                                                    <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <tr>
                                                             <?php 

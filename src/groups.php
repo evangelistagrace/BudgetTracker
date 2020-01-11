@@ -24,7 +24,7 @@ require 'groups-process.php';
 
                     <?php 
                         //select all groups the session user is in
-                        $query = pg_query("SELECT * FROM groups WHERE memberusername = '".$_SESSION['username']."' ");
+                        $query = pg_query("SELECT * FROM groups WHERE memberusername = '".$_SESSION['username']."' ORDER BY groupname");
                         
                     ?>
 
