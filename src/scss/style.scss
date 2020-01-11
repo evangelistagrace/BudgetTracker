@@ -1587,3 +1587,21 @@ small,
     font-weight: 400;
     text-align: left;
 }
+
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+
+.nav {
+    display: flex;
+    flex: 1;
+  }
+  
+  .nav-tabs > li {
+    flex: 1;
+  }
+  
+  .nav > li > a {
+    /* padding: 10px 15px; */
+    padding: 10px 10px;
+  }
+  
