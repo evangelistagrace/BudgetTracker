@@ -35,7 +35,7 @@ require 'groups-process.php';
                                 <div class="col-3"><img src=<?php echo $group['groupicon'] ?> alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title"><?php echo $group['groupname'] ?></h1>
-                                    <div class="links small"><a href="groupView.php?grouping-id=<?php echo $group['groupingid']?>">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
+                                    <div class="links small"><a href="groupDashboard.php?grouping-id=<?php echo $group['groupingid']?>">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
                                 </div>
                             </div>
                         </div>

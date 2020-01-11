@@ -49,10 +49,10 @@ $groupingid = $_GET['grouping-id'];
                         <div class="card text-center">
                             <div class="card-header tabbed-card">
                                 <ul class="nav nav-tabs card-header-tabs">
-                                    <li class="active" >
-                                        <a href="#1" data-toggle="tab"><i class="fas fa-home"></i> Overview</a>
+                                    <li>
+                                        <a href="groupDashboard.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-home"></i> Overview</a>
                                     </li>
-                                    <li><a href="#2" data-toggle="tab"><i class="fas fa-chart-pie"></i> Budgets</a>
+                                    <li class="active"><a href="groupBudgets.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-chart-pie"></i> Budgets</a>
                                     </li>
                                     <li><a href="#3" data-toggle="tab"><i class="fas fa-wallet"></i> Expenses</a>
                                     </li>
@@ -70,7 +70,7 @@ $groupingid = $_GET['grouping-id'];
                                 <div class="tab-content ">
 
                                     <!-- overview -->
-                                    <div class="tab-pane active" id="1">
+                                    <div class="tab-pane" id="1">
                                         <div class="row">
                                             <!-- reminders -->
                                             <div class="card" style="width: 25rem">
@@ -151,8 +151,8 @@ $groupingid = $_GET['grouping-id'];
                                     </div>
 
                                     <!-- budgets -->
-                                    <div class="tab-pane" id="2">
-                                        <div class="card-title">Overview</div>
+                                    <div class="tab-pane active" id="2">
+                                        <div class="card-title">Budgets</div>
                                     </div>
 
                                     <!-- expenses -->
@@ -236,6 +236,92 @@ $groupingid = $_GET['grouping-id'];
                                                     
                                                     <!-- budgets -->
                                                     <h5 class="text-left"><strong>Budgets</strong></h5>
+                                                    <small>Create up to 10 budgets</small>
+                            <form action="settings.php" method="POST">
+                                <table class="table borderless">
+                                    <?php if(count($warnings)): ?>
+                                    <div class="error">
+                                        <?php foreach($warnings as $warning): ?>
+                                        <div class="alert alert-warning"><?php echo $warning ?></div>
+                                        <?php endforeach ?>
+                                    </div>
+                                    <?php endif ?>
+                                    <?php if(count($errors)) : ?>
+                                    <div class="error">
+                                        <?php foreach($errors as $error): ?>
+                                        <div class="alert alert-danger"><?php echo $error ?></div>
+                                        <?php endforeach ?>
+                                    </div>
+                                    <?php endif ?>
+                                    <tr>
+                                        <td style="width:35%">
+                                            <input type="hidden" name="budget-id" value=<?php echo $budgetid ?>>
+                                            <input class="form-control" type="text" name="budget-name" required
+                                                placeholder="Budget Name" value=<?php echo $budgetname ?>>
+                                        </td>
+                                        <td style="width: 35%">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RM</span>
+                                                </div>
+                                                <input class="form-control text-right" name="budget-amount" type="text"
+                                                    placeholder="0" value=<?php echo $budgetamount ?>>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width:30%">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <select id="groupIcon" class="selectpicker show-tick"
+                                                        data-style="bg-light text-dark" data-width="100%" data-size="3"
+                                                        title="Pick a color" name="budget-color" value=<?php echo $budgetcolor ?>>
+                                                        <?php  $query = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ORDER BY colortaken DESC"); ?>
+                                                        <?php while($result = pg_fetch_array($query)): ?>
+                                                            <?php if($editState == false):?> 
+                                                                <?php if($result['colortaken'] == f): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>'><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                            <?php elseif($editState == true):?>
+                                                                <?php if($budgetcolor == $result['colorname']): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>' selected><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                                <?php if($result['colortaken'] == f): ?>
+                                                                    <option value=<?php echo $result['colorname']?> data-icon='<?php echo "fas fa-circle {$result['colorname']}" ?>'><?php echo $result['colorname']?></option>
+                                                                <?php endif ?>
+                                                            <?php endif ?>
+                                                        <?php endwhile ?>
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" name="budget-previous-color" value=<?php echo $budgetcolor?>>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="justify-content: center;">
+                                        
+                                        <?php if($editState == true):?>
+                                            <td style="width: 50%">
+                                            <button type="submit" name="edit-budget" class="btn btn-primary btn-block"><i class="fas fa-check"></i> Save budget</button></td>
+                                            <td style="width: 50%">
+                                                <button type="submit" name="cancel-budget" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Cancel</button>
+                                            </td>
+                                        <?php else: ?>
+                                            <td style="width:100%">
+                                                <button type="submit" name="add-budget" class="btn btn-info btn-block"><i class="fas fa-plus"></i> Add budget</button>
+                                            </td>
+                                            
+                                        <?php endif ?>
+                                    
+                                    </tr>
+                                </table>
+                            </form>
+
+
+                            <table class='table table-condensed settings2'>
+                                
+
+                            </table>
                                                     <hr>
 
                                                     <!-- members -->

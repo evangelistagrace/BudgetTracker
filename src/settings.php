@@ -66,7 +66,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                             </div>
 
                                         </td>
-                                        <td style="width:20%"><button name="add-income"
+                                        <td style="width:30%"><button name="add-income"
                                                 class="btn btn-block btn-info"><?php echo $btnText ?></button>
                                         </td>
                                     </tr>
