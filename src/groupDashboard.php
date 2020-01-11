@@ -32,7 +32,7 @@ $groupingid = $_GET['grouping-id'];
 
                 <?php 
                         //select all groups the session user is in
-                        $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid ");
+                        $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid LIMIT 1");
                         
                     ?>
 
@@ -52,17 +52,23 @@ $groupingid = $_GET['grouping-id'];
                                     <li class="active" >
                                         <a href="groupDashboard.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-home"></i> Overview</a>
                                     </li>
-                                    <li><a href="groupBudgets.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-chart-pie"></i> Budgets</a>
+                                    <li>
+                                        <a href="groupBudgets.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-chart-pie"></i> Budgets</a>
                                     </li>
-                                    <li><a href="#3" data-toggle="tab"><i class="fas fa-wallet"></i> Expenses</a>
+                                    <li>
+                                        <a href="groupExpenses.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-wallet"></i> Expenses</a>
                                     </li>
-                                    <li><a href="#4" data-toggle="tab"><i class="fas fa-list"></i> Reminders</a>
+                                    <li>
+                                        <a href="groupReminders.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-list"></i> Reminders</a>
                                     </li>
-                                    <li><a href="#5" data-toggle="tab"><i class="fas fa-bell"></i> Notifications</a>
+                                    <li>
+                                        <a href="groupNotifications.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-bell"></i> Notifications</a>
                                     </li>
-                                    <li><a href="#6" data-toggle="tab"><i class="fas fa-chart-line"></i> Report</a>
+                                    <li>
+                                        <a href="groupReport.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-chart-line"></i> Report</a>
                                     </li>
-                                    <li><a href="#7" data-toggle="tab"><i class="fas fa-cog"></i> Settings</a>
+                                    <li>
+                                        <a href="groupSettings.php?grouping-id=<?php echo $groupingid?>"><i class="fas fa-cog"></i> Settings</a>
                                     </li>
                                 </ul>
                             </div>
@@ -150,32 +156,6 @@ $groupingid = $_GET['grouping-id'];
                                         </div>
                                     </div>
 
-                                    <!-- budgets -->
-                                    <div class="tab-pane" id="2">
-                                        <div class="card-title">Overview</div>
-                                    </div>
-
-                                    <!-- expenses -->
-                                    <div class="tab-pane" id="3">
-                                        <div class="card-text">Overview</div>
-                                    </div>
-
-                                    <!-- reminders -->
-                                    <div class="tab-pane" id="4">
-                                        <div class="card-text">Overview</div>
-                                    </div>
-
-                                    <!-- notifications -->
-                                    <div class="tab-pane" id="5">
-                                        <div class="card-text">Overview</div>
-                                    </div>
-
-                                    <!-- report -->
-                                    <div class="tab-pane" id="6">
-                                        <div class="card-text">
-
-                                        </div>
-                                    </div>
 
                                     <!-- settings -->
                                     <div class="tab-pane" id="7">

@@ -53,7 +53,7 @@ $groupingid = $_GET['grouping-id'];
                                         <a href="groupDashboard.php?grouping-id=<?php echo $groupingid?>"><i
                                                 class="fas fa-home"></i> Overview</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="groupBudgets.php?grouping-id=<?php echo $groupingid?>"><i
                                                 class="fas fa-chart-pie"></i> Budgets</a>
                                     </li>
@@ -73,7 +73,7 @@ $groupingid = $_GET['grouping-id'];
                                         <a href="groupReport.php?grouping-id=<?php echo $groupingid?>"><i
                                                 class="fas fa-chart-line"></i> Report</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="groupSettings.php?grouping-id=<?php echo $groupingid?>"><i
                                                 class="fas fa-cog"></i> Settings</a>
                                     </li>
@@ -81,9 +81,9 @@ $groupingid = $_GET['grouping-id'];
                             </div>
                             <div class="card-body">
                                 <div class="tab-content ">
-                                    <!-- budgets -->
-                                    <div class="tab-pane active" id="2">
-                                        <div class="card-title">Budgets</div>
+                                    <!-- Settings -->
+                                    <div class="tab-pane active" id="7">
+                                        <div class="card-title">Settings</div>
                                     </div>
 
                                 </div>
