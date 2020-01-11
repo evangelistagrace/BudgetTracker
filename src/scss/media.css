@@ -6506,11 +6506,23 @@ a {
 
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   font-size: 0.9em;
   font-family: 'Varela Round', sans-serif;
+  margin-right: 5px;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn i {
@@ -7496,9 +7508,7 @@ table.table-overview tr td span {
 }
 
 .card-body table tr td:nth-child(2) {
-  text-align: right;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  text-align: left;
 }
 
 .card-title:before {
@@ -7543,6 +7553,13 @@ table.table-overview tr td span {
   display: none;
   -webkit-transition: opacity 2s;
   transition: opacity 2s;
+}
+
+small,
+.small {
+  font-size: 80%;
+  font-weight: 400;
+  text-align: left;
 }
 
 /* 

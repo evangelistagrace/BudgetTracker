@@ -6522,6 +6522,7 @@ a {
       align-self: flex-end;
   font-size: 0.9em;
   font-family: 'Varela Round', sans-serif;
+  margin-right: 5px;
 }
 
 .my-container .row .col-10-body .row .card .card-body a.btn i {
@@ -7508,8 +7509,6 @@ table.table-overview tr td span {
 
 .card-body table tr td:nth-child(2) {
   text-align: left;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 .card-title:before {
@@ -7556,7 +7555,8 @@ table.table-overview tr td span {
   transition: opacity 2s;
 }
 
-small, .small {
+small,
+.small {
   font-size: 80%;
   font-weight: 400;
   text-align: left;

@@ -49,20 +49,20 @@ $groupingid = $_GET['grouping-id'];
                         <div class="card text-center">
                             <div class="card-header tabbed-card">
                                 <ul class="nav nav-tabs card-header-tabs">
-                                    <li class="active">
-                                        <a href="#1" data-toggle="tab">Overview</a>
+                                    <li class="active" >
+                                        <a href="#1" data-toggle="tab"><i class="fas fa-home"></i> Overview</a>
                                     </li>
-                                    <li><a href="#2" data-toggle="tab">Budgets</a>
+                                    <li><a href="#2" data-toggle="tab"><i class="fas fa-chart-pie"></i> Budgets</a>
                                     </li>
-                                    <li><a href="#3" data-toggle="tab">Expenses</a>
+                                    <li><a href="#3" data-toggle="tab"><i class="fas fa-wallet"></i> Expenses</a>
                                     </li>
-                                    <li><a href="#4" data-toggle="tab">Reminders</a>
+                                    <li><a href="#4" data-toggle="tab"><i class="fas fa-list"></i> Reminders</a>
                                     </li>
-                                    <li><a href="#5" data-toggle="tab">Notifications</a>
+                                    <li><a href="#5" data-toggle="tab"><i class="fas fa-bell"></i> Notifications</a>
                                     </li>
-                                    <li><a href="#6" data-toggle="tab">Report</a>
+                                    <li><a href="#6" data-toggle="tab"><i class="fas fa-chart-line"></i> Report</a>
                                     </li>
-                                    <li><a href="#7" data-toggle="tab">Settings</a>
+                                    <li><a href="#7" data-toggle="tab"><i class="fas fa-cog"></i> Settings</a>
                                     </li>
                                 </ul>
                             </div>

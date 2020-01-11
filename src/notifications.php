@@ -34,15 +34,16 @@ require 'notifications-process.php'
             <div class="card-body">
               <table>
                 <tr>
-                  <td style="width:70%">
+                  <td style="width:85%">
                     <div class="card-title">
                       <?php echo $notification['senderusername'] . ' invited you to join '?><b><?php echo $notification['bolddata']?></b><?php echo ' group'?>
                     </div>
                   </td>
-                  <td style="width:30%">
+                  <td class="right" style="width:15%; justify-content: space-around;
+                display: flex;">
                     <!-- accept invitation -->
                     <a href="notifications-process.php?accept-grouping-id=<?php echo $notification['groupingid'] ?>"
-                      class="btn btn-primary">Accept</a>
+                      class="btn btn-primary" sytle="margin-right:5px;">Accept</a>
                     <!-- decline invitation -->
                     <a href="notifications-process.php?decline-notification-id=<?php echo $notification['id'] ?>"
                       class="btn btn-danger dismiss-notification">Decline</a>
