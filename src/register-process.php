@@ -53,14 +53,14 @@ if(isset($_POST['register'])){
 
         // create default categories for user
         $username = $result['username'];
-        $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Food')";
-        $result = pg_query($query);
-        $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Travel')";
-        $result = pg_query($query);
-        $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Groceries')";
-        $result = pg_query($query);
-        $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Miscellaneous')";
-        $result = pg_query($query);
+        // $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Food')";
+        // $result = pg_query($query);
+        // $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Travel')";
+        // $result = pg_query($query);
+        // $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Groceries')";
+        // $result = pg_query($query);
+        // $query = "INSERT INTO categories (username, categoryname) VALUES ('$username', 'Miscellaneous')";
+        // $result = pg_query($query);
 
         // create default colors for user
         $query = "INSERT INTO colors (colorname, colorhex, colortaken, username) VALUES 

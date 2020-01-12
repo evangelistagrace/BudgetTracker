@@ -179,7 +179,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                 </table>
                             </form>
 
-
+                            <!--  display budgets -->
                             <table class='table table-condensed settings2'>
                                 <?php  $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>

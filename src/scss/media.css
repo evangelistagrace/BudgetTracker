@@ -7562,6 +7562,27 @@ small,
   text-align: left;
 }
 
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.nav-tabs > li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.nav > li > a {
+  /* padding: 10px 15px; */
+  padding: 10px 10px;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops

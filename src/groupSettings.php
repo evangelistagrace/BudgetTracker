@@ -82,12 +82,14 @@ $groupingid = $_GET['grouping-id'];
                             <div class="card-body">
                                 <!-- settings -->
                                 <div class="tab-pane active" id="7">
-                                    <div class="row" style="display:flex;justify-content:center;margin:auto;width:100%;">
+                                    <div class="row"
+                                        style="display:flex;justify-content:center;margin:auto;width:100%;">
                                         <div class="card settings" style="width: 100%">
                                             <div class="card-body">
                                                 <h5 class="text-left"><strong>Maximum Budget</strong></h5>
                                                 <table class='table borderless'>
-                                                    <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
+                                                    <form
+                                                        action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <tr>
                                                             <?php 
@@ -143,7 +145,8 @@ $groupingid = $_GET['grouping-id'];
                                                 <!-- budgets -->
                                                 <h5 class="text-left"><strong>Budgets</strong></h5>
                                                 <small>Create up to 10 budgets</small>
-                                                <form action="settings.php" method="POST">
+                                                <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
+                                                    method="POST">
                                                     <table class="table borderless">
                                                         <?php if(count($warnings)): ?>
                                                         <div class="error">
@@ -168,6 +171,8 @@ $groupingid = $_GET['grouping-id'];
                                                                     name="budget-name" required
                                                                     placeholder="Budget Name"
                                                                     value=<?php echo $budgetname ?>>
+                                                                <input type="hidden" name="grouping-id"
+                                                                    value=<?php echo $groupingid ?>>
                                                             </td>
                                                             <td style="width: 35%">
                                                                 <div class="input-group">
@@ -191,7 +196,7 @@ $groupingid = $_GET['grouping-id'];
                                                                             data-width="100%" data-size="3"
                                                                             title="Pick a color" name="budget-color"
                                                                             value=<?php echo $budgetcolor ?>>
-                                                                            <?php  $query = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ORDER BY colortaken DESC"); ?>
+                                                                            <?php  $query = pg_query("SELECT * FROM groupcolors WHERE groupingid = $groupingid ORDER BY colortaken DESC"); ?>
                                                                             <?php while($result = pg_fetch_array($query)): ?>
                                                                             <?php if($editState == false):?>
                                                                             <?php if($result['colortaken'] == f): ?>
@@ -252,9 +257,34 @@ $groupingid = $_GET['grouping-id'];
                                                     </table>
                                                 </form>
 
-
+                                                <!-- display budgets -->
                                                 <table class='table table-condensed settings2'>
+                                                    <?php  $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ORDER BY budgetid"); ?>
+                                                    <?php while($result = pg_fetch_array($query)){ ?>
+                                                    <tr>
+                                                        <td style="width: 90%">
+                                                            <div
+                                                                class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'>
+                                                                <?php echo $result['budgetname'] ?></div>
+                                                        </td>
 
+                                                        <td style="width: 10%" rowspan="2">
+                                                            <!-- edit budget -->
+                                                            <a
+                                                                href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                    class="fas fa-edit text-primary"></i></a>
+                                                            <!-- delete budget -->
+                                                            <a
+                                                                href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                    class="far fa-trash-alt text-danger"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="borderless">
+                                                        <td class="borderless">
+                                                            <small>RM <?php echo $result['budgetamount']?></small>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
 
                                                 </table>
                                                 <hr>
@@ -263,7 +293,8 @@ $groupingid = $_GET['grouping-id'];
                                                 <h5 class="text-left"><strong>Members</strong></h5>
                                                 <small>Add members</small>
                                                 <table class='table borderless'>
-                                                    <form action="groupView.php?grouping-id=<?php echo $groupingid ?>"
+                                                    <form
+                                                        action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <tr>
                                                             <td style="width:75%">
@@ -283,7 +314,7 @@ $groupingid = $_GET['grouping-id'];
                                                 </table>
 
                                                 <table class="table borderless text-left">
-                                                    <form action="groupView.php?grouping-id=<?php echo $groupingid ?>"
+                                                    <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <?php 
                                                                 $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid");
