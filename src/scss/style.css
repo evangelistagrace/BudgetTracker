@@ -6504,6 +6504,15 @@ a {
   margin: 10px;
 }
 
+.my-container .row .col-10-body .row .card .card-header {
+  font-weight: 800;
+  text-align: left;
+}
+
+.my-container .row .col-10-body .row .card .card-header-tabs {
+  text-align: center;
+}
+
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
   display: -webkit-box;
@@ -6511,8 +6520,8 @@ a {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
+      -ms-flex-flow: column;
+          flex-flow: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }

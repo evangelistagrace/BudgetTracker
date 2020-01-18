@@ -457,10 +457,19 @@ a {
                 .card {
                     margin: 10px;
 
+                    .card-header{
+                        font-weight: 800;
+                        text-align: left;
+                    }
+
+                    .card-header-tabs{
+                        text-align: center;
+                    }
+
                     .card-body {
                         padding: 0.8rem;
                         display: flex;
-                        flex-flow: column wrap;
+                        flex-flow: column;
                         justify-content: space-around;
 
                         a.btn {
