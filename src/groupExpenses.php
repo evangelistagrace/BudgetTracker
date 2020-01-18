@@ -8,6 +8,13 @@ require 'groupExpenses-process.php';
 // initialize variables
 $groupingid = $_GET['grouping-id'];
 
+// initialize variables
+$expenseid = $_GET['edit-expense'];
+$expensename = $_GET['expense-name'];
+$expensebudget = $_GET['expense-budget'];
+$expenseamount = $_GET['expense-amount'];
+$expensedate = $_GET['expense-date'];
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -92,7 +99,7 @@ $groupingid = $_GET['grouping-id'];
                                         </div>
                                         <?php endif ?>
                                         <div class="card settings" style="width: 100%">
-                                            <?php $query = pg_query("SELECT groupexpenses.expenseid, groupexpenses.budgetid, groupexpenses.expensename, groupexpenses.expenseamount, groupexpenses.expensedate, groupbudgets.groupingid, groupbudgets.budgetname, groupbudgets.budgetcolor  FROM groupexpenses INNER JOIN groupbudgets ON groupexpenses.budgetid = groupbudgets.budgetid WHERE groupexpenses.groupingid = $groupingid ORDER BY groupexpenses.expensedate DESC, groupexpenses.expenseid ASC")?>
+                                            <?php $query = pg_query("SELECT groupexpenses.expenseid, groupexpenses.budgetid, groupexpenses.expensename, groupexpenses.expenseamount, groupexpenses.expensedate, groupexpenses.username, groupbudgets.groupingid, groupbudgets.budgetname, groupbudgets.budgetcolor  FROM groupexpenses INNER JOIN groupbudgets ON groupexpenses.budgetid = groupbudgets.budgetid WHERE groupexpenses.groupingid = $groupingid ORDER BY groupexpenses.expensedate DESC, groupexpenses.expenseid ASC")?>
                                             <?php $date1 = date('2000-01-01') ?>
                                             <?php while($expense = pg_fetch_assoc($query)) : ?>
                                             <?php $date2 = $expense['expensedate']?>
@@ -105,26 +112,31 @@ $groupingid = $_GET['grouping-id'];
                                             <div class="card-body">
                                                 <table class='table table-condensed expenses'>
                                                     <tr>
-                                                        <td style="flex:4"><?php echo $expense['expensename']?></td>
+                                                        <td style="flex:3"><?php echo $expense['expensename']?></td>
                                                         <td style="flex:2">
-                                                            <div class="small">
                                                                 <div
                                                                     class='<?php echo "circle bg-{$expense['budgetcolor']}" ?>'>
                                                                 </div><?php echo $expense['budgetname']?>
-                                                            </div>
                                                         </td>
                                                         <td style="flex:2">RM <?php echo $expense['expenseamount']?>
                                                         </td>
+                                                        <td>
+                                                            <i class="fas fa-user"></i><?php echo $expense['username'] ?>
+                                                        </td>
+                                                        <?php if($expense['username'] == $_SESSION['username'] ):?>
                                                         <td style="flex:2">
                                                             <!-- edit expense -->
                                                             <a
-                                                                href="personalExpenses.php?edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name='<?php echo $expense['expensename']?>'&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i
+                                                                href="groupExpenses.php?grouping-id=<?php echo $groupingid ?>&edit-expense=<?php echo $expense['expenseid']?>&budget-id=<?php echo $expense['budgetid']?>&expense-name='<?php echo $expense['expensename']?>'&expense-budget=<?php echo $expense['budgetname']?>&expense-amount=<?php echo $expense['expenseamount']?>&expense-date=<?php echo $expense['expensedate']?>#editExpense"><i
                                                                     class="fas fa-edit text-primary"></i></a>
                                                             <!-- delete expense -->
                                                             <a
-                                                                href="personalExpenses-process.php?del-expense=<?php echo $expense['expenseid']?>"><i
+                                                                href="groupExpenses-process.php?grouping-id=<?php echo $groupingid ?>&del-expense=<?php echo $expense['expenseid']?>"><i
                                                                     class="far fa-trash-alt text-danger"></i></a>
                                                         </td>
+                                                        <?php else: ?>
+                                                            <td style="flex:2"></td>
+                                                        <?php endif ?>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -234,7 +246,7 @@ $groupingid = $_GET['grouping-id'];
 
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Edit Expense</h3>
-                            <form class="popup-form" action="personalExpenses.php" method="POST">
+                            <form class="popup-form" action="groupExpenses.php?grouping-id=<?php echo $groupingid ?>" method="POST">
                                 <div class="form-group">
                                     <table>
                                         <tr>
@@ -258,8 +270,8 @@ $groupingid = $_GET['grouping-id'];
                                             <td>
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
-                                                        data-size="3" title="Pick a category" name="expense-budget" >
-                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
+                                                        data-size="3" title="Pick a category" name="expense-budget">
+                                                        <?php $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
                                                         <?php if($result['budgetname'] == $expensebudget): ?>
                                                             <option value="<?php echo $result['budgetname'] ?>" selected>
