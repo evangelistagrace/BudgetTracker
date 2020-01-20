@@ -15,6 +15,7 @@
     echo '<script src="js/index.js"></script>';
     echo '<script src="js/charts.js"></script>';
     echo '<script src="js/budgetsChart.js"></script>';
+    echo '<script src="js/budgetsChart2.js"></script>';
     echo '<script src="js/budgetOverview.js"></script>';
     echo '<script src="js/expensesByCategoryChart.js"></script>';
     echo '<script src="js/expensesByDayChart.js"></script>';

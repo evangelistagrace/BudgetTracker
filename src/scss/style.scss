@@ -1175,11 +1175,6 @@ h1.title {
 }
 
 
-// progress bar
-.progress.expense {
-    height: 18px;
-}
-
 //floating button
 .add-btn {
     width: 60px;
@@ -1374,7 +1369,7 @@ small.left {
     }
 }
 
-small.right {
+small.right{
     float: right;
 
     &:after {
@@ -1592,7 +1587,7 @@ table.table-overview tr td span {
 
 small,
 .small {
-    font-size: 80%;
+    font-size: 0.8rem;
     font-weight: 400;
     text-align: left;
 }
@@ -1613,4 +1608,38 @@ small,
     /* padding: 10px 15px; */
     padding: 10px 10px;
   }
+
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+
+table.budget tr td:nth-of-type(3) {
+    /* width: 15%; */
+    /* text-align: center; */
+    text-align: right;
+  }
+  
+  .card-body .tab-content .tab-pane .row small {
+    /* text-align: left; */
+    text-align: right;
+  }
+
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+
+
+  
+  /* Element | http://localhost/demo/BudgetTracker/src/groupBudgets.php?grouping-id=1 */
+  
+  #\32  > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+    top: 25%;
+  }
+  
+
+/* Element | http://localhost/demo/BudgetTracker/src/groupBudgets.php?grouping-id=1 */
+
+#budgetChart {
+    top: 5%;
+  }
+  
+  
   

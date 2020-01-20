@@ -6504,6 +6504,15 @@ a {
   margin: 10px;
 }
 
+.my-container .row .col-10-body .row .card .card-header {
+  font-weight: 800;
+  text-align: left;
+}
+
+.my-container .row .col-10-body .row .card .card-header-tabs {
+  text-align: center;
+}
+
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
   display: -webkit-box;

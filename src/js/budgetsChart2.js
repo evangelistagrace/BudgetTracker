@@ -1,5 +1,5 @@
 //budget chart
-var ctx = document.getElementById('budgetChart').getContext('2d');
+var ctx = document.getElementById('budgetChart2').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -15,7 +15,7 @@ var myChart = new Chart(ctx, {
     options: {
         legend: {
             position: 'bottom'
-        }
+        },
+        responsive: true
     }
 });
-
