@@ -1,4 +1,4 @@
-//expenses chart
+//expenses by category chart
 var ctx2 = document.getElementById('expensesByCategoryChart').getContext('2d');
 var myChart2 = new Chart(ctx2, {
     type: 'doughnut',

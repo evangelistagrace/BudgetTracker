@@ -5,6 +5,7 @@
 include 'head.php';
 require 'report-process.php';
 
+
 ?>
 
 <title>My Report - BudgetTracker</title>
@@ -24,77 +25,51 @@ require 'report-process.php';
                 <h1 class="title text-primary">My Report</h1>
 
                 <div class="row justify-content-center">
-                    <div class="col-4"><h4 class="text-info text-center"><i class="fas fa-angle-double-left"></i> December 2019 <i class="fas fa-angle-double-right"></i></h4></div>
+                    <div class="col-4"><h4 class="text-info text-center"><i class="fas fa-angle-double-left"></i> <span id="report-month">December 2019</span> <i class="fas fa-angle-double-right"></i></h4></div>
                 </div>
                 <div class="row justify-content-end">
                     <div class="col-3">
-                        <div class="btn btn-primary right">Download Report</div>
+                        <div id="btn-print" class="btn btn-primary right">Download Report</div>
                     </div>
                 </div>
 
-                <div class="row">
-                        <div class="card" style="width: 25rem;">
-                            <div class="card-body">
-                                <div class="card-title"><h5>Expenses by Category</h5></div>
-                                <div class="card-text">
+                <div id="" style="display:flex; flex-flow: column wrap;">
+                    <div class="row" style="width: 100%">
+                            <div class="card" style="width: 25rem;">
+                                <div class="card-body">
+                                    <div class="card-title"><h5>Expenses by Category</h5></div>
                                     <canvas id="expensesByCategoryChart"></canvas>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card" style="width: 35rem;">
-                            <div class="card-body">
-                                <div class="card-title"><h5>Expenses by Day</h5></div>
-                                <div class="card-text">
-                                    <canvas id="expensesByDayChart"></canvas>
+                            <div class="card" style="width: 35rem;">
+                                <div class="card-body">
+                                    <div class="card-title"><h5>Expenses by Budget</h5></div>
+                                    <canvas id="expensesByBudgetChart"></canvas>
+                                    
                                 </div>
                             </div>
-                        </div>
-                </div>
+                    </div>
 
 
-                <div class="row">
-                    <div class="card" style="width: 61rem;">
-                        <div class="card-body">
-                            <div class="card-title"><h5>Expenses by Budget</h5></div>
-                            <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
-                            <?php while($result = pg_fetch_array($query)) :?>
-                            <?php if($result['budgetamount'] > 0)  :?>
-                            <?php 
-                            $query2 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result['budgetid']."' AND username = '".$_SESSION['username']."' "); 
-                            $result2 = pg_fetch_array($query2);
-
-                            $percentage = $result2['amount']/$result['budgetamount'] * 100;
-                            $percentage = number_format($percentage, 0);
-                            // if($percentage > '100'){
-                            //     $percentage = '100';
-                            // }
-                            ?>
-                                <div class="progress-container">
-                                    <span><?php echo $result['budgetname'] ?></span>
-                                    <div class="progress">
-                                        <?php if($percentage > '100'): ?>
-                                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                            style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
-                                            </div>
-                                        <?php else: ?>
-                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                style="width: <?php echo $percentage ?>%;"><?php echo $percentage ?>%
-                                            </div>
-                                        <?php endif ?>
-                                    </div>
-                                </div>
-                            <?php endif ?>
-                            <?php endwhile ?>
+                    <div class="row" style="width: 100%">
+                        <div class="card" style="width: 61rem;">
+                            <div class="card-body">
+                                <div class="card-title"><h5>Expenses by Day</h5></div>
+                                <canvas id="expensesByDayChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                
 
             </div>
         </div>
     </div>
 
     <script>
+    
         // expenses by category
          let expenseAngles, budgetNames, budgetColors;
         budgetNames = <?php echo json_encode($budgetNames) ?>;
@@ -103,8 +78,33 @@ require 'report-process.php';
 
         // expenses by day
         let expenseAmountsByDay;
-        expenseAmountsByDay = <?php echo json_encode($expenseAmountsByDay) ?>
+        expenseAmountsByDay = <?php echo json_encode($expenseAmountsByDay) ?>;
+
+        // expenses by budget
+        let budgetPercentages;
+        budgetPercentages = <?php echo json_encode($budgetPercentages) ?>;
+
+        $(document).ready(function(){
+            $('#btn-print').click(function(){
+            var reportMonth = document.getElementById("report-month").innerHTML;
+            var canvasImg = document.getElementById("expensesByCategoryChart").toDataURL("image/png", 1.0);
+            var canvasImg2 = document.getElementById("expensesByDayChart").toDataURL("image/png", 1.0);
+            var doc = new jsPDF('p', 'pt', 'a4');
+            doc.setFontSize(15);
+            doc.setFillColor(255, 255,255);
+            doc.rect(10, 10, 400, 160, "F");
+            // doc.text(20, 20, 'Chart 1');
+            doc.addImage(canvasImg, 'png', 10, 10, 300, 100);
+            // doc.text(20, 90, 'Chart 2');
+            doc.addImage(canvasImg2, 'png', 10, 300, 400, 200);
+            doc.save(`My Report - ${reportMonth}.pdf`);
+        });
+    });
+
+
     </script>
+    
+
 
     <?php include 'footer.php' ?>
 

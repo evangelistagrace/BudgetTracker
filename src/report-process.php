@@ -8,6 +8,7 @@ require 'config.php';
 $budgetNames = array();
 $expenseAngles = array();
 $budgetColors = array();
+$budgetPercentages = array();
 
 // expenses total by budget/category
 $query = pg_query("SELECT budgetid, SUM (expenseamount) as total FROM expenses WHERE username = '".$_SESSION['username']."' GROUP BY budgetid ORDER BY budgetid ASC");
@@ -19,11 +20,17 @@ $query3 = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username
 $query4 = pg_query("SELECT SUM(expenseamount) AS totalexpenses FROM expenses WHERE username = '".$_SESSION['username']."' ");
 $totalExpenses = pg_fetch_array($query4);
 $totalexpense = $totalExpenses['totalexpenses'];
+// budget usage percentages
+$query5 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid");
+while($result5 = pg_fetch_array($query5)){
+    $query6 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result5['budgetid']."' AND username = '".$_SESSION['username']."' "); 
 
-// test if query works
-// if($query4){
-//     print_r("query executed");
-// }
+    while($result6 = pg_fetch_array($query6)){
+        $percentage = $result6['amount']/$result5['budgetamount'] * 100;
+        $percentage = number_format($percentage, 0);
+        array_push($budgetPercentages, $percentage);
+    }
+}
 
 
 while($expense = pg_fetch_array($query)){
