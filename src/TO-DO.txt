@@ -11,6 +11,17 @@ DONE:
 - sync data to charts
 
 TO-DO:
+-report 
+    - system testing: module with summary, procedure, expected/actual result, status, remarks, action taken
+    - conclusion 
+        - what have you done last sem 
+        - what have you done this sem
+        - what have i learnt
+        - what i have fulfilled in the objectives...answer back objectives
+    - limitations
+    - future enhancements
+    - redo use case and erd
+
 - recurring reminder (one-off reminder/ recurring reminder option when creating a reminder)
 - restrict user from deleting a budget if there are existing expenses with that budget
 - Notification page for alerts, add requests, warnings, etc
