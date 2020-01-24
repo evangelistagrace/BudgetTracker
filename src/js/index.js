@@ -44,6 +44,9 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
-
+$('.selectpicker').selectpicker({
+    style: 'btn-info',
+    size: 4
+});
 
 

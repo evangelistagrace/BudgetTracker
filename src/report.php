@@ -103,7 +103,8 @@ require 'report-process.php';
 
 
     </script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>;
 
 
     <?php include 'footer.php' ?>
