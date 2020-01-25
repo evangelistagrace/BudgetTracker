@@ -78,13 +78,6 @@ if(isset($_POST['edit-reminder'])){
     $reminderamount = $_POST['reminder-amount'];
     $reminderdate = $_POST['reminder-date'];
 
-    // echo $reminderid;
-    // echo $remindername;
-    // echo $reminderbudget;
-    // echo $reminderamount;
-    // echo $reminderdate;
-
-
     $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = '$groupingid' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
@@ -109,9 +102,6 @@ if(isset($_POST['edit-reminder'])){
 
     $query = pg_query("UPDATE groupreminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount, reminderdate = '$reminderdate' WHERE reminderid = $reminderid");
 
-    // if($query){
-    //     header('location: groupReminders.php?grouping-id='.$groupingid);
-    // }
 }
 
 ?>
