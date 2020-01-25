@@ -1,5 +1,5 @@
 //budget chart
-var ctx = document.getElementById('budgetChart').getContext('2d');
+var ctx = document.getElementById('budgetsChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -15,6 +15,13 @@ var myChart = new Chart(ctx, {
     options: {
         legend: {
             position: 'bottom'
+        },
+        title: {
+            display: true,
+            text: 'My Budget Allocation',
+            fontFamily: "'Varela Round', sans-serif",
+            fontSize: 17,
+            fontColor: 'grey'
         }
     }
 });

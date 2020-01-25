@@ -9,7 +9,7 @@ var myChart3 = new Chart(ctx3, {
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
             '21', '22','23','24','25','26','27','28','29','30','31'],
         datasets: [{
-            label: 'Expenses',
+            label: 'Expenses(RM)',
             data: expenseAmountsByDay,
             backgroundColor: 'rgba(255,153,123,.5)',
             borderColor: 'rgba(255,153,123,.9)',
@@ -21,6 +21,21 @@ var myChart3 = new Chart(ctx3, {
         
         legend: {
             display: false,
+        },
+        scales: {
+            yAxes: [{
+              barPercentage: 0.5,
+              categoryPercentage: 1.0,
+              ticks: {
+                fontSize: 15,
+                fontColor: '#808080',
+                padding: 10,
+                min: 0,
+                callback: function(value, index, values) {
+                  return 'RM ' + value;
+                }
+              }
+            }]
+          },
         }
-    }
 });

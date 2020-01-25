@@ -23,8 +23,7 @@ if(isset($_POST['add-budget'])){
     $budgetamount = $_POST['budget-amount'];
     $budgetcolor = $_POST['budget-color'];
 
-    // set selected color as taken
-    $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+    
 
     // find total budget amount
     $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM budgets WHERE username = '".$_SESSION['username']."' ");
@@ -45,7 +44,7 @@ if(isset($_POST['add-budget'])){
 
     // if total budget exceeds income, push warning message
     if($totalBudget > $income){
-        array_push($warnings, "Total budget " . "(RM " . $totalBudget . ")" . " exceeds income " . "(RM " . $income . ").");
+        array_push($errors, "Total budget " . "(RM " . $totalBudget . ")" . " exceeds income " . "(RM " . $income . ").");
     }
 
 
@@ -73,6 +72,9 @@ if(isset($_POST['add-budget'])){
     }
 
     if(count($errors) == 0){
+        // set selected color as taken
+        $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+
         $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
 
     }

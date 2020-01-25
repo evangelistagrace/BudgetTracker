@@ -42,9 +42,9 @@ $GLOBALS['BALANCE']= 90;
                             <td style="width:40%">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="card-title">Overview</div>
+                                        <div class="card-title">Total Budget Usage</div>
                                         <div class="card-text">
-                                            <div class="row mt-4" style="width:100%">
+                                            <div class="row mt-5" style="width:100%">
                                                
                                                 <section class="mini-section">
                                                 <?php 
@@ -83,7 +83,7 @@ $GLOBALS['BALANCE']= 90;
                                 </div>
                             </td>
                             <td style="width:60%">
-                                <canvas id="budgetChart"></canvas>
+                                <canvas id="budgetsChart"></canvas>
                             </td>
                         </tr>
                     </table>

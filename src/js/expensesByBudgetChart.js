@@ -5,7 +5,7 @@ var myChart4 = new Chart(document.getElementById("expensesByBudgetChart"), {
       labels: budgetNames,
       datasets: [
         {
-        label: '',
+        label: '%',
         data: budgetPercentages,
         backgroundColor: budgetColors,
         borderColor: budgetColors,
@@ -22,12 +22,19 @@ var myChart4 = new Chart(document.getElementById("expensesByBudgetChart"), {
       },
       scales: {
         xAxes: [{
+          barPercentage: 0.5,
+          categoryPercentage: 1.0,
           gridLines: {
             drawBorder: false,
           },
           ticks: {
             fontSize: 15,
-            fontColor: '#808080'
+            fontColor: '#808080',
+            padding: 10,
+            min: 0,
+            callback: function(value, index, values) {
+              return value + '%';
+            }
           }
         }],
         yAxes: [{
@@ -43,7 +50,8 @@ var myChart4 = new Chart(document.getElementById("expensesByBudgetChart"), {
             fontSize: 15,
             fontColor: '#808080',
             maxTicksLimit: 5,
-            padding: 25,
+            
+            
           }
         }]
       },
