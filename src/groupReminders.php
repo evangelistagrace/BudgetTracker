@@ -8,6 +8,13 @@ require 'groupReminders-process.php';
 // initialize variables
 $groupingid = $_GET['grouping-id'];
 
+// initialize edit variables
+$reminderid = $_GET['edit-reminder'];
+$remindername = $_GET['reminder-name'];
+$reminderbudget = $_GET['reminder-budget'];
+$reminderamount = $_GET['reminder-amount'];
+$reminderdate = $_GET['reminder-date'];
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -147,12 +154,12 @@ form.popup-form .form-group label {
                                                         <td style="flex:1">
                                                             <!-- edit reminder -->
                                                             <a
-                                                                href="groupReminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i
+                                                                href="groupReminders.php?grouping-id=<?php echo $groupingid?>&edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i
                                                                     class="fas fa-edit text-primary"></i></a>
 
                                                             <!-- delete reminder -->
                                                             <a
-                                                                href="groupReminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i
+                                                                href="groupReminders-process.php?grouping-id=<?php echo $groupingid?>&del-reminder=<?php echo $reminder['reminderid']?>"><i
                                                                     class="far fa-trash-alt text-danger"></i></a>
                                                         </td>
                                                      </tr>
@@ -241,6 +248,92 @@ form.popup-form .form-group label {
                 </div>
 
 
+                <!-- edit reminder -->
+                <div id="editReminder" class="overlay">
+                    <div class="popup">
+
+                        <div class="content"><a class="close" href="#">x</a>
+                            <h3 class="text-center mb-4 mt-4">Edit Reminder</h3>
+                            <form class="popup-form" action="groupReminders.php?grouping-id=<?php echo $groupingid?>" method="POST">
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="expenseTitle">Title</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="reminder-name"
+                                                        id="reminderName" value="<?php echo $remindername ?>">
+                                                    <input type="hidden" name="reminder-id"  value=<?php echo $reminderid ?>>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="budgetCategory">Budget Category</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <select class="selectpicker show-tick" data-style="btn-secondary"
+                                                        data-size="3" title="Pick a category" name="reminder-budget">
+                                                        <?php $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ")?>
+                                                        <?php while($result = pg_fetch_array($query)) : ?>
+                                                        <?php if($result['budgetname'] == $reminderbudget): ?>
+                                                            <option value="<?php echo $result['budgetname'] ?>" selected>
+                                                            <?php echo $result['budgetname'] ?></option>
+                                                        <?php else:?>
+                                                        <option value="<?php echo $result['budgetname'] ?>">
+                                                            <?php echo $result['budgetname'] ?></option>
+                                                        <?php endif ?>
+                                                        <?php endwhile ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="budgetAmount">Amount</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">RM</span>
+                                                    </div>
+                                                    <input type="text" class="form-control text-right"
+                                                        aria-label="Amount (to the nearest ringgit)" value=<?php echo $reminderamount ?> name="reminder-amount">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td><label for="reminderDate">Due Date</label></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="date" name="reminder-date" value=<?php echo $reminderdate ?>
+                                                        id="reminderDate">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="edit-reminder">Edit reminder</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                                         
                                     </div>

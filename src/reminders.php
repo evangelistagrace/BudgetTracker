@@ -11,10 +11,6 @@ $reminderbudget = $_GET['reminder-budget'];
 $reminderamount = $_GET['reminder-amount'];
 $reminderdate = $_GET['reminder-date'];
 
-
-$text = "Helloooo";
-$json_text = json_encode($text);
-
 ?>
 <title>My Budgets - BudgetTracker</title>
 

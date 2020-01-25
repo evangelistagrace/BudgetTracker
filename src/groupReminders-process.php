@@ -6,7 +6,7 @@ $warnings = array();
 
 $groupingid = $_GET['grouping-id'];
 
-
+// add reminder
 if(isset($_POST['add-reminder'])){
     $remindername =  $_POST['reminder-name'];
     $reminderamount = $_POST['reminder-amount'];
@@ -37,6 +37,7 @@ if(isset($_POST['add-reminder'])){
     $query = pg_query("INSERT INTO groupreminders(budgetid, remindername, reminderamount, reminderdate, reminderdone, groupingid, username) VALUES ($budgetid, '$remindername', $reminderamount, '$reminderdate', false, $groupingid, '".$_SESSION['username']."')");
 }
 
+// check/uncheck reminder
 if(isset($_GET['reminder-done'])){
     $reminderdone = $_GET['reminder-done'];
     $reminderid = $_GET['reminder-id'];
@@ -62,12 +63,14 @@ if(isset($_GET['reminder-done'])){
     
 }
 
+// delete reminder
 if(isset($_GET['del-reminder'])){
     $reminderid = $_GET['del-reminder'];
-    $query = pg_query("DELETE FROM reminders WHERE reminderid = $reminderid");
-    header('location: reminders.php');
+    $query = pg_query("DELETE FROM groupreminders WHERE reminderid = $reminderid");
+    header('location: groupReminders.php?grouping-id='.$groupingid);
 }
 
+// edit reminder
 if(isset($_POST['edit-reminder'])){
     $reminderid = $_POST['reminder-id'];
     $remindername = $_POST['reminder-name'];
@@ -75,10 +78,18 @@ if(isset($_POST['edit-reminder'])){
     $reminderamount = $_POST['reminder-amount'];
     $reminderdate = $_POST['reminder-date'];
 
+    // echo $reminderid;
+    // echo $remindername;
+    // echo $reminderbudget;
+    // echo $reminderamount;
+    // echo $reminderdate;
 
-    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
+
+    $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = '$groupingid' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
+
+    echo $budgetid;
 
     // format reminder name with single quote 
     if (strpos($remindername, "'") !== false) { //if single quote is inside input
@@ -96,7 +107,11 @@ if(isset($_POST['edit-reminder'])){
         $reminderamount .= ".00";
     }
 
-    $query = pg_query("UPDATE reminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount, reminderdate = '$reminderdate' WHERE reminderid = $reminderid");
+    $query = pg_query("UPDATE groupreminders SET remindername = '$remindername', budgetid = $budgetid, reminderamount = $reminderamount, reminderdate = '$reminderdate' WHERE reminderid = $reminderid");
+
+    // if($query){
+    //     header('location: groupReminders.php?grouping-id='.$groupingid);
+    // }
 }
 
 ?>
