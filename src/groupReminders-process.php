@@ -47,17 +47,17 @@ if(isset($_GET['reminder-done'])){
 
 
    if($reminderdone === 't'){
-       $query = pg_query("UPDATE reminders SET reminderdone = 'true' WHERE reminderid = $reminderid ");
+       $query = pg_query("UPDATE groupreminders SET reminderdone = 'true' WHERE reminderid = $reminderid ");
        // insert reminder as expense
-       $query = pg_query("INSERT INTO expenses (budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid, '$remindername','$reminderamount','$remindercheckeddate', '".$_SESSION['username']."') ");
+       $query = pg_query("INSERT INTO groupexpenses (budgetid, expensename, expenseamount, expensedate, groupingid, username) VALUES ($budgetid, '$remindername','$reminderamount','$remindercheckeddate', $groupingid, '".$_SESSION['username']."') ");
    }elseif($reminderdone === 'f'){
     //    update boolean value
-        $query = pg_query("UPDATE reminders SET reminderdone = 'false' WHERE reminderid = $reminderid ");
+        $query = pg_query("UPDATE groupreminders SET reminderdone = 'false' WHERE reminderid = $reminderid ");
         
     }
     
     if($query){
-        header('location: reminders.php');
+        header('location: groupReminders.php?grouping-id='.$groupingid);
     }
     
 }

@@ -120,14 +120,14 @@ form.popup-form .form-group label {
                                                         <tr>
                                                         <?php if($reminder['reminderdone'] === f):?>
                                                             <td style="flex:1"><a
-                                                                    href="groupReminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
+                                                                    href="groupReminders-process.php?grouping-id=<?php echo $groupingid ?>&reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
                                                                         class="far fa-square reminder-check"></i></a>
                                                 
                                                             </td>
                                                             <td style="flex:3"><?php echo $reminder['remindername'] ?></td>
                                                          <?php elseif($reminder['reminderdone'] === t):?>
                                                             <td style="flex:1"><a
-                                                                    href="groupreminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i
+                                                                    href="groupReminders-process.php?grouping-id=<?php echo $groupingid ?>&reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i
                                                                         class="fas fa-check-square reminder-check"></i>
                                                                     </a>
                                                             </td>
