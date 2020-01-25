@@ -7143,10 +7143,6 @@ h1.title {
   text-align: center;
 }
 
-.progress.expense {
-  height: 18px;
-}
-
 .add-btn {
   width: 60px;
   height: 60px;
@@ -7566,7 +7562,7 @@ table.table-overview tr td span {
 
 small,
 .small {
-  font-size: 80%;
+  font-size: 0.8rem;
   font-weight: 400;
   text-align: left;
 }
@@ -7590,6 +7586,58 @@ small,
 .nav > li > a {
   /* padding: 10px 15px; */
   padding: 10px 10px;
+}
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+table.budget tr td:nth-of-type(3) {
+  /* width: 15%; */
+  /* text-align: center; */
+  text-align: right;
+}
+
+.card-body .tab-content .tab-pane .row small {
+  /* text-align: left; */
+  text-align: right;
+}
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+/* Element | http://localhost/demo/BudgetTracker/src/groupBudgets.php?grouping-id=1 */
+#\32  > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+  top: 25%;
+}
+
+/* Element | http://localhost/demo/BudgetTracker/src/groupBudgets.php?grouping-id=1 */
+#budgetChart {
+  top: 5%;
+}
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+.my-container .row .col-10-body .row {
+  margin: auto;
+}
+
+#page-to-print {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#expensesByCategoryChart {
+  top: -50px;
+}
+
+.my-container .row .col-10-body .row .card .card-body {
+  padding: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -ms-flex-pack: distribute;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 /* 

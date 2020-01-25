@@ -110,7 +110,7 @@ form.popup-form .form-group label {
                                                                 <th style="flex:2">Category</th>
                                                                 <th style="flex:2">Payment</th>
                                                                 <th style="flex:2">Due</th>
-                                                                <th style="flex:1">By</th>
+                                                                <th style="flex:2">By</th>
                                                                 <th style="flex:1"></th>
 
                                                             </tr>
@@ -118,42 +118,47 @@ form.popup-form .form-group label {
                                                         <?php $query = pg_query("SELECT groupreminders.reminderid, groupreminders.budgetid, groupreminders.remindername, groupreminders.reminderamount, groupreminders.reminderdone, groupreminders.reminderdate, groupreminders.groupingid, groupreminders.username, groupbudgets.budgetid, groupbudgets.budgetname, groupbudgets.budgetcolor FROM groupreminders INNER JOIN groupbudgets ON groupreminders.budgetid = groupbudgets.budgetid WHERE groupreminders.groupingid = $groupingid ORDER BY groupreminders.reminderid") ?>
                                                         <?php while($reminder = pg_fetch_array($query)):?>
                                                         <tr>
-                                                            <?php if($reminder['reminderdone'] === f):?>
-                                                            <td><a
+                                                        <?php if($reminder['reminderdone'] === f):?>
+                                                            <td style="flex:1"><a
                                                                     href="groupReminders-process.php?reminder-done=t&reminder-id=<?php echo $reminder['reminderid']?>&budget-id=<?php echo $reminder['budgetid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-amount=<?php echo $reminder['reminderamount']?>"><i
                                                                         class="far fa-square reminder-check"></i></a>
-                                                </div>
-                                                </td>
-                                                <td style="flex:4"><?php echo $reminder['remindername'] ?></td>
-                                                <?php elseif($reminder['reminderdone'] === t):?>
-                                                <td><a
-                                                        href="groupreminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i
-                                                            class="fas fa-check-square reminder-check"></i></a>
-                                            </div>
-                                            </td>
-                                            <td style="flex:4"><s><?php echo $reminder['remindername'] ?></s></td>
-                                            <?php endif ?>
-                                            <td style="flex:2">
-                                                <div class='<?php echo "circle bg-{$reminder['budgetcolor']}" ?>'></div>
-                                                <?php echo $reminder['budgetname'] ?>
-                                            </td>
-                                            <td style="flex:2">RM <?php echo $reminder['reminderamount'] ?></td>
-                                            <td style="flex:2">
-                                                <?php echo date("j F", strtotime($reminder['reminderdate'])) ?></td>
-                                            <td>
-                                                <!-- edit reminder -->
-                                                <a
-                                                    href="groupReminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i
-                                                        class="fas fa-edit text-primary"></i></a>
+                                                
+                                                            </td>
+                                                            <td style="flex:3"><?php echo $reminder['remindername'] ?></td>
+                                                         <?php elseif($reminder['reminderdone'] === t):?>
+                                                            <td style="flex:1"><a
+                                                                    href="groupreminders-process.php?reminder-done=f&reminder-id=<?php echo $reminder['reminderid']?>"><i
+                                                                        class="fas fa-check-square reminder-check"></i>
+                                                                    </a>
+                                                            </td>
+                                                            <td style="flex:3"><?php echo $reminder['remindername'] ?></td>
+                                                        <?php endif ?>
+                                                        <td style="flex:2">
+                                                            <div class='<?php echo "circle bg-{$reminder['budgetcolor']}" ?>'></div>
+                                                            <?php echo $reminder['budgetname'] ?>
+                                                        </td>
+                                                        <td style="flex:2">RM <?php echo $reminder['reminderamount'] ?></td>
+                                                        <td style="flex:2">
+                                                            <?php echo date("j F", strtotime($reminder['reminderdate'])) ?>
+                                                        </td>
+                                                        <td style="flex:2"> 
+                                                            <i class="fas fa-user"></i><?php echo $reminder['username'] ?>   
+                                                        </td>   
+                                                        <td style="flex:1">
+                                                            <!-- edit reminder -->
+                                                            <a
+                                                                href="groupReminders.php?edit-reminder=<?php echo $reminder['reminderid']?>&reminder-name=<?php echo $reminder['remindername']?>&reminder-budget=<?php echo $reminder['budgetname']?>&reminder-amount=<?php echo $reminder['reminderamount']?>&reminder-date=<?php echo $reminder['reminderdate']?>#editReminder"><i
+                                                                    class="fas fa-edit text-primary"></i></a>
 
-                                                <!-- delete reminder -->
-                                                <a
-                                                    href="groupReminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i
-                                                        class="far fa-trash-alt text-danger"></i></a>
-                                            </td>
-                                            </tr>
-                                            <?php endwhile ?>
+                                                            <!-- delete reminder -->
+                                                            <a
+                                                                href="groupReminders-process.php?del-reminder=<?php echo $reminder['reminderid']?>"><i
+                                                                    class="far fa-trash-alt text-danger"></i></a>
+                                                        </td>
+                                                     </tr>
+                                                    <?php endwhile ?>
                                             </table>
+                                            </div>
                                         </div>
 
                                         <a class="btn btn-danger add-btn" href="#addReminder"><i class="fas fa-plus"></i></a>
