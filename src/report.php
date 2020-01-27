@@ -5,7 +5,6 @@
 include 'head.php';
 require 'report-process.php';
 
-
 ?>
 
 <title>My Report - BudgetTracker</title>
@@ -50,7 +49,6 @@ require 'report-process.php';
                             </div>
                     </div>
 
-
                     <div class="row" style="width: 100%">
                         <div class="card" style="width: 61rem;">
                             <div class="card-body">
@@ -61,7 +59,6 @@ require 'report-process.php';
                     </div>
                 </div>
 
-                
 
             </div>
         </div>
@@ -70,10 +67,11 @@ require 'report-process.php';
     <script>
     
         // expenses by category
-         let expenseAngles, budgetNames, budgetColors;
+         let expenseAngles, budgetNames, budgetColors,username;
         budgetNames = <?php echo json_encode($budgetNames) ?>;
         expenseAngles = <?php echo json_encode($expenseAngles) ?>;
         budgetColors = <?php echo json_encode($budgetColors) ?>;
+        username = <?php echo json_encode($username) ?>;
 
         // expenses by day
         let expenseAmountsByDay;
@@ -87,15 +85,20 @@ require 'report-process.php';
             $('#btn-print').click(function(){
             var reportMonth = document.getElementById("report-month").innerHTML;
             var canvasImg = document.getElementById("expensesByCategoryChart").toDataURL("image/png", 1.0);
-            var canvasImg2 = document.getElementById("expensesByDayChart").toDataURL("image/png", 1.0);
-            var doc = new jsPDF('p', 'pt', 'a4');
-            doc.setFontSize(15);
-            doc.setFillColor(255, 255,255);
-            doc.rect(10, 10, 400, 160, "F");
-            // doc.text(20, 20, 'Chart 1');
-            doc.addImage(canvasImg, 'png', 10, 10, 300, 100);
-            // doc.text(20, 90, 'Chart 2');
-            doc.addImage(canvasImg2, 'png', 10, 300, 400, 200);
+            var canvasImg2 = document.getElementById("expensesByBudgetChart").toDataURL("image/png", 1.0);
+            var canvasImg3 = document.getElementById("expensesByDayChart").toDataURL("image/png", 1.0);
+            var doc = new jsPDF('p', 'px', 'a4');
+            doc.addFont('Verdana');
+            doc.setFont('Verdana');
+            doc.setFontSize(17);
+            doc.text(100, 20, `${username}'s Expenses Report - ${reportMonth}`);
+            doc.setFontSize(13);
+            doc.text(10, 40, 'Expenses by Category');
+            doc.addImage(canvasImg, 'png', 80, 50);
+            doc.text(10, 200, 'Expenses by Budget');
+            doc.addImage(canvasImg2, 'png', 10, 180, 400, 200);
+            doc.text(10, 400, 'Expenses by Day');
+            doc.addImage(canvasImg3, 'png', 10, 410, 400, 200);
             doc.save(`My Report - ${reportMonth}.pdf`);
         });
     });

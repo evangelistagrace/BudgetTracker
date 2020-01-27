@@ -5,6 +5,7 @@ require 'config.php';
 // EXPENSE BY CATEGORY CHART
 
 // initialize arrays for expenses chart
+$username = $_SESSION['username'];
 $budgetNames = array();
 $expenseAngles = array();
 $budgetColors = array();
