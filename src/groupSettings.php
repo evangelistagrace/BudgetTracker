@@ -148,14 +148,6 @@ $groupingid = $_GET['grouping-id'];
                                                 <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                     method="POST">
                                                     <table class="table borderless">
-                                                        <?php if(count($warnings)): ?>
-                                                        <div class="error">
-                                                            <?php foreach($warnings as $warning): ?>
-                                                            <div class="alert alert-warning"><?php echo $warning ?>
-                                                            </div>
-                                                            <?php endforeach ?>
-                                                        </div>
-                                                        <?php endif ?>
                                                         <?php if(count($errors)) : ?>
                                                         <div class="error">
                                                             <?php foreach($errors as $error): ?>
@@ -292,6 +284,13 @@ $groupingid = $_GET['grouping-id'];
                                                 <!-- members -->
                                                 <h5 class="text-left"><strong>Members</strong></h5>
                                                 <small>Add members</small>
+                                                <?php if(count($warnings)) : ?>
+                                                    <div class="error">
+                                                    <?php foreach($warnings as $warning): ?>
+                                                        <div class="alert alert-warning"><?php echo $warning ?></div>
+                                                    <?php endforeach ?>
+                                                    </div>
+                                                <?php endif ?>
                                                 <table class='table borderless'>
                                                     <form
                                                         action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"

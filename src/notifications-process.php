@@ -64,6 +64,15 @@ if(isset($_GET['decline-notification-id'])){
 
 }
 
+//dimiss notification
+if(isset($_GET['dismiss-notification-id'])){
+    $notificationid = $_GET['dismiss-notification-id'];
 
+    // delete notification
+    $query = pg_query("DELETE FROM notifications WHERE id = $notificationid AND recipientusername = '".$_SESSION['username']."' ");
+
+    header('location: notifications.php');
+
+}
 
 ?>

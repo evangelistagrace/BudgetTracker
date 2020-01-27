@@ -179,8 +179,14 @@ if(isset($_POST['send-invitation'])){
 
     // send notification if user exists
     if($recipientusername){
-        // send invitation email/notification
-        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$recipientusername', '$senderusername', '$bolddata', $groupingid)");
+        // send invitation notification if haven't been sent
+        $query = pg_query("SELECT * FROM notifications WHERE recipientusername = '$recipientusername' AND groupingid = $groupingid AND notificationtype = 'Invitation' ");
+        if(pg_num_rows($query) == 0){
+            $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$recipientusername', '$senderusername', '$bolddata', $groupingid)");
+        }else{
+            array_push($warnings, 'An invitation has already been sent to this email');
+        }
+        
     }else{
         echo 'unsucessful';
     }
