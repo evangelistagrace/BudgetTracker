@@ -1,6 +1,7 @@
 <?php
 require 'config.php';
 
+// accept invitation
 if(isset($_GET['accept-grouping-id'])){
     $groupingid = $_GET['accept-grouping-id'];
     // find admin username
@@ -25,16 +26,44 @@ if(isset($_GET['accept-grouping-id'])){
     header('location: notifications.php');
 }
 
+
+//decline invitation
 if(isset($_GET['decline-notification-id'])){
     $notificationid = $_GET['decline-notification-id'];
 
     // delete invitation notification
     $query = pg_query("DELETE FROM notifications WHERE id = $notificationid AND recipientusername = '".$_SESSION['username']."' ");
 
+    // send notification to invitation sender
+    $groupingid = $_GET['decline-grouping-id'];
+    // get group name from group id
+    $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid");
+    $result = pg_fetch_array($query);
+    $groupname = $result['groupname'];
+
+    //compose new notification
+    $senderusername = $_SESSION['username']; //sender
+    $recipientusername = $_GET['recipient-username']; //recipient
+    $bolddata = $groupname;
+
+    $notificationtitle = "Declined to join group";
+    $notificationmessage = $senderusername." declined to join "."<b>".$bolddata."</b>";
+    $notificationdate = date("Y-m-d"); //current date
+    $notificationtype = 'Invitation Decline';
+    $notificationstatus = 'SENT';
+    
+    // send notification if user exists
+    if($recipientusername){
+        // echo $groupingid;
+        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', $recipientusername, '$senderusername', '$bolddata', $groupingid)");
+    }else{
+        echo 'unsucessful';
+    }
+
     header('location: notifications.php');
 
-
 }
+
 
 
 ?>

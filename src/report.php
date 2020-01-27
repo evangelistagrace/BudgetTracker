@@ -44,9 +44,8 @@ require 'report-process.php';
 
                             <div class="card" style="width: 35rem;">
                                 <div class="card-body">
-                                    <div class="card-title"><h5>Expenses by Budget</h5></div>
+                                    <div class="card-title"><h5>Expenses by Budget Usage</h5></div>
                                     <canvas id="expensesByBudgetChart"></canvas>
-                                    
                                 </div>
                             </div>
                     </div>

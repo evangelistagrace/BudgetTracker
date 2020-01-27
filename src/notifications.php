@@ -28,8 +28,7 @@ require 'notifications-process.php'
           <?php if(pg_num_rows($query) >= 1): ?>
           <?php while($notification = pg_fetch_array($query)): ?>
           <!-- invitation -->
-          <?php if($notification['notificationtype'] = 'Invitation'): ?>
-
+          <?php if($notification['notificationtype'] === 'Invitation'): ?>
           <div class="card notification-card notification-invitation">
             <div class="card-body">
               <table>
@@ -45,8 +44,34 @@ require 'notifications-process.php'
                     <a href="notifications-process.php?accept-grouping-id=<?php echo $notification['groupingid'] ?>"
                       class="btn btn-primary" sytle="margin-right:5px;">Accept</a>
                     <!-- decline invitation -->
-                    <a href="notifications-process.php?decline-notification-id=<?php echo $notification['id'] ?>"
+                    <a href="notifications-process.php?decline-notification-id=<?php echo $notification['id'] ?>&decline-grouping-id=<?php echo $notification['groupingid']?>&recipient-username='<?php echo $notification['senderusername'] ?>'"
                       class="btn btn-danger dismiss-notification">Decline</a>
+                  </td>
+                </tr>
+                <tr colspan="2">
+                  <td><small><i
+                        class="far fa-calendar-alt mr-1"></i><?php $d = $notification['notificationdate']; $date = date("j F Y", strtotime($d)); echo $date ?></small>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- declined invitations -->
+          <?php elseif($notification['notificationtype'] === 'Decline'): ?>
+          <div class="card notification-card notification-invitation">
+            <div class="card-body">
+              <table>
+                <tr>
+                  <td style="width:85%">
+                    <div class="card-title">
+                      <?php echo $notification['notificationmessage']?>
+                    </div>
+                  </td>
+                  <td class="right" style="width:15%; justify-content: space-around;
+                display: flex;">
+                    <!-- dismiss notification -->
+                    <a href="notifications-process.php?dismiss-notification-id=<?php echo $notification['id'] ?>"
+                      class="btn btn-danger dismiss-notification">Dismiss</a>
                   </td>
                 </tr>
                 <tr colspan="2">
