@@ -3,6 +3,7 @@ require 'config.php';
 
 // accept invitation
 if(isset($_GET['accept-grouping-id'])){
+    $notificationid = $_GET['accept-notification-id'];
     $groupingid = $_GET['accept-grouping-id'];
     // find admin username
     $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid LIMIT 1");
@@ -22,6 +23,30 @@ if(isset($_GET['accept-grouping-id'])){
 
     // add user as member of the group
     $query = pg_query("INSERT INTO groups (groupingid, adminusername, groupname, groupicon, memberusername, maxbudget, remindersetting1, remindersetting2) VALUES ($groupingid, '$adminusername','$groupname','$groupicon', '$memberusername', $maxbudget,'TRUE', 'FALSE') ");
+
+    //remove notification
+    $query = pg_query("DELETE FROM notifications WHERE id = $notificationid AND recipientusername = '".$_SESSION['username']."' ");
+
+    // send notification to invitation sender
+
+    //compose new notification
+    $senderusername = $memberusername; //sender
+    $recipientusername = $_GET['recipient-username']; //recipient
+    $bolddata = $groupname;
+
+    $notificationtitle = "Accepted to join group";
+    $notificationmessage = $senderusername." accepted invitation to join "."<b>".$bolddata."</b>";
+    $notificationdate = date("Y-m-d"); //current date
+    $notificationtype = 'Accept';
+    $notificationstatus = 'SENT';
+    
+    // send notification if user exists
+    if($recipientusername){
+        // echo $groupingid;
+        $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', $recipientusername, '$senderusername', '$bolddata', $groupingid)");
+    }else{
+        echo 'unsucessful';
+    }
 
     header('location: notifications.php');
 }
@@ -49,7 +74,7 @@ if(isset($_GET['decline-notification-id'])){
     $notificationtitle = "Declined to join group";
     $notificationmessage = $senderusername." declined to join "."<b>".$bolddata."</b>";
     $notificationdate = date("Y-m-d"); //current date
-    $notificationtype = 'Invitation Decline';
+    $notificationtype = 'Decline';
     $notificationstatus = 'SENT';
     
     // send notification if user exists
