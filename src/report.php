@@ -74,8 +74,12 @@ require 'report-process.php';
         username = <?php echo json_encode($username) ?>;
 
         // expenses by day
-        let expenseAmountsByDay;
-        expenseAmountsByDay = <?php echo json_encode($expenseAmountsByDay) ?>;
+        var mainArr = <?php echo json_encode($mainArr, JSON_PRETTY_PRINT) ?>;
+        var expenseAmountsByDay = <?php echo json_encode($expenseAmountsByDay) ?>;
+        // console.log(expenseAmountsByDay);
+
+
+        console.log( mainArr);
 
         // expenses by budget
         let budgetPercentages;

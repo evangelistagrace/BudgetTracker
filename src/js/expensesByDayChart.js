@@ -1,4 +1,9 @@
 
+var numberWithCommas = function(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
+
 
 //expenses by day chart
 var ctx3 = document.getElementById('expensesByDayChart').getContext('2d');
@@ -8,22 +13,34 @@ var myChart3 = new Chart(ctx3, {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
             '21', '22','23','24','25','26','27','28','29','30','31'],
-        datasets: [{
-            label: 'Expenses(RM)',
-            data: expenseAmountsByDay,
-            backgroundColor: 'rgba(255,153,123,.5)',
-            borderColor: 'rgba(255,153,123,.9)',
-            borderWidth: 2
-            
-        }]
+        datasets: mainArr,
     },
     options: {
         
         legend: {
-            display: false,
+            display: true,
         },
+        tooltips: {
+					mode: 'label',
+          callbacks: {
+            label: function(tooltipItem, data) { 
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+            },
+            title: function(tooltipItem, data) {
+              console.log(tooltipItem);
+              return expenseAmountsByDay[tooltipItem[0].index];
+            }
+          }
+         },
         scales: {
+            xAxes: [{
+              stacked: true,
+            }],
             yAxes: [{
+              stacked: true,
+              ticks: {
+                callback: function(value) { return numberWithCommas(value); },
+               }, 
               barPercentage: 0.5,
               categoryPercentage: 1.0,
               ticks: {
@@ -37,5 +54,20 @@ var myChart3 = new Chart(ctx3, {
               }
             }]
           },
+          plugins: [{
+            beforeInit: function (chart) {
+              chart.data.labels.forEach(function (value, index, array) {
+                var a = [];
+                a.push(value.slice(0, 5));
+                var i = 1;
+                while(value.length > (i * 5)){
+                  a.push(value.slice(i * 5, (i + 1) * 5));
+                    i++;
+                }
+                array[index] = a;
+              })
+            }
+          }]
         }
 });
+

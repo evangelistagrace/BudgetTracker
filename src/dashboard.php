@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 include 'head.php';
-require 'report-process.php';
+// require 'report-process.php';
 
 if(!isset($_SESSION['username'])){
     echo "You are not logged in";
