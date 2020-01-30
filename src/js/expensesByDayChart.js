@@ -3,7 +3,7 @@ var numberWithCommas = function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-
+console.log(mainArr);
 
 //expenses by day chart
 var ctx3 = document.getElementById('expensesByDayChart').getContext('2d');
@@ -28,7 +28,7 @@ var myChart3 = new Chart(ctx3, {
             },
             title: function(tooltipItem, data) {
               console.log(tooltipItem);
-              return expenseAmountsByDay[tooltipItem[0].index];
+              return "RM " + expenseAmountsByDay[tooltipItem[0].index];
             }
           }
          },

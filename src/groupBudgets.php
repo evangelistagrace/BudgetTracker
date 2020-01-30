@@ -157,7 +157,7 @@ $GLOBALS['BALANCE']= 90;
                                                         </div>
                                                     </td>
                                                     <td style="width:60%">
-                                                        <canvas id="budgetChart"></canvas>
+                                                        <canvas id="budgetsChart"></canvas>
                                                     </td>
                                                 </tr>
                                             </table>
