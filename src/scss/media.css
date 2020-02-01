@@ -6991,6 +6991,13 @@ table.balance tr td:nth-of-type(2) {
 .table.settings2 tr td {
   position: relative;
   text-align: left;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.table.settings2 tr td input {
+  margin-right: 0.5rem;
 }
 
 .table.settings2 tr td a {
@@ -7638,6 +7645,16 @@ table.budget tr td:nth-of-type(3) {
   -ms-flex-pack: distribute;
   -webkit-box-pack: justify;
           justify-content: space-between;
+}
+
+img.profile-img {
+  width: 60px;
+}
+
+.table tr td:nth-last-child {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
 }
 
 /* 

@@ -79,18 +79,11 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                             <h5 class="text-left"><strong>Reminders</strong></h5>
                             <table class='table table-condensed settings2'>
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox" checked>
-                                        <div class="pseudo-checkbox"></div>
+                                    <td><input type="checkbox" class="checkbox" checked>Allow pop-up reminders
                                     </td>
 
-                                    <td>Allow pop-up reminders</td>
-
-                                    <td><input type="checkbox" class="checkbox">
-                                        <div class="pseudo-checkbox"></div>
+                                    <td><input type="checkbox" class="checkbox">Allow push notifications
                                     </td>
-
-                                    <td>Allow push notifications</td>
-
                                 </tr>
 
                             </table>
@@ -160,7 +153,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr style="justify-content: center;">
+                                    <tr style="justify-content: right;">
                                         
                                         <?php if($editState == true):?>
                                             <td style="width: 50%">
@@ -169,7 +162,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                                 <button type="submit" name="cancel-budget" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Cancel</button>
                                             </td>
                                         <?php else: ?>
-                                            <td style="width:100%">
+                                            <td>
                                                 <button type="submit" name="add-budget" class="btn btn-info btn-block"><i class="fas fa-plus"></i> Add budget</button>
                                             </td>
                                             
@@ -184,9 +177,9 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                 <?php  $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
-                                    <td style="width: 90%"><div class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'><?php echo $result['budgetname'] ?></div></td>
+                                    <td style="flex:11"><div class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'><?php echo $result['budgetname'] ?></div></td>
                                     
-                                    <td style="width: 10%" rowspan="2">
+                                    <td style="flex:1" rowspan="2">
                                         <!-- edit budget -->
                                         <a href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
