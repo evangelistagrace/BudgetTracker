@@ -13,6 +13,23 @@ $query = pg_query("SELECT adminusername FROM groups WHERE groupingid = $grouping
 $result = pg_fetch_array($query);
 $admin = $result['adminusername'];
 
+$username = $_SESSION['username'];
+$income = "Add income...";
+if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
+    // set default GET values
+    $editState = false;
+    $budgetid = "";
+    $budgetname = "";
+    $budgetamount = "";
+    $budgetcolor = "";
+}else{
+    $editState = $_GET['editState'];
+    $budgetid = $_GET['budgetid'];
+    $budgetname = $_GET['budgetname'];
+    $budgetamount = $_GET['budgetamount'];
+    $budgetcolor = $_GET['budgetcolor'];
+}
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -294,11 +311,11 @@ $admin = $result['adminusername'];
                                                         <td style="flex:1" rowspan="2">
                                                             <!-- edit budget -->
                                                             <a
-                                                                href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                href="groupSettings.php?grouping-id=<?php echo $groupingid ?>&editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                                     class="fas fa-edit text-primary"></i></a>
                                                             <!-- delete budget -->
                                                             <a
-                                                                href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                href="groupSettings-process.php?grouping-id=<?php echo $groupingid ?>&del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                                     class="far fa-trash-alt text-danger"></i></a>
                                                         </td>
                                                         <?php endif ?>
@@ -321,6 +338,13 @@ $admin = $result['adminusername'];
                                                         <div class="error">
                                                         <?php foreach($warnings as $warning): ?>
                                                             <div class="alert alert-warning"><?php echo $warning ?></div>
+                                                        <?php endforeach ?>
+                                                        </div>
+                                                    <?php endif ?>
+                                                    <?php if(count($messages)) : ?>
+                                                        <div class="error">
+                                                        <?php foreach($messages as $message): ?>
+                                                            <div class="alert alert-info"><?php echo $message ?></div>
                                                         <?php endforeach ?>
                                                         </div>
                                                     <?php endif ?>
@@ -362,7 +386,7 @@ $admin = $result['adminusername'];
                                                             <?php if($_SESSION['username'] === $admin ):?>
                                                                 <?php if($member['memberusername'] !== $admin ):?>
                                                                     <a
-                                                                    href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>" class="text-danger"><i
+                                                                    href="groupSettings-process.php?grouping-id=<?php echo $groupingid ?>&remove-user=<?php echo $member['memberusername'] ?>" class="text-danger"><i
                                                                         class="fas fa-times text-danger"></i> Remove</a>
                                                                 <?php else: ?>
                                                                     <span class="text-secondary">Admin</span>
