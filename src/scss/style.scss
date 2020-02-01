@@ -1005,6 +1005,10 @@ table.balance {
         td {
             position: relative;
             text-align: left;
+            flex: 1;
+            input {
+                margin-right: 0.5rem;
+            }
 
             a {
                 margin: 0 2px;
@@ -1669,4 +1673,14 @@ table.budget tr td:nth-of-type(3) {
     -ms-flex-pack: distribute;
         justify-content: space-between;
   }
-   
+
+
+  img.profile-img{
+      width: 60px;
+  }
+
+  
+
+  .table tr td:nth-last-child(){
+      justify-content: end;
+  }

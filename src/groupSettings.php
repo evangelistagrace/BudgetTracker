@@ -127,17 +127,12 @@ $groupingid = $_GET['grouping-id'];
                                                 <h5 class="text-left"><strong>Reminders</strong></h5>
                                                 <table class='table table-condensed settings2'>
                                                     <tr>
-                                                        <td><input type="checkbox" class="checkbox" checked>
-                                                            <div class="pseudo-checkbox"></div>
+                                                        <td><input type="checkbox" class="checkbox" checked>Allow pop-up reminders
                                                         </td>
 
-                                                        <td>Allow pop-up reminders</td>
-
-                                                        <td><input type="checkbox" class="checkbox">
-                                                            <div class="pseudo-checkbox"></div>
+                                                        <td><input type="checkbox" class="checkbox">Allow push notifications
                                                         </td>
 
-                                                        <td>Allow push notifications</td>
                                                     </tr>
                                                 </table>
                                                 <hr>
@@ -254,13 +249,13 @@ $groupingid = $_GET['grouping-id'];
                                                     <?php  $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ORDER BY budgetid"); ?>
                                                     <?php while($result = pg_fetch_array($query)){ ?>
                                                     <tr>
-                                                        <td style="width: 90%">
+                                                        <td style="flex:11">
                                                             <div
                                                                 class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'>
                                                                 <?php echo $result['budgetname'] ?></div>
                                                         </td>
 
-                                                        <td style="width: 10%" rowspan="2">
+                                                        <td style="flex:1" rowspan="2">
                                                             <!-- edit budget -->
                                                             <a
                                                                 href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
@@ -316,28 +311,17 @@ $groupingid = $_GET['grouping-id'];
                                                     <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <?php 
-                                                                $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid");
+                                                            $query = pg_query("SELECT * FROM groups WHERE groupingid = $groupingid");
                                                             ?>
                                                         <?php while($member = pg_fetch_array($query)): ?>
+                                                        <?php $query2 = pg_query("SELECT email FROM users WHERE username = '".$member['memberusername']."' LIMIT 1");
+                                                        $memberemail = pg_fetch_assoc($query2) ?>
                                                         <tr>
-                                                            <td rowspan="2">
-                                                                //profile picture
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $member['memberusername'] ?>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <!-- edit member -->
-                                                                <a href="#"><i class="fas fa-edit text-primary"></i></a>
-                                                                <!-- delete member -->
-                                                                <a href="#"><i
-                                                                        class="far fa-trash-alt text-danger"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <small>//email</small>
-                                                            </td>
+                                                            <td style="flex:1"><img class="profile-img" src="../assets/profile.jpg" alt=""></td>
+                                                            <td style="flex:9"><?php echo $member['memberusername'] ?><br><small><?php echo $memberemail['email'] ?></small></td>
+                                                            <td style="flex:1"><a
+                                                                href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                    class="far fa-trash-alt text-danger"></i></a></td>
                                                         </tr>
                                                         <?php endwhile ?>
                                                     </form>
