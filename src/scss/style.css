@@ -7128,12 +7128,8 @@ h1.title {
   width: 100%;
 }
 
-.card.group .card-body .row .col-3 {
-  margin-right: 20px;
-}
-
 .card.group .card-body .row .col-3 img {
-  width: 80px;
+  width: 50px;
   opacity: .8;
 }
 

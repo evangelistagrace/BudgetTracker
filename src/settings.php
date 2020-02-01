@@ -76,13 +76,13 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                             <hr>
 
 
-                            <h5 class="text-left"><strong>Reminders</strong></h5>
+                            <h5 class="text-left"><strong>Notifications</strong></h5>
                             <table class='table table-condensed settings2'>
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox" checked>Allow pop-up reminders
+                                    <td><input type="checkbox" class="checkbox" checked>Allow pop-up notifications
                                     </td>
 
-                                    <td><input type="checkbox" class="checkbox">Allow push notifications
+                                    <td><input type="checkbox" class="checkbox">Email notfications
                                     </td>
                                 </tr>
 

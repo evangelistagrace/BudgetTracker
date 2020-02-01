@@ -61,9 +61,13 @@ require 'groups-process.php';
                                     <div class="input-group ml-3">
                                         <select id="groupIcon" name="group-icon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
                                         title="Pick an icon">
-                                        <option value="../assets/icons/icon-1.png" data-content="<img src='../assets/icons/icon-1.png' style='width:40px;'>"></option>
-                                        <option value="../assets/icons/icon-2.png" data-content="<img src='../assets/icons/icon-2.png' style='width:40px;'>"></option>
-                                        <option value="../assets/icons/icon-3.png" data-content="<img src='../assets/icons/icon-3.png' style='width:40px;'>"></option>
+                                        <?php 
+                                            $directory = "../assets/icons/";
+                                            $images = glob($directory . "/*.png");
+                                        ?>
+                                        <?php foreach($images as $image): ?>
+                                            <option value="<?php echo $image ?>" data-content="<img src='<?php echo $image ?>' style='width:40px;'>"></option>
+                                        <?php endforeach ?>
                                     </select>
                                     </div>
                                

@@ -394,7 +394,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                                             <?php else: ?>
                                                                 <?php if($_SESSION['username'] === $member['memberusername'] AND $member['memberusername'] !== $admin ) :?>
                                                                     <a
-                                                                    href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>" class="text-danger"><i
+                                                                    href="groupSettings-process.php?grouping-id=<?php echo $groupingid ?>&exit-group=<?php echo $member['memberusername'] ?>" class="text-danger"><i
                                                                         class="fas fa-times text-danger"></i> leave group</a>
                                                                 <?php elseif($member['memberusername'] == $admin ): ?>
                                                                     <span class="text-secondary">Admin</span>
