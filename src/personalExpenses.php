@@ -12,6 +12,121 @@ $expenseamount = $_GET['expense-amount'];
 $expensedate = $_GET['expense-date'];
 
 
+//month and year
+$year = date("Y");
+$previousYear = $year - 1;
+$nextYear = $year + 1;
+
+//minimum date of expenses
+$query = pg_query("SELECT EXTRACT(MONTH FROM MIN(expensedate)) as minexpensemonth, EXTRACT(YEAR FROM MIN(expensedate)) as minexpenseyear FROM expenses WHERE username = '".$_SESSION['username']."' ");
+$result = pg_fetch_array($query);
+$minexpensemonth = $result['minexpensemonth'];
+$minexpenseyear = $result['minexpenseyear'];
+
+if(isset($_GET['report-month'])){
+    $month = $_GET['report-month'];
+    $year = $_GET['report-year'];
+
+    $previousMonth = $month - 1;
+    $nextMonth = $month + 1;
+
+    if($month == 1){
+        $previousMonth = 12; //December
+        $previousYear = $year - 1; //previous year
+    }else{
+        $previousYear = $year;
+    }
+
+    if($month == 12){
+        $nextMonth = 1;
+        $nextYear = $_GET['report-year'] + 1;
+
+    }else{
+        $nextYear = $_GET['report-year'];
+
+    }
+
+    if($month == 1){
+        $monthName = "January";
+    }elseif($month == 2){
+        $monthName = "February";
+    }elseif($month == 3){
+        $monthName = "March";
+    }elseif($month == 4){
+        $monthName = "April";
+    }elseif($month == 5){
+        $monthName = "May";
+    }elseif($month == 6){
+        $monthName = "June";
+    }elseif($month == 7){
+        $monthName = "July";
+    }elseif($month == 8){
+        $monthName = "August";
+    }elseif($month == 9){
+        $monthName = "September";
+    }elseif($month == 10){
+        $monthName = "October";
+    }elseif($month == 11){
+        $monthName = "November";
+    }elseif($month == 12){
+        $monthName = "December";
+    }
+
+
+}else{
+    $month = date("m");
+    $year = date("Y");
+    $previousMonth = $month - 1;
+    $nextMonth = $month + 1;
+    
+    if($previousMonth == 0){
+        $previousMonth = 12; //December
+        $previousYear = date("Y") - 1; //previous year
+
+    }else{
+        $previousYear = date("Y");
+
+    }
+
+    if($nextMonth == 13){
+        $nextMonth = 1;
+        $nextYear = date("Y") + 1;
+        $year = $nextYear;
+
+    }else{
+        $nextYear = date("Y");
+        $year = $nextYear;
+
+    }
+
+    if($month == 1){
+        $monthName = "January";
+    }elseif($month == 2){
+        $monthName = "February";
+    }elseif($month == 3){
+        $monthName = "March";
+    }elseif($month == 4){
+        $monthName = "April";
+    }elseif($month == 5){
+        $monthName = "May";
+    }elseif($month == 6){
+        $monthName = "June";
+    }elseif($month == 7){
+        $monthName = "July";
+    }elseif($month == 8){
+        $monthName = "August";
+    }elseif($month == 9){
+        $monthName = "September";
+    }elseif($month == 10){
+        $monthName = "October";
+    }elseif($month == 11){
+        $monthName = "November";
+    }elseif($month == 12){
+        $monthName = "December";
+    }
+}
+
+
 ?>
 
 <title>My Expenses - BudgetTracker</title>
@@ -31,6 +146,27 @@ $expensedate = $_GET['expense-date'];
                 <h1 class="title text-primary">My Expenses</h1>
 
                 <div class="row">
+                <h4 class="text-info text-center" style="width: 100%;">
+                    <?php $currentMonth = date("m"); $currentYear = date("Y");
+                        if(isset($_GET['report-month']) AND isset($_GET['report-year'])){
+                            $reportmonth = $_GET['report-month'];
+                            $reportyear = $_GET['report-year'];
+                        }else{
+                            $reportmonth = date("m");
+                            $reportyear = date("Y");
+                        }
+                    ?>
+
+                    <?php if($reportmonth > $minexpensemonth OR $reportyear > $minexpenseyear): ?>
+                    <a href="personalExpenses.php?report-month=<?php echo $previousMonth ?>&report-year=<?php echo $previousYear ?>"><i class="fas fa-angle-double-left"></i></a>
+                    <?php endif ?> 
+                    
+                    <span id="report-month"><?php echo $monthName ?> <?php echo $year ?></span> 
+                    
+                    <?php if($currentMonth > $reportmonth OR $currentYear > $reportyear): ?>
+                    <a href="personalExpenses.php?report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i class="fas fa-angle-double-right"></i></a>
+                    <?php endif ?>
+                </h4>
                 <?php if(count($warnings)): ?>
                 <div class="error" style="width: 80%">
                     <?php foreach($warnings as $warning): ?>
@@ -38,8 +174,8 @@ $expensedate = $_GET['expense-date'];
                     <?php endforeach ?>
                 </div>
                 <?php endif ?>
-                    <div class="card" style="width: 80%">
-                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE expenses.username = '".$_SESSION['username']."' ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
+                    <div class="card" style="width: 80%;">
+                        <?php $query = pg_query("SELECT expenses.expenseid, expenses.budgetid, expenses.expensename, expenses.expenseamount, expenses.expensedate, budgets.username, budgets.budgetname, budgets.budgetcolor  FROM expenses INNER JOIN budgets ON expenses.budgetid = budgets.budgetid WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND expenses.username = '".$_SESSION['username']."' ORDER BY expenses.expensedate DESC, expenses.expenseid ASC")?>
                         <?php $date1 = date('2000-01-01') ?>
                         <?php while($expense = pg_fetch_assoc($query)) : ?>
                         <?php $date2 = $expense['expensedate']?>
