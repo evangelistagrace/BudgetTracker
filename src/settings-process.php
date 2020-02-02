@@ -4,6 +4,8 @@ require 'config.php';
 $errors = array();
 $warnings = array();
 
+$currentmonth = date("m");
+$currentyear = date("Y");
 
 if(isset($_GET['del-budget'])){
     $budgetname = $_GET['del-budget'];
@@ -103,7 +105,7 @@ if(isset($_POST['edit-budget'])){
     
     if(!empty($budgetname)){
         // check for duplicate budgets
-        $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."'");
+        $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' ");
         while($result = pg_fetch_array($query)){
             if($result['budgetid'] != $budgetid) {
                 if($result['budgetname'] == $budgetname)

@@ -28,7 +28,7 @@ if(isset($_GET['report-month'])){
 
 
 // corresponding budget name
-$query2 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid ASC ");
+$query2 = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ORDER BY budgetid ASC ");
 // corresponding budget/expense category color code
 $query3 = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ");
 // total expenses
@@ -36,7 +36,7 @@ $query4 = pg_query("SELECT SUM(expenseamount) AS totalexpenses FROM expenses WHE
 $totalExpenses = pg_fetch_array($query4);
 $totalexpense = $totalExpenses['totalexpenses'];
 // budget usage percentages
-$query5 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid ASC");
+$query5 = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ORDER BY budgetid ASC");
 while($result5 = pg_fetch_array($query5)){
 
     // expenses total by budget/category
@@ -101,7 +101,7 @@ while($day <= 31){
  }
  $mainArr = array();
  
-  $query6 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetname ASC");
+  $query6 = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ORDER BY budgetname ASC");
  
   while($result = pg_fetch_array($query6)){
       $query7 = pg_query("SELECT * FROM colors WHERE colorname = '".$result['budgetcolor']."' LIMIT 1");

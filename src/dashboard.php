@@ -8,6 +8,9 @@ if(!isset($_SESSION['username'])){
     echo "You are not logged in";
     header('location: homepage.php');
 }
+
+$month = date("m");
+$year = date("Y");
 ?>
 <title>Dashboard - BudgetTracker</title>
 
@@ -28,7 +31,9 @@ if(!isset($_SESSION['username'])){
                         <div class="card-body">
                             <h5 class="card-title">Reminders</h5>
                                 <?php $query = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+
                                 <?php $query2 = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
+
                                 <?php $query3 = pg_query("SELECT reminders.reminderid, reminders.budgetid, reminders.remindername, reminders.reminderamount, reminders.reminderdone, reminders.reminderdate, budgets.budgetid, budgets.budgetname FROM reminders INNER JOIN budgets ON reminders.budgetid = budgets.budgetid WHERE reminders.username = '".$_SESSION['username']."' ORDER BY reminders.reminderid") ?>
                                 <table class="table table-striped dashboard-reminders">
                                 <thead class="thead-light">
@@ -126,7 +131,7 @@ if(!isset($_SESSION['username'])){
                                     </tr>
                                     <tr>
                                         <?php 
-                                            $query = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE username = '".$_SESSION['username']."'"); 
+                                            $query = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."'"); 
                                             $result2 = pg_fetch_array($query);
 
                                             $outflow = $result2['totalexpense'];
@@ -194,7 +199,7 @@ if(!isset($_SESSION['username'])){
                     <div class="card-body">
                         <h5 class="card-title">Budgets</h5>
                         <p class="card-text">
-                            <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
+                            <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ORDER BY budgetid")?>
                             <?php while($result = pg_fetch_array($query)) :?>
                             <?php if($result['budgetamount'] > 0)  :?>
                             <div class="progress-container">

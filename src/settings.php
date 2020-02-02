@@ -21,6 +21,10 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
     $budgetamount = $_GET['budgetamount'];
     $budgetcolor = $_GET['budgetcolor'];
 }
+
+$currentmonth = date("m");
+$currentyear = date("Y");
+
 ?>
 <title>Settings - BudgetTracker</title>
 
@@ -174,7 +178,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
 
                             <!--  display budgets -->
                             <table class='table table-condensed settings2'>
-                                <?php  $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
+                                <?php  $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' ORDER BY budgetid"); ?>
                                 <?php while($result = pg_fetch_array($query)){ ?>
                                 <tr>
                                     <td style="flex:11"><div class='<?php echo "badge bg-{$result['budgetcolor']}" ?>'><?php echo $result['budgetname'] ?></div></td>
