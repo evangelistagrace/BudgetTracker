@@ -12,6 +12,14 @@ $year = date("Y");
 $previousYear = $year - 1;
 $nextYear = $year + 1;
 
+//minimum date of expenses
+$query = pg_query("SELECT EXTRACT(MONTH FROM MIN(expensedate)) as minexpensemonth, EXTRACT(YEAR FROM MIN(expensedate)) as minexpenseyear FROM expenses WHERE username = '".$_SESSION['username']."' ");
+$result = pg_fetch_array($query);
+$minexpensemonth = $result['minexpensemonth'];
+$minexpenseyear = $result['minexpenseyear'];
+
+
+
 if(isset($_GET['report-month'])){
     $month = $_GET['report-month'];
     $year = $_GET['report-year'];
@@ -137,7 +145,25 @@ if(isset($_GET['report-month'])){
                 <div class="row justify-content-center">
                     <div class="col-4">
                         <h4 class="text-info text-center">
-                            <a href="report.php?report-month=<?php echo $previousMonth ?>&report-year=<?php echo $previousYear ?>"><i class="fas fa-angle-double-left"></i></a> <span id="report-month"><?php echo $monthName ?> <?php echo $year ?></span> <a href="report.php?report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i class="fas fa-angle-double-right"></i></a>
+                            <?php $currentMonth = date("m"); $currentYear = date("Y");
+                                if(isset($_GET['report-month']) AND isset($_GET['report-year'])){
+                                    $reportmonth = $_GET['report-month'];
+                                    $reportyear = $_GET['report-year'];
+                                }else{
+                                    $reportmonth = date("m");
+                                    $reportyear = date("Y");
+                                }
+                            ?>
+
+                            <?php if($reportmonth > $minexpensemonth OR $reportyear > $minexpenseyear): ?>
+                            <a href="report.php?report-month=<?php echo $previousMonth ?>&report-year=<?php echo $previousYear ?>"><i class="fas fa-angle-double-left"></i></a>
+                            <?php endif ?> 
+                            
+                            <span id="report-month"><?php echo $monthName ?> <?php echo $year ?></span> 
+                            
+                            <?php if($currentMonth > $reportmonth OR $currentYear > $reportyear): ?>
+                            <a href="report.php?report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i class="fas fa-angle-double-right"></i></a>
+                            <?php endif ?>
                         </h4>
                     </div>
                 </div>
