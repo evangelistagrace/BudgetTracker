@@ -11,58 +11,73 @@ $expenseAngles = array();
 $budgetColors = array();
 $budgetPercentages = array();
 
-// expenses total by budget/category
-$query = pg_query("SELECT budgetid, SUM (expenseamount) as total FROM expenses WHERE username = '".$_SESSION['username']."' GROUP BY budgetid ORDER BY budgetid ASC");
+//set month
+if(isset($_GET['report-month'])){
+    $month = $_GET['report-month'];
+
+    $year = $_GET['report-year'];
+}else{
+    // $month = 12;
+    // $year = 2019;
+    $month = date("m");
+
+    $year = date("Y");
+
+}
+
+
+
 // corresponding budget name
 $query2 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid ASC ");
 // corresponding budget/expense category color code
 $query3 = pg_query("SELECT * FROM colors WHERE username = '".$_SESSION['username']."' ");
 // total expenses
-$query4 = pg_query("SELECT SUM(expenseamount) AS totalexpenses FROM expenses WHERE username = '".$_SESSION['username']."' ");
+$query4 = pg_query("SELECT SUM(expenseamount) AS totalexpenses FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' ");
 $totalExpenses = pg_fetch_array($query4);
 $totalexpense = $totalExpenses['totalexpenses'];
 // budget usage percentages
-$query5 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid");
+$query5 = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid ASC");
 while($result5 = pg_fetch_array($query5)){
-    $query6 = pg_query("SELECT SUM(expenseamount) as amount FROM expenses WHERE budgetid = '".$result5['budgetid']."' AND username = '".$_SESSION['username']."' "); 
 
-    while($result6 = pg_fetch_array($query6)){
-        $percentage = $result6['amount']/$result5['budgetamount'] * 100;
-        $percentage = number_format($percentage, 0);
-        array_push($budgetPercentages, $percentage);
-    }
-}
+    // expenses total by budget/category
+    $query = pg_query("SELECT budgetid, SUM (expenseamount) as total FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' GROUP BY budgetid ORDER BY budgetid ASC");
 
-
-while($expense = pg_fetch_array($query)){
-    while($budget = pg_fetch_array($query2)){
-        if($expense['budgetid'] = $budget['budgetid'] ){
+    while($expense = pg_fetch_array($query)){
+        if($result5['budgetid'] == $expense['budgetid']){
             // populate budgetNames array
-            array_push($budgetNames, $budget['budgetname']);
+            array_push($budgetNames, $result5['budgetname']);
             // populate budgetColors array
-            $color = pg_fetch_array(pg_query("SELECT * FROM colors WHERE colorname = '".$budget['budgetcolor']."' "));
+            $color = pg_fetch_array(pg_query("SELECT * FROM colors WHERE colorname = '".$result5['budgetcolor']."' "));
             $budgetColor = $color['colorhex'];
             array_push($budgetColors, $budgetColor);
+            // populate expenseAngles array
+            array_push($expenseAngles, $expense['total']);
+            $percentage = $expense['total']/$result5['budgetamount'] * 100;
+            $percentage = number_format($percentage, 0);
+            array_push($budgetPercentages, $percentage);
         }
+        
+        
     }
-    // populate expenseAngles array
-    array_push($expenseAngles, $expense['total']);
+
 }
+
+
+
 
 
   // EXPENSE BY DAY CHART
 
   $day = 1; //start from first day of the month
   $count = 0; // counter
-  $month = 12; // an arbitary number for the month
   $expenseDays = array();
   $expenseAmounts = array();
   $expenseAmountsByDay = array(); //to be passed to js file
   $expenseBudgets = array();
  
-  $query5 = pg_query("SELECT expensedate, budgetid, SUM(expenseamount) AS totalexpenses, EXTRACT(DAY FROM expensedate) AS expenseday FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND username = '".$_SESSION['username']."' GROUP BY expensedate, budgetid ORDER BY expensedate ASC ");
+  $query5 = pg_query("SELECT expensedate, budgetid, SUM(expenseamount) AS totalexpenses, EXTRACT(DAY FROM expensedate) AS expenseday FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' GROUP BY expensedate, budgetid ORDER BY expensedate ASC ");
 
-  $query8 = pg_query("SELECT expensedate, SUM(expenseamount) AS totalexpenses, EXTRACT(DAY FROM expensedate) AS expenseday FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND username = '".$_SESSION['username']."' GROUP BY expensedate ORDER BY expensedate ASC ");
+  $query8 = pg_query("SELECT expensedate, SUM(expenseamount) AS totalexpenses, EXTRACT(DAY FROM expensedate) AS expenseday FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' GROUP BY expensedate ORDER BY expensedate ASC ");
   while($expense = pg_fetch_array($query8)){
     array_push($expenseDays, $expense['expenseday']);
     array_push($expenseAmounts, $expense['totalexpenses']);
