@@ -242,7 +242,7 @@ if(isset($_GET['report-month'])){
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
                                                         data-size="3" title="Pick a category" name="budget-name">
-                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
+                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
                                                         <option value="<?php echo $result['budgetname'] ?>">
                                                             <?php echo $result['budgetname'] ?></option>
@@ -327,7 +327,7 @@ if(isset($_GET['report-month'])){
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
                                                         data-size="3" title="Pick a category" name="expense-budget" >
-                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
+                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
                                                         <?php if($result['budgetname'] == $expensebudget): ?>
                                                             <option value="<?php echo $result['budgetname'] ?>" selected>

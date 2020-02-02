@@ -134,6 +134,42 @@ if(isset($_GET['report-month'])){
     }
 }
 
+//select current month and year's budgets
+$currentdate = date("Y-m-d");
+$currentmonth = date("m");
+$currentyear = date("Y");
+
+$message = "some text";
+
+$query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' ");
+// if most current budget(s) do not exist
+if(pg_num_rows($query) == 0){
+    //select the most recent set of budgets
+    //max budget date
+    $message = "query not found";
+    $query = pg_query("SELECT MAX(budgetdate) AS maxbudgetdate FROM budgets WHERE username = '".$_SESSION['username']."' ");
+    $result = pg_fetch_array($query);
+    $maxbudgetdate = strtotime($result['maxbudgetdate']);
+    $maxbudgetmonth = date("m", $maxbudgetdate);
+    $maxbudgetyear = date("Y", $maxbudgetdate);
+
+    $query2 = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $maxbudgetmonth AND EXTRACT(YEAR FROM budgetdate) = $maxbudgetyear AND username = '".$_SESSION['username']."' ORDER BY budgetid ASC");
+
+    while($result2 = pg_fetch_array($query2)){
+        $username = $_SESSION['username'];
+        $budgetname = $result2['budgetname'];
+        $budgetamount = $result2['budgetamount'];
+        $budgetcolor = $result2['budgetcolor'];
+        $budgetdate = $currentdate;
+
+        $query3 = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor, budgetdate) VALUES ('$username', '$budgetname', '$budgetamount', '$budgetcolor', '$budgetdate')");
+    }
+
+}
+
+
+
+
 
 ?>
 
@@ -150,7 +186,7 @@ if(isset($_GET['report-month'])){
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
-
+                <!-- <?php print_r($result3) ?> -->
                 <h1 class="title text-primary">My Budgets</h1>
                 <div class="row">
                     <h4 class="text-info text-center">
@@ -185,7 +221,7 @@ if(isset($_GET['report-month'])){
                                                
                                                 <section class="mini-section">
                                                 <?php 
-                                                    $query = pg_query("SELECT SUM(budgetamount) as totalbudget FROM budgets WHERE username = '".$_SESSION['username']."'"); 
+                                                    $query = pg_query("SELECT SUM(budgetamount) as totalbudget FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."'"); 
                                                     $result = pg_fetch_array($query);
 
                                                     $query2 = pg_query("SELECT SUM(expenseamount) as totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."'"); 
@@ -228,7 +264,7 @@ if(isset($_GET['report-month'])){
                 
                 
                 <div class="row">
-                <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ORDER BY budgetid")?>
+                <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ORDER BY budgetid")?>
                 <?php while($result = pg_fetch_array($query)) :?>
                     <?php if($result['budgetamount'] > 0)  :?>
                         <div class="card budget" style="width: 100% ;">

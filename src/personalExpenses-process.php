@@ -8,9 +8,12 @@ if(isset($_POST['add-expense'])) {
     $expensename = $_POST['expense-name'];
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
+    $month = date("m", $expensedate);
+    $year = date("Y", $expensedate);
+
 
     // select corresponding categoryid from category table
-    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
+    $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
@@ -31,7 +34,7 @@ if(isset($_POST['add-expense'])) {
     }
 
      // find total expense amount
-     $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE username = '".$_SESSION['username']."' ");
+     $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' ");
      $result = pg_fetch_array($query2);
      $totalExpense = $result['totalexpense'] + $expenseamount;
  
