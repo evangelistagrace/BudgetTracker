@@ -31,8 +31,6 @@ $result = pg_fetch_array($query);
 $minexpensemonth = $result['minexpensemonth'];
 $minexpenseyear = $result['minexpenseyear'];
 
-
-
 if(isset($_GET['report-month'])){
     $month = $_GET['report-month'];
     $year = $_GET['report-year'];
@@ -134,7 +132,6 @@ if(isset($_GET['report-month'])){
     }elseif($month == 12){
         $monthName = "December";
     }
-
 }
 
 
