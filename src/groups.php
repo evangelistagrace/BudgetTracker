@@ -75,17 +75,16 @@ require 'groups-process.php';
 
                                 <div class="form-group">
                                     <label for="budgetAmount">Add Members</label>
-                                    <div class="input-group ml-3">
-                                        <input type="email" class="form-control mb-3 block" placeholder="Enter an email...">
-                                        <input type="email" class="form-control block" placeholder="Enter an email...">   
+                                    <div class="input-group ml-3" id="input-member-group">
+                                        <input type="email" class="form-control mb-3 block" name="memberemail1" placeholder="Enter an email..." style="border-radius:5px;">
+                                        <input type="email" class="form-control mb-3 block" name="memberemail2" placeholder="Enter an email..." style="border-radius:5px;">   
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3" >
                                     <label for="budgetAmount"></label>
-                                    <div class="input-group ml-3">
-                                        <div class="btn btn-round btn-secondary">+</div>
-                                        <div class="btn btn-secondary">Send invitation</div>
+                                    <div class="input-group ml-3" style="display:flex; justify-content:center">
+                                        <div class="btn btn-round btn-secondary" id="input-member-btn">+</div>
                                     </div>
                                 </div>
 
@@ -101,6 +100,27 @@ require 'groups-process.php';
             </div>
         </div>
     </div>
+
+    <script>
+        const inputMemberGroup = document.getElementById('input-member-group');
+        const inputMemberBtn = document.getElementById('input-member-btn');
+        var inputKey = 3;
+        inputMemberBtn.addEventListener('click', (e)=>{
+            if(inputKey <= 5){ //allow only up to 5 fields at a time
+                e.preventDefault();
+                //create new input field
+                var inputMember = document.createElement('input');
+                inputMember.type = "email";
+                inputMember.className = "form-control mb-3 block";
+                inputMember.name = "memberemail" + inputKey;
+                inputMember.placeholder = "Enter an email...";
+                inputMember.style = "border-radius:5px;";
+                inputMemberGroup.appendChild(inputMember);
+                inputKey++;
+            }
+        })
+
+    </script>
 
     <?php include 'footer.php' ?>
 

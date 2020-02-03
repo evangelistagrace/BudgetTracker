@@ -7131,6 +7131,12 @@ h1.title {
 .card.group .card-body .row .col-3 img {
   width: 50px;
   opacity: .8;
+  border: 1px solid #aaa;
+  border-radius: 100px;
+  padding: 8px;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  margin-left: -3px;
 }
 
 .card.group .card-body .row .col-8 h1.card-title {
@@ -7256,11 +7262,12 @@ form.popup-form .form-group .input-group input.block {
 form.popup-form .form-group .dropdown .btn-round,
 form.popup-form .form-group .input-group .btn-round {
   padding: 3px;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50px;
   text-align: center;
   vertical-align: center;
+  font-size: 20px;
 }
 
 .overlay {
@@ -7651,5 +7658,9 @@ img.profile-img {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: end;
+}
+
+.card.group {
+  padding: 0px;
 }
 /*# sourceMappingURL=style.css.map */
