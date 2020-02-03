@@ -2,6 +2,11 @@
 
 require 'config.php';
 $warnings = array();
+$errors = array();
+
+$currentmonth = date("m");
+$currentyear = date("Y");
+$currentdate = date("Y-m-d");
 
 if(isset($_POST['add-expense'])) {
     $budgetname = $_POST['budget-name'];
@@ -17,6 +22,7 @@ if(isset($_POST['add-expense'])) {
     $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
+    $budgetamount = $result['budgetamount'];
 
     // format expense name with single quote 
     if (strpos($expensename, "'") !== false) { //if single quote is inside input
@@ -34,29 +40,49 @@ if(isset($_POST['add-expense'])) {
         $expenseamount .= ".00";
     }
 
-     // find total expense amount
-    //  $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $month AND EXTRACT(YEAR FROM expensedate) = $year AND username = '".$_SESSION['username']."' ");
-    //  $result = pg_fetch_array($query2);
-    //  $totalExpense = $result['totalexpense'] + $expenseamount;
- 
-    //  // format total expense amount 
-    //  if (strpos($totalExpense, '.') !== false) {
-    //      // do nothing
-    //  }else{
-    //      $totalExpense .= ".00";
-    //  }
- 
-    //  // find income
-    //  $query3 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
-    //  $result = pg_fetch_array($query3);
-    //  $income = $result['income'];
- 
-    //  // if total expense exceeds income, push warning message
-    //  if($totalExpense > $income){
-    //      array_push($warnings, "Total expense " . "(RM " . $totalExpense . ")" . " exceeds income " . "(RM " . $income . ").");
-    //  }
+     //find total expense amount
+     $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND username = '".$_SESSION['username']."' ");
+     $result = pg_fetch_array($query2);
+     $totalExpense = $result['totalexpense'] + $expenseamount;
 
-    $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
+     $query3 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND budgetid = $budgetid AND username = '".$_SESSION['username']."' ");
+     $result2 = pg_fetch_array($query3);
+     $totalExpenseByBudget = $result2['totalexpense'] + $expenseamount;
+
+     
+ 
+     // format total expense amount 
+     if (strpos($totalExpense, '.') !== false) {
+         // do nothing
+     }else{
+         $totalExpense .= ".00";
+     }
+     if (strpos($totalExpenseByBudget, '.') !== false) {
+        // do nothing
+    }else{
+        $totalExpenseByBudget .= ".00";
+    }
+
+ 
+     // find income
+     $query3 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
+     $result = pg_fetch_array($query3);
+     $income = $result['income'];
+ 
+     // if total expense exceeds income, push error message
+     if($totalExpense > $income){
+         array_push($errors, "Total expense " . "(RM " . $totalExpense . ")" . " exceeds income " . "(RM " . $income . ").");
+     }
+     // if total expense budget exceeds budget amount, push warning message
+     if($totalExpenseByBudget > $budgetamount){
+        array_push($warnings, "Your expenses for ".$budgetname." (RM ".$totalExpenseByBudget.") has exceeded its budget (RM ".$budgetamount.")" );
+    }
+
+     if(count($errors) == 0){
+         $query = pg_query("INSERT INTO expenses(budgetid, expensename, expenseamount, expensedate, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '".$_SESSION['username']."') ");
+     }
+
+    
 }
 
 if(isset($_GET['del-expense'])){
@@ -73,7 +99,7 @@ if(isset($_POST['edit-expense'])){
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
 
-    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$expensebudget' ");
+    $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' AND budgetname = '$expensebudget' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 

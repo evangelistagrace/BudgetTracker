@@ -8,6 +8,7 @@ require 'personalExpenses-process.php';
 $expenseid = $_GET['edit-expense'];
 $expensename = $_GET['expense-name'];
 $expensebudget = $_GET['expense-budget'];
+$budgetid = $_GET['budget-id'];
 $expenseamount = $_GET['expense-amount'];
 $expensedate = $_GET['expense-date'];
 
@@ -167,6 +168,13 @@ if(isset($_GET['report-month'])){
                     <a href="personalExpenses.php?report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i class="fas fa-angle-double-right"></i></a>
                     <?php endif ?>
                 </h4>
+                <?php if(count($errors)): ?>
+                <div class="error" style="width: 80%">
+                    <?php foreach($errors as $error): ?>
+                    <div class="alert alert-danger"><?php echo $error?></div>
+                    <?php endforeach ?>
+                </div>
+                <?php endif ?>
                 <?php if(count($warnings)): ?>
                 <div class="error" style="width: 80%">
                     <?php foreach($warnings as $warning): ?>
