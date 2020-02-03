@@ -188,7 +188,7 @@ $currentyear = date("Y");
                                         <a href="settings.php?editState=true&budgetid=<?php echo $result['budgetid']?>&budgetname=<?php echo $result['budgetname']?>&budgetamount=<?php echo $result['budgetamount']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
                                                 class="fas fa-edit text-primary"></i></a>
                                         <!-- delete budget -->
-                                        <a href="settings-process.php?del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i class="far fa-trash-alt text-danger"></i></a>
+                                        <a href="settings.php?del-budget-id=<?php echo $result['budgetid']?>&budget-name=<?php echo $result['budgetname']?>&budget-color=<?php echo $result['budgetcolor']?>"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
                                 <tr class="borderless">

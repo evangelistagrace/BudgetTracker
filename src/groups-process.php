@@ -51,7 +51,6 @@ if(isset($_POST['add-group'])){
         array_push($memberemails, $memberemail5);
     }
 
-
     $notificationtitle = "Invitation to join" . " " . $groupname;
     $notificationmessage = "Join here: <insert link>";
     $notificationdate = date("Y-m-d"); //current date
@@ -71,9 +70,7 @@ if(isset($_POST['add-group'])){
         }
     }
 
-
     $query2 = pg_query($queryMessage);
-
 
     while($result = pg_fetch_array($query2)){
         // send notification if user exists
@@ -92,10 +89,6 @@ if(isset($_POST['add-group'])){
         }
     }
     
-
-
-
-
 }
 
 

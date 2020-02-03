@@ -11,6 +11,9 @@ $reminderbudget = $_GET['reminder-budget'];
 $reminderamount = $_GET['reminder-amount'];
 $reminderdate = $_GET['reminder-date'];
 
+$month = date("m");
+$year = date("Y");
+
 ?>
 <title>My Budgets - BudgetTracker</title>
 
@@ -108,7 +111,7 @@ $reminderdate = $_GET['reminder-date'];
                                             <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
                                                     data-size="3" title="Pick a category" name="budget-name">
-                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
+                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
                                                     <option value="<?php echo $result['budgetname'] ?>">
                                                         <?php echo $result['budgetname'] ?></option>
@@ -187,7 +190,7 @@ $reminderdate = $_GET['reminder-date'];
                                             <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
                                                     data-size="3" title="Pick a category" name="reminder-budget">
-                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' ")?>
+                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
                                                     <?php if($result['budgetname'] == $reminderbudget): ?>
                                                         <option value="<?php echo $result['budgetname'] ?>" selected>

@@ -6,18 +6,33 @@ $warnings = array();
 
 $currentmonth = date("m");
 $currentyear = date("Y");
+$currentdate = date("Y-m-d");
 
-if(isset($_GET['del-budget'])){
-    $budgetname = $_GET['del-budget'];
-    $budgetcolor = $_GET['budgetcolor'];
+if(isset($_GET['del-budget-id'])){
+    $budgetid = $_GET['del-budget-id'];
+    $budgetname = $_GET['budget-name'];
+    $budgetcolor = $_GET['budget-color'];
 
-    // set deleted budget color as not taken
-    $query = pg_query("UPDATE colors SET colortaken = false WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+    //check to see if there are current month's expenses with the deleted budget category 
+    $query = pg_query("SELECT * FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND budgetid = $budgetid AND username = '".$_SESSION['username']."' ");
 
-    $query = pg_query("DELETE FROM budgets WHERE budgetname = '$budgetname' AND username = '".$_SESSION['username']."' ");
+    //check to see if there are current month's reminders with the deleted budget category 
+    $query2 = pg_query("SELECT * FROM reminders WHERE EXTRACT(MONTH FROM reminderdate) = $currentmonth AND EXTRACT(YEAR FROM reminderdate) = $currentyear AND budgetid = $budgetid AND username = '".$_SESSION['username']."' ");
+
+    // $result = pg_fetch_array($query);
+
+    if(pg_num_rows($query) == 0 AND pg_num_rows($query2) == 0){
+        // set deleted budget color as not taken
+        $query2 = pg_query("UPDATE colors SET colortaken = false WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+
+        $query3 = pg_query("DELETE FROM budgets WHERE budgetid = $budgetid AND username = '".$_SESSION['username']."' ");
+        header('location: settings.php');
+        // echo 'true';
+
+    }else{
+        array_push($errors, "Error deleting '".$budgetname."'. There are expenses and/or reminders with the budget '".$budgetname."'");
+    }
     
-    $_SESSION['message'] = "budget deleted";
-    header('location: settings.php');
 }
 
 if(isset($_POST['add-budget'])){
@@ -25,10 +40,9 @@ if(isset($_POST['add-budget'])){
     $budgetamount = $_POST['budget-amount'];
     $budgetcolor = $_POST['budget-color'];
 
-    
 
     // find total budget amount
-    $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM budgets WHERE username = '".$_SESSION['username']."' ");
+    $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' ");
     $result = pg_fetch_array($query3);
     $totalBudget = $result['totalbudget'] + $budgetamount;
 
@@ -52,7 +66,7 @@ if(isset($_POST['add-budget'])){
 
     if(!empty($budgetname)){
         // check for duplicate categories
-        $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."'");
+        $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."'");
         while($result = pg_fetch_array($query)){
             if($result['budgetname'] == $budgetname) {
                 array_push($errors, "Budget '$budgetname' already exists.");
@@ -74,10 +88,13 @@ if(isset($_POST['add-budget'])){
     }
 
     if(count($errors) == 0){
-        // set selected color as taken
-        $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+        
+        $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor, budgetdate) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor', '$currentdate')");
 
-        $query = pg_query("INSERT INTO budgets (username, budgetname, budgetamount, budgetcolor) VALUES ('".$_SESSION['username']."', '$budgetname', '$budgetamount', '$budgetcolor')");
+        if($query){
+            // set selected color as taken
+            $query = pg_query("UPDATE colors SET colortaken = true WHERE colorname = '$budgetcolor' AND username = '".$_SESSION['username']."' ");
+        }
 
     }
 }
