@@ -95,7 +95,40 @@ $currentyear = date("Y");
                             <hr>
 
                             <h5 class="text-left"><strong>Budgets</strong></h5>
-                            <small>Create up to 10 budgets</small>
+                            <?php
+                            //find total expense amount
+                            $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND username = '".$_SESSION['username']."' ");
+                            $result = pg_fetch_array($query2);
+                            $outflow = $result['totalexpense'];
+
+                            // find income
+                            $query3 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
+                            $result = pg_fetch_array($query3);
+                            $income = $result['income'];
+
+                            // format outflow amount 
+                            if (strpos($outflow, '.') !== false) {
+                                // do nothing
+                            }else{
+                                $outflow .= ".00";
+                            }
+
+                            $balance = $income - $outflow;
+                            // format balance amount 
+                            if (strpos($balance, '.') !== false) {
+                                // do nothing
+                            }else{
+                                $balance .= ".00";
+                            }
+
+                            ?>
+                            <table class="table table-sm table-borderless mb-0">
+                                <tr style="display: flex;">
+                                    <td style="flex:1"><small>Create up to 10 budgets</small></td>
+                                    <td style="flex:1; text-align: right"><small><?php echo "Available balance: RM ".$balance ?></small></td>
+                                </tr>
+                            </table>
+                            
                             <form action="settings.php" method="POST">
                                 <table class="table borderless">
                                     <?php if(count($warnings)): ?>

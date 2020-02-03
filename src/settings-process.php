@@ -41,26 +41,34 @@ if(isset($_POST['add-budget'])){
     $budgetcolor = $_POST['budget-color'];
 
 
-    // find total budget amount
-    $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' ");
-    $result = pg_fetch_array($query3);
-    $totalBudget = $result['totalbudget'] + $budgetamount;
-
-    // format total budget amount 
-    if (strpos($totalBudget, '.') !== false) {
-        // do nothing
-    }else{
-        $totalBudget .= ".00";
-    }
+    //find total expense amount
+    $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM expenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND username = '".$_SESSION['username']."' ");
+    $result = pg_fetch_array($query2);
+    $outflow = $result['totalexpense'];
 
     // find income
-    $query4 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
-    $result = pg_fetch_array($query4);
+    $query3 = pg_query("SELECT income FROM users WHERE username = '".$_SESSION['username']."' ");
+    $result = pg_fetch_array($query3);
     $income = $result['income'];
 
+    // format outflow amount 
+    if (strpos($outflow, '.') !== false) {
+        // do nothing
+    }else{
+        $outflow .= ".00";
+    }
+
+    $balance = $income - $outflow;
+    // format balance amount 
+    if (strpos($balance, '.') !== false) {
+        // do nothing
+    }else{
+        $balance .= ".00";
+    }
+
     // if total budget exceeds income, push warning message
-    if($totalBudget > $income){
-        array_push($errors, "Total budget " . "(RM " . $totalBudget . ")" . " exceeds income " . "(RM " . $income . ").");
+    if($budgetamount > $balance){
+        array_push($errors, "Insufficient balance (RM ".$balance.")"." to create budget \'".$budgetname."\' (RM ".$budgetamount.")");
     }
 
 
