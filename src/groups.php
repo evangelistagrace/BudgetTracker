@@ -3,6 +3,13 @@
 <?php 
 include 'head.php';
 require 'groups-process.php';
+
+//initialize edit variables
+$groupingid = $_GET['grouping-id'];
+$groupingname = $_GET['grouping-name'];
+$groupingicon = $_GET['grouping-icon'];
+
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -35,7 +42,13 @@ require 'groups-process.php';
                                 <div class="col-3"><img src=<?php echo $group['groupicon'] ?> alt=""></div>
                                 <div class="col-8">
                                     <h1 class="card-title"><?php echo $group['groupname'] ?></h1>
-                                    <div class="links small"><a href="groupDashboard.php?grouping-id=<?php echo $group['groupingid']?>">View</a>  | <a href="">Edit</a> | <a href="">Delete</a></div>
+                                    <div class="links small"><a
+                                            href="groupDashboard.php?grouping-id=<?php echo $group['groupingid']?>">View</a>
+                                        <?php if($_SESSION['username'] == $group['adminusername']): ?>
+                                        | <a href="groups.php?grouping-id=<?php echo $group['groupingid']?>&grouping-name=<?php echo $group['groupname']?>&grouping-icon=<?php echo $group['groupicon'] ?>#editGroup">Edit</a> | <a
+                                            href="groups.php?del-grouping-id=<?php echo $group['groupingid'] ?>">Delete</a>
+                                        <?php endif ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -45,6 +58,7 @@ require 'groups-process.php';
                 </div>
                 <a class="btn btn-danger add-btn" href="#addGroup"><i class="fas fa-plus"></i></a>
 
+                <!-- add group -->
                 <div id="addGroup" class="overlay">
                     <div class="popup">
                         <div class="content"><a class="close" href="#">x</a>
@@ -53,35 +67,41 @@ require 'groups-process.php';
                                 <div class="form-group">
                                     <label for="groupTitle">Group Name</label>
                                     <div class="input-group ml-3">
-                                        <input type="text" class="form-control" name="group-name" placeholder="Enter group name">
+                                        <input type="text" class="form-control" name="group-name"
+                                            placeholder="Enter group name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="groupIcon">Group Icon</label>
                                     <div class="input-group ml-3">
-                                        <select id="groupIcon" name="group-icon" class="selectpicker show-tick" data-style="btn-secondary" data-width="100%" data-size="3"
-                                        title="Pick an icon">
-                                        <?php 
+                                        <select id="groupIcon" name="group-icon" class="selectpicker show-tick"
+                                            data-style="btn-secondary" data-width="100%" data-size="3"
+                                            title="Pick an icon">
+                                            <?php 
                                             $directory = "../assets/icons/";
                                             $images = glob($directory . "/*.png");
                                         ?>
-                                        <?php foreach($images as $image): ?>
-                                            <option value="<?php echo $image ?>" data-content="<img src='<?php echo $image ?>' style='width:40px;'>"></option>
-                                        <?php endforeach ?>
-                                    </select>
+                                            <?php foreach($images as $image): ?>
+                                            <option value="<?php echo $image ?>"
+                                                data-content="<img src='<?php echo $image ?>' style='width:40px;'>">
+                                            </option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
-                               
+
                                 </div>
 
                                 <div class="form-group">
                                     <label for="budgetAmount">Add Members</label>
                                     <div class="input-group ml-3" id="input-member-group">
-                                        <input type="email" class="form-control mb-3 block" name="memberemail1" placeholder="Enter an email..." style="border-radius:5px;">
-                                        <input type="email" class="form-control mb-3 block" name="memberemail2" placeholder="Enter an email..." style="border-radius:5px;">   
+                                        <input type="email" class="form-control mb-3 block" name="memberemail1"
+                                            placeholder="Enter an email..." style="border-radius:5px;">
+                                        <input type="email" class="form-control mb-3 block" name="memberemail2"
+                                            placeholder="Enter an email..." style="border-radius:5px;">
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-3" >
+                                <div class="form-group mb-3">
                                     <label for="budgetAmount"></label>
                                     <div class="input-group ml-3" style="display:flex; justify-content:center">
                                         <div class="btn btn-round btn-secondary" id="input-member-btn">+</div>
@@ -89,7 +109,59 @@ require 'groups-process.php';
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit"name="add-group">Add group</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="add-group">Add
+                                        group</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- edit group -->
+                <div id="editGroup" class="overlay">
+                    <div class="popup">
+                        <div class="content"><a class="close" href="#">x</a>
+                            <h3 class="text-center mb-4 mt-4">Edit Group</h3>
+                            <form class="popup-form" action="groups.php" method="POST">
+                                <div class="form-group">
+                                    <label for="groupTitle">Group Name</label>
+                                    <div class="input-group ml-3">
+                                        <input type="text" class="form-control" name="group-name"
+                                            value='<?php echo $groupingname ?>'>
+                                        <input type="hidden" name="group-id" value=<?php echo $groupingid ?>>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="groupIcon">Group Icon</label>
+                                    <div class="input-group ml-3">
+                                        <select id="groupIcon" name="group-icon" class="selectpicker show-tick"
+                                            data-style="btn-secondary" data-width="100%" data-size="3"
+                                            title="Pick an icon">
+                                            <?php 
+                                            $directory = "../assets/icons/";
+                                            $images = glob($directory . "/*.png");
+                                        ?>
+                                            <?php foreach($images as $image): ?>
+                                            <?php if($image == $groupingicon): ?>
+                                            <option value="<?php echo $image ?>"
+                                            data-content="<img src='<?php echo $image ?>' style='width:40px;'>" selected>
+                                            </option>
+                                            <?php else: ?>
+                                            <option value="<?php echo $image ?>"
+                                            data-content="<img src='<?php echo $image ?>' style='width:40px;'>">
+                                            </option>
+                                            <?php endif ?>
+                                            
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="edit-group">Edit
+                                        group</button>
 
                                 </div>
                             </form>
@@ -101,12 +173,13 @@ require 'groups-process.php';
         </div>
     </div>
 
+
     <script>
         const inputMemberGroup = document.getElementById('input-member-group');
         const inputMemberBtn = document.getElementById('input-member-btn');
         var inputKey = 3;
-        inputMemberBtn.addEventListener('click', (e)=>{
-            if(inputKey <= 5){ //allow only up to 5 fields at a time
+        inputMemberBtn.addEventListener('click', (e) => {
+            if (inputKey <= 5) { //allow only up to 5 fields at a time
                 e.preventDefault();
                 //create new input field
                 var inputMember = document.createElement('input');
@@ -119,7 +192,6 @@ require 'groups-process.php';
                 inputKey++;
             }
         })
-
     </script>
 
     <?php include 'footer.php' ?>

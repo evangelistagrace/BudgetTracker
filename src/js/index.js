@@ -50,3 +50,6 @@ $('.selectpicker').selectpicker({
 });
 
 
+$('.alert').alert();
+
+
