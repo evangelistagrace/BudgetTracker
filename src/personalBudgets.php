@@ -168,9 +168,6 @@ if(pg_num_rows($query) == 0){
 }
 
 
-
-
-
 ?>
 
 <title>My Budgets - BudgetTracker</title>
