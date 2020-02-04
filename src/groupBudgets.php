@@ -157,17 +157,16 @@ if(pg_num_rows($query) == 0){
     $maxbudgetmonth = date("m", $maxbudgetdate);
     $maxbudgetyear = date("Y", $maxbudgetdate);
 
-
+    // bring forward group budgets
     $query2 = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $maxbudgetmonth AND EXTRACT(YEAR FROM budgetdate) = $maxbudgetyear AND groupingid = $groupingid ORDER BY budgetid ASC");
 
     while($result2 = pg_fetch_array($query2)){
-        $username = $_SESSION['username'];
         $budgetname = $result2['budgetname'];
         $budgetamount = $result2['budgetamount'];
         $budgetcolor = $result2['budgetcolor'];
         $budgetdate = $currentdate;
 
-        $query3 = pg_query("INSERT INTO groupbudgets (username, budgetname, budgetamount, budgetcolor, budgetdate) VALUES ('$username', '$budgetname', '$budgetamount', '$budgetcolor', '$budgetdate')");
+        $query3 = pg_query("INSERT INTO groupbudgets (groupingid, budgetname, budgetamount, budgetcolor, budgetdate) VALUES ('$groupingid', '$budgetname', '$budgetamount', '$budgetcolor', '$budgetdate')");
     }
 
 }
