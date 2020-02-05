@@ -207,7 +207,7 @@ if(isset($_GET['remove-user'])){
 if(isset($_GET['exit-group'])){
     $memberusername = $_GET['exit-group'];
     array_push($messages, "User '".$memberusername."' has been removed");
-    $query = pg_query("DELETE FROM groups WHERE memberusername = '$memberusername' ");
+    $query = pg_query("DELETE FROM groups WHERE groupingid = $groupingid AND memberusername = '$memberusername' ");
     header('location: groups.php');
 }
 
