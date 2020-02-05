@@ -110,13 +110,13 @@ $year = date("Y");
                                         <tr>
                                             <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
-                                                    data-size="3" title="Pick a category" name="budget-name">
-                                                    <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
-                                                    <?php while($result = pg_fetch_array($query)) : ?>
-                                                    <option value="<?php echo $result['budgetname'] ?>">
-                                                        <?php echo $result['budgetname'] ?></option>
-                                                    <?php endwhile ?>
-                                                </select></td>
+                                                        data-size="3" title="Pick a category" name="budget-name">
+                                                        <?php $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND username = '".$_SESSION['username']."' ")?>
+                                                        <?php while($result = pg_fetch_array($query)) : ?>
+                                                        <option value="<?php echo $result['budgetname'] ?>">
+                                                            <?php echo $result['budgetname'] ?></option>
+                                                        <?php endwhile ?>
+                                                    </select></td>
                                         </tr>
                                     </table>
                                 </div>

@@ -1,7 +1,9 @@
 <?php
 require 'config.php';
 
-
+$currentmonth = date("m");
+$currentyear = date("Y");
+$currentdate = date("Y-m-d");
 
 if(isset($_POST['add-reminder'])){
     $remindername =  $_POST['reminder-name'];
@@ -10,7 +12,7 @@ if(isset($_POST['add-reminder'])){
     $reminderdate = $_POST['reminder-date'];
 
     // get corresponding budgetid based on budgetname
-    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
+    $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
@@ -72,7 +74,7 @@ if(isset($_POST['edit-reminder'])){
     $reminderdate = $_POST['reminder-date'];
 
 
-    $query = pg_query("SELECT * FROM budgets WHERE username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
+    $query = pg_query("SELECT * FROM budgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND username = '".$_SESSION['username']."' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
