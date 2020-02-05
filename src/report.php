@@ -6,8 +6,6 @@ include 'head.php';
 require 'report-process.php';
 
 //get current month
-
-
 $year = date("Y");
 $previousYear = $year - 1;
 $nextYear = $year + 1;

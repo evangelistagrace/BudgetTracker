@@ -304,7 +304,7 @@ if(isset($_GET['report-month'])){
 
                         <div class="content"><a class="close" href="#">x</a>
                             <h3 class="text-center mb-4 mt-4">Add Expense</h3>
-                            <form class="popup-form" action="groupExpenses-process.php?grouping-id=<?php echo $groupingid ?>" method="POST">
+                            <form class="popup-form" action="groupExpenses.php?grouping-id=<?php echo $groupingid ?>" method="POST">
                                 <div class="form-group">
                                     <table>
                                         <tr>
