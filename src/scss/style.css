@@ -7663,4 +7663,13 @@ img.profile-img {
 .card.group {
   padding: 0px;
 }
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+.menu,
+.card-title,
+h1,
+h2,
+h3 {
+  text-align: left;
+}
 /*# sourceMappingURL=style.css.map */

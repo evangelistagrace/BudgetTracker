@@ -44,6 +44,10 @@ if(isset($_GET['accept-grouping-id'])){
     if($recipientusername){
         // echo $groupingid;
         $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', $recipientusername, '$senderusername', '$bolddata', $groupingid)");
+    }
+    if($groupingid){
+        $notificationmessage = $senderusername." joined "."<b>".$bolddata."</b>";
+        $query = pg_query("INSERT INTO groupnotifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, groupingid, senderusername, bolddata) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', $groupingid, '$senderusername', '$bolddata')");
     }else{
         echo 'unsucessful';
     }
@@ -95,6 +99,15 @@ if(isset($_GET['dismiss-notification-id'])){
 
     // delete notification
     $query = pg_query("DELETE FROM notifications WHERE id = $notificationid AND recipientusername = '".$_SESSION['username']."' ");
+
+    header('location: notifications.php');
+
+}
+
+//dimiss all notifications
+if(isset($_GET['dismiss-all'])){
+    // delete notification
+    $query = pg_query("DELETE FROM notifications WHERE recipientusername = '".$_SESSION['username']."' ");
 
     header('location: notifications.php');
 

@@ -19,7 +19,7 @@ require 'notifications-process.php'
       <div class="col-10-body collapsed">
         <h1 class="title text-primary">My Notifications</h1>
         <div class="row notification-container">
-          <p class="dismiss text-right"><a id="dismiss-all" href="#">Dismiss All</a></p>
+          <p class="dismiss text-right"><a id="dismiss-all" href="notifications-process.php?dismiss-all=<?php echo $_SESSION['username'] ?>">Dismiss All</a></p>
 
           <?php
             $query = pg_query("SELECT * FROM notifications WHERE recipientusername = '".$_SESSION['username']."' ");
@@ -186,6 +186,7 @@ require 'notifications-process.php'
       </div>
 
       <?php include 'footer.php' ?>
+      <!-- dismiss notifications -->
       <script>
         const dismissAll = document.getElementById('dismiss-all');
         const dismissBtns = Array.from(document.querySelectorAll('.dismiss-notification'));
@@ -202,17 +203,17 @@ require 'notifications-process.php'
           })
         });
 
-        dismissAll.addEventListener('click', function (e) {
-          e.preventDefault;
-          notificationCards.forEach(card => {
-            card.classList.add('display-none');
-          });
-          const row = document.querySelector('.notification-container');
-          const message = document.createElement('h4');
-          message.classList.add('text-center');
-          message.innerHTML = 'All caught up!';
-          row.appendChild(message);
-        })
+        // dismissAll.addEventListener('click', function (e) {
+        //   e.preventDefault;
+        //   notificationCards.forEach(card => {
+        //     card.style.display = 'none';
+        //   });
+        //   const row = document.querySelector('.notification-container');
+        //   const message = document.createElement('h4');
+        //   message.classList.add('text-center');
+        //   message.innerHTML = 'All caught up!';
+        //   row.appendChild(message);
+        // })
       </script>
 
 </body>

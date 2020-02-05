@@ -83,7 +83,48 @@ $groupingid = $_GET['grouping-id'];
                                 <div class="tab-content ">
                                     <!-- Notifications -->
                                     <div class="tab-pane active" id="5">
-                                        <div class="card-title">Notifications</div>
+                                        <div class="row notification-container" style="width:100%">
+                                            <p class="dismiss text-right"><a id="dismiss-all" href="groupnotifications-process.php?dismiss-all=<?php echo $groupingid ?>">Dismiss All</a></p>
+
+                                            <?php
+                                            $query = pg_query("SELECT * FROM groupnotifications WHERE groupingid = $groupingid ");
+                                        ?>
+
+                                        <?php if(pg_num_rows($query) >= 1): ?>
+                                        <?php while($notification = pg_fetch_array($query)): ?>
+                                        <!-- invitation -->
+                                        <!-- accepted invitations -->
+                                        <?php if($notification['notificationtype'] === 'Accept'): ?>
+                                        <div class="card notification-card notification-invitation">
+                                            <div class="card-body">
+                                            <table>
+                                                <tr>
+                                                <td style="width:85%">
+                                                    <div class="card-title">
+                                                    <?php echo $notification['notificationmessage']?>
+                                                    </div>
+                                                </td>
+                                                <td class="right" style="width:15%; justify-content: space-around;
+                                                display: flex;">
+                                                    <!-- dismiss notification -->
+                                                    <a href="groupnotifications-process.php?grouping-id=<?php echo $groupingid ?>&dismiss-notification-id=<?php echo $notification['id'] ?>"
+                                                    class="btn btn-danger dismiss-notification">Dismiss</a>
+                                                </td>
+                                                </tr>
+                                                <tr colspan="2">
+                                                <td><small><i
+                                                        class="far fa-calendar-alt mr-1"></i><?php $d = $notification['notificationdate']; $date = date("j F Y", strtotime($d)); echo $date ?></small>
+                                                </td>
+                                                </tr>
+                                            </table>
+                                            </div>
+                                        </div>
+                                        <?php endif ?>
+                                        <?php endwhile ?>
+                                        <?php elseif(pg_num_rows($query) == 0): ?>
+                                        <h4 class="text-center">All caught up!</h4>
+                                        <?php endif ?>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -100,6 +141,35 @@ $groupingid = $_GET['grouping-id'];
     </div>
 
     <?php include 'footer.php' ?>
+    <!-- dismiss notifications -->
+    <script>
+        const dismissAll = document.getElementById('dismiss-all');
+        const dismissBtns = Array.from(document.querySelectorAll('.dismiss-notification'));
+
+        const notificationCards = document.querySelectorAll('.notification-card');
+
+        dismissBtns.forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault;
+            console.log("clicked")
+            var parent = e.target.parentElement.parentElement.parentElement.parentElement.parentElement
+              .parentElement;
+            parent.classList.add('display-none');
+          })
+        });
+
+        // dismissAll.addEventListener('click', function (e) {
+        //   e.preventDefault;
+        //   notificationCards.forEach(card => {
+        //     card.style.display = 'none';
+        //   });
+        //   const row = document.querySelector('.notification-container');
+        //   const message = document.createElement('h4');
+        //   message.classList.add('text-center');
+        //   message.innerHTML = 'All caught up!';
+        //   row.appendChild(message);
+        // })
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
