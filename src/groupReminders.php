@@ -15,6 +15,9 @@ $reminderbudget = $_GET['reminder-budget'];
 $reminderamount = $_GET['reminder-amount'];
 $reminderdate = $_GET['reminder-date'];
 
+$month = date("m");
+$year = date("Y");
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -196,7 +199,7 @@ form.popup-form .form-group label {
                                             <td><label for="budgetCategory">Budget Category</label></td>
                                             <td><select class="selectpicker show-tick" data-style="btn-secondary"
                                                     data-size="3" title="Pick a category" name="budget-name">
-                                                    <?php $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ")?>
+                                                    <?php $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND groupingid = $groupingid ")?>
                                                     <?php while($result = pg_fetch_array($query)) : ?>
                                                     <option value="<?php echo $result['budgetname'] ?>">
                                                         <?php echo $result['budgetname'] ?></option>
@@ -277,7 +280,7 @@ form.popup-form .form-group label {
                                                 <div class="input-group">
                                                     <select class="selectpicker show-tick" data-style="btn-secondary"
                                                         data-size="3" title="Pick a category" name="reminder-budget">
-                                                        <?php $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ")?>
+                                                        <?php $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND groupingid = $groupingid ")?>
                                                         <?php while($result = pg_fetch_array($query)) : ?>
                                                         <?php if($result['budgetname'] == $reminderbudget): ?>
                                                             <option value="<?php echo $result['budgetname'] ?>" selected>

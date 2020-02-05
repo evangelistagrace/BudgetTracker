@@ -6,6 +6,10 @@ $warnings = array();
 
 $groupingid = $_GET['grouping-id'];
 
+$currentmonth = date("m");
+$currentyear = date("Y");
+$currentdate = date("Y-m-d");
+
 // add reminder
 if(isset($_POST['add-reminder'])){
     $remindername =  $_POST['reminder-name'];
@@ -14,7 +18,7 @@ if(isset($_POST['add-reminder'])){
     $reminderdate = $_POST['reminder-date'];
 
     // get corresponding budgetid based on budgetname
-    $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid AND budgetname = '$budgetname' ");
+    $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND groupingid = $groupingid AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
@@ -78,7 +82,7 @@ if(isset($_POST['edit-reminder'])){
     $reminderamount = $_POST['reminder-amount'];
     $reminderdate = $_POST['reminder-date'];
 
-    $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = '$groupingid' AND budgetname = '$reminderbudget'");
+    $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND groupingid = '$groupingid' AND budgetname = '$reminderbudget'");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
