@@ -30,6 +30,9 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
     $budgetcolor = $_GET['budgetcolor'];
 }
 
+$currentmonth = date("m");
+$currentyear = date("Y");
+
 ?>
 <title>My Groups - BudgetTracker</title>
 
@@ -189,11 +192,51 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
 
                                                 <!-- budgets -->
                                                 <h5 class="text-left"><strong>Budgets</strong></h5>
+                                                
                                                 <?php if($_SESSION['username'] === $admin):?>
-                                                    <small>Create up to 10 budgets</small>
+                                                <?php
+                                                //find total expense amount
+                                                $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM groupexpenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND groupingid = $groupingid ");
+                                                $result = pg_fetch_array($query2);
+                                                $outflow = $result['totalexpense'];
+
+                                                // find income
+                                                $query3 = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid ");
+                                                $result = pg_fetch_array($query3);
+                                                $income = $result['maxbudget'];
+
+                                                // format outflow amount 
+                                                if (strpos($outflow, '.') !== false) {
+                                                    // do nothing
+                                                }else{
+                                                    $outflow .= ".00";
+                                                }
+
+                                                $balance = $income - $outflow;
+                                                // format balance amount 
+                                                if (strpos($balance, '.') !== false) {
+                                                    // do nothing
+                                                }else{
+                                                    $balance .= ".00";
+                                                }
+
+                                                ?>
+                                                    <table class="table table-sm table-borderless mb-0">
+                                                    <tr style="display: flex;">
+                                                        <td style="flex:1"><small>Create up to 10 budgets</small></td>
+                                                        <td style="flex:1; text-align: right"><small><?php echo "Available balance: RM ".$balance ?></small></td>
+                                                    </tr>
+                                                    </table>
                                                     <form action="groupSettings.php?grouping-id=<?php echo $groupingid ?>"
                                                         method="POST">
                                                         <table class="table borderless">
+                                                        <?php if(count($warnings)): ?>
+                                                        <div class="error">
+                                                            <?php foreach($warnings as $warning): ?>
+                                                            <div class="alert alert-warning"><?php echo $warning ?></div>
+                                                            <?php endforeach ?>
+                                                        </div>
+                                                        <?php endif ?>
                                                             <?php if(count($errors)) : ?>
                                                             <div class="error">
                                                                 <?php foreach($errors as $error): ?>
@@ -298,7 +341,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
 
                                                 <!-- display budgets -->
                                                 <table class='table table-condensed settings2'>
-                                                    <?php  $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ORDER BY budgetid"); ?>
+                                                    <?php  $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND groupingid = $groupingid ORDER BY budgetid"); ?>
                                                     <?php while($result = pg_fetch_array($query)){ ?>
                                                     <tr>
                                                         <td style="flex:11">
@@ -315,7 +358,7 @@ if(!isset($_GET['editState']) && !isset($_GET['budgetid'])){
                                                                     class="fas fa-edit text-primary"></i></a>
                                                             <!-- delete budget -->
                                                             <a
-                                                                href="groupSettings-process.php?grouping-id=<?php echo $groupingid ?>&del-budget=<?php echo $result['budgetname']?>&budgetcolor=<?php echo $result['budgetcolor']?>"><i
+                                                                href="groupSettings.php?grouping-id=<?php echo $groupingid ?>&del-budget-id=<?php echo $result['budgetid']?>&budget-name=<?php echo $result['budgetname']?>&budget-color=<?php echo $result['budgetcolor']?>"><i
                                                                     class="far fa-trash-alt text-danger"></i></a>
                                                         </td>
                                                         <?php endif ?>

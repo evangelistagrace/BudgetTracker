@@ -68,7 +68,7 @@ if(isset($_POST['add-budget'])){
 
     // if total budget exceeds income, push warning message
     if($budgetamount > $balance){
-        array_push($errors, "Insufficient balance (RM ".$balance.")"." to create budget \'".$budgetname."\' (RM ".$budgetamount.")");
+        array_push($errors, "Insufficient balance (RM ".$balance.")"." to create budget '".$budgetname."' (RM ".$budgetamount.")");
     }
 
 

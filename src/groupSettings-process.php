@@ -8,49 +8,76 @@ $errors = array();
 $warnings = array();
 $messages = array();
 
-if(isset($_GET['del-budget'])){
-    $budgetname = $_GET['del-budget'];
-    $budgetcolor = $_GET['budgetcolor'];
+$currentmonth = date("m");
+$currentyear = date("Y");
+$currentdate = date("Y-m-d");
 
-    // set deleted budget color as not taken
-    $query = pg_query("UPDATE groupcolors SET colortaken = false WHERE colorname = '$budgetcolor' AND groupingid = $groupingid ");
-    $query = pg_query("DELETE FROM groupbudgets WHERE budgetname = '$budgetname' AND groupingid = $groupingid ");
-    $_SESSION['message'] = "budget deleted";
-    header('location: groupSettings.php?grouping-id='.$groupingid);
+if(isset($_GET['del-budget-id'])){
+    $budgetid= $_GET['del-budget-id'];
+    $budgetname = $_GET['budget-name'];
+    $budgetcolor = $_GET['budget-color'];
+
+    //check to see if there are current month's expenses with the deleted budget category 
+    $query = pg_query("SELECT * FROM groupexpenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND budgetid = $budgetid AND groupingid = $groupingid ");
+
+    //check to see if there are current month's reminders with the deleted budget category 
+    $query2 = pg_query("SELECT * FROM groupreminders WHERE EXTRACT(MONTH FROM reminderdate) = $currentmonth AND EXTRACT(YEAR FROM reminderdate) = $currentyear AND budgetid = $budgetid AND groupingid = $grpupingid ");
+
+    if(pg_num_rows($query) == 0 AND pg_num_rows($query2) == 0){
+        // set deleted budget color as not taken
+        $query2 = pg_query("UPDATE groupcolors SET colortaken = false WHERE colorname = '$budgetcolor' AND groupingid = $groupingid ");
+
+        $query3 = pg_query("DELETE FROM groupbudgets WHERE budgetid = $budgetid AND groupingid = $groupingid ");
+        header('location: settings.php');
+        // echo 'true';
+
+    }else{
+        array_push($errors, "Error deleting '".$budgetname."'. There are expenses and/or reminders with the budget '".$budgetname."'");
+    }
 }
 
 if(isset($_POST['add-budget'])){
     $budgetname = $_POST['budget-name'];
     $budgetamount = $_POST['budget-amount'];
     $budgetcolor = $_POST['budget-color'];
+
     $groupingid = $_POST['grouping-id'];
 
-    // find total budget amount
-    $query3 = pg_query("SELECT SUM(budgetamount) AS totalbudget FROM groupbudgets WHERE groupingid = $groupingid ");
-    $result = pg_fetch_array($query3);
-    $totalBudget = $result['totalbudget'] + $budgetamount;
 
-    // format total budget amount 
-    if (strpos($totalBudget, '.') !== false) {
-        // do nothing
-    }else{
-        $totalBudget .= ".00";
-    }
+    //find total expense amount
+    $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM groupexpenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND groupingid = $groupingid ");
+    $result = pg_fetch_array($query2);
+    $outflow = $result['totalexpense'];
 
     // find income
-    $query4 = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid ");
-    $result = pg_fetch_array($query4);
-    $maxbudget = $result['maxbudget'];
+    $query3 = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid ");
+    $result = pg_fetch_array($query3);
+    $income = $result['maxbudget'];
 
-    // if total budget exceeds maxbudget, push warning message
-    if($totalBudget > $maxbudget){
-        array_push($warnings, "Total budget " . "(RM " . $totalBudget . ")" . " exceeds maxbudget " . "(RM " . $maxbudget . ").");
+    // format outflow amount 
+    if (strpos($outflow, '.') !== false) {
+        // do nothing
+    }else{
+        $outflow .= ".00";
+    }
+
+    $balance = $income - $outflow;
+    // format balance amount 
+    if (strpos($balance, '.') !== false) {
+        // do nothing
+    }else{
+        $balance .= ".00";
+    }
+
+    // if total budget exceeds income, push warning message
+    if($budgetamount > $balance){
+        array_push($errors, "Insufficient balance (RM ".$balance.")"." to create budget '".$budgetname."' (RM ".$budgetamount.")");
     }
 
 
     if(!empty($budgetname)){
         // check for duplicate categories
-        $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = $groupingid ");
+        $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND groupingid = $groupingid");
         while($result = pg_fetch_array($query)){
             if($result['budgetname'] == $budgetname) {
                 array_push($errors, "Budget '$budgetname' already exists.");
@@ -72,10 +99,16 @@ if(isset($_POST['add-budget'])){
     }
 
     if(count($errors) == 0){
-         // set selected color as taken
-         $query = pg_query("UPDATE groupcolors SET colortaken = true WHERE colorname = '$budgetcolor' AND groupingid = $groupingid ");
 
-        $query = pg_query("INSERT INTO groupbudgets (groupingid, budgetname, budgetamount, budgetcolor) VALUES ('$groupingid', '$budgetname', '$budgetamount', '$budgetcolor')");
+        
+        $query = pg_query("INSERT INTO groupbudgets (groupingid, budgetname, budgetamount, budgetcolor, budgetdate) VALUES ('$groupingid', '$budgetname', '$budgetamount', '$budgetcolor', '$currentdate')");
+
+        if($query){
+            echo 'true';
+
+            // set selected color as taken
+            $query = pg_query("UPDATE groupcolors SET colortaken = true WHERE colorname = '$budgetcolor' AND groupingid = $groupingid ");
+        }
 
     }
 }
