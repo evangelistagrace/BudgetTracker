@@ -7,17 +7,25 @@ $warnings = array();
 
 $groupingid = $_GET['grouping-id'];
 
+$currentmonth = date("m");
+$currentyear = date("Y");
+$currentdate = date("Y-m-d");
+
 
 if(isset($_POST['add-expense'])){
     $budgetname = $_POST['budget-name'];
     $expensename = $_POST['expense-name'];
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
+    $expensedate2 = strtotime($expensedate);
+    $month = date("m", $expensedate2);
+    $year = date("Y", $expensedate2);
 
     // select corresponding categoryid from category table
-    $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = '$groupingid' AND budgetname = '$budgetname' ");
+    $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $month AND EXTRACT(YEAR FROM budgetdate) = $year AND groupingid = '$groupingid' AND budgetname = '$budgetname' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
+    $budgetamount = $result['budgetamount'];
 
     // format expense name with single quote 
     if (strpos($expensename, "'") !== false) { //if single quote is inside input
@@ -36,9 +44,14 @@ if(isset($_POST['add-expense'])){
     }
 
     // find total expense amount
-    $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM groupexpenses WHERE groupingid = '$groupingid' ");
+    $query2 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM groupexpenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND groupingid = '$groupingid' ");
     $result = pg_fetch_array($query2);
     $totalExpense = $result['totalexpense'] + $expenseamount;
+
+
+    $query3 = pg_query("SELECT SUM(expenseamount) AS totalexpense FROM groupexpenses WHERE EXTRACT(MONTH FROM expensedate) = $currentmonth AND EXTRACT(YEAR FROM expensedate) = $currentyear AND budgetid = $budgetid AND groupingid = '$groupingid' ");
+     $result2 = pg_fetch_array($query3);
+     $totalExpenseByBudget = $result2['totalexpense'] + $expenseamount;
 
     // format total expense amount 
     if (strpos($totalExpense, '.') !== false) {
@@ -49,16 +62,25 @@ if(isset($_POST['add-expense'])){
     
 
     // find income
-    $query3 = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid ");
-    $result = pg_fetch_array($query3);
+    $query4 = pg_query("SELECT maxbudget FROM groups WHERE groupingid = $groupingid ");
+    $result = pg_fetch_array($query4);
     $income = $result['maxbudget'];
+
 
     // if total expense exceeds maxbudget, push warning message
     if($totalExpense > $income){
-        array_push($warnings, "Total expense " . "(RM " . $totalExpense . ")" . " exceeds maxbudget " . "(RM " . $income . ").");
+        array_push($errors, "Total expense " . "(RM " . $totalExpense . ")" . " exceeds maxbudget " . "(RM " . $income . ").");
     }
 
-   $query = pg_query("INSERT INTO groupexpenses(budgetid, expensename, expenseamount, expensedate, groupingid, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '$groupingid', '".$_SESSION['username']."') ");
+    // if total expense budget exceeds budget amount, push warning message
+    if($totalExpenseByBudget > $budgetamount){
+        array_push($warnings, "Your expenses for ".$budgetname." (RM ".$totalExpenseByBudget.") has exceeded its budget (RM ".$budgetamount.")" );
+    }
+
+    if(count($errors) == 0){
+        $query = pg_query("INSERT INTO groupexpenses(budgetid, expensename, expenseamount, expensedate, groupingid, username) VALUES ($budgetid,'".$expensename."', $expenseamount, '$expensedate', '$groupingid', '".$_SESSION['username']."') ");
+    }
+   
 
 }
 
@@ -69,7 +91,7 @@ if(isset($_POST['edit-expense'])){
     $expenseamount = $_POST['expense-amount'];
     $expensedate = $_POST['expense-date'];
 
-    $query = pg_query("SELECT * FROM groupbudgets WHERE groupingid = '$groupingid' AND budgetname = '$expensebudget' ");
+    $query = pg_query("SELECT * FROM groupbudgets WHERE EXTRACT(MONTH FROM budgetdate) = $currentmonth AND EXTRACT(YEAR FROM budgetdate) = $currentyear AND groupingid = '$groupingid' AND budgetname = '$expensebudget' ");
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 

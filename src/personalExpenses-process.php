@@ -50,7 +50,6 @@ if(isset($_POST['add-expense'])) {
      $totalExpenseByBudget = $result2['totalexpense'] + $expenseamount;
 
      
- 
      // format total expense amount 
      if (strpos($totalExpense, '.') !== false) {
          // do nothing
