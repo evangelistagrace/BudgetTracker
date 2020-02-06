@@ -9,6 +9,14 @@ DONE:
 - add constraint to check if reminder/expense amount exceeds budget amount??
 - sync data in dashboard 
 - sync data to charts
+- recurring reminder (one-off reminder/ recurring reminder option when creating a reminder)
+- restrict user from deleting a budget if there are existing expenses with that budget
+- Notification page for alerts, add requests, warnings, etc
+- download report as pdf
+- sync user settings 
+- add group functionality
+
+
 
 TO-DO:
 -report 
@@ -22,24 +30,13 @@ TO-DO:
     - future enhancements
     - redo use case and erd
 
-- recurring reminder (one-off reminder/ recurring reminder option when creating a reminder)
-- restrict user from deleting a budget if there are existing expenses with that budget
-- Notification page for alerts, add requests, warnings, etc
-- AJAX for checking budget/expense overflow?
+
 - make chart clickable and display relevant data/information
-- download report as pdf
-- sync user settings 
-- add group functionality
 - send email notification if budget is exceeded
-- send push notification if budget is exceeded
 - allow users to upload profile picture
-- optimize app for mobile view (PWA and media queries)
-- clean up code
-- come up with mock data
 - deploy app to Heroku
 
 
 limitations
 - can't input apostrophe for reminder/budget/expense name (solved for input data, not for edit data)
-- If a budget has been deleted, any expense with that budget is not displayed under expenses but is recorded in the chart
 

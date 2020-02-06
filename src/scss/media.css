@@ -7632,10 +7632,6 @@ table.budget tr td:nth-of-type(3) {
   display: flex;
 }
 
-#expensesByCategoryChart {
-  top: -50px;
-}
-
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
   display: -webkit-box;
@@ -7662,6 +7658,15 @@ img.profile-img {
 
 .card.group {
   padding: 0px;
+}
+
+/* style.css | http://localhost/demo/BudgetTracker/src/scss/style.css */
+.menu,
+.card-title,
+h1,
+h2,
+h3 {
+  text-align: left;
 }
 
 /* 

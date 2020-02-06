@@ -176,15 +176,15 @@ $year = date("Y");
                     </div>
 
 
-
                 <div class="card" style="width: 25rem;">
                     <div class="card-body">
                         <h5 class="card-title">Groups</h5>
                         <p class="card-text">
                             <ul class="groups-list">
-                                <li><a href="#">Family</a></li>
-                                <li><a href="#">Hostel mates</a></li>
-                                <li><a href="#">Jay's Birthday Party</a></li>
+                            <?php $query = pg_query("SELECT * FROM groups WHERE memberusername = '".$_SESSION['username']."' ")?>
+                            <?php while($group = pg_fetch_array($query)): ?>
+                                <li><a href=<?php echo 'groupDashboard.php?grouping-id='.$group['groupingid'] ?>><?php echo $group['groupname'] ?></a></li>
+                            <?php endwhile ?>
                             </ul>
                         </p>
                         <a href="groups.php" class="btn btn-secondary btn-sm right">Go to groups <i

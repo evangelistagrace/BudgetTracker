@@ -7632,10 +7632,6 @@ table.budget tr td:nth-of-type(3) {
   display: flex;
 }
 
-#expensesByCategoryChart {
-  top: -50px;
-}
-
 .my-container .row .col-10-body .row .card .card-body {
   padding: 0.8rem;
   display: -webkit-box;
