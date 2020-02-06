@@ -139,7 +139,37 @@ if(isset($_GET['report-month'])){
 
         <div class="row">
             <!-- SIDEBAR -->
-            <?php include 'sidebarDashboard.php'?>
+            <div class="col-2-sidebar sidebar collapsed position-fixed">
+                <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
+
+                <div class="profile"><img src="../assets/profile.jpg" alt="">
+                    <div class="desc">@';
+                    
+                    <?php if(isset($_SESSION['username'])): ?>
+                        <?php echo $_SESSION['username'] ?>
+                    <?php endif ?>
+
+
+                    </div>
+                </div>
+
+                <!-- count number of notifications -->
+                <?php $query = pg_query("SELECT COUNT(notificationstatus) AS count FROM notifications WHERE recipientusername = '".$_SESSION['username']."' "); $result = pg_fetch_array($query); $count = $result['count'] ?>
+                <ul class="menu">
+                    <li class="menu-item" id="menuItem1"><a href="dashboard.php" title="dashboard"></a></li>
+                    <li class="menu-item" id="menuItem2"><a href="personalBudgets.php" title="budgets"></a></li>
+                    <li class="menu-item active" id="menuItem3"><a href="personalExpenses.php" title="expenses"></a></li>
+                    <li class="menu-item" id="menuItem4"><a href="reminders.php" title="reminders"></a></li>
+                    <li class="menu-item" id="menuItem8"><a href="notifications.php" title="notifications"></a>
+                    <?php if($count > 0): ?>
+                    <span class="badge"><?php echo $count ?></span>
+                    <?php endif ?>
+                    </li>
+                    <li class="menu-item" id="menuItem5"><a href="groups.php" title="groups"></a></li>
+                    <li class="menu-item" id="menuItem6"><a href="report.php" title="report"></a></li>
+                    <li class="menu-item" id="menuItem7"><a href="settings.php" title="settings"></a></li>
+                </ul>
+            </div>
 
             <!-- MAIN CONTENT -->
             <div class="col-10-body collapsed">
