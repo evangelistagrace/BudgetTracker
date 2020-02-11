@@ -298,7 +298,7 @@ if(pg_num_rows($query) == 0){
 
                                             <?php if($currentMonth > $reportmonth OR $currentYear > $reportyear): ?>
                                             <a
-                                                href="groupBudgets.php??grouping-id=<?php echo $groupingid?>&report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i
+                                                href="groupBudgets.php?grouping-id=<?php echo $groupingid?>&report-month=<?php echo $nextMonth ?>&report-year=<?php echo $nextYear ?>"><i
                                                     class="fas fa-angle-double-right"></i></a>
                                             <?php endif ?>
                                             </h4>

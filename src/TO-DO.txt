@@ -31,10 +31,9 @@ TO-DO:
     - redo use case and erd
 
 
-- make chart clickable and display relevant data/information
-- send email notification if budget is exceeded
-- allow users to upload profile picture
-- deploy app to Heroku
+- make report chart one color with custom tooltip showing breakdown of expenses categories
+- send email notification if budget is exceeded??
+- deploy app to Heroku??
 
 
 limitations

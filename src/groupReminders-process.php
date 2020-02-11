@@ -86,8 +86,6 @@ if(isset($_POST['edit-reminder'])){
     $result = pg_fetch_array($query);
     $budgetid = $result['budgetid'];
 
-    echo $budgetid;
-
     // format reminder name with single quote 
     if (strpos($remindername, "'") !== false) { //if single quote is inside input
         //split to pre and post apostrophe
