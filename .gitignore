@@ -9,3 +9,4 @@ src/scss/style.css.map
 
 /vendor/
 ./sendgrid.env
+src/sendgridAPI.php

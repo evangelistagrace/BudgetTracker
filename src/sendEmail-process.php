@@ -1,29 +1,29 @@
 <?php
-require 'config.php';    
-/**
-$mail = new PHPMailer(); // create a new object
-$mail->IsSMTP(); // enable SMTP
-$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-$mail->SMTPAuth = true; // authentication enabled
-$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-$mail->Host = "smtp.gmail.com";
-$mail->Port = 465; // or 587
-$mail->IsHTML(true);
-$mail->Username = "evangrace98@gmail.com";
-$mail->Password = "password";
-$mail->SetFrom("grace.evangrace@gmail.com");
-$mail->Subject = "Test";
-$mail->Body = "hello";
-$mail->AddAddress("evangrace98@gmail.com");
+require '../vendor/autoload.php'; 
+require 'sendgridAPI.php'; //SendGrid API
 
- if(!$mail->Send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
- } else {
-    echo "Message has been sent";
- }
- **/
+if(isset($_POST['sendEmail'])){
+    $message = $_POST['emailText'];
 
- $headers = 'From: lembubintik@gmail.com' . "\r\n";
- $mail = mail('ahmadshahhafizan@gmail.com', 'test', 'test', $headers);
- print_r($mail);
+$email = new \SendGrid\Mail\Mail(); 
+$email->setFrom("evangrace98@gmail.com", "Evan");
+$email->setSubject("Sending with SendGrid is Fun yayy");
+$email->addTo("grace.evangrace@gmail.com", "Grace");
+$email->addContent("text/plain", "$message");
+$email->addContent(
+    "text/html", "$message"
+);
+$sendgrid = new \SendGrid($apikey);
+try {
+    $response = $sendgrid->send($email);
+    //print $response->statusCode() . "\n";
+    //print_r($response->headers());
+    //print $response->body() . "\n";
+    if($response){
+        echo "success";
+    }
+} catch (Exception $e) {
+    echo 'Caught exception: '. $e->getMessage() ."\n";
+}
+}
 ?>

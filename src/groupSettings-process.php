@@ -1,6 +1,9 @@
 <?php
 
 require 'config.php';
+require '../vendor/autoload.php'; //send email dependencies
+require 'sendgridAPI.php'; //SendGrid API
+
 
 $groupingid = $_GET['grouping-id'];
 
@@ -207,7 +210,8 @@ if(isset($_POST['send-invitation'])){
     $query = pg_query("SELECT * FROM users WHERE email = '$invitationemail'");
     $result = pg_fetch_array($query);
     $recipientusername = $result['username']; //recipient
-    $senderusername = $_SESSION['username']; //sender
+    $senderusername = $_SESSION['username']; //sender username
+    $senderemail = $_SESSION['email']; //sender email
     $bolddata = $groupname;
 
     // send notification if user exists
@@ -220,10 +224,37 @@ if(isset($_POST['send-invitation'])){
         }else{
             array_push($warnings, 'An invitation has already been sent to this email');
         }
-        
     }else{
         echo 'unsucessful';
     }
+
+    //send email if email exists
+    if($invitationemail){
+        $email = new \SendGrid\Mail\Mail(); 
+        
+        $email->setFrom($senderemail, "BudgetTracker");
+        $email->setSubject($senderusername." invited you to join ".$groupname);
+        $email->addTo($invitationemail, $recipientusername);
+        $email->addContent("text/plain", $notificationmessage);
+        $email->addContent(
+            "text/html", $notificationmessage
+        );
+        $sendgrid = new \SendGrid($apikey);
+        try {
+            $response = $sendgrid->send($email);
+            //print $response->statusCode() . "\n";
+            //print_r($response->headers());
+            //print $response->body() . "\n";
+            if($response){
+                echo "success";
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+
+    }
+
+
     
 }
 

@@ -1,0 +1,14 @@
+{
+    "name": "composer/budget-tracker",
+    "description": "Budget tracking web application",
+    "authors": [
+        {
+            "name": "Evangelista Grace",
+            "email": "grace.evangrace@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "~6.1",
+        "sendgrid/sendgrid": "~7"
+    }
+}
