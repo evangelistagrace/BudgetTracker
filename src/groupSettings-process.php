@@ -220,7 +220,7 @@ if(isset($_POST['send-invitation'])){
         $query = pg_query("SELECT * FROM notifications WHERE recipientusername = '$recipientusername' AND groupingid = $groupingid AND notificationtype = 'Invitation' ");
         // check for existing invitation
         if(pg_num_rows($query) == 0){
-            $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$recipientusername', '$senderusername', '$bolddata', $groupingid)");
+            $query = pg_query("INSERT INTO notifications(notificationtitle, notificationmessage, notificationdate, notificationtype, notificationstatus, recipientusername, senderusername, bolddata, groupingid) VALUES ('$notificationtitle', '$notificationmessage', '$notificationdate', '$notificationtype', '$notificationstatus', '$recipientusername', '$senderusername', '$bolddata', $groupingid) RETURNING id");
         }else{
             array_push($warnings, 'An invitation has already been sent to this email');
         }
@@ -230,15 +230,109 @@ if(isset($_POST['send-invitation'])){
 
     //send email if email exists
     if($invitationemail){
+        //get last inserted notification id
+        $insertrow = pg_fetch_row($query);
+        $insertid = $insertrow[0];
+
+        //fetch notification details
+        $query = pg_query("SELECT * FROM notifications WHERE id = $insertid");
+        $notification = pg_fetch_array($query);
+        $notificationid = $notification['id'];
+        $notificationgroupingid = $notification['groupingid'];
+        $notificationrecipient = $notification['senderusername'];
+
+        $link = '<a href="localhost/demo/BudgetTracker/src/notifications-process.php?accept-notification-id='.$notificationid.'&accept-grouping-id='.$notificationgroupingid.'&recipient-username='.$notificationrecipient.'">Accept</a>&nbsp;<a href="localhost/demo/BudgetTracker/src/notifications-process.php?decline-notification-id='.$notificationid.'&decline-grouping-id='.$notificationgroupingid.'&recipient-username='.$notificationrecipient.'">Decline</a>';
+
+        $text = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>BudgetTracker Email Notification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </head>
+        <body style="margin: 0; padding: 0;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">	
+                <tr>
+                    <td style="padding: 10px 0 30px 0;">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+                            <tr>
+                                <td align="center" bgcolor="#70bbd9" style="padding: 100px;background: url(https://i.imgur.com/Vrx64zx.png);
+          background-repeat: no-repeat;
+          background-size: 600px 400px; background-position: 50% 50%;  color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="color: #666; font-family: Arial, sans-serif; font-size: 24px;">
+                            <b>Jane invited you to join <i>Familia</i>!</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px; line-height: 1.5">
+                                                Financial planning with BudgetTracker just got a whole lot more convenient with group budgeting and group expense tracking! Join <i>Familia</i> now to start creating budgets and monitoring your group\'s expenses.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td width="260" valign="top">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr>
+                                                                    <td>
+                                        <a href="localhost/demo/BudgetTracker/src/notifications-process.php?accept-notification-id='.$notificationid.'&accept-grouping-id='.$notificationgroupingid.'&recipient-username='.$notificationrecipient.'" style="margin:auto;width: 150px; padding: 20px 30px; font-size: 20px; letter-spacing: 1px; background-color: #4DB6AC; border: none; color: white; display: block; text-align: center; text-decoration: none; font-family: Arial">Accept</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td style="font-size: 0; line-height: 0;" width="20">
+                                                            &nbsp;
+                                                        </td>
+                                                        <td width="260" valign="top">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="localhost/demo/BudgetTracker/src/notifications-process.php?decline-notification-id='.$notificationid.'&decline-grouping-id='.$notificationgroupingid.'&recipient-username='.$notificationrecipient.'" style="margin:auto;width: 150px; padding: 20px 30px; font-size: 20px; letter-spacing: 1px; background-color: #EF5350; border: none; color: white; display: block; text-align: center; text-decoration: none; font-family: Arial">Decline</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor="#aae39c" style="padding: 30px 30px 30px 30px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="color: #666; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+                                                &reg; BudgetTracker, Cyberjaya 2020<br/>
+                                                <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a>
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>';
+
         $email = new \SendGrid\Mail\Mail(); 
         
         $email->setFrom($senderemail, "BudgetTracker");
         $email->setSubject($senderusername." invited you to join ".$groupname);
         $email->addTo($invitationemail, $recipientusername);
-        $email->addContent("text/plain", $notificationmessage);
-        $email->addContent(
-            "text/html", $notificationmessage
-        );
+        $email->addContent("text/plain", "insert id is: ".$insertid);
+        $email->addContent("text/html", $text);
         $sendgrid = new \SendGrid($apikey);
         try {
             $response = $sendgrid->send($email);
@@ -251,11 +345,8 @@ if(isset($_POST['send-invitation'])){
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
-
     }
 
-
-    
 }
 
 //remove user (Admin settings)
