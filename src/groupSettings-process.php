@@ -266,12 +266,12 @@ if(isset($_POST['send-invitation'])){
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td style="color: #666; font-family: Arial, sans-serif; font-size: 24px;">
-                            <b>Jane invited you to join <i>Familia</i>!</b>
+                            <b>'.$senderusername.' invited you to join <i>'.$groupname.'</i>!</b>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px; line-height: 1.5">
-                                                Financial planning with BudgetTracker just got a whole lot more convenient with group budgeting and group expense tracking! Join <i>Familia</i> now to start creating budgets and monitoring your group\'s expenses.
+                                                Financial planning with BudgetTracker just got a whole lot more convenient with group budgeting and group expense tracking! Join <i>'.$groupname.'</i> now to start creating budgets and monitoring your group\'s expenses.
                                             </td>
                                         </tr>
                                         <tr>
