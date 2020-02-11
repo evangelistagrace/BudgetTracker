@@ -22,7 +22,7 @@ $groupingid = $_GET['grouping-id'];
                 <div class="close"><a class="toggleBtn" onclick="toggleSidebar()"></a></div>
 
                 <div class="profile"><img src="../assets/profile.jpg" alt="">
-                    <div class="desc">@';
+                    <div class="desc">@
                     
                     <?php if(isset($_SESSION['username'])): ?>
                         <?php echo $_SESSION['username'] ?>
