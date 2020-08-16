@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,3 +45,5 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
 </body>
 
 </html>
+
+<?php file_put_contents('index.html', ob_get_clean()); ?>
